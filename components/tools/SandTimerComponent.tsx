@@ -816,7 +816,7 @@ export default function SandTimerComponent() {
           /* =================================================================== */
           /* FULL SCREEN DISPLAY — ONLY VISUAL, TIME, AND EXIT IN CORNER         */
           /* =================================================================== */
-          <div className="relative w-full h-full flex flex-row items-center justify-center gap-6 sm:gap-12 md:gap-16 px-4">
+          <div className="relative w-full h-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-10 md:gap-16 px-4 py-2">
             {/* Exit Fullscreen in Top-Right Corner */}
             <button
               type="button"
@@ -829,19 +829,19 @@ export default function SandTimerComponent() {
             </button>
 
             {/* High-Resolution Hourglass Visual */}
-            <div className="flex items-center justify-center h-[82%] max-h-[85vh] aspect-[360/460] shrink-0">
+            <div className="flex items-center justify-center h-[52dvh] sm:h-[78dvh] max-h-[340px] sm:max-h-[82dvh] max-w-[78vw] sm:max-w-[46vw] aspect-[360/460] shrink-0">
               <canvas
                 ref={canvasRef}
                 width={594}
                 height={759}
                 aria-label={`Interactive digital sand timer showing ${formattedMins} minutes and ${formattedSecs} seconds remaining`}
-                className="h-full w-auto object-contain select-none"
+                className="h-full w-auto max-w-full object-contain select-none"
               />
             </div>
 
             {/* Clean Tabular Time Readout */}
             <div className="flex flex-col items-center justify-center text-center">
-              <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight tabular-nums text-[#1D2420] dark:text-white leading-none font-mono">
+              <div className="text-[clamp(2.5rem,11vmin,7.5rem)] font-extrabold tracking-tight tabular-nums text-[#1D2420] dark:text-white leading-none font-mono">
                 {formattedMins}:{formattedSecs}
               </div>
             </div>

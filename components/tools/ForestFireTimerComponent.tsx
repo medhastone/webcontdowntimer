@@ -927,7 +927,7 @@ export default function ForestFireTimerComponent({
                       aria-live="polite"
                       className={`font-sans font-extrabold text-white tracking-tight leading-none tabular-nums drop-shadow-[0_4px_14px_rgba(0,0,0,0.55)] ${
                         isFullscreen
-                          ? 'text-6xl sm:text-7xl md:text-8xl lg:text-9xl'
+                          ? 'text-[clamp(2.5rem,11vmin,6.5rem)]'
                           : 'text-6xl sm:text-7xl'
                       }`}
                     >

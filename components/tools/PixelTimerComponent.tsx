@@ -499,8 +499,8 @@ export default function PixelTimerComponent() {
 
             {/* Outer Square Bezel Frame */}
             <div
-              className={`w-full max-w-[330px] ${
-                isFullscreen ? 'h-[78dvh] max-h-[580px] max-w-[580px]' : ''
+              className={`w-full ${
+                isFullscreen ? 'w-[80vmin] h-[80vmin] max-h-[560px] max-w-[560px]' : 'max-w-[330px]'
               } aspect-square rounded-2xl p-3 sm:p-3.5 shadow-lg relative flex items-center justify-center ${
                 isLightMatrix
                   ? 'bg-[#ECEEEB] dark:bg-[#242A27] border-[6px] border-[#CBD2CE] dark:border-[#37403B]'

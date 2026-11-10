@@ -532,11 +532,15 @@ export default function CoralTimerComponent() {
               </div>
 
               {/* Digital Countdown Display in Upper-Center */}
-              <div className="relative z-20 pt-10 sm:pt-12 flex flex-col items-center text-center pointer-events-none">
+              <div
+                className={`relative z-20 flex flex-col items-center text-center pointer-events-none ${
+                  isFullscreen ? 'pt-3 sm:pt-6' : 'pt-10 sm:pt-12'
+                }`}
+              >
                 <div
                   className={`font-extrabold tracking-tight text-white tabular-nums ${
                     isFullscreen
-                      ? 'text-[clamp(3.25rem,14vmin,9rem)] leading-none'
+                      ? 'text-[clamp(2.25rem,11vmin,6rem)] leading-none'
                       : 'text-5xl sm:text-6xl'
                   }`}
                   style={{
@@ -567,7 +571,7 @@ export default function CoralTimerComponent() {
               <svg
                 viewBox="0 0 500 420"
                 className="absolute inset-0 w-full h-full pointer-events-none"
-                preserveAspectRatio="xMidYMax slice"
+                preserveAspectRatio={isFullscreen ? 'xMidYMax meet' : 'xMidYMax slice'}
               >
                 <defs>
                   {/* Main Coral Gradient */}

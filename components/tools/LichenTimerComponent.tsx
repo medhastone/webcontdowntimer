@@ -517,7 +517,7 @@ export default function LichenTimerComponent() {
               <svg
                 viewBox="0 0 480 420"
                 className="absolute inset-0 w-full h-full pointer-events-none"
-                preserveAspectRatio="xMidYMid slice"
+                preserveAspectRatio={isFullscreen ? 'xMidYMid meet' : 'xMidYMid slice'}
               >
                 <defs>
                   {/* Stone Base Radial Shading */}
@@ -534,7 +534,7 @@ export default function LichenTimerComponent() {
                 </defs>
 
                 {/* Base Natural Stone / Bark Surface */}
-                <rect x="0" y="0" width="480" height="420" fill="url(#stoneLighting)" />
+                <rect x="-600" y="-600" width="1680" height="1620" fill="url(#stoneLighting)" />
 
                 {/* Tactile Stone Facets & Mineral Patches */}
                 <polygon points="0,0 210,0 165,135 0,185" fill={activeStone.stoneLight} opacity="0.28" />
@@ -749,7 +749,7 @@ export default function LichenTimerComponent() {
                   <div
                     className={`font-extrabold tracking-tight text-white tabular-nums ${
                       isFullscreen
-                        ? 'text-6xl sm:text-7xl md:text-8xl lg:text-9xl'
+                        ? 'text-[clamp(2.5rem,12vmin,6.5rem)] leading-none'
                         : 'text-5xl sm:text-6xl'
                     }`}
                     style={{

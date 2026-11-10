@@ -367,7 +367,7 @@ export default function RingsTimerComponent() {
       <svg
         viewBox={`0 0 ${size} ${size}`}
         shapeRendering="geometricPrecision"
-        className={`w-full h-full ${isFullscreen ? 'max-w-[540px] max-h-[78dvh]' : 'max-w-[330px] max-h-[330px]'} select-none`}
+        className={`w-full h-full ${isFullscreen ? 'w-[80vmin] h-[80vmin] max-w-[540px] max-h-[540px]' : 'max-w-[330px] max-h-[330px]'} select-none`}
         aria-label={`Concentric rings timer showing ${formattedTime} remaining`}
       >
         <defs>
@@ -482,7 +482,7 @@ export default function RingsTimerComponent() {
               {/* Center Numeric Time Readout */}
               {(showTime || isFullscreen) && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                  <span className={`font-mono ${isFullscreen ? 'text-4xl sm:text-6xl' : 'text-3xl sm:text-[38px]'} font-bold tracking-tight text-[#1A241E] dark:text-white leading-none tabular-nums`}>
+                  <span className={`font-mono ${isFullscreen ? 'text-[clamp(2rem,10vmin,4.25rem)]' : 'text-3xl sm:text-[38px]'} font-bold tracking-tight text-[#1A241E] dark:text-white leading-none tabular-nums`}>
                     {formattedTime}
                   </span>
                   {!isFullscreen && (

@@ -372,7 +372,7 @@ export default function VisualTimerComponent() {
             </button>
           )}
           {/* Main Visual Display Area */}
-          <div className={`w-full ${isFullscreen ? 'max-w-[540px]' : 'max-w-[340px]'} aspect-square flex items-center justify-center relative select-none`}>
+          <div className={`${isFullscreen ? 'w-[80vmin] h-[80vmin] max-w-[520px] max-h-[520px]' : 'w-full max-w-[340px] aspect-square'} flex items-center justify-center relative select-none`}>
             {/* 1. CIRCULAR STYLE (Default) */}
             {visualStyle === 'circular' && (
               <div className="relative w-full h-full flex items-center justify-center">

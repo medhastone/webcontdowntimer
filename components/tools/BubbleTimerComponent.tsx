@@ -518,12 +518,15 @@ export default function BubbleTimerComponent() {
               className={`relative w-full aspect-square rounded-2xl overflow-hidden border border-[#CFE2F0] dark:border-[#2C3530] shadow-inner select-none flex items-center justify-center ${
                 isFullscreen ? 'timer-fullscreen-stage' : ''
               }`}
+              style={{
+                background: `linear-gradient(180deg, ${currentBg.waterTop} 0%, ${currentBg.waterMid} 48%, ${currentBg.waterBottom} 100%)`,
+              }}
             >
               <svg
                 viewBox="0 0 420 420"
-                preserveAspectRatio="xMidYMid slice"
+                preserveAspectRatio={isFullscreen ? 'xMidYMid meet' : 'xMidYMid slice'}
                 shapeRendering="geometricPrecision"
-                className="w-full h-full object-cover"
+                className="w-full h-full"
                 role="img"
                 aria-label={`Bubble countdown timer showing ${formattedTime} remaining`}
               >
@@ -569,7 +572,7 @@ export default function BubbleTimerComponent() {
                 </defs>
 
                 {/* 1. Underwater Background */}
-                <rect x="0" y="0" width="420" height="420" fill="url(#bubbleStageWaterGrad)" />
+                <rect x="-600" y="-600" width="1620" height="1620" fill="url(#bubbleStageWaterGrad)" />
 
                 {/* 2. Shimmering Water Surface Waves at Top */}
                 <path
@@ -643,7 +646,7 @@ export default function BubbleTimerComponent() {
 
                 {/* 6. Sandy Seabed & Smooth Pebbles at Bottom */}
                 <path
-                  d="M 0 374 Q 105 360 210 368 T 420 372 L 420 420 L 0 420 Z"
+                  d="M -600 374 Q 105 360 210 368 T 1020 372 L 1020 600 L -600 600 Z"
                   fill="url(#bubbleSandGrad)"
                 />
                 {/* Smooth ocean pebbles */}
@@ -795,7 +798,7 @@ export default function BubbleTimerComponent() {
                   <div
                     className={`font-sans font-bold tracking-tight drop-shadow-xs tabular-nums ${
                       isFullscreen
-                        ? 'text-6xl sm:text-7xl md:text-8xl'
+                        ? 'text-[clamp(2.5rem,12vmin,6.5rem)] leading-none'
                         : 'text-5xl sm:text-6xl'
                     }`}
                     style={{ color: currentTheme.textColor }}

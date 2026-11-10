@@ -464,7 +464,7 @@ export default function HeartTimerComponent() {
               />
 
               {/* Centered Heart SVG Container */}
-              <div className={`relative z-10 my-auto flex flex-col items-center justify-center w-full ${isFullscreen ? 'max-w-[500px] max-h-[78dvh]' : 'max-w-[310px]'}`}>
+              <div className={`relative z-10 my-auto flex flex-col items-center justify-center w-full ${isFullscreen ? 'w-[80vmin] max-w-[480px] max-h-[78vmin]' : 'max-w-[310px]'}`}>
                 <svg
                   viewBox="0 0 320 300"
                   shapeRendering="geometricPrecision"

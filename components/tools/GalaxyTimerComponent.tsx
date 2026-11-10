@@ -880,11 +880,11 @@ export default function GalaxyTimerComponent() {
 
               {/* Digital Countdown Display Positioned in Upper Sky */}
               {(showTime || isFullscreen) && (
-                <div className="absolute inset-x-0 top-7 sm:top-9 flex flex-col items-center justify-start pointer-events-none z-20 px-4">
+                <div className={`absolute inset-x-0 ${isFullscreen ? 'top-4 sm:top-7' : 'top-7 sm:top-9'} flex flex-col items-center justify-start pointer-events-none z-20 px-4`}>
                   <div
                     className={`font-sans font-bold tracking-tight text-white leading-none tabular-nums ${
                       isFullscreen
-                        ? 'text-6xl sm:text-7xl md:text-8xl'
+                        ? 'text-[clamp(2.5rem,12vmin,6rem)]'
                         : 'text-5xl sm:text-6xl lg:text-[64px]'
                     }`}
                     style={{

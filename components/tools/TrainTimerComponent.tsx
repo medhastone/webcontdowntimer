@@ -267,14 +267,14 @@ function SplitFlapDigit({ digit, theme, size, reducedMotion }: SplitFlapDigitPro
 
   const cardSizeClass =
     size === 'fullscreen'
-      ? 'w-[86px] h-[126px] sm:w-[122px] sm:h-[178px] md:w-[152px] md:h-[220px] rounded-2xl'
+      ? 'w-[clamp(48px,11vw,122px)] h-[clamp(68px,18vmin,172px)] rounded-xl sm:rounded-2xl'
       : size === 'compact'
         ? 'w-[40px] h-[62px] sm:w-[48px] sm:h-[74px] rounded-lg'
         : 'w-[54px] h-[84px] sm:w-[66px] sm:h-[100px] md:w-[72px] md:h-[110px] rounded-xl';
 
   const textSizeClass =
     size === 'fullscreen'
-      ? 'text-[4.5rem] sm:text-[6.5rem] md:text-[8.2rem]'
+      ? 'text-[clamp(2.4rem,9vmin,6rem)]'
       : size === 'compact'
         ? 'text-[2.1rem] sm:text-[2.6rem]'
         : 'text-[3.1rem] sm:text-[3.8rem] md:text-[4.25rem]';
@@ -1038,7 +1038,7 @@ export default function TrainTimerComponent({ initialMinutes = 25 }: TrainTimerC
 
               {/* MAIN DEPARTURE BOARD CASING */}
               <div
-                className="relative z-10 w-full max-w-[440px] rounded-2xl p-3 sm:p-4 transition-all duration-300"
+                className={`relative z-10 w-full ${isFullscreen ? 'max-w-[680px] p-2.5 sm:p-3.5' : 'max-w-[440px] p-3 sm:p-4'} rounded-2xl transition-all duration-300`}
                 style={{
                   background: activeTheme.boardFrameBg,
                   border: `2.5px solid ${activeTheme.boardBorder}`,
@@ -1082,7 +1082,7 @@ export default function TrainTimerComponent({ initialMinutes = 25 }: TrainTimerC
 
                 {/* 3. SPLIT-FLAP DIGITS STAGE */}
                 <div
-                  className="mt-2.5 rounded-xl px-2.5 py-4 sm:px-4 sm:py-5 flex items-center justify-center border border-black/90"
+                  className={`${isFullscreen ? 'mt-1.5 sm:mt-2 py-2 sm:py-3.5' : 'mt-2.5 py-4 sm:py-5'} rounded-xl px-2.5 sm:px-4 flex items-center justify-center border border-black/90`}
                   style={{
                     background: activeTheme.boardInnerBg,
                     boxShadow: 'inset 0 6px 18px rgba(0,0,0,0.9)',
@@ -1606,7 +1606,7 @@ export default function TrainTimerComponent({ initialMinutes = 25 }: TrainTimerC
         </div>
 
         {/* BOTTOM PANORAMIC ILLUSTRATED TRAIN ROUTE & PLATFORM PROGRESS BAR */}
-        <div className="relative w-full border-t border-[#DCE3DD] dark:border-[#262E29] bg-gradient-to-b from-[#D7E9F7] via-[#EBF4FA] to-[#E6E2D8] dark:from-[#131C24] dark:via-[#19242B] dark:to-[#1E221F] pt-5 pb-4 px-4 sm:px-8 overflow-hidden select-none">
+        <div className={`relative w-full border-t border-[#DCE3DD] dark:border-[#262E29] bg-gradient-to-b from-[#D7E9F7] via-[#EBF4FA] to-[#E6E2D8] dark:from-[#131C24] dark:via-[#19242B] dark:to-[#1E221F] ${isFullscreen ? 'pt-2 pb-2 sm:pt-3 sm:pb-3' : 'pt-5 pb-4'} px-4 sm:px-8 overflow-hidden select-none`}>
           {/* Scenic Distant Mountains & Trees Backdrop */}
           <svg
             viewBox="0 0 1200 120"

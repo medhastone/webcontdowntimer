@@ -559,12 +559,15 @@ export default function SunTimerComponent() {
               className={`relative w-full aspect-square rounded-2xl overflow-hidden border border-[#E4DEC9] dark:border-[#2C3530] shadow-inner select-none flex items-center justify-center ${
                 isFullscreen ? 'timer-fullscreen-stage' : ''
               }`}
+              style={{
+                background: `linear-gradient(180deg, ${skyTop} 0%, ${skyMid} 52%, ${skyBottom} 78%, ${currentTheme.waterBottom} 100%)`,
+              }}
             >
               <svg
                 viewBox="0 0 420 420"
-                preserveAspectRatio="xMidYMid slice"
+                preserveAspectRatio={isFullscreen ? 'xMidYMid meet' : 'xMidYMid slice'}
                 shapeRendering="geometricPrecision"
-                className="w-full h-full object-cover"
+                className="w-full h-full"
                 role="img"
                 aria-label={`Sun countdown timer showing ${formattedTime} remaining`}
               >
@@ -600,7 +603,7 @@ export default function SunTimerComponent() {
                 </defs>
 
                 {/* 1. Sky Background */}
-                <rect x="0" y="0" width="420" height="335" fill="url(#sunStageSkyGrad)" />
+                <rect x="-600" y="-600" width="1620" height="935" fill="url(#sunStageSkyGrad)" />
 
                 {/* 2. Soft Illustrated Clouds */}
                 <g fill={currentTheme.cloudColor} opacity={currentTheme.cloudOpacity}>
@@ -685,7 +688,7 @@ export default function SunTimerComponent() {
                 />
 
                 {/* 7. Calm Reflective Lake (y = 332 to 420) */}
-                <rect x="0" y="332" width="420" height="88" fill="url(#sunLakeGrad)" />
+                <rect x="-600" y="332" width="1620" height="688" fill="url(#sunLakeGrad)" />
 
                 {/* Shimmering Golden Sun Reflection on Water (tracks sun X softly) */}
                 <g opacity={Math.max(0.25, timeFraction)}>
@@ -749,7 +752,7 @@ export default function SunTimerComponent() {
                   <div
                     className={`font-sans font-bold tracking-tight drop-shadow-xs tabular-nums ${
                       isFullscreen
-                        ? 'text-6xl sm:text-7xl md:text-8xl lg:text-9xl'
+                        ? 'text-[clamp(2.5rem,12vmin,6.5rem)] leading-none'
                         : 'text-5xl sm:text-6xl'
                     }`}
                     style={{ color: currentTheme.textColor }}

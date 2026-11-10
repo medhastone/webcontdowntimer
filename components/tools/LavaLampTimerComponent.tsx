@@ -361,29 +361,12 @@ export default function LavaLampTimerComponent() {
     try {
       if (!isFullscreen && !document.fullscreenElement) {
         setIsFullscreen(true);
-        if (document.documentElement.requestFullscreen) {
-          await document.documentElement.requestFullscreen();
-        }
-        try {
-          const orientation = window.screen?.orientation as unknown as {
-            lock?: (mode: string) => Promise<void>;
-          };
-          if (orientation?.lock && window.innerWidth <= 900) {
-            await orientation.lock('landscape');
-          }
-        } catch {
-          // CSS .timer-fullscreen-stage handles portrait-to-landscape rotation
+        const targetEl = stageRef.current || document.documentElement;
+        if (targetEl.requestFullscreen) {
+          await targetEl.requestFullscreen();
         }
       } else {
         setIsFullscreen(false);
-        try {
-          const orientation = window.screen?.orientation as unknown as {
-            unlock?: () => void;
-          };
-          orientation?.unlock?.();
-        } catch {
-          // ignore
-        }
         if (document.fullscreenElement && document.exitFullscreen) {
           await document.exitFullscreen();
         }
@@ -447,8 +430,9 @@ export default function LavaLampTimerComponent() {
       const t = animTimeRef.current;
 
       const dpr = Math.min(window.devicePixelRatio || 2, 3);
-      const cssW = Math.max(320, canvas.clientWidth || 520);
-      const cssH = Math.max(360, canvas.clientHeight || 560);
+      const rect = canvas.getBoundingClientRect();
+      const cssW = Math.max(200, Math.round(rect.width || canvas.clientWidth || 520));
+      const cssH = Math.max(200, Math.round(rect.height || canvas.clientHeight || 560));
       const targetW = Math.round(cssW * dpr);
       const targetH = Math.round(cssH * dpr);
       if (canvas.width !== targetW || canvas.height !== targetH) {
@@ -528,7 +512,7 @@ export default function LavaLampTimerComponent() {
       });
 
       // Warm wooden desk surface at bottom
-      const deskY = H * 0.805;
+      const deskY = H * 0.78;
       const deskGrad = ctx.createLinearGradient(0, deskY, 0, H);
       deskGrad.addColorStop(0, '#5A2B1D');
       deskGrad.addColorStop(0.3, '#3D1B12');
@@ -552,14 +536,14 @@ export default function LavaLampTimerComponent() {
       ctx.restore();
 
       // 2. Lava Lamp Geometry Coordinates (proportional to lampRefSize so wide fullscreen never distorts or crops the lamp)
-      const lampRefSize = Math.min(W, H * 0.92);
+      const lampRefSize = Math.min(W, H * 0.88);
       const centerX = W * 0.5;
-      const capTopY = H * 0.035;
-      const capBottomY = H * 0.145;
+      const capTopY = H * 0.03;
+      const capBottomY = H * 0.13;
       const glassTopY = capBottomY;
-      const glassBottomY = H * 0.675;
-      const glassMidY = H * 0.565; // widest hip of the classic conical bottle
-      const baseBottomY = H * 0.945;
+      const glassBottomY = H * 0.64;
+      const glassMidY = H * 0.53; // widest hip of the classic conical bottle
+      const baseBottomY = H * 0.915;
 
       const capTopHalfW = lampRefSize * 0.056;
       const capBotHalfW = lampRefSize * 0.088;
@@ -978,10 +962,18 @@ export default function LavaLampTimerComponent() {
               {/* Digital Clock Screen Embedded in the Metallic Lamp Base */}
               {(showTime || isFullscreen) && (
                 <div
-                  className="absolute bottom-[7.5%] left-1/2 -translate-x-1/2 z-10 px-5 py-2 rounded-2xl bg-[#161418]/95 border-2 border-[#64748B]/70 shadow-[0_6px_20px_rgba(0,0,0,0.65)] text-center min-w-[148px] sm:min-w-[162px] pointer-events-none"
+                  className={`absolute left-1/2 -translate-x-1/2 z-10 rounded-2xl bg-[#161418]/95 border-2 border-[#64748B]/70 shadow-[0_6px_20px_rgba(0,0,0,0.65)] text-center pointer-events-none ${
+                    isFullscreen
+                      ? 'bottom-[10.5%] px-4 py-1.5 sm:px-5 sm:py-2 min-w-[124px] sm:min-w-[152px]'
+                      : 'bottom-[9%] px-5 py-2 min-w-[148px] sm:min-w-[162px]'
+                  }`}
                   aria-live="polite"
                 >
-                  <div className="font-sans font-bold text-2xl sm:text-[32px] leading-none tracking-tight text-white tabular-nums">
+                  <div
+                    className={`font-sans font-bold leading-none tracking-tight text-white tabular-nums ${
+                      isFullscreen ? 'text-xl sm:text-2xl md:text-[30px]' : 'text-2xl sm:text-[32px]'
+                    }`}
+                  >
                     {formatTime(remainingMs)}
                   </div>
                   {!isFullscreen && (

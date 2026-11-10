@@ -554,8 +554,8 @@ export default function CircularTimerComponent() {
             <span>Exit Fullscreen</span>
           </button>
 
-          <div className="my-auto w-full h-full flex items-center justify-center py-4">
-            {renderCircularVisual('h-[78dvh] max-h-[560px] aspect-square')}
+          <div className="my-auto w-full h-full flex items-center justify-center py-2">
+            {renderCircularVisual('w-[80vmin] h-[80vmin] max-w-[540px] max-h-[540px] aspect-square')}
           </div>
         </div>
       )}

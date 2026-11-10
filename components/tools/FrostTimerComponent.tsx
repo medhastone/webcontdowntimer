@@ -971,13 +971,14 @@ export default function FrostTimerComponent() {
               }`}
               style={{
                 filter: `brightness(${brightness}%)`,
+                background: `linear-gradient(180deg, ${activeBg.skyTop} 0%, ${activeBg.skyMid} 48%, ${activeBg.skyHorizon} 76%, ${activeBg.skyBottom} 100%)`,
               }}
             >
               {/* Layer 1: Crisp Winter Sunrise Pine Landscape Behind the Glass (NO BLUR FILTER) */}
               <svg
                 viewBox="0 0 500 420"
                 className="w-full h-full block"
-                preserveAspectRatio="xMidYMid slice"
+                preserveAspectRatio={isFullscreen ? 'xMidYMid meet' : 'xMidYMid slice'}
                 shapeRendering="geometricPrecision"
                 role="img"
                 aria-label={`Frost timer visual display showing ${formattedTime} remaining`}
@@ -1011,8 +1012,8 @@ export default function FrostTimerComponent() {
                 </defs>
 
                 {/* Crisp Winter Sky & Golden Horizon */}
-                <rect x="0" y="0" width="500" height="420" fill="url(#frostSkyGrad)" />
-                <rect x="0" y="0" width="500" height="420" fill="url(#frostSunGlow)" />
+                <rect x="-600" y="-600" width="1700" height="1620" fill="url(#frostSkyGrad)" />
+                <rect x="-600" y="-600" width="1700" height="1620" fill="url(#frostSunGlow)" />
 
                 {/* Subtle Sunbeams Radiating from the Winter Sun */}
                 <g opacity="0.18">
@@ -1164,7 +1165,7 @@ export default function FrostTimerComponent() {
                   <div
                     className={`font-sans font-bold text-white tracking-tight leading-none tabular-nums ${
                       isFullscreen
-                        ? 'text-6xl sm:text-7xl md:text-8xl lg:text-9xl'
+                        ? 'text-[clamp(2.5rem,12vmin,6.5rem)]'
                         : 'text-5xl sm:text-6xl lg:text-[64px]'
                     }`}
                     style={{

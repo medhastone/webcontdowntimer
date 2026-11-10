@@ -246,14 +246,14 @@ function SplitFlapDigit({
   // Explicit pixel-backed responsive dimensions so the card never collapses
   const sizeClasses =
     size === 'fullscreen'
-      ? 'w-[92px] h-[136px] sm:w-[132px] sm:h-[192px] md:w-[164px] md:h-[236px] rounded-2xl'
+      ? 'w-[clamp(52px,13vw,156px)] h-[clamp(76px,22vmin,224px)] rounded-xl sm:rounded-2xl'
       : size === 'compact'
       ? 'w-[42px] h-[64px] sm:w-[50px] sm:h-[76px] rounded-lg'
       : 'w-[58px] h-[88px] sm:w-[68px] sm:h-[104px] md:w-[74px] md:h-[112px] rounded-xl';
 
   const textClasses =
     size === 'fullscreen'
-      ? 'text-[80px] sm:text-[116px] md:text-[144px]'
+      ? 'text-[clamp(44px,11vw,136px)]'
       : size === 'compact'
       ? 'text-[36px] sm:text-[44px]'
       : 'text-[52px] sm:text-[62px] md:text-[68px]';

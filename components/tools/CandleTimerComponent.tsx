@@ -422,7 +422,7 @@ export default function CandleTimerComponent() {
               <svg
                 viewBox="0 0 220 310"
                 shapeRendering="geometricPrecision"
-                className={`${isFullscreen ? 'h-[78dvh] max-h-[520px] w-auto' : 'h-[300px] w-[215px]'} select-none`}
+                className={`${isFullscreen ? 'h-[48dvh] sm:h-[75dvh] max-h-[300px] sm:max-h-[480px] w-auto' : 'h-[300px] w-[215px]'} select-none`}
                 role="img"
                 aria-label={`Digital ${palette.name} candle timer with ${Math.round(
                   rawFraction * 100
@@ -751,10 +751,10 @@ export default function CandleTimerComponent() {
             </div>
 
             {/* Right Half: Digital Countdown, Melting Status & Inspirational Quote */}
-            <div className="relative z-10 flex flex-col items-center justify-center px-4 pb-16 pt-2 text-center sm:w-[50%] sm:pb-12 sm:pr-5">
+            <div className={`relative z-10 flex flex-col items-center justify-center px-4 text-center sm:w-[50%] sm:pr-5 ${isFullscreen ? 'pb-6 pt-1 sm:pb-8' : 'pb-16 pt-2 sm:pb-12'}`}>
               {(showTime || isFullscreen) ? (
                 <>
-                  <div className={`font-mono ${isFullscreen ? 'text-6xl sm:text-8xl' : 'text-4xl sm:text-[44px]'} font-extrabold tracking-tight text-[#14201B] leading-none tabular-nums`}>
+                  <div className={`font-mono ${isFullscreen ? 'text-[clamp(2.5rem,11vmin,6.5rem)]' : 'text-4xl sm:text-[44px]'} font-extrabold tracking-tight text-[#14201B] leading-none tabular-nums`}>
                     {formattedTime}
                   </div>
                   {!isFullscreen && (

@@ -609,7 +609,7 @@ export default function AestheticTimerComponent() {
               <svg
                 viewBox="0 0 240 240"
                 shapeRendering="geometricPrecision"
-                className={`${isFullscreen ? 'h-[72dvh] w-[72dvh] max-h-[480px] max-w-[480px]' : 'h-[250px] w-[250px] sm:h-[268px] sm:w-[268px]'} select-none drop-shadow-md`}
+                className={`${isFullscreen ? 'h-[78vmin] w-[78vmin] max-h-[480px] max-w-[480px]' : 'h-[250px] w-[250px] sm:h-[268px] sm:w-[268px]'} select-none drop-shadow-md`}
                 role="img"
                 aria-label={`${activeTheme.label} aesthetic countdown timer showing ${formattedTime}`}
               >

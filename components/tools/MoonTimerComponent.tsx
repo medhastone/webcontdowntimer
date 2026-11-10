@@ -376,7 +376,7 @@ export default function MoonTimerComponent() {
               <svg
                 viewBox="0 0 360 360"
                 className={`w-full h-full ${
-                  isFullscreen ? 'max-w-[85vh] max-h-[85vh]' : 'max-w-[360px] max-h-[360px]'
+                  isFullscreen ? 'w-[86vmin] h-[86vmin] max-w-[680px] max-h-[680px]' : 'max-w-[360px] max-h-[360px]'
                 }`}
                 shapeRendering="geometricPrecision"
                 aria-label={`Moon countdown timer showing ${formattedTime} remaining`}
@@ -670,7 +670,7 @@ export default function MoonTimerComponent() {
                   <div
                     className={`font-sans font-bold tracking-tight text-white tabular-nums leading-none drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)] ${
                       isFullscreen
-                        ? 'text-6xl sm:text-7xl md:text-8xl'
+                        ? 'text-[clamp(2.5rem,12vmin,6.5rem)]'
                         : 'text-4xl sm:text-[52px]'
                     }`}
                   >

@@ -759,7 +759,7 @@ export default function SnowTimerComponent() {
               <svg
                 viewBox="0 0 500 440"
                 className="w-full h-full block"
-                preserveAspectRatio="xMidYMid slice"
+                preserveAspectRatio={isFullscreen ? 'xMidYMid meet' : 'xMidYMid slice'}
                 shapeRendering="geometricPrecision"
                 role="img"
                 aria-label={`Snow timer winter scene showing ${formattedTime} remaining`}
@@ -792,8 +792,8 @@ export default function SnowTimerComponent() {
                 </defs>
 
                 {/* Winter Sky & Warm Twilight/Sunrise Glow */}
-                <rect x="0" y="0" width="500" height="440" fill="url(#snowSkyGrad)" />
-                <rect x="0" y="0" width="500" height="440" fill="url(#snowHorizonGlow)" />
+                <rect x="-600" y="-600" width="1700" height="1640" fill="url(#snowSkyGrad)" />
+                <rect x="-600" y="-600" width="1700" height="1640" fill="url(#snowHorizonGlow)" />
 
                 {/* Optional Soft Sunbeams for Forest & Mountain Themes */}
                 {activeTheme.showSunbeams && (
@@ -1021,7 +1021,7 @@ export default function SnowTimerComponent() {
                   <div
                     className={`font-sans font-bold text-white tracking-tight leading-none tabular-nums ${
                       isFullscreen
-                        ? 'text-6xl sm:text-7xl md:text-8xl lg:text-9xl'
+                        ? 'text-[clamp(2.5rem,12vmin,6.5rem)]'
                         : 'text-5xl sm:text-6xl lg:text-[64px]'
                     }`}
                     style={{

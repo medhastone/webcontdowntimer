@@ -361,7 +361,7 @@ export default function RadialTimerComponent() {
       <svg
         viewBox={`0 0 ${size} ${size}`}
         shapeRendering="geometricPrecision"
-        className={`w-full h-full ${isFullscreen ? 'max-w-[540px] max-h-[78dvh]' : 'max-w-[330px] max-h-[330px]'} select-none`}
+        className={`w-full h-full ${isFullscreen ? 'w-[80vmin] h-[80vmin] max-w-[540px] max-h-[540px]' : 'max-w-[330px] max-h-[330px]'} select-none`}
         aria-label={`Radial timer showing ${formattedTime} remaining`}
       >
         {Array.from({ length: segmentCount }).map((_, idx) => {
@@ -532,7 +532,7 @@ export default function RadialTimerComponent() {
               {/* Center Numeric Time Readout */}
               {(showTime || isFullscreen) && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                  <span className={`font-mono ${isFullscreen ? 'text-5xl sm:text-7xl' : 'text-4xl sm:text-[44px]'} font-bold tracking-tight text-[#1A241E] dark:text-white leading-none tabular-nums`}>
+                  <span className={`font-mono ${isFullscreen ? 'text-[clamp(2.25rem,11vmin,5rem)]' : 'text-4xl sm:text-[44px]'} font-bold tracking-tight text-[#1A241E] dark:text-white leading-none tabular-nums`}>
                     {formattedTime}
                   </span>
                   {!isFullscreen && (

@@ -616,13 +616,13 @@ export default function HourglassTimerComponent() {
           </button>
 
           {/* Center Hourglass + Giant Readout */}
-          <div className="my-auto flex flex-row items-center justify-center gap-8 sm:gap-14 lg:gap-20 py-4 w-full h-full">
-            <div className="h-[78dvh] max-h-[520px] aspect-[280/360] flex items-center justify-center">
+          <div className="my-auto flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-12 lg:gap-20 py-2 w-full h-full">
+            <div className="h-[50dvh] sm:h-[76dvh] max-h-[320px] sm:max-h-[500px] max-w-[78vw] sm:max-w-[45vw] aspect-[280/360] flex items-center justify-center shrink-0">
               {renderWoodenHourglassSVG('w-full h-full max-w-none')}
             </div>
 
             <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-              <div className="font-mono text-6xl sm:text-8xl lg:text-9xl font-bold tracking-tight tabular-nums text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
+              <div className="font-mono text-[clamp(2.5rem,11vmin,7.5rem)] font-bold tracking-tight tabular-nums text-white leading-none drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
                 {formattedMinutes}:{formattedSeconds}
               </div>
             </div>

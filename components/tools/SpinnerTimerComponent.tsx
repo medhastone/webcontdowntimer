@@ -588,7 +588,7 @@ export default function SpinnerTimerComponent() {
               <svg
                 viewBox="0 0 480 480"
                 className={`w-full h-full select-none ${
-                  isFullscreen ? 'max-w-[85vh] max-h-[85vh]' : 'max-w-[440px] max-h-[440px]'
+                  isFullscreen ? 'w-[86vmin] h-[86vmin] max-w-[680px] max-h-[680px]' : 'max-w-[440px] max-h-[440px]'
                 }`}
                 shapeRendering="geometricPrecision"
                 role="img"

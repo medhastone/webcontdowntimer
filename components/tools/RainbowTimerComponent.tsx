@@ -351,7 +351,7 @@ function MainRainbowStageSVG({
       <svg
         viewBox="0 0 440 390"
         className={`w-full ${
-          isFullscreen ? 'max-w-[540px] max-h-[62vh]' : 'max-w-[420px]'
+          isFullscreen ? 'max-w-[84vmin] max-h-[78vmin]' : 'max-w-[420px]'
         } h-auto select-none`}
         role="img"
         aria-label={`Rainbow countdown timer showing ${formattedMins} minutes and ${formattedSecs} seconds left`}
@@ -431,7 +431,7 @@ function MainRainbowStageSVG({
       <svg
         viewBox="0 0 440 315"
         className={`w-full ${
-          isFullscreen ? 'max-w-[640px] max-h-[62vh]' : 'max-w-[440px]'
+          isFullscreen ? 'max-w-[86vmin] max-h-[78vmin]' : 'max-w-[440px]'
         } h-auto select-none`}
         role="img"
         aria-label={`Segmented rainbow countdown timer showing ${formattedMins} minutes and ${formattedSecs} seconds left`}
@@ -509,7 +509,7 @@ function MainRainbowStageSVG({
     <svg
       viewBox="0 0 440 315"
       className={`w-full ${
-        isFullscreen ? 'max-w-[660px] max-h-[64vh]' : 'max-w-[440px]'
+        isFullscreen ? 'max-w-[86vmin] max-h-[78vmin]' : 'max-w-[440px]'
       } h-auto select-none`}
       role="img"
       aria-label={`Rainbow countdown timer showing ${formattedMins} minutes and ${formattedSecs} seconds left`}
