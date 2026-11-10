@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS='--no-deprecation' next dev -p 3000",
-    "build": "NODE_OPTIONS='--no-deprecation' next build",
-    "start": "NODE_OPTIONS='--no-deprecation' next start",
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start",
     "lint": "eslint .",
-    "test": "NODE_OPTIONS='--no-deprecation' node --import tsx --test 'tests/**/*.test.ts'",
+    "test": "node --import tsx --test 'tests/**/*.test.ts'",
     "clean": "next clean"
   },
   "dependencies": {
