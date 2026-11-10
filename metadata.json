@@ -1,0 +1,6 @@
+{
+  "name": "Chronos Precision Time Tools",
+  "description": "Professional timekeeping suite for stage speakers, presentation timers, live event operators, toastmasters, world clocks, meeting planners, and precision timers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
