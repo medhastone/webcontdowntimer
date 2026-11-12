@@ -1,13 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo-metadata';
 import type { Metadata } from 'next';
 import { getToolBySlug } from '@/lib/tools-registry';
 import ToolPageLayout from '@/components/common/ToolPageLayout';
 import CommunityActivityToolsComponent from '@/components/tools/CommunityActivityToolsComponent';
 
-export const metadata: Metadata = {
-  title: 'Classroom Seating Chart Maker – Randomized Desk Grid Generator | WebCountDownTimer',
-  description:
-    'Create and randomize classroom desk layouts in seconds. Paste your student roster, configure rows and columns, shuffle seats fairly, and export to CSV.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata('/seating-chart-maker');
+}
 
 export default function SeatingChartMakerPage() {
   const tool = getToolBySlug('seating-chart-maker')!;

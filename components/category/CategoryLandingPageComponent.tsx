@@ -312,10 +312,7 @@ export default function CategoryLandingPageComponent({ data }: Props) {
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - progressRatio * circumference;
 
-  const categoryUrl =
-    data.slug === 'education'
-      ? 'https://WebCountDownTimer.com/education'
-      : `https://WebCountDownTimer.com/category/${data.slug}`;
+  const categoryUrl = `https://WebCountDownTimer.com/category/${data.slug}`;
 
   const collectionPageSchema = {
     '@context': 'https://schema.org',

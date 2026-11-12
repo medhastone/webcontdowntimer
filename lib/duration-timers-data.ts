@@ -843,33 +843,19 @@ const DURATION_SPECIFIC_USES: Record<
   },
 };
 
+export const KEPT_MINUTE_TIMERS = [1, 5, 10, 15, 30, 60] as const;
+
+export const REDIRECTED_MINUTE_TIMERS = [
+  2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 18, 20, 25, 35, 40, 45, 50, 55, 90,
+] as const;
+
 export const APPROVED_DURATION_SLUGS = [
   '1-minute-timer',
-  '2-minute-timer',
-  '3-minute-timer',
-  '4-minute-timer',
   '5-minute-timer',
-  '6-minute-timer',
-  '7-minute-timer',
-  '8-minute-timer',
-  '9-minute-timer',
   '10-minute-timer',
-  '11-minute-timer',
-  '12-minute-timer',
-  '13-minute-timer',
-  '14-minute-timer',
   '15-minute-timer',
-  '18-minute-timer',
-  '20-minute-timer',
-  '25-minute-timer',
   '30-minute-timer',
-  '35-minute-timer',
-  '40-minute-timer',
-  '45-minute-timer',
-  '50-minute-timer',
-  '55-minute-timer',
   '60-minute-timer',
-  '90-minute-timer',
   '30-second-timer',
   '45-second-timer',
   '90-second-timer',
@@ -882,6 +868,8 @@ function formatSecToMMSS(sec: number): string {
 }
 
 export function getDurationPageData(slug: string): DurationPageData | null {
+  if (!APPROVED_DURATION_SLUGS.includes(slug)) return null;
+
   const minMatch = /^(\d+)-minute-timer$/.exec(slug);
   const secMatch = /^(\d+)-second-timer$/.exec(slug);
 
@@ -933,7 +921,9 @@ export function getDurationPageData(slug: string): DurationPageData | null {
         `online ${value} second timer`,
       ];
 
-  const seoTitle = `${h1} (${totalSeconds.toLocaleString()}s) – Pacing Guide & Online Countdown | WebCountDownTimer`;
+  const seoTitle = isMinutes
+    ? `${h1} (${totalSeconds.toLocaleString()}s) – Countdown | WebCountDownTimer`
+    : `${h1} (${totalSeconds}s) – Sprint Clock | WebCountDownTimer`;
 
   const customUse = DURATION_SPECIFIC_USES[slug];
   const whenToUseIntro = customUse
@@ -1126,35 +1116,18 @@ export function getDurationPageData(slug: string): DurationPageData | null {
           body: `Research on cognitive context switching shows it takes 15+ minutes to regain deep concentration after checking a single chat notification. During this ${value}-minute (${decimalHours}-hour) block, pin this tab so you can glance at the live MM:SS countdown in the browser tab title without leaving your workspace.`,
         };
 
-  // Build adjacent related duration links
-  const candidateMinutes = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 20, 25, 30, 35, 40, 45, 50, 60];
+  // Build adjacent related duration links using only the 6 kept minute timers
+  const candidateMinutes = [...KEPT_MINUTE_TIMERS];
   const relatedDurations = candidateMinutes
     .filter((m) => (isMinutes ? m !== value : true))
-    .sort((a, b) => Math.abs(a - (isMinutes ? value : 1)) - Math.abs(b - (isMinutes ? value : 1)))
-    .slice(0, 6)
-    .sort((a, b) => a - b)
     .map((m) => ({
       slug: `${m}-minute-timer`,
       label: `${m}-Minute Timer`,
-      description: `${m * 60} seconds online countdown`,
+      description: `${(m * 60).toLocaleString()} seconds online countdown`,
     }));
 
-  // Varied, human-written intro paragraphs by tier so pages never share identical opening copy
-  const introParagraphs =
-    tier === 'sprint'
-      ? [
-          `${whenToUseIntro} Pre-loaded to ${formatSecToMMSS(totalSeconds)} (${totalSeconds} exact seconds), this ${primaryKeyword} starts with a single click or Spacebar tap—so you never waste half your sprint fumbling with duration spinners.`,
-          `Whether you are timing ${ex0Title.toLowerCase()}, ${ex1Title.toLowerCase()}, or rapid interval repeats with Loop Mode enabled, the monotonic browser clock tracks every millisecond accurately and sounds a clean acoustic chime at 00:00.`,
-        ]
-      : tier === 'tactical'
-      ? [
-          `${whenToUseIntro} This ${primaryKeyword} comes ready at ${formatSecToMMSS(totalSeconds)} (${totalSeconds.toLocaleString()} seconds / ${decimalHours} decimal hours) for immediate one-click timing in the kitchen, classroom, or meeting room.`,
-          `Press Start (or hit Spacebar) to launch the countdown, expand to Fullscreen (F) when projecting across a room, or enable Loop Mode when running back-to-back ${value}-${unitSingular} rotations.`,
-        ]
-      : [
-          `${whenToUseIntro} Spanning ${totalSeconds.toLocaleString()} seconds (${decimalHours} decimal hours), this ${primaryKeyword} anchors your finish time to your device’s system epoch—meaning background tab throttling never causes your ${value}-minute block to drift.`,
-          `Use it in Fullscreen Mode for lecture halls and practice exams, or keep it pinned in a background tab while the live browser tab title tracks your remaining minutes through ${ex0Title.toLowerCase()}.`,
-        ];
+  // Completely unique opening intro per kept duration page
+  const introParagraphs = [whenToUseIntro];
 
   const howToUseTitle =
     tier === 'sprint'
@@ -1185,15 +1158,27 @@ export function getDurationPageData(slug: string): DurationPageData | null {
           `When the 00:00 chime sounds, step away for a ${Math.max(5, Math.round(value * 0.2))}-minute non-screen recovery break before resetting.`,
         ];
 
+  const rawUseCase = ex0Title
+    .toLowerCase()
+    .replace(/\s*\([^)]*\)/g, '')
+    .trim();
+  const baseDesc = isMinutes
+    ? `Start a free ${value}-${unitSingular} timer (${totalSeconds.toLocaleString()}s / ${decimalHours}h) for ${rawUseCase}. Includes drift-free browser tracking, loop mode, audio chime, and fullscreen.`
+    : `Start a free ${value}-second sprint timer (${decimalMinutes}m) for ${rawUseCase}. Includes millisecond-accurate tracking, loop mode, audio chime, and fullscreen.`;
+  const metaDescription =
+    baseDesc.length > 155
+      ? `${baseDesc.slice(0, 151).replace(/[,;\s]+\S*$/, '')}.`
+      : baseDesc.length < 130
+      ? `${baseDesc.replace(/\.$/, '')} on any device.`
+      : baseDesc;
+
   return {
     slug,
     tier,
     tierBadge,
     h1,
     seoTitle,
-    metaDescription: isMinutes
-      ? `Free ${value}-${unitSingular} timer (${totalSeconds.toLocaleString()} seconds / ${decimalHours} hrs) for ${ex0Title.toLowerCase()} and ${ex1Title.toLowerCase()}. Drift-free countdown with fullscreen, loop, and chime.`
-      : `Free ${value}-second timer (${decimalMinutes} mins) for ${ex0Title.toLowerCase()} and ${ex1Title.toLowerCase()}. Millisecond-accurate sprint countdown with loop and fullscreen mode.`,
+    metaDescription,
     primaryKeyword,
     secondaryKeywords,
     totalSeconds,

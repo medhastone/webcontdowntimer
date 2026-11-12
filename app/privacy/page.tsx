@@ -1,13 +1,9 @@
+import { buildPageMetadata } from '@/lib/seo-metadata';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | WebCountDownTimer',
-  description:
-    'WebCountDownTimer (WebCountDownTimer.com) operates with client-side privacy. Zero tracking cookies, no accounts, and local-only processing for timers, audio, and images.',
-  alternates: {
-    canonical: 'https://WebCountDownTimer.com/privacy',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata('/privacy');
+}
 
 export default function PrivacyPage() {
   return (

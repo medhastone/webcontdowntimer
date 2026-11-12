@@ -88,7 +88,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
   education: {
     slug: 'education',
     parentName: 'Education',
-    parentHref: '/education',
+    parentHref: '/category/education',
     categoryKicker: 'EDUCATION & CLASSROOM TOOLS',
     title: 'Classroom Timers',
     description:
@@ -293,7 +293,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
         'Early elementary learners (K–2) have not yet developed abstract numerical time perception; a numeral reading "04:15" carries little meaning compared to a 360-degree colored wedge that visibly shrinks to a sliver. For grades 3–8, station rotation timers and split-flap clocks add structure to 12-minute lab intervals, while high school AP/IB proctors rely on high-contrast digital readouts paired with 10-minute warning cues.',
       howTitle: 'Smartboard & Chromebook Projection Protocol',
       howBody:
-        'Every classroom utility runs locally in the browser using timestamp-delta math (Date.now()) and requests the Screen Wake Lock API so your projector or interactive whiteboard never dims mid-exam. Press F for full-screen display to hide bookmarks and open tabs.',
+        'Connect your teacher laptop or Chromebook to the classroom interactive display, choose a high-contrast visual theme, and press F for borderless full-screen projection so bookmarks and browser tabs stay hidden.',
       quote:
         '“When the smartboard shows the remaining wedge of time, the teacher stops being the bad guy who cuts off the activity—the clock becomes a neutral, shared boundary for the whole room.”',
       practicalTitle: 'Daily Bell-Ringer & Station Rotation Playbooks',
@@ -639,16 +639,15 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     },
     guide: {
       kicker: 'BROWSER CHRONOMETRY & TIMING HANDBOOK',
-      title: 'Drift-Free Countdown Clocks, Split-Lap Stopwatches, and Ambient Visual Timers',
+      title: 'Countdown Clocks, Split-Lap Stopwatches, and Visual Timers',
       lead:
-        'Most simple web timers rely on raw setInterval ticks that slow down by 30 to 50 seconds per hour whenever a browser tab is minimized or an OS enters battery-saver mode. Every clock in this directory computes remaining and elapsed time against hardware system timestamps (Date.now()), guaranteeing sub-second accuracy across background tabs.',
+        'From one-click kitchen and study countdowns to multi-lane race stopwatches and calming visual timers, this directory organizes every daily timekeeping tool by visual style and workflow.',
       tableOfContents: [
-        'How Timestamp-Delta Timing Prevents Drift',
         'Fixed-Deadline Countdowns vs. Open-Ended Stopwatches',
-        'Hardware Wake Lock & Keyboard Control Spec',
+        'Keyboard Controls & Fullscreen Display Setup',
         'High-Frequency Daily Timing Workflows',
         'Operator Shortcuts & Audio Calibration',
-        'Browser Power-Saving Traps to Avoid',
+        'Common Timing Pitfalls to Avoid',
         'Technical & Operational Reference',
       ],
       quickTip:
@@ -656,9 +655,9 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
       whatTitle: 'Fixed-Deadline Countdowns vs. Open-Ended Stopwatches',
       whatBody:
         'Choose a countdown timer when your activity has a fixed time budget—such as a 15-minute standup meeting, a 6-minute soft-boiled egg, or a 45-minute exam paper. Choose a stopwatch or multi-stopwatch when you need to measure how long a process actually takes from 00:00.00 upward, such as logging 400-meter track splits, laboratory titration reactions, or multi-lane swim heats.',
-      howTitle: 'Hardware Wake Lock & Keyboard Control Specification',
+      howTitle: 'Keyboard Controls & Fullscreen Display Setup',
       howBody:
-        'When a timer is running in the foreground, WebCountDownTimer requests a navigator.wakeLock("screen") lease so mobile phones, tablets, and podium laptops stay illuminated without manual screen taps. Audio synthesis runs on the native Web Audio API, generating zero-latency sine and triangle chimes without external MP3 buffering.',
+        'Every timer supports instant keyboard shortcuts for hands-free control: press Spacebar to start or pause, R to reset, M to toggle the completion chime, and F to expand the clock across your entire screen.',
       quote:
         '“A reliable clock should disappear into the workflow—accurate when minimized in a background tab, legible from 20 feet away in fullscreen, and silent until the exact second you ask for a cue.”',
       practicalTitle: 'High-Frequency Daily Timing Workflows',
@@ -681,27 +680,23 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     },
     faqs: [
       {
-        q: 'Are these online timers completely free?',
-        a: 'Yes, 100% free forever with no limits or advertisements.',
+        q: 'When should I use a visual timer instead of a digital countdown?',
+        a: 'Visual timers (such as circular, sand, liquid, or rainbow timers) show remaining time as a shrinking shape or color fill, making it easier for children, students, and groups to judge pacing from across a room.',
       },
       {
-        q: 'Can I use a timer in fullscreen mode?',
-        a: 'Yes, press the Fullscreen button or tap the F key for a borderless display.',
-      },
-      {
-        q: 'Will the timer keep working if I switch tabs?',
-        a: 'Yes. Our timer engine uses timestamp delta calculation, preventing background tab throttling.',
+        q: 'Can I set a countdown to a specific clock time of day?',
+        a: 'Yes, most visual and countdown timers include an End Time mode that counts down to a target clock time such as 3:30 PM.',
       },
       {
         q: 'Can I export lap times from the stopwatch?',
-        a: 'Yes! The Multi-Stopwatch includes one-click CSV export for spreadsheets and athletic records.',
+        a: 'Yes! Both the Online Stopwatch and Multi-Stopwatch include one-click CSV export for spreadsheets and athletic records.',
       },
     ],
     relatedCategories: [
       {
         title: 'Education & Classroom Tools',
         description: 'Timers and pickers for teachers and students.',
-        href: '/education',
+        href: '/category/education',
         iconName: 'GraduationCap',
       },
       {
@@ -950,7 +945,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
       {
         title: 'Education & Classroom Tools',
         description: 'Timers and classroom tools for learning.',
-        href: '/education',
+        href: '/category/education',
         iconName: 'GraduationCap',
       },
       {
@@ -1144,7 +1139,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
       ],
       tipsTitle: 'Coaching & Gym Floor Setup Rules',
       tipsItems: [
-        'Keep the timer tab in fullscreen mode so the Screen Wake Lock API prevents your tablet from dimming during floor sets.',
+        'Use Fullscreen mode on a wall-mounted tablet or TV so athletes can see the green WORK and amber REST colors from any station.',
         'Mount your tablet or monitor at eye level near the rig so athletes can check remaining round time without breaking spinal alignment.',
       ],
       mistakesTitle: 'Conditioning Pacing Errors to Avoid',
@@ -1156,15 +1151,15 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     faqs: [
       {
         q: 'Can I use this interval timer with Bluetooth speakers?',
-        a: 'Yes! The audio synthesizer routes through standard device audio including wireless headphones and Bluetooth gym sound systems.',
+        a: 'Yes! The audio cues route through your device audio output, including wireless headphones and Bluetooth gym sound systems.',
       },
       {
-        q: 'Does the timer keep running if I switch workout apps?',
-        a: 'Yes, our timestamp-based engine ensures exact timing without drifting even when running in background tabs.',
+        q: 'What is the difference between Tabata and custom HIIT intervals?',
+        a: 'Classic Tabata uses a fixed 20-second work / 10-second rest ratio for 8 rounds (4 minutes), whereas custom HIIT intervals let you configure any work, rest, warm-up, and round combination.',
       },
       {
         q: 'Is there a limit to how many rounds I can set?',
-        a: 'No limit. You can configure anywhere from 1 to 999 workout rounds.',
+        a: 'You can configure custom sets, cycles, work periods, and recovery blocks for everything from 4-minute sprints to 60-minute boxing and circuit sessions.',
       },
     ],
     relatedCategories: [
@@ -1402,7 +1397,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
       {
         title: 'Education & Classroom Tools',
         description: 'Timers and study aids for students.',
-        href: '/education',
+        href: '/category/education',
         iconName: 'GraduationCap',
       },
       {

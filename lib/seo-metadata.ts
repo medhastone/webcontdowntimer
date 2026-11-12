@@ -1,823 +1,918 @@
 import type { Metadata } from 'next';
-import type { LanguageCode } from '@/lib/i18n';
 
-export interface LocalizedSeoEntry {
+export const SITE_BASE_URL = 'https://WebCountDownTimer.com';
+
+export interface RouteSeoEntry {
+  path: string;
   title: string;
   description: string;
-  keywords: string[];
-  canonicalUrl: string;
-  ogLocale: string;
-  alternatesLanguages: Record<string, string>;
-}
-
-interface PageSeoBlueprint {
-  enTitle: string;
-  enDesc: string;
-  enKeywords: string[];
-  esName: string;
-  esHook: string;
-  esKeywords: string[];
-  frName: string;
-  frHook: string;
-  frKeywords: string[];
-  deName: string;
-  deHook: string;
-  deKeywords: string[];
-  jaName: string;
-  jaHook: string;
-  jaKeywords: string[];
-  ptName: string;
-  ptHook: string;
-  ptKeywords: string[];
-}
-
-const SITE_URL = 'https://WebCountDownTimer.com';
-
-const OG_LOCALE_MAP: Record<LanguageCode, string> = {
-  en: 'en_US',
-  es: 'es_ES',
-  fr: 'fr_FR',
-  de: 'de_DE',
-  ja: 'ja_JP',
-  pt: 'pt_PT',
-};
-
-/**
- * Curated High-Search-Volume + Low-KD + High-CTA SEO Blueprints
- * Every page has a unique primary keyword cluster, low-KD long-tail modifier, and high-converting CTA.
- */
-const SEO_BLUEPRINTS: Record<string, PageSeoBlueprint> = {
-  '/': {
-    enTitle: 'Free Online Countdown Timer, Flip Clock & Visual Timers – Start in 1 Click',
-    enDesc:
-      'Launch 49+ drift-free online countdown timers, retro split-flap clocks, sensory classroom timers & stage monitors. 100% free, fullscreen & no sign-up—Start now!',
-    enKeywords: [
-      'free online countdown timer',
-      'online timer fullscreen with alarm',
-      'retro flip clock online free',
-      'visual timer for classroom',
-      'no drift web timer',
-    ],
-    esName: 'Temporizador de Cuenta Regresiva, Reloj Flip y Temporizadores Visuales Online Gratis',
-    esHook:
-      'Inicia más de 49 temporizadores online sin retraso, relojes flip retro, temporizadores sensoriales de aula y monitores de escenario. ¡100% gratis, pantalla completa y sin registro—Empezar ahora!',
-    esKeywords: ['temporizador online gratis pantalla completa', 'cuenta regresiva con alarma', 'reloj flip online gratis', 'temporizador visual aula'],
-    frName: 'Minuteur en Ligne Gratuit, Horloge Flip & Minuteurs Visuels Plein Écran',
-    frHook:
-      'Lancez plus de 49 minuteurs en ligne ultra-précis, horloges flip rétro, minuteurs sensoriels de classe et moniteurs de scène. 100 % gratuit, plein écran et sans inscription — Démarrer maintenant !',
-    frKeywords: ['minuteur en ligne gratuit plein écran', 'compte à rebours avec alarme', 'horloge flip en ligne', 'minuteur visuel classe'],
-    deName: 'Kostenloser Online Countdown-Timer, Flip-Clock & Visuelle Vollbild-Timer',
-    deHook:
-      'Starten Sie über 49 präzise Online-Countdown-Timer, Retro-Klappzahlenuhren, sensorische Klassenzimmer-Timer und Bühnenmonitore. 100 % kostenlos, Vollbild & ohne Anmeldung – Jetzt starten!',
-    deKeywords: ['online countdown timer kostenlos vollbild', 'flip clock online', 'visueller timer klassenzimmer', 'stoppuhr online mit alarm'],
-    jaName: '無料オンライン・カウントダウンタイマー＆フリップ時計（全画面・登録不要）｜今すぐ開始',
-    jaHook:
-      '49種類以上の高精度オンラインタイマー、レトロなパタパタ時計、教室・勉強向け感覚ビジュアルタイマーをワンクリックで起動。完全無料・フルスクリーン対応・登録不要で今すぐ使えます！',
-    jaKeywords: ['オンラインタイマー 無料 全画面', 'カウントダウンタイマー アラーム付き', 'フリップ時計 オンライン', '勉強用タイマー パタパタ時計'],
-    ptName: 'Temporizador Online Grátis, Relógio Flip e Temporizadores Visuais em Tela Cheia',
-    ptHook:
-      'Inicie mais de 49 temporizadores de contagem regressiva precisos, relógios flip retrô, temporizadores sensoriais de aula e monitores de palco. 100% grátis, tela cheia e sem cadastro — Comece agora!',
-    ptKeywords: ['temporizador online grátis tela cheia', 'contagem regressiva com alarme', 'relógio flip online', 'temporizador visual sala de aula'],
-  },
-
-  // ============================================================================
-  // CATEGORY & DIRECTORY HUB PAGES
-  // ============================================================================
-  '/tools': {
-    enTitle: 'All 49+ Free Online Timers, Clocks & Time Calculators – Launch Instantly',
-    enDesc:
-      'Browse our complete directory of 49+ free online countdown timers, sensory visual clocks, stage monitors, world clocks & payroll calculators. Click any tool to start free!',
-    enKeywords: ['online timer directory', 'free web time tools', 'all online countdown timers', 'fullscreen classroom and stage timers'],
-    esName: 'Directorio de 49+ Temporizadores, Relojes y Calculadoras de Tiempo Gratis',
-    esHook: 'Explora nuestro catálogo completo de 49+ temporizadores de cuenta regresiva, relojes visuales sensoriales, monitores de escenario y calculadoras. ¡Haz clic y úsalos gratis al instante!',
-    esKeywords: ['directorio de temporizadores online', 'herramientas de tiempo gratis', 'todos los relojes y cronómetros'],
-    frName: 'Répertoire des 49+ Minuteurs, Horloges & Calculatrices de Temps Gratuits',
-    frHook: 'Découvrez notre collection complète de 49+ minuteurs en ligne, horloges visuelles sensorielles, moniteurs de scène et calculatrices d’heures. Cliquez pour lancer gratuitement !',
-    frKeywords: ['tous les minuteurs en ligne', 'outils de gestion du temps gratuits', 'annuaire minuteurs plein écran'],
-    deName: 'Alle 49+ Kostenlosen Online-Timer, Uhren & Zeitrechner – Sofort Starten',
-    deHook: 'Entdecken Sie unser Verzeichnis mit über 49 kostenlosen Countdown-Timern, sensorischen Uhren, Bühnenmonitoren und Arbeitszeitrechnern. Jetzt kostenlos im Browser starten!',
-    deKeywords: ['alle online timer kostenlos', 'zeitwerkzeuge verzeichnis', 'vollbild timer und rechner'],
-    jaName: '全49種類以上の無料オンラインタイマー・時計・時間計算ツール一覧｜ワンクリック起動',
-    jaHook: 'カウントダウンタイマー、感覚ビジュアルタイマー、フリップ時計、ステージモニター、時間計算機など49種類以上の無料ツールを網羅。登録不要で今すぐブラウザから使えます！',
-    jaKeywords: ['オンラインタイマー 一覧 無料', '時間計算ツール 無料', 'ビジュアルタイマー 種類'],
-    ptName: 'Diretório com 49+ Temporizadores, Relógios e Calculadoras de Tempo Grátis',
-    ptHook: 'Explore nossa coleção completa de 49+ temporizadores online, relógios visuais sensoriais, monitores de palco e calculadoras de horas. Clique para iniciar grátis agora!',
-    ptKeywords: ['todos os temporizadores online', 'ferramentas de tempo grátis', 'relógios e cronômetros tela cheia'],
-  },
-
-  '/education': {
-    enTitle: 'Free Classroom Timers for Teachers & Kids (Visual, Sensory & Fullscreen)',
-    enDesc:
-      'Keep students focused with free fullscreen classroom timers, sensory visual countdowns, noise meters & random name pickers. Zero ads, no login—Open for your class now!',
-    enKeywords: ['classroom timers for teachers free', 'visual timer for kids fullscreen', 'sensory classroom timer ADHD', 'smartboard timer with alarm'],
-    esName: 'Temporizadores de Aula Gratis para Profesores y Niños (Visual y Pantalla Completa)',
-    esHook: 'Mantén a tus alumnos concentrados con temporizadores visuales de aula, relojes sensoriales, medidor de ruido y selector de nombres al azar. ¡100% gratis y sin registro—Ábrelo en tu pizarra digital!',
-    esKeywords: ['temporizador de aula gratis para profesores', 'temporizador visual para niños pantalla completa', 'reloj para pizarra interactiva'],
-    frName: 'Minuteurs de Classe Gratuits pour Enseignants & Élèves (Visuel & Plein Écran)',
-    frHook: 'Captez l’attention de votre classe avec nos minuteurs visuels plein écran, minuteurs sensoriels, sonomètre et tirage au sort de noms. 100 % gratuit sans compte — Lancez-le sur votre TBI !',
-    frKeywords: ['minuteur de classe gratuit enseignant', 'minuteur visuel enfants plein écran', 'outils tbi classe gratuits'],
-    deName: 'Kostenlose Klassenzimmer-Timer für Lehrer & Schüler (Visuell & Vollbild)',
-    deHook: 'Fördern Sie die Konzentration im Unterricht mit kostenlosen visuellen Vollbild-Timern, Sensorik-Uhren, Lautstärkeampel und Zufalls-Namenswahl. Ohne Anmeldung direkt am Smartboard starten!',
-    deKeywords: ['klassenzimmer timer kostenlos lehrer', 'visueller timer grundschule smartboard', 'lautstärkeampel und zufallsgenerator'],
-    jaName: '教室・授業向け無料ビジュアルタイマー＆学習ツール（全画面・感覚タイマー）｜先生・子供用に最適',
-    jaHook: '電子黒板やタブレットで使える無料の教室タイマー、感覚ビジュアルタイマー、音量メーター、ランダム名前ピッカーを収録。登録不要・広告なしで今すぐ授業に導入できます！',
-    jaKeywords: ['教室タイマー 無料 全画面', '小学校 授業 タイマー 電子黒板', '子供向け ビジュアルタイマー'],
-    ptName: 'Temporizadores de Sala de Aula Grátis para Professores e Alunos (Tela Cheia)',
-    ptHook: 'Mantenha sua turma focada com temporizadores visuais em tela cheia, relógios sensoriais, medidor de ruído e sorteador de nomes. 100% grátis e sem login — Abra na lousa digital agora!',
-    ptKeywords: ['temporizador de sala de aula grátis', 'temporizador visual infantil tela cheia', 'ferramentas para professores online'],
-  },
-
-  '/category/education': {
-    enTitle: 'Free Education & Classroom Timers for Smartboards – Launch Now',
-    enDesc:
-      'Discover K–12 classroom timers, sensory visual clocks, student group generators & decibel noise meters. 100% free, fullscreen & teacher-approved—Start in 1 click!',
-    enKeywords: ['education timers online free', 'smartboard countdown timer', 'teacher classroom management timers'],
-    esName: 'Temporizadores Educativos y de Aula para Pizarras Digitales – Iniciar Gratis',
-    esHook: 'Descubre temporizadores escolares K–12, relojes visuales sensoriales, generador de grupos y medidor de decibelios. ¡100% gratis para docentes—Inícialo en 1 clic!',
-    esKeywords: ['temporizadores educativos online', 'herramientas de gestión de aula gratis'],
-    frName: 'Minuteurs Éducatifs & Outils de Gestion de Classe sur TBI – Lancer Gratuitement',
-    frHook: 'Découvrez nos minuteurs scolaires, horloges visuelles sensorielles, générateur de groupes et sonomètre de classe. 100 % gratuit pour les enseignants — Démarrer en 1 clic !',
-    frKeywords: ['minuteurs éducatifs tbi', 'outils gestion de classe en ligne'],
-    deName: 'Kostenlose Bildungs- & Unterrichts-Timer für Smartboards – Sofort Starten',
-    deHook: 'Entdecken Sie Unterrichts-Timer, sensorische Uhren, Gruppengeneratoren und Lautstärkemesser für Schulen. 100 % kostenlos für Lehrkräfte – Mit 1 Klick starten!',
-    deKeywords: ['unterrichts timer smartboard kostenlos', 'schultimer online vollbild'],
-    jaName: '教育・学校授業向け無料タイマー＆クラス運営ツール特集｜電子黒板・タブレット対応',
-    jaHook: '小中高の授業で活躍する視覚タイマー、グループ分けツール、教室音量メーターを完備。登録不要・完全無料で先生の授業進行をサポートします！',
-    jaKeywords: ['教育用タイマー 無料', '授業 タイムキーパー アプリ Web'],
-    ptName: 'Temporizadores Educacionais e de Gestão de Sala de Aula – Iniciar Grátis',
-    ptHook: 'Descubra temporizadores escolares, relógios sensoriais, gerador de grupos e medidor de barulho para turmas. 100% grátis para professores — Comece em 1 clique!',
-    ptKeywords: ['temporizadores educacionais online', 'ferramentas gratuitas para sala de aula'],
-  },
-
-  '/category/timers': {
-    enTitle: 'Free Everyday Online Timers, Visual Clocks & Stopwatches – Start Now',
-    enDesc:
-      'Use drift-free everyday countdown timers, retro split-flap clocks, sand hourglasses & millisecond stopwatches. Free fullscreen display with custom alarms—Try now!',
-    enKeywords: ['everyday online timers free', 'fullscreen countdown clock with alarm', 'online visual and sand timers', 'digital stopwatch with laps'],
-    esName: 'Temporizadores Cotidianos, Relojes Visuales y Cronómetros Online Gratis',
-    esHook: 'Usa temporizadores diarios sin desfase, relojes flip retro, relojes de arena y cronómetros con vueltas. ¡Pantalla completa gratis con alarmas personalizadas—Pruébalo ahora!',
-    esKeywords: ['temporizadores diarios online gratis', 'reloj cuenta atrás con alarma', 'cronómetro digital con vueltas'],
-    frName: 'Minuteurs du Quotidien, Horloges Visuelles & Chronomètres en Ligne Gratuits',
-    frHook: 'Utilisez nos minuteurs quotidiens sans dérive, horloges flip rétro, sabliers numériques et chronomètres au milliseconde. Plein écran gratuit avec alarme — Essayez maintenant !',
-    frKeywords: ['minuteurs quotidiens gratuits', 'compte à rebours plein écran avec alarme', 'sablier et chronomètre en ligne'],
-    deName: 'Kostenlose Alltags-Timer, Visuelle Uhren & Stoppuhren im Vollbildmodus',
-    deHook: 'Nutzen Sie präzise tägliche Countdown-Timer, Retro-Flip-Clocks, digitale Sanduhren und Millisekunden-Stoppuhren. Kostenlos im Vollbild mit Alarmton – Jetzt ausprobieren!',
-    deKeywords: ['alltags timer online kostenlos', 'countdown uhr mit alarmton', 'digitale sanduhr und stoppuhr'],
-    jaName: '日常・作業用無料オンラインタイマー・砂時計・ストップウォッチ特集｜全画面＆アラーム対応',
-    jaHook: '毎日の家事・勉強・仕事に使える高精度カウントダウンタイマー、フリップ時計、デジタル砂時計、ラップ計測ストップウォッチ。完全無料・登録不要で今すぐスタート！',
-    jaKeywords: ['日常タイマー 無料 Web', 'デジタル砂時計 オンライン', 'ストップウォッチ ラップ計測 無料'],
-    ptName: 'Temporizadores do Dia a Dia, Relógios Visuais e Cronômetros Online Grátis',
-    ptHook: 'Use temporizadores diários precisos, relógios flip retrô, ampulhetas digitais e cronômetros com voltas. Tela cheia grátis com alarmes — Experimente agora!',
-    ptKeywords: ['temporizadores diários online grátis', 'ampulheta digital e cronômetro', 'relógio regressivo tela cheia'],
-  },
-
-  '/category/everyday': {
-    enTitle: 'Everyday Countdown Timers, Sand Hourglasses & Alarm Clocks – Free Online',
-    enDesc:
-      'Quick-launch everyday timers for cooking, study, breaks & workouts. Includes fullscreen digital countdowns, flip clocks & visual timers—Start free in 1 click!',
-    enKeywords: ['everyday countdown timer online', 'quick kitchen and study timers free', 'fullscreen alarm timer browser'],
-    esName: 'Temporizadores de Uso Diario, Relojes de Arena y Alarmas Online Gratis',
-    esHook: 'Inicia al instante temporizadores para cocina, estudio, descansos y ejercicio. Incluye cuenta regresiva en pantalla completa y relojes flip. ¡Empieza gratis en 1 clic!',
-    esKeywords: ['temporizador de uso diario gratis', 'reloj para cocina y estudio online'],
-    frName: 'Minuteurs Quotidiens, Sabliers & Réveils en Ligne Gratuits – Lancer en 1 Clic',
-    frHook: 'Lancez instantanément des minuteurs pour la cuisine, les études, les pauses et le sport. Compte à rebours plein écran et horloges flip inclus — Démarrer gratuitement !',
-    frKeywords: ['minuteur quotidien cuisine étude', 'alarme en ligne gratuite plein écran'],
-    deName: 'Tägliche Countdown-Timer, Sanduhren & Online-Wecker – Kostenlos Starten',
-    deHook: 'Schnellstart-Timer für Küche, Studium, Pausen und Training. Inklusive Vollbild-Countdowns, Flip-Clocks und visuellen Timern – Kostenlos mit 1 Klick starten!',
-    deKeywords: ['täglicher countdown timer kostenlos', 'küchen und lerntimer online'],
-    jaName: '毎日使える無料カウントダウンタイマー・キッチン＆勉強タイマー一覧｜ワンクリック開始',
-    jaHook: '料理・勉強・休憩・エクササイズにすぐ使える定番オンラインタイマー集。フルスクリーン表示・アラーム音切り替え対応で今すぐ無料で使えます！',
-    jaKeywords: ['毎日使えるタイマー 無料', '勉強 キッチン タイマー Web'],
-    ptName: 'Temporizadores Cotidianos, Ampulhetas e Despertadores Online Grátis',
-    ptHook: 'Inicie rapidamente temporizadores para cozinha, estudo, pausas e treinos. Inclui contagem regressiva em tela cheia e relógios flip — Comece grátis em 1 clique!',
-    ptKeywords: ['temporizador cotidiano grátis', 'timer para cozinha e estudo online'],
-  },
-
-  '/category/events': {
-    enTitle: 'Free Stage Timers, Speaker Confidence Monitors & Event Clocks – Launch Live',
-    enDesc:
-      'Run professional conferences, keynotes, Toastmasters & debates with dual-screen stage timers, green/amber/red visual cues & live operator sync. Start free now!',
-    enKeywords: ['free stage timer confidence monitor', 'speaker timer green yellow red', 'keynote presentation countdown clock', 'dual screen event timer free'],
-    esName: 'Temporizadores de Escenario, Monitores de Oradores y Eventos en Vivo Gratis',
-    esHook: 'Dirige conferencias, discursos, Toastmasters y debates con monitores de escenario de doble pantalla, señales verde/ámbar/rojo y sincronización en vivo. ¡Inícialo gratis ahora!',
-    esKeywords: ['temporizador de escenario gratis', 'reloj para oradores y conferencias', 'monitor de confianza doble pantalla'],
-    frName: 'Minuteurs de Scène, Moniteurs d’Orateur & Horloges d’Événement en Direct',
-    frHook: 'Gérez vos conférences, keynotes, Toastmasters et débats avec nos minuteurs de scène double écran, alertes vert/ambre/rouge et synchronisation en direct. Lancer gratuitement !',
-    frKeywords: ['minuteur de scène gratuit', 'chronomètre conférencier double écran', 'minuteur événementiel en direct'],
-    deName: 'Kostenlose Bühnen-Timer, Redner-Monitore & Event-Uhren mit Dual-Screen-Sync',
-    deHook: 'Steuern Sie Konferenzen, Keynotes, Toastmasters und Debatten mit Dual-Screen-Bühnenmonitoren, Grün/Gelb/Rot-Phasenwarnungen und Live-Sync. Jetzt kostenlos starten!',
-    deKeywords: ['bühnen timer kostenlos', 'redneruhr konferenz vollbild', 'confidence monitor timer online'],
-    jaName: 'イベント・学会・ステージ進行用無料タイマー＆登壇者モニター｜2画面リアルタイム同期',
-    jaHook: 'カンファレンス、基調講演、討論会、ウェビナーに最適なデュアル画面ステージタイマー。緑・黄・赤のフェーズ警告とメッセージ送信機能を完全無料で今すぐ利用可能！',
-    jaKeywords: ['ステージタイマー 無料 2画面', '学会 プレゼン タイマー ベル', '登壇者用 カウントダウンモニター'],
-    ptName: 'Temporizadores de Palco, Monitores de Palestrante e Relógios de Eventos Grátis',
-    ptHook: 'Gerencie conferências, palestras, Toastmasters e debates com monitores de palco em tela dupla, alertas verde/âmbar/vermelho e sincronização ao vivo. Comece grátis agora!',
-    ptKeywords: ['temporizador de palco grátis', 'cronômetro para palestras e eventos', 'monitor de retorno para palestrante'],
-  },
-
-  '/category/stage': {
-    enTitle: 'Stage Confidence Monitor & Podium Countdown Timers – Free Browser Sync',
-    enDesc:
-      'Control downstage speaker monitors from your booth laptop with zero-latency BroadcastChannel sync, flash messages & overtime tracking. Open your stage room free!',
-    enKeywords: ['stage confidence monitor timer', 'podium countdown clock free', 'stagetimer io free alternative'],
-    esName: 'Monitor de Confianza para Escenario y Temporizadores de Podio con Sincronización',
-    esHook: 'Controla pantallas de escenario desde tu portátil de cabina sin latencia, envía mensajes en pantalla y mide tiempo extra. ¡Abre tu sala de escenario gratis!',
-    esKeywords: ['monitor de escenario sincronizado gratis', 'temporizador de podio para eventos'],
-    frName: 'Moniteur de Retour Scène & Minuteurs de Pupitre Synchronisés – 100 % Gratuit',
-    frHook: 'Contrôlez les écrans de scène depuis la régie sans latence avec messages flash et suivi du dépassement de temps. Ouvrez votre salle de scène gratuitement !',
-    frKeywords: ['moniteur retour scène gratuit', 'minuteur pupitre conférence synchronisé'],
-    deName: 'Bühnen-Confidence-Monitor & Podium-Countdown-Timer – Kostenloser Live-Sync',
-    deHook: 'Steuern Sie Bühnenmonitore direkt vom Regie-Laptop mit verzögerungsfreiem Sync, Live-Nachrichten und Überzeit-Anzeige. Jetzt Bühnen-Timer kostenlos öffnen!',
-    deKeywords: ['confidence monitor bühne kostenlos', 'regie timer mit zweitbildschirm'],
-    jaName: 'ステージ進行・演台用カウントダウンモニター（別画面リアルタイム同期）｜完全無料',
-    jaHook: '調整室のPCから演台モニターをミリ秒単位で同期操作。カンペメッセージ表示や超過時間（オーバータイム）計測にも対応したプロ仕様ステージタイマーを今すぐ無料で起動！',
-    jaKeywords: ['演台タイマー 無料', 'ステージ進行 カウントダウン 同期'],
-    ptName: 'Monitor de Retorno de Palco e Temporizadores de Púlpito com Sincronia Grátis',
-    ptHook: 'Controle telas de palco direto do notebook da técnica com sincronização instantânea, mensagens ao vivo e tempo excedente. Abra seu painel de palco grátis!',
-    ptKeywords: ['monitor de palco sincronizado grátis', 'temporizador de púlpito eventos'],
-  },
-
-  '/category/productivity': {
-    enTitle: 'Free Study & Productivity Timers (Pomodoro 25/5, Flip Clock & Deep Work)',
-    enDesc:
-      'Boost deep focus with free Pomodoro 25/5 timers, aesthetic retro flip clocks, ADHD study timers & 20-20-20 eye-break reminders. No account needed—Start focusing now!',
-    enKeywords: ['aesthetic study timer online free', 'pomodoro timer 25 5 fullscreen', 'productivity focus clock no login', 'ADHD deep work timer'],
-    esName: 'Temporizadores de Estudio y Productividad Gratis (Pomodoro 25/5 y Reloj Flip)',
-    esHook: 'Multiplica tu concentración con temporizadores Pomodoro 25/5, relojes flip estéticos de escritorio y recordatorios de descanso visual. ¡Sin cuenta—Empieza a concentrarte hoy!',
-    esKeywords: ['temporizador de estudio estético gratis', 'reloj pomodoro 25 5 online', 'temporizador de productividad pantalla completa'],
-    frName: 'Minuteurs d’Étude & Productivité Gratuits (Pomodoro 25/5, Horloge Flip & Focus)',
-    frHook: 'Boostez votre concentration avec nos minuteurs Pomodoro 25/5, horloges flip esthétiques de bureau et rappels de pause visuelle. Sans inscription — Concentrez-vous maintenant !',
-    frKeywords: ['minuteur étude esthétique gratuit', 'pomodoro 25 5 en ligne plein écran', 'outil concentration travail profond'],
-    deName: 'Kostenlose Lern- & Produktivitäts-Timer (Pomodoro 25/5, Flip-Clock & Deep Work)',
-    deHook: 'Steigern Sie Ihren Fokus mit kostenlosen 25/5 Pomodoro-Timern, ästhetischen Schreibtisch-Flip-Clocks und Pausen-Timern. Ohne Registrierung – Jetzt konzentriert starten!',
-    deKeywords: ['ästhetischer lerntimer online kostenlos', 'pomodoro timer 25 5 vollbild', 'produktivitäts uhr studium'],
-    jaName: '勉強・仕事効率化向け無料ポモドーロ＆生産性タイマー特集（25分集中・フリップ時計）',
-    jaHook: 'ポモドーロタイマー（25分集中＋5分休憩）、おしゃれなデスク用フリップ時計、読書・勉強タイマー、目の休憩タイマーを無料提供。今すぐ集中セッションを始めましょう！',
-    jaKeywords: ['勉強タイマー おしゃれ 無料', 'ポモドーロタイマー 25分 Web', '作業用 フリップ時計 全画面'],
-    ptName: 'Temporizadores de Estudo e Produtividade Grátis (Pomodoro 25/5 e Relógio Flip)',
-    ptHook: 'Aumente seu foco com temporizadores Pomodoro 25/5, relógios flip estéticos de mesa e lembretes de pausa visual. Sem cadastro — Comece a focar agora mesmo!',
-    ptKeywords: ['temporizador de estudo estético grátis', 'pomodoro 25 5 online tela cheia', 'relógio de foco e produtividade'],
-  },
-
-  '/category/fitness': {
-    enTitle: 'Free HIIT, Tabata & Boxing Interval Timers + 8-Lane Stopwatch – Start Workout',
-    enDesc:
-      'Power your training with programmable HIIT & Tabata work/rest clocks, 3-minute boxing round bells, breathing pacers & 8-lane track stopwatches. Launch free now!',
-    enKeywords: ['free online HIIT interval timer', 'tabata timer 20 10 with sound', 'boxing round timer 3 minute bell', 'multi lane stopwatch CSV'],
-    esName: 'Temporizadores de Intervalos HIIT, Tabata, Boxeo y Cronómetro Multicarril Gratis',
-    esHook: 'Entrena al máximo con relojes programables de trabajo/descanso HIIT y Tabata, campana de asaltos de boxeo y cronómetro de 8 carriles. ¡Inicia tu entrenamiento gratis ahora!',
-    esKeywords: ['temporizador hiit online gratis', 'reloj tabata 20 10 con sonido', 'temporizador de rounds de boxeo'],
-    frName: 'Minuteurs d’Intervalles HIIT, Tabata, Boxe & Chronomètre 8 Couloirs Gratuits',
-    frHook: 'Optimisez vos entraînements avec nos minuteurs HIIT et Tabata programmables, gong de rounds de boxe et chronomètre multi-couloirs. Lancez votre séance gratuitement !',
-    frKeywords: ['minuteur hiit en ligne gratuit', 'chronomètre tabata 20 10 avec son', 'minuteur round boxe gratuit'],
-    deName: 'Kostenlose HIIT-, Tabata- & Box-Intervall-Timer + 8-Spur-Stoppuhr – Training Starten',
-    deHook: 'Trainieren Sie effektiv mit programmierbaren HIIT- & Tabata-Intervalluhren, 3-Minuten-Boxrunden-Gong und 8-Spur-Stoppuhr. Jetzt kostenlos im Vollbild starten!',
-    deKeywords: ['hiit intervall timer online kostenlos', 'tabata timer mit ton vollbild', 'boxrunden timer 3 minuten'],
-    jaName: '筋トレ・HIIT・タバタ式・ボクシング用無料インターバルタイマー＆8レーン計測',
-    jaHook: 'ワーク＆レストを自由に設定できるHIIT・タバタタイマー、3分ラウンドゴング付きボクシングタイマー、8レーン同時計測ストップウォッチを収録。完全無料で今すぐトレーニング開始！',
-    jaKeywords: ['HIITタイマー 無料 Web', 'タバタ式タイマー 音付き', 'ボクシング ラウンドタイマー 無料'],
-    ptName: 'Temporizadores de Intervalo HIIT, Tabata, Boxe e Cronômetro de 8 Pistas Grátis',
-    ptHook: 'Potencialize seu treino com relógios programáveis de HIIT e Tabata, gongo de rounds de boxe e cronômetro de 8 raias com exportação CSV. Comece seu treino grátis agora!',
-    ptKeywords: ['temporizador hiit online grátis', 'timer tabata 20 10 com som', 'cronômetro de rounds de boxe'],
-  },
-
-  '/category/world': {
-    enTitle: 'Live World Clock, Time-Zone Converter & Global Meeting Planner – Check Time Now',
-    enDesc:
-      'Compare live local time across international cities, convert UTC/IANA time zones with 2026 DST accuracy & find overlapping meeting hours. 100% free—Open now!',
-    enKeywords: ['live world clock with seconds', 'time zone converter meeting planner', 'international time difference calculator DST'],
-    esName: 'Reloj Mundial en Vivo, Conversor de Zonas Horarias y Planificador de Reuniones',
-    esHook: 'Compara la hora exacta en ciudades de todo el mundo, convierte zonas horarias con ajuste automático de horario de verano y planifica reuniones globales. ¡Ábrelo gratis ahora!',
-    esKeywords: ['reloj mundial en vivo con segundos', 'conversor de zonas horarias gratis', 'planificador de reuniones internacionales'],
-    frName: 'Horloge Mondiale en Direct, Convertisseur de Fuseaux & Planificateur de Réunion',
-    frHook: 'Comparez l’heure exacte dans les villes du monde, convertissez les fuseaux horaires IANA avec heure d’été automatique et planifiez vos réunions. Essayez gratuitement !',
-    frKeywords: ['horloge mondiale en direct avec secondes', 'convertisseur fuseau horaire gratuit', 'planificateur réunion internationale'],
-    deName: 'Live-Weltuhr, Zeitzonen-Umrechner & Internationaler Meeting-Planer – Jetzt Prüfen',
-    deHook: 'Vergleichen Sie Live-Uhrzeiten weltweit, rechnen Sie Zeitzonen inklusive Sommerzeit automatisch um und finden Sie optimale Meeting-Zeiten. 100 % kostenlos öffnen!',
-    deKeywords: ['weltuhr live mit sekunden', 'zeitzonen umrechner kostenlos', 'internationaler meeting planer'],
-    jaName: 'リアルタイム世界時計・タイムゾーン時差変換＆海外会議プランナー｜夏時間(DST)自動対応',
-    jaHook: '世界の主要都市の現在時刻を秒単位で一覧表示。夏時間（DST）に自動対応した時差変換ツールと国際ミーティング時間調整プランナーを登録不要・完全無料で今すぐ利用できます！',
-    jaKeywords: ['世界時計 リアルタイム 秒表示', 'タイムゾーン 時差変換 無料', '海外会議 時間調整 ツール'],
-    ptName: 'Relógio Mundial ao Vivo, Conversor de Fuso Horário e Planejador de Reuniões',
-    ptHook: 'Compare a hora exata em cidades globais, converta fusos horários com ajuste de horário de verão e encontre horários ideais para reuniões. 100% grátis — Confira agora!',
-    ptKeywords: ['relógio mundial ao vivo com segundos', 'conversor de fuso horário grátis', 'planejador de reuniões internacionais'],
-  },
-
-  '/category/world-clock': {
-    enTitle: 'Global City World Clocks & UTC Time-Zone Converters – Free Live Display',
-    enDesc:
-      'Track accurate local times across New York, London, Tokyo, Sydney & 200+ cities with automatic Daylight Saving adjustments. Customize your world clock grid free!',
-    enKeywords: ['global world clock grid free', 'UTC time zone converter online', 'live international city clocks'],
-    esName: 'Relojes de Ciudades del Mundo y Conversores UTC en Tiempo Real – Gratis',
-    esHook: 'Sigue la hora local exacta en Madrid, Ciudad de México, Nueva York, Tokio y más de 200 ciudades con ajuste automático de horario de verano. ¡Consúltalo gratis!',
-    esKeywords: ['reloj mundial ciudades en vivo', 'conversor hora utc a local'],
-    frName: 'Horloges Mondiales par Ville & Convertisseurs UTC en Temps Réel – Gratuit',
-    frHook: 'Suivez l’heure locale exacte à Paris, Montréal, New York, Tokyo et plus de 200 villes avec changement d’heure automatique. Consultez gratuitement !',
-    frKeywords: ['heure mondiale en direct villes', 'convertisseur heure utc gratuit'],
-    deName: 'Globale Weltzeituhren & UTC-Zeitzonen-Rechner in Echtzeit – Kostenlos',
-    deHook: 'Verfolgen Sie exakte Ortszeiten in Berlin, Zürich, New York, Tokio und über 200 Städten mit automatischer Sommerzeit-Umstellung. Jetzt kostenlos nutzen!',
-    deKeywords: ['weltzeituhr städte live', 'utc zeitzonen rechner online'],
-    jaName: '世界の都市時計＆UTC時差コンバーター（東京・NY・ロンドン他200都市対応）｜無料',
-    jaHook: '東京、ニューヨーク、ロンドン、パリなど世界200都市以上の現在時刻とUTCオフセットをリアルタイム表示。完全無料で今すぐチェック！',
-    jaKeywords: ['世界時計 都市一覧 リアルタイム', 'UTC 日本時間 変換 ツール'],
-    ptName: 'Relógios de Cidades Globais e Conversores UTC em Tempo Real – Grátis',
-    ptHook: 'Acompanhe a hora exata em São Paulo, Lisboa, Nova York, Tóquio e mais de 200 cidades com ajuste automático de fuso. Acesse gratuitamente agora!',
-    ptKeywords: ['relógio mundial cidades ao vivo', 'conversor utc para horário local'],
-  },
-
-  '/category/calculators': {
-    enTitle: 'Free Time Duration, Work Time Card & Payroll Decimal Calculators – Calculate Now',
-    enDesc:
-      'Compute exact hours & minutes between timestamps, convert HH:MM to base-10 payroll decimals, calculate overtime & count calendar days. 100% free & instant!',
-    enKeywords: ['time duration calculator hours and minutes', 'time card calculator with lunch break', 'minutes to decimal hours payroll calculator', 'date difference calculator days'],
-    esName: 'Calculadoras de Duración de Tiempo, Horas Trabajadas y Nómina Decimal Gratis',
-    esHook: 'Calcula horas y minutos exactos entre dos horas, convierte HH:MM a horas decimales para nómina, calcula horas extra y días entre fechas. ¡100% gratis al instante!',
-    esKeywords: ['calculadora de horas y minutos trabajados', 'convertir minutos a horas decimales nómina', 'calculadora de días entre fechas'],
-    frName: 'Calculatrices de Durée, Feuille de Temps & Heures Décimales de Paie Gratuites',
-    frHook: 'Calculez les heures et minutes exactes entre deux horaires, convertissez HH:MM en heures décimales de paie, calculez les heures supplémentaires et les jours. Gratuit et immédiat !',
-    frKeywords: ['calculatrice heures de travail gratuit', 'conversion heures minutes en centièmes paie', 'calculateur de durée entre deux heures'],
-    deName: 'Kostenlose Zeitdauer-, Arbeitszeit- & Dezimalstunden-Rechner für Lohnabrechnung',
-    deHook: 'Berechnen Sie exakte Stunden und Minuten zwischen zwei Uhrzeiten, wandeln Sie HH:MM in Dezimalstunden um und prüfen Sie Überstunden & Kalendertage. Sofort kostenlos berechnen!',
-    deKeywords: ['arbeitszeitrechner kostenlos mit pause', 'industrieminuten dezimalstunden umrechnen', 'zeitdauer berechnen uhrzeit'],
-    jaName: '無料の時間計算・勤務時間（タイムカード）・給与用小数時間変換ツール一覧｜即時計算',
-    jaHook: '開始・終了時刻からの経過時間計算、休憩控除付きタイムカード集計、60進法（時:分）から10進法（小数時間）への変換、日数計算をワンクリックで正確に実行！',
-    jaKeywords: ['時間計算 ツール 無料', '勤務時間 計算 休憩引き', '分 小数時間 変換 給与計算'],
-    ptName: 'Calculadoras de Duração de Tempo, Cartão de Ponto e Horas Decimais Grátis',
-    ptHook: 'Calcule horas e minutos exatos entre horários, converta HH:MM em horas decimais para folha de pagamento, calcule horas extras e dias entre datas. 100% grátis agora!',
-    ptKeywords: ['calculadora de horas trabalhadas grátis', 'converter minutos em horas decimais', 'calculadora de diferença de tempo'],
-  },
-
-  // ============================================================================
-  // FLAGSHIP VISUAL & SENSORY TIMERS (/timers/*)
-  // ============================================================================
-  '/timers/flip-clock': {
-    enTitle: 'Free Online Flip Clock (Fullscreen, Seconds & 12/24h) – Launch Retro Clock',
-    enDesc:
-      'Turn your screen into a realistic retro split-flap clock with Live Time, Countdown & Stopwatch modes, Dark/Light themes & fullscreen display. Start free in 1 click!',
-    enKeywords: ['free online flip clock fullscreen', 'aesthetic retro split flap clock with seconds', 'desk flip clock browser no download', 'flip clock study timer'],
-    esName: 'Reloj Flip Online Gratis en Pantalla Completa (Segundos y 12/24h) – Iniciar Ahora',
-    esHook: 'Convierte tu pantalla en un reloj retro de paneles abatibles con hora en vivo, cuenta regresiva y cronómetro, temas claro/oscuro y pantalla completa. ¡Úsalo gratis en 1 clic!',
-    esKeywords: ['reloj flip online gratis pantalla completa', 'reloj retro de paneles abatibles con segundos', 'reloj flip para escritorio y estudio'],
-    frName: 'Horloge Flip en Ligne Gratuite Plein Écran (Secondes & 12/24h) – Lancer Maintenant',
-    frHook: 'Transformez votre écran en véritable horloge rétro à palettes avec heure en direct, compte à rebours et chronomètre, thèmes clair/sombre et plein écran. 100 % gratuit !',
-    frKeywords: ['horloge flip en ligne plein écran', 'horloge rétro à palettes gratuite', 'minuteur flip bureau étude'],
-    deName: 'Kostenlose Online Flip-Clock im Vollbild (Sekunden & 12/24h) – Jetzt Starten',
-    deHook: 'Verwandeln Sie Ihren Bildschirm in eine realistische Retro-Klappzahlenuhr mit Live-Uhrzeit, Countdown & Stoppuhr, Hell/Dunkel-Design und Vollbildmodus. Sofort kostenlos starten!',
-    deKeywords: ['flip clock online kostenlos vollbild', 'retro klappzahlenuhr mit sekunden', 'schreibtisch flip uhr im browser'],
-    jaName: '無料オンライン・フリップ時計（全画面・秒表示・カウントダウン対応）｜今すぐ起動',
-    jaHook: 'リアルなレトロ・パタパタ時計をブラウザで全画面表示！現在時刻・カウントダウン・ストップウォッチの3モード、12/24時間制、ダーク＆ライトテーマに対応。登録不要・完全無料！',
-    jaKeywords: ['フリップ時計 オンライン 無料 全画面', 'パタパタ時計 Web サイト 勉強', 'デスク時計 フルスクリーン 無料'],
-    ptName: 'Relógio Flip Online Grátis em Tela Cheia (Segundos e 12/24h) – Iniciar Agora',
-    ptHook: 'Transforme sua tela em um relógio retrô de placas giratórias com hora ao vivo, contagem regressiva e cronômetro, temas escuro/claro e tela cheia. Comece grátis em 1 clique!',
-    ptKeywords: ['relógio flip online grátis tela cheia', 'relógio retrô placas giratórias com segundos', 'relógio flip para estudo e mesa'],
-  },
-
-  '/timers/sensory-timers': {
-    enTitle: 'Free Sensory Visual Timers for Classroom, ADHD & Autism – Start Calm Timer',
-    enDesc:
-      'Explore 8 soothing, low-distraction sensory visual timers (Liquid, Lava Lamp, Sand, Frost & Galaxy) with muted-by-default chimes & fullscreen mode. Try free now!',
-    enKeywords: ['sensory visual timers online free', 'calm timer for ADHD and autism classroom', 'low stimulation visual countdown timer', 'liquid and lava lamp timer fullscreen'],
-    esName: 'Temporizadores Visuales Sensoriales Gratis para Aula, TDAH y Calma – Iniciar Ahora',
-    esHook: 'Explora 8 relajantes temporizadores visuales sensoriales (Líquido, Lámpara de Lava, Arena, Escarcha y Galaxia) con sonido suave y pantalla completa. ¡Pruébalo gratis hoy!',
-    esKeywords: ['temporizadores sensoriales online gratis', 'temporizador visual calmado para tdah y autismo', 'reloj sensorial para aula'],
-    frName: 'Minuteurs Visuels Sensoriels Gratuits (Classe, TDAH & Calme) – Essayer Maintenant',
-    frHook: 'Découvrez 8 minuteurs visuels sensoriels apaisants (Liquide, Lampe à Lave, Sablier, Givre et Galaxie) sans distraction avec mode plein écran. 100 % gratuit sans inscription !',
-    frKeywords: ['minuteurs visuels sensoriels gratuits', 'minuteur apaisant tdah autisme classe', 'minuteur liquide et lampe à lave'],
-    deName: 'Kostenlose Sensorische Visuelle Timer für Schule, ADHS & Fokus – Jetzt Starten',
-    deHook: 'Entdecken Sie 8 beruhigende, reizarme sensorische Timer (Flüssigkeit, Lavalampe, Sanduhr, Frost & Galaxie) im Vollbildmodus. Ideal für Unterricht & Therapie – Kostenlos testen!',
-    deKeywords: ['sensorische visuelle timer kostenlos', 'ruhiger timer für adhs und autismus', 'entspannender klassenzimmer timer'],
-    jaName: '無料・感覚ビジュアルタイマー8選（発達サポート・教室・リラックス向け）｜全画面対応',
-    jaHook: 'リキッド、ラバランプ、砂時計、フロストなど穏やかな動きで残り時間がわかる8種類の感覚ビジュアルタイマー。刺激を抑えた静音設計＆全画面表示で教室や家庭学習に最適！',
-    jaKeywords: ['感覚タイマー 無料 オンライン', '視覚支援 タイマー 発達 教室', 'リラックス ビジュアルタイマー'],
-    ptName: 'Temporizadores Visuais Sensoriais Grátis para Sala de Aula, TDAH e Calma',
-    ptHook: 'Explore 8 temporizadores visuais sensoriais calmantes (Líquido, Lâmpada de Lava, Areia, Geada e Galáxia) sem distrações e em tela cheia. Experimente grátis agora!',
-    ptKeywords: ['temporizadores sensoriais online grátis', 'timer visual calmo para tdah e autismo', 'relógio sensorial infantil'],
-  },
-
-  '/timers/forest-fire-timer': {
-    enTitle: 'Free Online Forest Fire Timer – Nature Ember Visual Countdown (Fullscreen)',
-    enDesc:
-      'Watch a stylized forest ember glow progress across 4 nature themes as your countdown runs. Includes soothing sound toggle, quick presets & fullscreen—Start free now!',
-    enKeywords: ['forest fire timer online free', 'nature visual countdown timer fullscreen', 'campfire ember study timer'],
-    esName: 'Temporizador Fuego del Bosque Online Gratis – Cuenta Regresiva Visual Natural',
-    esHook: 'Observa cómo avanza el resplandor de brasas en el bosque a través de 4 escenarios naturales mientras corre tu cuenta regresiva en pantalla completa. ¡Inícialo gratis ahora!',
-    esKeywords: ['temporizador fuego del bosque gratis', 'temporizador visual naturaleza pantalla completa'],
-    frName: 'Minuteur Feu de Forêt en Ligne Gratuit – Compte à Rebours Visuel Nature',
-    frHook: 'Suivez la lueur apaisante des braises à travers 4 thèmes forestiers illustrés pendant votre compte à rebours plein écran. Lancez-le gratuitement en 1 clic !',
-    frKeywords: ['minuteur feu de forêt gratuit', 'compte à rebours visuel nature plein écran'],
-    deName: 'Kostenloser Online Waldbrand-Timer – Visueller Natur-Countdown im Vollbild',
-    deHook: 'Erleben Sie einen atmosphärischen Natur-Countdown mit 4 illustrierten Waldszenen, Schnellwahl-Zeiten und Vollbildmodus. Jetzt kostenlos im Browser starten!',
-    deKeywords: ['waldbrand timer online kostenlos', 'natur visueller countdown vollbild'],
-    jaName: '無料オンライン・フォレストファイア・タイマー｜森と焚き火の視覚カウントダウン',
-    jaHook: '4つの美しい森のイラストテーマで残り時間を視覚的に表示する自然派カウントダウンタイマー。フルスクリーン＆プリセット対応で教室や集中作業に最適！今すぐ無料で開始。',
-    jaKeywords: ['フォレストタイマー 無料', '自然 ビジュアルタイマー 全画面'],
-    ptName: 'Temporizador Fogo na Floresta Online Grátis – Contagem Regressiva Visual',
-    ptHook: 'Acompanhe o brilho estilizado das brasas em 4 cenários de floresta enquanto sua contagem regressiva avança em tela cheia. Comece grátis em 1 clique!',
-    ptKeywords: ['temporizador fogo na floresta grátis', 'timer visual natureza tela cheia'],
-  },
-
-  '/timers/train-timer': {
-    enTitle: 'Free Online Train Timer – Split-Flap Station Board & Moving Train Countdown',
-    enDesc:
-      'Make classroom transitions & focus sessions fun with a live railway departure board and animated train that travels from start to arrival at 00:00. Launch free now!',
-    enKeywords: ['train timer online free classroom', 'railway departure board countdown timer', 'animated train visual timer for kids'],
-    esName: 'Temporizador de Tren Online Gratis – Panel de Estación y Tren en Movimiento',
-    esHook: 'Haz que las transiciones en el aula y sesiones de enfoque sean divertidas con un panel ferroviario abatible y un tren animado hasta llegar a 00:00. ¡Úsalo gratis!',
-    esKeywords: ['temporizador de tren online gratis', 'temporizador animado de tren para niños y aula'],
-    frName: 'Minuteur de Train en Ligne Gratuit – Tableau de Gare & Train Animé Plein Écran',
-    frHook: 'Animez vos transitions de classe et séances de travail avec un tableau des départs à palettes et un train illustré qui arrive en gare à 00:00. Lancer gratuitement !',
-    frKeywords: ['minuteur train en ligne gratuit', 'minuteur visuel train enfants classe'],
-    deName: 'Kostenloser Online Zug-Timer – Bahnhofs-Abfahrtstafel & Animierter Zug-Countdown',
-    deHook: 'Ideal für Unterricht und Fokusphasen: Ein animierter Zug fährt synchron zur Klappzahlen-Abfahrtstafel bis zum Zielbahnhof bei 00:00. Jetzt kostenlos starten!',
-    deKeywords: ['zug timer online kostenlos', 'bahnhof abfahrtstafel countdown kinder'],
-    jaName: '無料オンライン・トレインタイマー｜駅のパタパタ出発案内板＆走る列車カウントダウン',
-    jaHook: 'レトロな駅のパタパタ出発ボードと、残り時間に合わせて終着駅へ走る列車アニメーション！教室の切り替えや子供の時間管理、イベント進行に今すぐ無料で使えます。',
-    jaKeywords: ['電車タイマー 無料 子供', '駅 パタパタ時計 カウントダウン'],
-    ptName: 'Temporizador de Trem Online Grátis – Painel de Estação e Trem em Movimento',
-    ptHook: 'Torne as transições de aula e sessões de foco divertidas com um painel ferroviário retrô e um trem animado que chega à estação em 00:00. Inicie grátis agora!',
-    ptKeywords: ['temporizador de trem online grátis', 'timer visual de trem para crianças'],
-  },
-
-  '/timers/flip-timer': {
-    enTitle: 'Free Online Flip Timer – Retro Split-Flap Countdown Clock with Alarm',
-    enDesc:
-      'Count down any duration with authentic 3D mechanical split-flap cards, 4 retro chassis themes, auto-loop & fullscreen projection. No sign-up—Start your flip timer now!',
-    enKeywords: ['free online flip timer countdown', 'split flap countdown timer fullscreen', 'retro mechanical flip timer with alarm'],
-    esName: 'Temporizador Flip Online Gratis – Cuenta Regresiva Retro de Paneles Abatibles',
-    esHook: 'Cuenta atrás cualquier duración con tarjetas mecánicas 3D abatibles, 4 temas retro, repetición automática y pantalla completa. ¡Inicia tu temporizador flip gratis!',
-    esKeywords: ['temporizador flip cuenta regresiva gratis', 'reloj cuenta atrás paneles abatibles'],
-    frName: 'Minuteur Flip en Ligne Gratuit – Compte à Rebours Rétro à Palettes Plein Écran',
-    frHook: 'Lancez un compte à rebours mécanique 3D à palettes avec 4 thèmes rétro, mode boucle et affichage plein écran. Sans inscription — Démarrer maintenant !',
-    frKeywords: ['minuteur flip compte à rebours gratuit', 'minuteur rétro à palettes plein écran'],
-    deName: 'Kostenloser Online Flip-Timer – Retro-Klappzahlen-Countdown mit Alarm & Vollbild',
-    deHook: 'Starten Sie Ihren Countdown mit realistischen 3D-Klappzahlen, 4 Retro-Gehäusedesigns, Loop-Funktion und Vollbildanzeige. Kostenlos ohne Anmeldung starten!',
-    deKeywords: ['flip timer countdown kostenlos', 'klappzahlen countdown vollbild'],
-    jaName: '無料オンライン・フリップタイマー｜レトロな3Dパタパタ数字カウントダウン（全画面対応）',
-    jaHook: '立体的なパタパタめくりアニメーションと4種類のレトロテーマを備えたフリップ式カウントダウンタイマー。リピート機能・アラーム・フルスクリーン対応で今すぐ無料開始！',
-    jaKeywords: ['フリップタイマー 無料 カウントダウン', 'パタパタタイマー 全画面 勉強'],
-    ptName: 'Temporizador Flip Online Grátis – Contagem Regressiva Retrô em Tela Cheia',
-    ptHook: 'Faça contagens regressivas com cartões giratórios mecânicos 3D, 4 temas retrô, repetição automática e tela cheia. Sem cadastro — Inicie seu flip timer agora!',
-    ptKeywords: ['temporizador flip contagem regressiva grátis', 'timer retrô tela cheia'],
-  },
-};
-
-function humanizeSlug(slug: string): string {
-  return slug
-    .replace(/^\/timers\//, '')
-    .replace(/^\//, '')
-    .split('-')
-    .filter(Boolean)
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
+  keywords?: string[];
+  noIndex?: boolean;
 }
 
 /**
- * Generates a unique, high-search-volume, low-KD, high-CTA SEO entry for ANY route and ANY language.
+ * Normalizes a route path so canonical and og:url are always:
+ * - Absolute (https://WebCountDownTimer.com...)
+ * - Free of trailing slashes (even on root: https://WebCountDownTimer.com)
+ * - Free of query strings or hash fragments
  */
-export function getLocalizedPageSeo(
-  rawPathname: string,
-  langCode: LanguageCode = 'en'
-): LocalizedSeoEntry {
-  // Strip any language prefix (/es/..., /ja/...) to get the canonical route path
-  const cleanPath =
-    rawPathname.replace(/^\/(en|es|fr|de|ja|pt)(\/|$)/, '/') || '/';
+export function getCanonicalUrl(routePath: string): string {
+  const cleanPath = routePath.split('?')[0].split('#')[0].trim();
   const normalizedPath =
-    cleanPath.length > 1 && cleanPath.endsWith('/')
-      ? cleanPath.slice(0, -1)
-      : cleanPath;
-
-  const canonicalBase = `${SITE_URL}${normalizedPath === '/' ? '' : normalizedPath}`;
-  const canonicalUrl =
-    langCode === 'en' ? canonicalBase : `${canonicalBase}?lang=${langCode}`;
-
-  const alternatesLanguages: Record<string, string> = {
-    en: canonicalBase,
-    es: `${canonicalBase}?lang=es`,
-    fr: `${canonicalBase}?lang=fr`,
-    de: `${canonicalBase}?lang=de`,
-    ja: `${canonicalBase}?lang=ja`,
-    pt: `${canonicalBase}?lang=pt`,
-    'x-default': canonicalBase,
-  };
-
-  const ogLocale = OG_LOCALE_MAP[langCode] || 'en_US';
-
-  // 1. Check curated blueprint first
-  const blueprint = SEO_BLUEPRINTS[normalizedPath];
-  if (blueprint) {
-    if (langCode === 'en') {
-      return {
-        title: blueprint.enTitle,
-        description: blueprint.enDesc,
-        keywords: blueprint.enKeywords,
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-    if (langCode === 'es') {
-      return {
-        title: `${blueprint.esName} | WebCountDownTimer`,
-        description: blueprint.esHook,
-        keywords: blueprint.esKeywords,
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-    if (langCode === 'fr') {
-      return {
-        title: `${blueprint.frName} | WebCountDownTimer`,
-        description: blueprint.frHook,
-        keywords: blueprint.frKeywords,
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-    if (langCode === 'de') {
-      return {
-        title: `${blueprint.deName} | WebCountDownTimer`,
-        description: blueprint.deHook,
-        keywords: blueprint.deKeywords,
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-    if (langCode === 'ja') {
-      return {
-        title: `${blueprint.jaName} | WebCountDownTimer`,
-        description: blueprint.jaHook,
-        keywords: blueprint.jaKeywords,
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-    if (langCode === 'pt') {
-      return {
-        title: `${blueprint.ptName} | WebCountDownTimer`,
-        description: blueprint.ptHook,
-        keywords: blueprint.ptKeywords,
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-  }
-
-  // 2. Check if it's a Preset Duration Timer route (/1-minute-timer .. /90-minute-timer or /30-second-timer)
-  const durationMatch = normalizedPath.match(/^\/(\d+)-(minute|second)-timer$/);
-  if (durationMatch) {
-    const val = Number(durationMatch[1]);
-    const isMin = durationMatch[2] === 'minute';
-    const totalSec = isMin ? val * 60 : val;
-
-    if (langCode === 'en') {
-      const unitCap = isMin ? 'Minute' : 'Second';
-      const unitLow = isMin ? 'minute' : 'second';
-      return {
-        title: `Free ${val} ${unitCap} Timer (${totalSec.toLocaleString()}s) – Fullscreen Online Countdown & Alarm`,
-        description: `Set a ${val} ${unitLow} timer (${totalSec.toLocaleString()} seconds) instantly! Drift-free online countdown with custom alarm chime, auto-repeat loop & fullscreen display—Start in 1 click!`,
-        keywords: [
-          `${val} ${unitLow} timer`,
-          `set a timer for ${val} ${unitLow}s`,
-          `free online ${val} ${unitLow} countdown fullscreen`,
-          `${totalSec} second timer with alarm`,
-        ],
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-    if (langCode === 'es') {
-      const unit = isMin ? (val === 1 ? 'Minuto' : 'Minutos') : 'Segundos';
-      return {
-        title: `Temporizador de ${val} ${unit} (${totalSec.toLocaleString()}s) Online Gratis – Pantalla Completa y Alarma`,
-        description: `¡Activa tu temporizador de ${val} ${unit.toLowerCase()} (${totalSec.toLocaleString()} segundos) en 1 clic! Cuenta regresiva online exacta con alarma sonora, modo bucle y pantalla completa gratis.`,
-        keywords: [
-          `temporizador de ${val} ${unit.toLowerCase()}`,
-          `cuenta regresiva ${val} ${unit.toLowerCase()} con alarma`,
-          `poner alarma en ${val} ${unit.toLowerCase()} online gratis`,
-        ],
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-    if (langCode === 'fr') {
-      const unit = isMin ? (val === 1 ? 'Minute' : 'Minutes') : 'Secondes';
-      return {
-        title: `Minuteur de ${val} ${unit} (${totalSec.toLocaleString()}s) en Ligne Gratuit – Alarme & Plein Écran`,
-        description: `Lancez un minuteur de ${val} ${unit.toLowerCase()} (${totalSec.toLocaleString()} secondes) en 1 clic ! Compte à rebours précis avec alarme sonore, répétition en boucle et mode plein écran gratuit.`,
-        keywords: [
-          `minuteur ${val} ${unit.toLowerCase()} en ligne`,
-          `compte à rebours ${val} ${unit.toLowerCase()} gratuit`,
-          `alarme ${val} ${unit.toLowerCase()} plein écran`,
-        ],
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-    if (langCode === 'de') {
-      const unit = isMin ? (val === 1 ? 'Minute' : 'Minuten') : 'Sekunden';
-      return {
-        title: `Kostenloser ${val}-${unit}-Timer (${totalSec.toLocaleString()}s) – Online Countdown mit Alarm & Vollbild`,
-        description: `Starten Sie Ihren ${val}-${unit}-Timer (${totalSec.toLocaleString()} Sekunden) sofort mit 1 Klick! Präziser Online-Countdown mit Alarmton, Endlosschleife und Vollbildmodus – 100 % kostenlos.`,
-        keywords: [
-          `${val} ${unit.toLowerCase()} timer online kostenlos`,
-          `countdown ${val} ${unit.toLowerCase()} mit alarm`,
-          `timer auf ${val} ${unit.toLowerCase()} stellen vollbild`,
-        ],
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-    if (langCode === 'ja') {
-      const unit = isMin ? '分' : '秒';
-      return {
-        title: `無料・${val}${unit}タイマー（${totalSec.toLocaleString()}秒）オンライン全画面カウントダウン＆アラーム｜今すぐ開始`,
-        description: `ワンクリックで${val}${unit}（${totalSec.toLocaleString()}秒）のカウントダウンを即座にスタート！アラーム音切り替え・自動リピート・フルスクリーン表示対応の完全無料オンラインタイマー。`,
-        keywords: [
-          `${val}${unit}タイマー 無料 オンライン`,
-          `${val}${unit} カウントダウン 全画面 アラーム`,
-          `${totalSec}秒タイマー Web`,
-        ],
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-    if (langCode === 'pt') {
-      const unit = isMin ? (val === 1 ? 'Minuto' : 'Minutos') : 'Segundos';
-      return {
-        title: `Temporizador de ${val} ${unit} (${totalSec.toLocaleString()}s) Online Grátis – Tela Cheia e Alarme`,
-        description: `Inicie seu temporizador de ${val} ${unit.toLowerCase()} (${totalSec.toLocaleString()} segundos) em 1 clique! Contagem regressiva online precisa com alarme sonoro, repetição e tela cheia grátis.`,
-        keywords: [
-          `temporizador de ${val} ${unit.toLowerCase()} online grátis`,
-          `contagem regressiva ${val} ${unit.toLowerCase()} com alarme`,
-          `timer ${val} ${unit.toLowerCase()} tela cheia`,
-        ],
-        canonicalUrl,
-        ogLocale,
-        alternatesLanguages,
-      };
-    }
-  }
-
-  // 3. Individual Tool & Editorial Pages (unique per route + per language)
-  const isVisualTimerRoute = normalizedPath.startsWith('/timers/');
-  const rawSlug = normalizedPath.replace(/^\/timers\//, '').replace(/^\//, '');
-  const toolName = humanizeSlug(rawSlug || 'Time Tool');
-  const lowerName = toolName.toLowerCase();
-
-  const isCalculator =
-    rawSlug.includes('calculator') ||
-    rawSlug.includes('converter') ||
-    rawSlug.includes('hours') ||
-    rawSlug.includes('minutes') ||
-    rawSlug.includes('planner') ||
-    rawSlug.includes('what-time');
-
-  if (langCode === 'en') {
-    const routeModifier = isVisualTimerRoute
-      ? 'Fullscreen Visual Countdown & Custom Themes'
-      : isCalculator
-      ? 'Instant Base-60 & Decimal Time Math'
-      : 'Drift-Free Fullscreen Clock & Alarm';
-
-    return {
-      title: `Free Online ${toolName} (${routeModifier}) – Start Now`,
-      description: isCalculator
-        ? `Calculate exact time with our free online ${toolName}. Instant HH:MM and decimal hour results with zero sign-up or ads—Run your calculation in 1 click!`
-        : `Use our free online ${toolName} with ${
-            isVisualTimerRoute
-              ? 'soothing high-contrast visual animations, custom color themes,'
-              : 'millisecond epoch accuracy, customizable audio chimes,'
-          } and distraction-free fullscreen mode. No login—Launch free now!`,
-      keywords: [
-        `free online ${lowerName}`,
-        `${lowerName} fullscreen no login`,
-        `best ${lowerName} for classroom and study`,
-        `${lowerName} with alarm sound`,
-      ],
-      canonicalUrl,
-      ogLocale,
-      alternatesLanguages,
-    };
-  }
-
-  if (langCode === 'es') {
-    const tag = isVisualTimerRoute ? 'Visual en Pantalla Completa' : 'Online Gratis sin Registro';
-    return {
-      title: `${toolName} (${tag}) – Usar Gratis en 1 Clic | WebCountDownTimer`,
-      description: `Utiliza nuestra herramienta gratuita ${toolName} en línea con precisión al milisegundo, modo pantalla completa y alertas personalizables. ¡100% gratis y sin registro—Empezar ahora!`,
-      keywords: [
-        `${lowerName} online gratis`,
-        `${lowerName} pantalla completa con alarma`,
-        `herramienta ${lowerName} sin registro`,
-      ],
-      canonicalUrl,
-      ogLocale,
-      alternatesLanguages,
-    };
-  }
-
-  if (langCode === 'fr') {
-    const tag = isVisualTimerRoute ? 'Visuel Plein Écran' : 'en Ligne Gratuit Sans Inscription';
-    return {
-      title: `${toolName} (${tag}) – Lancer Gratuitement | WebCountDownTimer`,
-      description: `Utilisez notre outil gratuit ${toolName} directement dans votre navigateur avec mode plein écran, thèmes personnalisés et alarme sonore. 100 % gratuit — Démarrer en 1 clic !`,
-      keywords: [
-        `${lowerName} en ligne gratuit`,
-        `${lowerName} plein écran avec alarme`,
-        `outil ${lowerName} sans inscription`,
-      ],
-      canonicalUrl,
-      ogLocale,
-      alternatesLanguages,
-    };
-  }
-
-  if (langCode === 'de') {
-    const tag = isVisualTimerRoute ? 'Visueller Vollbild-Timer' : 'Online Kostenlos Ohne Anmeldung';
-    return {
-      title: `Kostenloser ${toolName} (${tag}) – Jetzt Sofort Starten | WebCountDownTimer`,
-      description: `Nutzen Sie unser kostenloses Online-Tool ${toolName} mit Millisekunden-Präzision, individuellen Themen, Alarmton und Vollbildmodus. Ohne Anmeldung sofort im Browser starten!`,
-      keywords: [
-        `${lowerName} online kostenlos`,
-        `${lowerName} vollbild mit alarm`,
-        `${lowerName} im browser ohne anmeldung`,
-      ],
-      canonicalUrl,
-      ogLocale,
-      alternatesLanguages,
-    };
-  }
-
-  if (langCode === 'ja') {
-    const tag = isVisualTimerRoute ? '全画面ビジュアル表示・テーマ切替' : '完全無料・登録不要・全画面対応';
-    return {
-      title: `無料オンライン・${toolName}（${tag}）｜ワンクリックで今すぐ開始`,
-      description: `ブラウザですぐに使える無料オンライン「${toolName}」。ミリ秒単位の高精度計測、カスタムテーマ、アラーム音、フルスクリーン表示に対応。登録不要で今すぐスタート！`,
-      keywords: [
-        `${lowerName} 無料 オンライン`,
-        `${lowerName} 全画面 アラーム`,
-        `Webタイマー ${lowerName} 登録不要`,
-      ],
-      canonicalUrl,
-      ogLocale,
-      alternatesLanguages,
-    };
-  }
-
-  // Portuguese ('pt')
-  const tagPt = isVisualTimerRoute ? 'Visual em Tela Cheia' : 'Online Grátis Sem Cadastro';
-  return {
-    title: `${toolName} (${tagPt}) – Iniciar Grátis Agora | WebCountDownTimer`,
-    description: `Use nossa ferramenta online gratuita ${toolName} com precisão de milissegundos, temas personalizáveis, alarme sonoro e modo tela cheia. 100% grátis — Comece em 1 clique!`,
-    keywords: [
-      `${lowerName} online grátis`,
-      `${lowerName} tela cheia com alarme`,
-      `ferramenta ${lowerName} sem cadastro`,
-    ],
-    canonicalUrl,
-    ogLocale,
-    alternatesLanguages,
-  };
+    cleanPath === '/' || cleanPath === ''
+      ? ''
+      : `/${cleanPath.replace(/^\/+|\/+$/g, '')}`;
+  return `${SITE_BASE_URL}${normalizedPath}`;
 }
 
+export const ROUTE_SEO_REGISTRY: Record<string, RouteSeoEntry> = {
+  // ============================================================================
+  // 1. CORE STATIC & INFORMATIONAL PAGES
+  // ============================================================================
+  '/': {
+    path: '/',
+    title: 'Free Online Countdown Timer, Stage Timer & Visual Timer | WebCountDownTimer',
+    description:
+      'Free online countdown timer, stopwatch, stage timer, and visual timers for classrooms, meetings, workouts, and daily tasks. No sign-up required.',
+    keywords: [
+      'free online countdown timer',
+      'online stopwatch',
+      'stage timer',
+      'visual timer',
+      'classroom timer',
+      'world clock',
+    ],
+  },
+  '/tools': {
+    path: '/tools',
+    title: 'All Time Tools, Timers & Calculators | WebCountDownTimer',
+    description:
+      'Browse the complete directory of 60+ free online countdown timers, sensory visual clocks, stage monitors, world time converters, and date calculators.',
+    keywords: ['all time tools', 'timer directory', 'online timers list', 'time calculators'],
+  },
+  '/guides': {
+    path: '/guides',
+    title: 'Event Timing & Time Zone Guides | WebCountDownTimer',
+    description:
+      'Read practical handbooks on stage confidence monitors, official Toastmasters speech rules, debate bells, Pomodoro focus cycles, and IANA time zones.',
+    keywords: ['event timing guides', 'toastmasters rules', 'debate timer rules', 'iana time zones'],
+  },
+  '/education': {
+    path: '/education',
+    title: 'Classroom Timers & Teacher Tools | WebCountDownTimer',
+    description:
+      'Free online classroom timers, visual countdowns, student name pickers, noise meters, and group generators built for K-12 teachers and smartboards.',
+    keywords: ['classroom timers', 'teacher tools', 'school countdown', 'classroom management'],
+  },
+  '/about': {
+    path: '/about',
+    title: 'About & Timing Methodology | WebCountDownTimer',
+    description:
+      'Learn how WebCountDownTimer engineers drift-free timestamp countdowns, Web Audio chimes, IANA time-zone conversions, and private browser calculators.',
+    keywords: ['about webcountdowntimer', 'timer methodology', 'drift-free clock'],
+  },
+  '/contact': {
+    path: '/contact',
+    title: 'Contact & Feature Requests | WebCountDownTimer',
+    description:
+      'Contact the WebCountDownTimer engineering team to request new timer presets, ask stage synchronization questions, or share classroom tool feedback.',
+    keywords: ['contact webcountdowntimer', 'timer feedback', 'support'],
+  },
+  '/privacy': {
+    path: '/privacy',
+    title: 'Privacy Policy & Local Data Security | WebCountDownTimer',
+    description:
+      'Read the WebCountDownTimer privacy policy. All timers, student rosters, custom images, and stage sync sessions run locally in your browser with zero ads.',
+    keywords: ['privacy policy', 'local browser privacy', 'student data privacy'],
+  },
+  '/terms': {
+    path: '/terms',
+    title: 'Terms of Use & Service Conditions | WebCountDownTimer',
+    description:
+      'Review the Terms of Use governing WebCountDownTimer free online countdown timers, stage monitors, world clocks, and payroll time-card calculators.',
+    keywords: ['terms of use', 'service conditions', 'legal disclaimer'],
+  },
+  '/accessibility': {
+    path: '/accessibility',
+    title: 'Accessibility Statement (WCAG 2.2 AA) | WebCountDownTimer',
+    description:
+      'WebCountDownTimer is built to WCAG 2.2 Level AA accessibility standards with keyboard shortcuts, ARIA live regions, high contrast, and reduced motion.',
+    keywords: ['accessibility statement', 'wcag 2.2 aa', 'accessible timers'],
+  },
+  '/sitemap': {
+    path: '/sitemap',
+    title: 'HTML Sitemap & Tool Index | WebCountDownTimer',
+    description:
+      'Explore the complete HTML sitemap of WebCountDownTimer, indexing all countdown clocks, sensory visual timers, category hubs, and preset durations.',
+    keywords: ['html sitemap', 'site index', 'all timer links'],
+  },
+
+  // ============================================================================
+  // 2. CATEGORY HUB ROUTES (/category/[slug])
+  // ============================================================================
+  '/category/timers': {
+    path: '/category/timers',
+    title: 'Timers & Stopwatches Directory | WebCountDownTimer',
+    description:
+      'Explore precision online countdown timers, split-lap stopwatches, interval clocks, and fullscreen visual timers for work, study, cooking, and sports.',
+  },
+  '/category/everyday': {
+    path: '/category/everyday',
+    title: 'Everyday Timers & Daily Clocks | WebCountDownTimer',
+    description:
+      'Simple, drift-free everyday countdown clocks, kitchen timers, online alarms, and lap stopwatches designed for home routines, cooking, and workouts.',
+  },
+  '/category/events': {
+    path: '/category/events',
+    title: 'Events & Presentation Timers | WebCountDownTimer',
+    description:
+      'Professional stage timers, downstage speaker confidence monitors, Toastmasters signaling cards, and webinar agenda clocks for live event production.',
+  },
+  '/category/stage': {
+    path: '/category/stage',
+    title: 'Stage & Speaker Pacing Tools | WebCountDownTimer',
+    description:
+      'Synchronized backstage operator consoles, podium countdown clocks, debate gavel timers, and sermon displays built for conference and theater stages.',
+  },
+  '/category/education': {
+    path: '/category/education',
+    title: 'Education & Classroom Activity Hub | WebCountDownTimer',
+    description:
+      'Projector-ready classroom timers, sensory visual countdowns, random student pickers, decibel noise monitors, and desk seating chart generators.',
+  },
+  '/category/fitness': {
+    path: '/category/fitness',
+    title: 'Fitness, HIIT & Interval Timers | WebCountDownTimer',
+    description:
+      'High-intensity interval timers, 20/10 Tabata clocks, boxing round bells, and multi-lane athletic stopwatches for gym circuits and conditioning.',
+  },
+  '/category/productivity': {
+    path: '/category/productivity',
+    title: 'Productivity & Deep Focus Timers | WebCountDownTimer',
+    description:
+      'Structured Pomodoro sprint timers, 50/10 academic study clocks, 20-20-20 eye-break reminders, and calm desk timers to eliminate context switching.',
+  },
+  '/category/world': {
+    path: '/category/world',
+    title: 'World Clocks & Time Zone Tools | WebCountDownTimer',
+    description:
+      'Live international city clocks, interactive 24-hour time-zone scrubbers, and global team meeting planners powered by official IANA DST rules.',
+  },
+  '/category/world-clock': {
+    path: '/category/world-clock',
+    title: 'Global Time Zones & City Clocks | WebCountDownTimer',
+    description:
+      'Compare current local times across 400+ cities, verify Daylight Saving Time offsets, and calculate exact hour differences between international hubs.',
+  },
+  '/category/calculators': {
+    path: '/category/calculators',
+    title: 'Time, Date & Payroll Calculators | WebCountDownTimer',
+    description:
+      'Accurate base-60 time duration calculators, weekly payroll timesheet logs, FLSA overtime estimators, and calendar business-day counters.',
+  },
+
+  // ============================================================================
+  // 3. CANONICAL VISUAL & SENSORY TIMERS (/timers/<slug>)
+  // ============================================================================
+  '/timers/aesthetic-timer': {
+    path: '/timers/aesthetic-timer',
+    title: 'Aesthetic Timer – Curated Desk Clock | WebCountDownTimer',
+    description:
+      'Customize a calm aesthetic countdown timer with 8 curated studio themes, Minimal Ivory and Dark Academia palettes, soft chimes, and fullscreen mode.',
+  },
+  '/timers/blocks-timer': {
+    path: '/timers/blocks-timer',
+    title: 'Blocks Timer – 3D Stacked Countdown | WebCountDownTimer',
+    description:
+      'Watch 3D stacked blocks disappear one by one as your countdown runs. Choose Wooden, Colored, Stone, or Minimal styles for classrooms and game turns.',
+  },
+  '/timers/bubble-timer': {
+    path: '/timers/bubble-timer',
+    title: 'Bubble Timer – Floating Visual Clock | WebCountDownTimer',
+    description:
+      'Relax with a gentle floating bubble visual countdown timer featuring Ocean Blue, Seafoam Green, and Clear Glass themes for calm study and transitions.',
+  },
+  '/timers/candle-timer': {
+    path: '/timers/candle-timer',
+    title: 'Candle Timer – Melting Wax Countdown | WebCountDownTimer',
+    description:
+      'Unwind with a peaceful melting candle countdown timer featuring flickering flame animation and Ivory, Amber, Forest Green, and Charcoal wax themes.',
+  },
+  '/timers/circular-timer': {
+    path: '/timers/circular-timer',
+    title: 'Circular Timer – Shrinking Ring Clock | WebCountDownTimer',
+    description:
+      'Track remaining time at a glance with a smooth 360-degree circular countdown ring, custom color themes, direction controls, and low-time warnings.',
+  },
+  '/timers/coral-timer': {
+    path: '/timers/coral-timer',
+    title: 'Coral Timer – Reef Growth Countdown | WebCountDownTimer',
+    description:
+      'Focus with a soothing underwater coral reef visual countdown timer that branches and blooms across Tropical, Deep Ocean, and Colorful Reef scenes.',
+  },
+  '/timers/flip-clock': {
+    path: '/timers/flip-clock',
+    title: 'Flip Clock – Retro Split-Flap Display | WebCountDownTimer',
+    description:
+      'Full-screen retro mechanical split-flap clock with Live Clock, Countdown, and Stopwatch modes, 12/24-hour switching, and Dark and Light housings.',
+  },
+  '/timers/flip-timer': {
+    path: '/timers/flip-timer',
+    title: 'Flip Timer – Split-Flap Countdown | WebCountDownTimer',
+    description:
+      'Count down with a tactile 3D mechanical split-flap timer featuring Classic Black, Retro Cream, Industrial, and Modern Dark card themes and chimes.',
+  },
+  '/timers/forest-fire-timer': {
+    path: '/timers/forest-fire-timer',
+    title: 'Forest Fire Timer – Ember Visual Clock | WebCountDownTimer',
+    description:
+      'Engage students and teams with a stylized nature-inspired countdown featuring a warm spreading ember glow across four illustrated woodland themes.',
+  },
+  '/timers/frost-timer': {
+    path: '/timers/frost-timer',
+    title: 'Frost Timer – Ice Crystal Countdown | WebCountDownTimer',
+    description:
+      'Watch delicate frost and ice crystals spread inward across a frosted glass pane as time elapses—ideal for quiet reading blocks and calm transitions.',
+  },
+  '/timers/galaxy-timer': {
+    path: '/timers/galaxy-timer',
+    title: 'Galaxy Timer – Deep Space Countdown | WebCountDownTimer',
+    description:
+      'Immerse your study block in a glowing cosmic spiral galaxy and starfield countdown with Spiral, Nebula, Starfield, and Andromeda visual themes.',
+  },
+  '/timers/heart-timer': {
+    path: '/timers/heart-timer',
+    title: 'Heart Timer – Rhythmic Visual Clock | WebCountDownTimer',
+    description:
+      'Track wellness breaks, classroom games, and cardio intervals with a smooth draining heart-shaped visual countdown in Rose, Berry, and Ivory themes.',
+  },
+  '/timers/hourglass-timer': {
+    path: '/timers/hourglass-timer',
+    title: 'Hourglass Timer – Wooden Sand Clock | WebCountDownTimer',
+    description:
+      'Run a classic wooden-framed hourglass countdown with realistic falling sand physics, instant 180-degree Flip button, and borderless fullscreen view.',
+  },
+  '/timers/lava-lamp-timer': {
+    path: '/timers/lava-lamp-timer',
+    title: 'Lava Lamp Timer – Retro Wax Countdown | WebCountDownTimer',
+    description:
+      'Stay focused with a relaxing retro lava lamp visual countdown featuring rising, merging liquid wax blobs in Amber, Deep Blue, Neon Pink, and Aqua.',
+  },
+  '/timers/lichen-timer': {
+    path: '/timers/lichen-timer',
+    title: 'Lichen Timer – Organic Moss Countdown | WebCountDownTimer',
+    description:
+      'Observe calm, nature-inspired organic lichen colonies slowly spread across Forest Rock, Tree Bark, and Coastal Stone surfaces as your timer runs.',
+  },
+  '/timers/liquid-timer': {
+    path: '/timers/liquid-timer',
+    title: 'Liquid Timer – Draining Glass Clock | WebCountDownTimer',
+    description:
+      'Visualize elapsed time with a transparent glass vessel, smooth draining liquid level, rising effervescent bubbles, and six calming color palettes.',
+  },
+  '/timers/moon-timer': {
+    path: '/timers/moon-timer',
+    title: 'Moon Timer – Lunar Night Sky Clock | WebCountDownTimer',
+    description:
+      'Wind down with a tranquil night-sky moon visual countdown featuring twinkling stars and Classic, Crescent, Blue Moon, and Harvest Warm styles.',
+  },
+  '/timers/picture-reveal-timer': {
+    path: '/timers/picture-reveal-timer',
+    title: 'Picture Reveal Timer – Tile Game Clock | WebCountDownTimer',
+    description:
+      'Turn classroom warmups and trivia into a guessing game: upload any photo or pick a preset and watch hidden grid tiles uncover as the clock counts down.',
+  },
+  '/timers/pixel-timer': {
+    path: '/timers/pixel-timer',
+    title: 'Pixel Timer – 8-Bit Arcade Countdown | WebCountDownTimer',
+    description:
+      'Bring retro gaming energy to study sprints and coding blocks with an 8-bit pixel grid countdown, adjustable pixel density, and four arcade themes.',
+  },
+  '/timers/progress-timer': {
+    path: '/timers/progress-timer',
+    title: 'Progress Timer – Visual Bar Countdown | WebCountDownTimer',
+    description:
+      'Keep meetings, exams, and sprints on pace with a clean progress bar timer offering Horizontal, Vertical, Segmented, and Thin Line visual layouts.',
+  },
+  '/timers/radial-timer': {
+    path: '/timers/radial-timer',
+    title: 'Radial Timer – Sunburst Spoke Clock | WebCountDownTimer',
+    description:
+      'Count down with a geometric radial spoke timer featuring Sunburst, Dots, Blocks, and Gradient Rays styles plus customizable segment counts.',
+  },
+  '/timers/rainbow-timer': {
+    path: '/timers/rainbow-timer',
+    title: 'Rainbow Timer – Colorful Arc Clock | WebCountDownTimer',
+    description:
+      'Make remaining time unmistakable for young learners with a vibrant multicolor rainbow arc countdown, four arc geometries, and six cheerful palettes.',
+  },
+  '/timers/rings-timer': {
+    path: '/timers/rings-timer',
+    title: 'Rings Timer – Concentric Circle Clock | WebCountDownTimer',
+    description:
+      'Visualize multi-stage tasks and study blocks with concentric animated progress rings in Classic, Gradient, Minimal, and Dashed ring styles.',
+  },
+  '/timers/sand-timer': {
+    path: '/timers/sand-timer',
+    title: 'Sand Timer – Digital Glass Hourglass | WebCountDownTimer',
+    description:
+      'Experience a realistic glass sand timer with golden falling grains, accumulating lower chamber mounds, 1–15 minute presets, and fullscreen projection.',
+  },
+  '/timers/sensory-timers': {
+    path: '/timers/sensory-timers',
+    title: 'Sensory Timers – Calm Visual Clocks | WebCountDownTimer',
+    description:
+      'Compare and launch calm, low-stimulation sensory visual timers with gentle motion, muted default audio, and soft colors for neurodivergent learners.',
+  },
+  '/timers/snow-timer': {
+    path: '/timers/snow-timer',
+    title: 'Snow Timer – Winter Snowfall Clock | WebCountDownTimer',
+    description:
+      'Create a peaceful winter atmosphere with gently falling snowflakes that accumulate into deep drifts across Cabin, Forest, and Mountain scenes.',
+  },
+  '/timers/spinner-timer': {
+    path: '/timers/spinner-timer',
+    title: 'Spinner Timer – Rotating Wheel Clock | WebCountDownTimer',
+    description:
+      'Manage classroom stations, board games, and drills with an interactive spinning wheel countdown featuring segmented progress and six bold themes.',
+  },
+  '/timers/sun-timer': {
+    path: '/timers/sun-timer',
+    title: 'Sun Timer – Horizon Sky Arc Clock | WebCountDownTimer',
+    description:
+      'Track routines naturally as an illustrated sun travels across a smooth horizon arc through Morning, Midday, Sunset, and Warm Neutral sky scenes.',
+  },
+  '/timers/train-timer': {
+    path: '/timers/train-timer',
+    title: 'Train Timer – Departure Board Clock | WebCountDownTimer',
+    description:
+      'Pace classroom transitions and workshop breaks with a railway departure-board split-flap countdown and an animated train moving along the route track.',
+  },
+
+  // ============================================================================
+  // 4. ROOT VISUAL TIMER ALIAS ROUTES (/<slug>) — UNIQUE TITLES, DESCS & CANONICALS
+  // ============================================================================
+  '/aesthetic-timer': {
+    path: '/aesthetic-timer',
+    title: 'Aesthetic Countdown – Minimalist Timer | WebCountDownTimer',
+    description:
+      'Launch a minimalist aesthetic countdown clock for study desks and second monitors with eight cohesive color palettes and distraction-free fullscreen.',
+  },
+  '/blocks-timer': {
+    path: '/blocks-timer',
+    title: 'Stacked Blocks Countdown – 3D Timer | WebCountDownTimer',
+    description:
+      'Use a 3D stacked-block visual countdown that clears blocks step-by-step for kids routines, classroom cleanup transitions, and tabletop game turns.',
+  },
+  '/bubble-timer': {
+    path: '/bubble-timer',
+    title: 'Bubble Countdown – Ambient Water Timer | WebCountDownTimer',
+    description:
+      'Run a soothing underwater bubble countdown clock with rising translucent spheres and gentle aquatic gradients for mindful breaks and quiet study.',
+  },
+  '/candle-timer': {
+    path: '/candle-timer',
+    title: 'Candle Countdown – Ambient Flame Timer | WebCountDownTimer',
+    description:
+      'Set a tranquil digital candle timer that gradually melts down as you read, journal, or meditate, complete with customizable wax and flame styles.',
+  },
+  '/circular-timer': {
+    path: '/circular-timer',
+    title: 'Circle Countdown – Proportional Disc | WebCountDownTimer',
+    description:
+      'Display a high-contrast proportional circle countdown clock on smartboards and tablets with clockwise or counterclockwise sweep and alert cues.',
+  },
+  '/coral-timer': {
+    path: '/coral-timer',
+    title: 'Coral Reef Countdown – Ocean Timer | WebCountDownTimer',
+    description:
+      'Watch vibrant marine coral formations grow across the ocean floor as your countdown progresses—built for calm classroom focus and study sessions.',
+  },
+  '/frost-timer': {
+    path: '/frost-timer',
+    title: 'Frosted Glass Countdown – Ice Timer | WebCountDownTimer',
+    description:
+      'Project a low-distraction frosted window countdown where crystalline ice patterns gradually frame the screen during silent reading and exams.',
+  },
+  '/galaxy-timer': {
+    path: '/galaxy-timer',
+    title: 'Galaxy Countdown – Starfield Clock | WebCountDownTimer',
+    description:
+      'Focus beneath a rotating nebula and starfield countdown display engineered for late-night coding, studying, and ambient dual-monitor setups.',
+  },
+  '/heart-timer': {
+    path: '/heart-timer',
+    title: 'Heart Countdown – Pulse Visual Timer | WebCountDownTimer',
+    description:
+      'Keep wellness circuits, breathing exercises, and classroom activities on schedule with a smooth heart-shaped fill countdown and gentle pulse animation.',
+  },
+  '/hourglass-timer': {
+    path: '/hourglass-timer',
+    title: 'Hourglass Countdown – Flip Sand Clock | WebCountDownTimer',
+    description:
+      'Time board games, debates, and study blocks with a classic twin-chamber hourglass countdown featuring realistic sand flow and instant flip-reset.',
+  },
+  '/lava-lamp-timer': {
+    path: '/lava-lamp-timer',
+    title: 'Lava Lamp Countdown – Liquid Wax Clock | WebCountDownTimer',
+    description:
+      'Enjoy a groovy retro lava lamp countdown clock with buoyant glowing wax spheres that rise and blend smoothly through every minute of your session.',
+  },
+  '/lichen-timer': {
+    path: '/lichen-timer',
+    title: 'Lichen Growth Countdown – Nature Clock | WebCountDownTimer',
+    description:
+      'Bring calm botanical pacing to your desk with an organic lichen countdown that expands naturally across textured stone and woodland bark.',
+  },
+  '/liquid-timer': {
+    path: '/liquid-timer',
+    title: 'Liquid Countdown – Sensory Water Clock | WebCountDownTimer',
+    description:
+      'Track time effortlessly with a draining liquid glass timer featuring smooth meniscus motion, floating bubbles, and six vibrant sensory colors.',
+  },
+  '/moon-timer': {
+    path: '/moon-timer',
+    title: 'Lunar Moon Countdown – Night Timer | WebCountDownTimer',
+    description:
+      'Pair evening study, wind-down routines, and bedtime reading with a serene lunar phase countdown set against a deep starlit night sky.',
+  },
+  '/picture-reveal-timer': {
+    path: '/picture-reveal-timer',
+    title: 'Photo Reveal Countdown – Mystery Grid | WebCountDownTimer',
+    description:
+      'Engage elementary classes and workshop teams with a mystery picture reveal timer that removes covering tiles one by one until 00:00.',
+  },
+  '/pixel-timer': {
+    path: '/pixel-timer',
+    title: 'Pixel Art Countdown – Retro 8-Bit Clock | WebCountDownTimer',
+    description:
+      'Count down with a nostalgic 8-bit arcade pixel matrix timer featuring customizable grid resolution and classic CRT monochrome or color palettes.',
+  },
+  '/progress-timer': {
+    path: '/progress-timer',
+    title: 'Progress Bar Countdown – Linear Timer | WebCountDownTimer',
+    description:
+      'Display a crisp linear or segmented progress bar countdown for keynotes, test proctoring, and agile standups with customizable warning thresholds.',
+  },
+  '/radial-timer': {
+    path: '/radial-timer',
+    title: 'Radial Spoke Countdown – Dial Timer | WebCountDownTimer',
+    description:
+      'Visualize time in discrete radial segments and sunburst rays—ideal for pacing multi-part presentations, workouts, and group rotations.',
+  },
+  '/rainbow-timer': {
+    path: '/rainbow-timer',
+    title: 'Rainbow Arc Countdown – Kids Timer | WebCountDownTimer',
+    description:
+      'Help kids and early learners see remaining time clearly with a bright seven-band rainbow countdown clock and cheerful optional completion chimes.',
+  },
+  '/rings-timer': {
+    path: '/rings-timer',
+    title: 'Multi-Ring Countdown – Nested Clock | WebCountDownTimer',
+    description:
+      'Track outer, middle, and inner concentric progress rings simultaneously for structured study intervals, lab stations, and fitness sets.',
+  },
+  '/sand-timer': {
+    path: '/sand-timer',
+    title: 'Online Sand Countdown – Hourglass Tool | WebCountDownTimer',
+    description:
+      'Use a drift-free digital sand timer with smooth particle physics and clear digital readout for quick classroom transitions and kitchen tasks.',
+  },
+  '/snow-timer': {
+    path: '/snow-timer',
+    title: 'Snowfall Countdown – Cozy Winter Clock | WebCountDownTimer',
+    description:
+      'Set a calm winter snowfall timer where gentle flurries blanket pine trees and cabin rooftops as your study or reading session counts down.',
+  },
+  '/spinner-timer': {
+    path: '/spinner-timer',
+    title: 'Spinning Wheel Countdown – Sweep Clock | WebCountDownTimer',
+    description:
+      'Run a high-visibility rotating pointer and segmented wheel countdown for classroom games, speed drills, and rapid team turn-taking.',
+  },
+  '/sun-timer': {
+    path: '/sun-timer',
+    title: 'Sun Arc Countdown – Daylight Clock | WebCountDownTimer',
+    description:
+      'Follow a warm illustrated sun from sunrise to sunset across the sky dome to pace morning routines, study blocks, and outdoor breaks.',
+  },
+
+  // ============================================================================
+  // 5. CORE TIMERS, STAGE TOOLS, WORLD CLOCKS & CALCULATORS
+  // ============================================================================
+  '/countdown-timer': {
+    path: '/countdown-timer',
+    title: 'Countdown Timer – Online Alarm Clock | WebCountDownTimer',
+    description:
+      'Free online countdown timer with hours, minutes, and seconds presets, auto-repeat loop mode, synthesized Web Audio alarms, and fullscreen view.',
+  },
+  '/stopwatch': {
+    path: '/stopwatch',
+    title: 'Online Stopwatch – Split & Lap Timer | WebCountDownTimer',
+    description:
+      'Millisecond-accurate online stopwatch with split and lap recording, fastest and slowest lap highlighting, keyboard hotkeys, and one-click CSV export.',
+  },
+  '/multi-stopwatch': {
+    path: '/multi-stopwatch',
+    title: 'Multi-Stopwatch – Parallel Lane Timer | WebCountDownTimer',
+    description:
+      'Run multiple independent stopwatches simultaneously for track heats, swim lanes, relay handoffs, and lab trials with mass start and CSV export.',
+  },
+  '/interval-timer': {
+    path: '/interval-timer',
+    title: 'Interval Timer – HIIT & Circuit Clock | WebCountDownTimer',
+    description:
+      'Configurable HIIT and circuit interval timer with warm-up, work, rest, and cool-down phases, round counters, and 3-2-1 acoustic transition beeps.',
+  },
+  '/pomodoro-timer': {
+    path: '/pomodoro-timer',
+    title: 'Pomodoro Timer – 25-Min Focus Clock | WebCountDownTimer',
+    description:
+      'Boost deep work with a structured Pomodoro timer featuring 25-minute focus sprints, 5-minute short breaks, 15-minute long breaks, and task logging.',
+  },
+  '/online-alarm-clock': {
+    path: '/online-alarm-clock',
+    title: 'Online Alarm Clock – Browser Wake Bell | WebCountDownTimer',
+    description:
+      'Set reliable time-of-day browser alarms with 12/24-hour selection, acoustic and electronic wake tones, instant sound testing, and custom snooze.',
+  },
+  '/visual-timer': {
+    path: '/visual-timer',
+    title: 'Visual Timer – 6-Mode Shrinking Clock | WebCountDownTimer',
+    description:
+      'Switch live between Circular Disc, Linear Bar, Hourglass, Traffic Light, Rainbow, and Sand visual countdown modes for classrooms and ADHD focus.',
+  },
+  '/stage-timer': {
+    path: '/stage-timer',
+    title: 'Stage Timer – Live Showcaller Console | WebCountDownTimer',
+    description:
+      'Synchronize a backstage operator console with a fullscreen speaker confidence monitor. Features green/amber/red alerts, live flash cues, and overtime.',
+  },
+  '/stage-timer/viewer': {
+    path: '/stage-timer/viewer',
+    title: 'Stage Confidence Monitor – Live Display | WebCountDownTimer',
+    description:
+      'Dedicated blackout downstage confidence monitor for keynote speakers and talent with zero-latency BroadcastChannel sync and live operator flash prompts.',
+  },
+  '/speaker-timer': {
+    path: '/speaker-timer',
+    title: 'Speaker Timer – Podium Keynote Clock | WebCountDownTimer',
+    description:
+      'High-contrast podium countdown timer for keynote presenters and moderators with green, amber, and red wrap-up phases plus automatic red overtime.',
+  },
+  '/presentation-timer': {
+    path: '/presentation-timer',
+    title: 'Presentation Timer – Slide Deck Pacer | WebCountDownTimer',
+    description:
+      'Divide pitch decks, lectures, and thesis defenses into timed Intro, Demo, and Q&A segments with section transition chimes and overall pacing bars.',
+  },
+  '/toastmasters-timer': {
+    path: '/toastmasters-timer',
+    title: 'Toastmasters Timer – Speech Rule Cards | WebCountDownTimer',
+    description:
+      'Official Toastmasters International speech timer for Table Topics, Evaluations, and 5–7 minute speeches with Green, Amber, Red cards and 30s grace.',
+  },
+  '/debate-timer': {
+    path: '/debate-timer',
+    title: 'Debate Timer – Parliamentary POI Bells | WebCountDownTimer',
+    description:
+      'Time British Parliamentary, World Schools, Oxford, and Lincoln-Douglas debates with protected-time indicators and automatic 1-minute and 6-minute bells.',
+  },
+  '/sermon-timer': {
+    path: '/sermon-timer',
+    title: 'Sermon Timer – Sanctuary Pulpit Clock | WebCountDownTimer',
+    description:
+      'Discreet blackout pulpit countdown timer for pastors and worship production teams featuring gentle amber wrap-up warnings and silent overtime count-up.',
+  },
+  '/classroom-timer': {
+    path: '/classroom-timer',
+    title: 'Classroom Timer – Smartboard Clock | WebCountDownTimer',
+    description:
+      'Projector-ready classroom countdown timer for K-12 teachers with quiz, reading, and station rotation presets, shrinking visual ring, and silent mode.',
+  },
+  '/webinar-timer': {
+    path: '/webinar-timer',
+    title: 'Webinar Timer – Virtual Agenda Clock | WebCountDownTimer',
+    description:
+      'Keep Zoom, Teams, and livestream webinars on schedule with multi-segment agenda tracking across Welcome, Keynote, Panel, and Live Audience Q&A.',
+  },
+  '/event-countdown-timer': {
+    path: '/event-countdown-timer',
+    title: 'Event Countdown Timer – Target Date | WebCountDownTimer',
+    description:
+      'Count down days, hours, minutes, and seconds to product launches, conferences, and holidays with IANA time-zone accuracy and shareable links.',
+  },
+  '/world-clock': {
+    path: '/world-clock',
+    title: 'World Clock – Live Global City Times | WebCountDownTimer',
+    description:
+      'Track real-time local clocks across 400+ international cities and IANA time zones with UTC offsets, Daylight Saving indicators, and day/night status.',
+  },
+  '/time-zone-converter': {
+    path: '/time-zone-converter',
+    title: 'Time Zone Converter – 24h Scrubber | WebCountDownTimer',
+    description:
+      'Compare and convert local times across multiple global cities using an interactive 24-hour timeline scrubber with automatic DST and date-rollover tags.',
+  },
+  '/time-difference-calculator': {
+    path: '/time-difference-calculator',
+    title: 'Time Difference Calculator – City Delta | WebCountDownTimer',
+    description:
+      'Calculate the exact hour and minute difference between any two world cities, inspect 9-to-5 business overlap windows, and verify DST shifts.',
+  },
+  '/meeting-planner': {
+    path: '/meeting-planner',
+    title: 'Meeting Planner – Global Team Overlap | WebCountDownTimer',
+    description:
+      'Find optimal international meeting slots across distributed team time zones with a color-coded green, amber, and red working-hour availability grid.',
+  },
+  '/unix-timestamp-converter': {
+    path: '/unix-timestamp-converter',
+    title: 'Unix Timestamp Converter – Epoch Tool | WebCountDownTimer',
+    description:
+      'Convert Unix epoch seconds, milliseconds, and microseconds to UTC, ISO-8601, and local dates with a live ticking epoch clock and 64-bit support.',
+  },
+  '/embed-timer': {
+    path: '/embed-timer',
+    title: 'Embed Timer – HTML & Notion Widgets | WebCountDownTimer',
+    description:
+      'Customize and copy responsive, sandboxed HTML iframe countdown, visual timer, and stopwatch widgets for Notion, Canvas LMS, Moodle, and websites.',
+  },
+  '/embed-widget': {
+    path: '/embed-widget',
+    title: 'Embeddable Timer Frame – Live Widget | WebCountDownTimer',
+    description:
+      'Lightweight, zero-cookie embedded countdown, visual ring, and stopwatch widget frame engineered for Notion pages, LMS courses, and documentation.',
+    noIndex: true,
+  },
+  '/random-name-picker': {
+    path: '/random-name-picker',
+    title: 'Random Name Picker – Fair Roster Draw | WebCountDownTimer',
+    description:
+      'Pick a random student or raffle winner fairly using an unbiased Fisher-Yates shuffle with optional winner removal, draw history, and local privacy.',
+  },
+  '/random-group-generator': {
+    path: '/random-group-generator',
+    title: 'Random Group Generator – Team Maker | WebCountDownTimer',
+    description:
+      'Split classroom rosters and workshop lists into balanced random teams by group count or max team size with one-click reshuffle and CSV export.',
+  },
+  '/classroom-noise-meter': {
+    path: '/classroom-noise-meter',
+    title: 'Classroom Noise Meter – Volume Gauge | WebCountDownTimer',
+    description:
+      'Monitor live classroom decibel and volume levels (0–100) using your browser microphone with visual quiet-zone alerts and zero audio recording.',
+  },
+  '/speech-time-calculator': {
+    path: '/speech-time-calculator',
+    title: 'Speech Time Calculator – Words to Mins | WebCountDownTimer',
+    description:
+      'Convert speech scripts and word counts into exact speaking durations at 110, 130, 150, or custom WPM rates, or find target word counts for any slot.',
+  },
+  '/time-duration-calculator': {
+    path: '/time-duration-calculator',
+    title: 'Time Duration Calculator – Elapsed Hrs | WebCountDownTimer',
+    description:
+      'Calculate exact elapsed hours, minutes, seconds, and payroll decimal hours between start and end times with automatic overnight midnight rollover.',
+  },
+  '/time-addition-calculator': {
+    path: '/time-addition-calculator',
+    title: 'Time Addition Calculator – Sum Hours | WebCountDownTimer',
+    description:
+      'Add or subtract multiple rows of hours, minutes, and seconds for aviation logbooks, video editing timelines, and project billing with decimal output.',
+  },
+  '/time-card-calculator': {
+    path: '/time-card-calculator',
+    title: 'Time Card Calculator – Weekly Payroll | WebCountDownTimer',
+    description:
+      'Calculate weekly employee work hours, deduct unpaid meal breaks, visualize daily shift charts, and export payroll decimal hours and pay to CSV.',
+  },
+  '/overtime-calculator': {
+    path: '/overtime-calculator',
+    title: 'Overtime Calculator – 1.5x & 2x Pay | WebCountDownTimer',
+    description:
+      'Compute regular vs. overtime hours, apply 1.5x time-and-a-half and 2.0x double-time multipliers, and visualize gross weekly pay breakdowns.',
+  },
+  '/time-calculator': {
+    path: '/time-calculator',
+    title: 'Time Calculator – Add & Subtract Time | WebCountDownTimer',
+    description:
+      'Perform base-60 time arithmetic: add or subtract hours, minutes, and seconds, or add a duration to any clock time to find the exact finish timestamp.',
+  },
+  '/date-calculator': {
+    path: '/date-calculator',
+    title: 'Date Calculator – Days Between Dates | WebCountDownTimer',
+    description:
+      'Count exact calendar days, weeks, and Mon–Fri business weekdays between two dates, or add and subtract days from any start date with leap-year math.',
+  },
+  '/time-converter': {
+    path: '/time-converter',
+    title: 'Time Converter – Sec, Min, Hr & Days | WebCountDownTimer',
+    description:
+      'Convert instantaneously between milliseconds, seconds, minutes, hours, days, weeks, and decimal payroll units with an all-in-one conversion table.',
+  },
+  '/minutes-to-hours': {
+    path: '/minutes-to-hours',
+    title: 'Minutes to Hours Converter – Min to Hr | WebCountDownTimer',
+    description:
+      'Convert any number of minutes into hours and minutes (HH:MM) and decimal hours (e.g., 90 mins = 1.5 hrs) for timesheets, payroll, and scheduling.',
+  },
+  '/hours-to-minutes': {
+    path: '/hours-to-minutes',
+    title: 'Hours to Minutes Converter – Hr to Min | WebCountDownTimer',
+    description:
+      'Convert decimal hours (such as 1.75 hrs) or hours and minutes into total minutes and seconds instantly with step-by-step sexagesimal formulas.',
+  },
+  '/seconds-to-minutes': {
+    path: '/seconds-to-minutes',
+    title: 'Seconds to Minutes Converter – Sec/Min | WebCountDownTimer',
+    description:
+      'Convert seconds into exact minutes and remaining seconds (MM:SS) plus decimal minutes for athletic splits, lab intervals, and audio production.',
+  },
+  '/what-time-will-it-be': {
+    path: '/what-time-will-it-be',
+    title: 'What Time Will It Be – Future Clock | WebCountDownTimer',
+    description:
+      'Find out what time it will be in X hours and Y minutes from right now or any start time, complete with 12-hour AM/PM, 24-hour, and next-day rollovers.',
+  },
+  '/kitchen-timer': {
+    path: '/kitchen-timer',
+    title: 'Kitchen Timer – Multi-Burner Cooking | WebCountDownTimer',
+    description:
+      'Run multiple simultaneous named cooking and baking timers for oven roasts, stovetop burners, and dough proofing with distinct acoustic chimes.',
+  },
+  '/egg-timer': {
+    path: '/egg-timer',
+    title: 'Egg Timer – Soft, Jammy & Hard Boiled | WebCountDownTimer',
+    description:
+      'Boil eggs to perfection with calibrated countdown presets for 4-minute runny, 6-minute jammy ramen, 8-minute medium, and 10-minute firm yolks.',
+  },
+  '/tea-timer': {
+    path: '/tea-timer',
+    title: 'Tea Timer – Green, Black & Oolong Steep | WebCountDownTimer',
+    description:
+      'Steep loose-leaf and bagged teas without bitterness using calibrated presets and water temperature guides for Green, White, Oolong, Black, and Herbal.',
+  },
+  '/coffee-timer': {
+    path: '/coffee-timer',
+    title: 'Coffee Timer – Pour-Over & French Press | WebCountDownTimer',
+    description:
+      'Brew balanced specialty coffee with multi-stage bloom and pour countdowns for V60 Pour-Over, 4-minute French Press, AeroPress, and Chemex.',
+  },
+  '/study-timer': {
+    path: '/study-timer',
+    title: 'Study Timer – 50/10 & Exam Focus Clock | WebCountDownTimer',
+    description:
+      'Structure academic revision and homework with 50/10 Ultradian blocks, 25/5 Pomodoro sprints, and 90-minute mock exam countdowns with session logs.',
+  },
+  '/reading-timer': {
+    path: '/reading-timer',
+    title: 'Reading Timer – Silent Reading Clock | WebCountDownTimer',
+    description:
+      'Build daily reading habits and run classroom Sustained Silent Reading (SSR) blocks with a calm countdown clock and optional 5-minute reflection prompt.',
+  },
+  '/break-timer': {
+    path: '/break-timer',
+    title: 'Break Timer – Desk Stretch & Rest Clock | WebCountDownTimer',
+    description:
+      'Prevent desk fatigue with one-click 5-minute micro-break, 15-minute coffee rest, and 30-minute lunch countdowns featuring gentle return chimes.',
+  },
+  '/eye-break-timer': {
+    path: '/eye-break-timer',
+    title: '20-20-20 Eye Break Timer – Vision Rest | WebCountDownTimer',
+    description:
+      'Relieve digital eye strain with an automated 20-20-20 cycle that reminds you every 20 minutes to focus 20 feet away for a refreshing 20-second rest.',
+  },
+  '/tabata-timer': {
+    path: '/tabata-timer',
+    title: 'Tabata Timer – 20s Work / 10s Rest HIIT | WebCountDownTimer',
+    description:
+      'Train with the official 4-minute Tabata HIIT protocol: 8 rounds of 20 seconds maximum effort and 10 seconds rest with bold color shifts and beeps.',
+  },
+  '/boxing-timer': {
+    path: '/boxing-timer',
+    title: 'Boxing Timer – 3-Min Round & Gym Bell | WebCountDownTimer',
+    description:
+      'Time pro 3-minute boxing, 2-minute amateur, and 5-minute MMA sparring rounds with 60-second corner rests, 10-second clapper warnings, and gym bells.',
+  },
+  '/meditation-timer': {
+    path: '/meditation-timer',
+    title: 'Meditation Timer – Singing Bowl Clock | WebCountDownTimer',
+    description:
+      'Sit in quiet mindfulness with a serene meditation countdown featuring gentle preparation buffer, interval mindfulness bells, and resonant bowl chimes.',
+  },
+  '/breathing-timer': {
+    path: '/breathing-timer',
+    title: 'Breathing Timer – Box & 4-7-8 Pacer | WebCountDownTimer',
+    description:
+      'Calm your nervous system with an expanding visual breathwork pacer supporting 4-4-4-4 Box Breathing, 4-7-8 Relaxation, and Coherent 5.5s breathing.',
+  },
+  '/chess-clock': {
+    path: '/chess-clock',
+    title: 'Chess Clock – Two-Player Blitz Timer | WebCountDownTimer',
+    description:
+      'Play over-the-board chess and two-player tabletop games with Bullet (1m), Blitz (3m/5m), and Rapid (10m) presets, spacebar switching, and move counts.',
+  },
+  '/quiz-timer': {
+    path: '/quiz-timer',
+    title: 'Quiz Timer – Rapid Trivia Buzzer Clock | WebCountDownTimer',
+    description:
+      'Run lively classroom review games and trivia nights with a per-question countdown featuring 10s–60s presets, instant N-key reset, and buzzer sound.',
+  },
+  '/classroom-scoreboard': {
+    path: '/classroom-scoreboard',
+    title: 'Classroom Scoreboard – Team Point Board | WebCountDownTimer',
+    description:
+      'Track live points for up to 8 classroom teams on your smartboard with editable team names, +1/+5/+10/-1 score buttons, and automatic leader ranking.',
+  },
+  '/bingo-caller': {
+    path: '/bingo-caller',
+    title: 'Bingo Caller – 75-Ball Number Generator | WebCountDownTimer',
+    description:
+      'Host classroom and community bingo games with an unbiased 75-ball B-I-N-G-O random number caller, call history log, and master verification board.',
+  },
+  '/seating-chart-maker': {
+    path: '/seating-chart-maker',
+    title: 'Seating Chart Maker – Desk Grid Tool | WebCountDownTimer',
+    description:
+      'Generate randomized classroom desk seating charts in seconds. Customize rows and columns, shuffle student placements fairly, and export to CSV.',
+  },
+  '/guides/how-accurate-online-timers-work': {
+    path: '/guides/how-accurate-online-timers-work',
+    title: 'How Accurate Online Timers Work – Guide | WebCountDownTimer',
+    description:
+      'Learn how accurate online timers prevent browser tab throttling using Date.now() epoch deltas, performance.now(), Screen Wake Lock, and Web Audio.',
+  },
+};
+
+
 /**
- * Helper to construct a complete Next.js Metadata object for any pathname and language.
+ * Builds a complete, compliant Next.js Metadata object for any registered route
+ * or dynamic route with:
+ * - Unique <title> (< 60 chars, primary keyword first, brand last)
+ * - Unique meta description (130-155 chars)
+ * - Self-referencing absolute canonical URL (no trailing slash, no query strings)
+ * - Matching og:title, og:description, og:url (never homepage fallback)
  */
-export function buildNextMetadata(
-  pathname: string,
-  langCode: LanguageCode = 'en'
+export function buildPageMetadata(
+  routePath: string,
+  custom?: {
+    title?: string;
+    description?: string;
+    keywords?: string[];
+    noIndex?: boolean;
+  }
 ): Metadata {
-  const seo = getLocalizedPageSeo(pathname, langCode);
+  const normalizedKey =
+    routePath === '/' || routePath === ''
+      ? '/'
+      : `/${routePath.split('?')[0].split('#')[0].replace(/^\/+|\/+$/g, '')}`;
+
+  const entry = ROUTE_SEO_REGISTRY[normalizedKey];
+  const title = custom?.title ?? entry?.title ?? 'Online Countdown Timer | WebCountDownTimer';
+  const description =
+    custom?.description ??
+    entry?.description ??
+    'Free online countdown timers, visual clocks, stopwatches, stage monitors, world clocks, and time calculators for classrooms, events, and daily focus.';
+  const canonical = getCanonicalUrl(normalizedKey);
+  const keywords = custom?.keywords ?? entry?.keywords;
+  const noIndex = custom?.noIndex ?? entry?.noIndex ?? false;
+
   return {
-    title: seo.title,
-    description: seo.description,
-    keywords: seo.keywords,
+    title,
+    description,
+    ...(keywords && keywords.length > 0 ? { keywords } : {}),
+    ...(noIndex
+      ? {
+          robots: {
+            index: false,
+            follow: true,
+          },
+        }
+      : {}),
     alternates: {
-      canonical: seo.canonicalUrl,
-      languages: seo.alternatesLanguages,
+      canonical,
     },
     openGraph: {
-      title: seo.title,
-      description: seo.description,
-      url: seo.canonicalUrl,
+      title,
+      description,
+      url: canonical,
       siteName: 'WebCountDownTimer',
-      locale: seo.ogLocale,
       type: 'website',
+      images: [
+        {
+          url: '/logo.svg',
+          width: 512,
+          height: 512,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: seo.title,
-      description: seo.description,
+      title,
+      description,
+      images: ['/logo.svg'],
     },
   };
 }

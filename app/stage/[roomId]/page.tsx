@@ -1,15 +1,24 @@
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import StageTimerComponent from '@/components/tools/StageTimerComponent';
+import { buildPageMetadata } from '@/lib/seo-metadata';
 
-export const metadata: Metadata = {
-  title: 'Audience & Stage Confidence Monitor | WebCountDownTimer',
-  description: 'Full-screen, high-contrast, distraction-free audience and presenter confidence monitor.',
-  robots: {
-    index: false,
-    follow: true,
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ roomId: string }>;
+}): Promise<Metadata> {
+  const resolved = await params;
+  const roomId = resolved.roomId || 'live';
+  const cleanRoom = roomId.slice(0, 14);
+  const title = `Stage Display (${cleanRoom}) – Live Sync | WebCountDownTimer`;
+  const description = `Full-screen high-contrast presenter confidence monitor for stage room ${cleanRoom}, synced in real time with the Stage Timer operator console.`;
+  return buildPageMetadata(`/stage/${roomId}`, {
+    title,
+    description,
+    noIndex: true,
+  });
+}
 
 export default async function RemoteStageDisplayPage({
   params,

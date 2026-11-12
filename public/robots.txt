@@ -2,14 +2,20 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /embed-widget
+Disallow: /stage/
 
 User-agent: Googlebot
 Allow: /
 Disallow: /api/
+Disallow: /embed-widget
+Disallow: /stage/
 
 User-agent: Bingbot
 Allow: /
 Disallow: /api/
+Disallow: /embed-widget
+Disallow: /stage/
 
 User-agent: OAI-SearchBot
 Allow: /
@@ -40,3 +46,4 @@ Allow: /
 Disallow: /api/
 
 Sitemap: https://WebCountDownTimer.com/sitemap.xml
+

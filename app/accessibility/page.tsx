@@ -1,11 +1,10 @@
+import { buildPageMetadata } from '@/lib/seo-metadata';
 import type { Metadata } from 'next';
 import { Keyboard, Eye, Volume2, Shield } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Accessibility Statement (WCAG 2.2 AA) | WebCountDownTimer',
-  description:
-    'WebCountDownTimer is designed to meet WCAG 2.2 Level AA accessibility standards with full keyboard navigation, screen reader aria-live announcements, high contrast, and reduced motion.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata('/accessibility');
+}
 
 export default function AccessibilityPage() {
   return (

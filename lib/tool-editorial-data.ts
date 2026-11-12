@@ -5957,13 +5957,33 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
   },
 };
 
+function normalizeCategorySlug(rawSlug: string, categoryLabel?: string): string {
+  const s = (rawSlug || '').toLowerCase();
+  if (s === 'everyday') return 'timers';
+  if (s === 'world-clock') return 'world';
+  if (s === 'stage') {
+    if (
+      categoryLabel &&
+      (categoryLabel.toLowerCase().includes('education') ||
+        categoryLabel.toLowerCase().includes('classroom'))
+    ) {
+      return 'education';
+    }
+    return 'events';
+  }
+  return s || 'timers';
+}
+
 // Generic editorial content generator for any tool in the registry
 export function getToolEditorialData(tool: ToolDefinition): ToolEditorialData {
   const custom = TOOL_EDITORIAL_CUSTOM[tool.slug];
   if (custom) {
     return {
       slug: tool.slug,
-      categorySlug: custom.categorySlug || tool.category,
+      categorySlug: normalizeCategorySlug(
+        custom.categorySlug || tool.category,
+        custom.categoryLabel || tool.categoryLabel
+      ),
       categoryLabel: custom.categoryLabel || tool.categoryLabel,
       heroSubtitle: custom.heroSubtitle || tool.description,
       featurePills: custom.featurePills || [
@@ -6087,7 +6107,7 @@ export function getToolEditorialData(tool: ToolDefinition): ToolEditorialData {
   // Fallback for tools without custom override
   return {
     slug: tool.slug,
-    categorySlug: tool.category,
+    categorySlug: normalizeCategorySlug(tool.category, tool.categoryLabel),
     categoryLabel: tool.categoryLabel,
     heroSubtitle: tool.description,
     featurePills: [

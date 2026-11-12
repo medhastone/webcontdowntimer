@@ -1,3 +1,4 @@
+import { buildPageMetadata } from '@/lib/seo-metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -7,14 +8,9 @@ import {
 } from '@/lib/tools-registry';
 import { getDurationPageData, APPROVED_DURATION_SLUGS } from '@/lib/duration-timers-data';
 
-export const metadata: Metadata = {
-  title: 'HTML Sitemap – Complete Directory of Time Tools | WebCountDownTimer',
-  description:
-    'Browse the complete HTML sitemap of WebCountDownTimer.com, including all countdown timers, visual and sensory timers, stage tools, world clocks, calculators, and preset duration timers.',
-  alternates: {
-    canonical: 'https://WebCountDownTimer.com/sitemap',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata('/sitemap');
+}
 
 export default function HtmlSitemapPage() {
   const visualAndSensoryTools = TOOLS_REGISTRY.filter((t) =>
@@ -78,12 +74,16 @@ export default function HtmlSitemapPage() {
             { href: '/tools', label: 'All Time Tools Directory' },
             { href: '/category/timers', label: 'Everyday & Online Timers Hub' },
             { href: '/category/events', label: 'Presentation, Stage & Event Timers Hub' },
-            { href: '/education', label: 'Education & Classroom Timers Hub' },
+            { href: '/category/education', label: 'Education & Classroom Timers Hub' },
             { href: '/category/productivity', label: 'Productivity, Focus & Study Timers Hub' },
             { href: '/category/fitness', label: 'Fitness, HIIT & Wellness Timers Hub' },
             { href: '/category/world', label: 'World Clock & Time Calculators Hub' },
             { href: '/category/calculators', label: 'Date & Time Calculators Hub' },
             { href: '/guides', label: 'Guides & Timing Playbooks' },
+            {
+              href: '/guides/how-accurate-online-timers-work',
+              label: 'How Accurate Online Timers Work — Engineering Guide',
+            },
             { href: '/about', label: 'About & Calculation Methodology' },
             { href: '/accessibility', label: 'Accessibility Statement (WCAG 2.2 AA)' },
             { href: '/privacy', label: 'Privacy Policy' },

@@ -1,15 +1,11 @@
+import { buildPageMetadata } from '@/lib/seo-metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Tv, Trophy, Scale, Clock, Globe, Calculator } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Time Management, Event Timing & IANA Time Zone Guides | WebCountDownTimer',
-  description:
-    'In-depth reference guides for multi-screen stage confidence monitors, official Toastmasters speech timing rules, Parliamentary and Lincoln-Douglas debate bells, Pomodoro focus cycles, and IANA time zones.',
-  alternates: {
-    canonical: 'https://webcountdowntimer.com/guides',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata('/guides');
+}
 
 export default function GuidesPage() {
   return (
@@ -68,8 +64,15 @@ export default function GuidesPage() {
           >
             6. Payroll & Decimal Hours Math
           </a>
+          <Link
+            href="/guides/how-accurate-online-timers-work"
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/70 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+          >
+            7. How Accurate Online Timers Work (Epoch Delta & Provenance) →
+          </Link>
         </div>
       </div>
+
 
       {/* Guide 1: Stage Confidence Monitor */}
       <article
@@ -372,7 +375,7 @@ export default function GuidesPage() {
             <span>Open Study Timer</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
-          <Link href="/25-minute-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link href="/countdown-timer?m=25" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open 25-Minute Timer</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>

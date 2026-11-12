@@ -1,9 +1,9 @@
+import { buildPageMetadata } from '@/lib/seo-metadata';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Terms of Use | WebCountDownTimer',
-  description: 'Terms and conditions governing the use of WebCountDownTimer (WebCountDownTimer.com).',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata('/terms');
+}
 
 export default function TermsPage() {
   return (

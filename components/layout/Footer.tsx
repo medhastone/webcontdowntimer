@@ -58,7 +58,7 @@ const STAGE_CLASS_WORLD: FooterLinkItem[] = [
 const BROWSE_CATEGORIES: FooterLinkItem[] = [
   { label: 'Everyday Timers', href: '/category/timers' },
   { label: 'Presentation & Events', href: '/category/events' },
-  { label: 'Education & Classroom', href: '/education' },
+  { label: 'Education & Classroom', href: '/category/education' },
   { label: 'Fitness & Wellness', href: '/category/fitness' },
   { label: 'World Time & Tools', href: '/category/world' },
   { label: 'Random Name Picker', href: '/random-name-picker' },

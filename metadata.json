@@ -1,6 +1,6 @@
 {
   "name": "Chronos Precision Time Tools",
-  "description": "Professional timekeeping suite for stage speakers, presentation timers, live event operators, toastmasters, world clocks, meeting planners, and precision timers.",
+  "description": "Free online countdown timer, stopwatch, stage timer, and visual timers for classrooms, meetings, workouts, and daily tasks. No sign-up required.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

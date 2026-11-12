@@ -7,9 +7,12 @@ import { LanguageProvider } from '@/components/i18n/LanguageProvider';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://WebCountDownTimer.com'),
-  title: 'WebCountDownTimer – Every Second, Under Control | Precision Time Tools',
+  title: 'Free Online Countdown Timer, Stage Timer & Visual Timer | WebCountDownTimer',
   description:
-    'Free, simple and reliable time tools at WebCountDownTimer.com for work, events, learning and everyday life. Stage timer, countdown timer, stopwatch, world clock, and pomodoro timer.',
+    'Free online countdown timer, stopwatch, stage timer, and visual timers for classrooms, meetings, workouts, and daily tasks. No sign-up required.',
+  alternates: {
+    canonical: 'https://WebCountDownTimer.com',
+  },
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
@@ -19,9 +22,9 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-touch-icon.svg', type: 'image/svg+xml' }],
   },
   openGraph: {
-    title: 'WebCountDownTimer – Precision Time Tools',
+    title: 'Free Online Countdown Timer, Stage Timer & Visual Timer | WebCountDownTimer',
     description:
-      'Free, simple and reliable time tools at WebCountDownTimer.com for work, events, learning and everyday life. Stage timer, countdown timer, stopwatch, world clock, and pomodoro timer.',
+      'Free online countdown timer, stopwatch, stage timer, and visual timers for classrooms, meetings, workouts, and daily tasks. No sign-up required.',
     url: 'https://WebCountDownTimer.com',
     type: 'website',
     siteName: 'WebCountDownTimer',
@@ -29,9 +32,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'WebCountDownTimer – Precision Time Tools',
+    title: 'Free Online Countdown Timer, Stage Timer & Visual Timer | WebCountDownTimer',
     description:
-      'Free, simple and reliable time tools at WebCountDownTimer.com for work, events, learning and everyday life. Stage timer, countdown timer, stopwatch, world clock, and pomodoro timer.',
+      'Free online countdown timer, stopwatch, stage timer, and visual timers for classrooms, meetings, workouts, and daily tasks. No sign-up required.',
     images: ['/logo.svg'],
   },
 };

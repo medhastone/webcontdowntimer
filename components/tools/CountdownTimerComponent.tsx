@@ -73,25 +73,31 @@ export default function CountdownTimerComponent({
     { label: '30 min', sec: 1800 },
   ];
 
-  // Popular Duration Page Links for internal linking
+  // Sync ?m=N from URL query string on client mount if present
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const mParam = params.get('m');
+    if (mParam) {
+      const m = Number(mParam);
+      if (Number.isFinite(m) && m > 0 && m <= 1440) {
+        const sec = Math.round(m * 60);
+        setTotalSeconds(sec);
+        timer.setDuration(sec * 1000);
+      }
+    }
+  }, [timer.setDuration]);
+
+  // Popular Duration Page Links for internal linking (only the 6 kept /N-minute-timer pages + 3 sprint second timers)
   const durationLinks = [
+    { label: '30 Sec', slug: '30-second-timer', sec: 30 },
+    { label: '45 Sec', slug: '45-second-timer', sec: 45 },
+    { label: '90 Sec', slug: '90-second-timer', sec: 90 },
     { label: '1 Min', slug: '1-minute-timer', sec: 60 },
-    { label: '2 Min', slug: '2-minute-timer', sec: 120 },
-    { label: '3 Min', slug: '3-minute-timer', sec: 180 },
-    { label: '4 Min', slug: '4-minute-timer', sec: 240 },
     { label: '5 Min', slug: '5-minute-timer', sec: 300 },
-    { label: '6 Min', slug: '6-minute-timer', sec: 360 },
-    { label: '8 Min', slug: '8-minute-timer', sec: 480 },
-    { label: '9 Min', slug: '9-minute-timer', sec: 540 },
     { label: '10 Min', slug: '10-minute-timer', sec: 600 },
-    { label: '12 Min', slug: '12-minute-timer', sec: 720 },
     { label: '15 Min', slug: '15-minute-timer', sec: 900 },
-    { label: '20 Min', slug: '20-minute-timer', sec: 1200 },
     { label: '30 Min', slug: '30-minute-timer', sec: 1800 },
-    { label: '35 Min', slug: '35-minute-timer', sec: 2100 },
-    { label: '40 Min', slug: '40-minute-timer', sec: 2400 },
-    { label: '45 Min', slug: '45-minute-timer', sec: 2700 },
-    { label: '50 Min', slug: '50-minute-timer', sec: 3000 },
     { label: '60 Min', slug: '60-minute-timer', sec: 3600 },
   ];
 

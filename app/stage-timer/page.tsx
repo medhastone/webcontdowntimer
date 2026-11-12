@@ -1,12 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo-metadata';
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import StageTimerComponent from '@/components/tools/StageTimerComponent';
+import ToolSpecificContentSection from '@/components/common/ToolSpecificContentSection';
 
-export const metadata: Metadata = {
-  title: 'Stage Timer – Mobile & Desktop Live Event Controller | WebCountDownTimer',
-  description:
-    'Professional live event stage timer and conference confidence monitor. Mobile-first stage manager controller, real-time multi-screen sync, schedule management, and fullscreen audience display.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata('/stage-timer');
+}
 
 function StageTimerWrapper({
   searchParams,
@@ -29,7 +29,16 @@ async function StageTimerInner({
   const view = resolved.view === 'display' ? 'display' : 'operator';
   const room = resolved.room || 'global-product-summit';
 
-  return <StageTimerComponent initialViewMode={view} initialRoomId={room} />;
+  return (
+    <div>
+      <StageTimerComponent initialViewMode={view} initialRoomId={room} />
+      {view === 'operator' && (
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <ToolSpecificContentSection slug="stage-timer" toolName="Stage Timer" />
+        </section>
+      )}
+    </div>
+  );
 }
 
 export default async function StageTimerPage({
@@ -39,4 +48,3 @@ export default async function StageTimerPage({
 }) {
   return <StageTimerWrapper searchParams={searchParams} />;
 }
-

@@ -1,13 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo-metadata';
 import type { Metadata } from 'next';
 import { getToolBySlug } from '@/lib/tools-registry';
 import ToolPageLayout from '@/components/common/ToolPageLayout';
 import SpeakerTimerComponent from '@/components/tools/SpeakerTimerComponent';
 
-export const metadata: Metadata = {
-  title: 'Speaker Timer – Podium & Confidence Monitor Clock | WebCountDownTimer',
-  description:
-    'Free high-contrast speaker timer designed for conference keynotes, seminars, and TED-style talks. Features automatic overtime countup and screen wake lock.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata('/speaker-timer');
+}
 
 export default function SpeakerTimerPage() {
   const tool = getToolBySlug('speaker-timer')!;

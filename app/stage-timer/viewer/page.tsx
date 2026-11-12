@@ -1,12 +1,11 @@
+import { buildPageMetadata } from '@/lib/seo-metadata';
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import StageConfidenceMonitor from '@/components/tools/StageConfidenceMonitor';
 
-export const metadata: Metadata = {
-  title: 'Stage Timer Confidence Monitor – Fullscreen Speaker Display | WebCountDownTimer',
-  description:
-    'Dedicated blackout confidence monitor for keynote speakers, stage talent, and presenters. Real-time zero-latency sync with the Stage Timer operator controller.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata('/stage-timer/viewer');
+}
 
 function ViewerWrapper({
   searchParams,

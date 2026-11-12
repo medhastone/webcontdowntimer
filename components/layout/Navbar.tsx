@@ -206,7 +206,7 @@ const CATEGORIES_MENU_ITEMS: Array<{
   {
     title: 'Education & Classroom',
     desc: 'Classroom timers, name pickers & noise meters',
-    href: '/education',
+    href: '/category/education',
     iconKey: 'classroom-timer',
     tier: 'hot',
   },
@@ -466,7 +466,7 @@ export default function Navbar() {
                 aria-expanded={activeDropdown === 'categories'}
                 className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-colors cursor-pointer ${
                   isCategoriesActive ||
-                  pathname === '/education' ||
+                  pathname === '/category/education' ||
                   activeDropdown === 'categories'
                     ? 'bg-[#E7EDE7]/80 dark:bg-[#222B25] text-[#365C4B] dark:text-[#5E917A]'
                     : 'text-[#252B27]/80 dark:text-slate-300 hover:text-[#365C4B] dark:hover:text-[#5E917A] hover:bg-[#E7EDE7]/40 dark:hover:bg-[#1E2521]'
@@ -768,7 +768,7 @@ export default function Navbar() {
               {[
                 { label: 'Timers', href: '/category/timers', iconKey: 'countdown-timer' },
                 { label: 'World Clock', href: '/world-clock', iconKey: 'world-clock' },
-                { label: 'Education', href: '/education', iconKey: 'classroom-timer' },
+                { label: 'Education', href: '/category/education', iconKey: 'classroom-timer' },
                 { label: 'Events & Stage', href: '/category/events', iconKey: 'stage-timer' },
                 { label: 'Calculators', href: '/category/calculators', iconKey: 'time-duration-calculator' },
                 { label: 'All Tools', href: '/tools', iconKey: 'sensory-timers' },
