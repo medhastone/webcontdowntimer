@@ -43,7 +43,7 @@ export default function TrainTimerPage() {
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://WebCountDownTimer.com/' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://WebCountDownTimer.com' },
           { '@type': 'ListItem', position: 2, name: 'Timers', item: 'https://WebCountDownTimer.com/tools' },
           {
             '@type': 'ListItem',

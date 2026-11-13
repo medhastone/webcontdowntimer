@@ -21,6 +21,7 @@ import {
 } from '@/lib/i18n';
 import { LanguageFlag, LANGUAGE_META } from '@/components/ui/LanguageFlag';
 import { BrandLogo } from '@/components/ui/BrandLogo';
+import { SITE_SOCIAL_PROFILES } from '@/lib/site-config';
 
 interface FooterLinkItem {
   label: string;
@@ -136,41 +137,49 @@ export default function Footer() {
 
             {/* Social Links & Directory CTA */}
             <div className="flex items-center justify-between sm:justify-start gap-4 pt-1">
-              <div className="flex items-center gap-2">
-                <a
-                  href="https://x.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-lg bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] flex items-center justify-center text-[#252B27]/70 dark:text-slate-400 hover:text-[#365C4B] dark:hover:text-white hover:border-[#365C4B] dark:hover:border-[#5E917A] transition-colors"
-                  aria-label="X (Twitter)"
-                >
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                </a>
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-lg bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] flex items-center justify-center text-[#252B27]/70 dark:text-slate-400 hover:text-[#365C4B] dark:hover:text-white hover:border-[#365C4B] dark:hover:border-[#5E917A] transition-colors"
-                  aria-label="YouTube"
-                >
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                  </svg>
-                </a>
-                <a
-                  href="https://pinterest.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-lg bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] flex items-center justify-center text-[#252B27]/70 dark:text-slate-400 hover:text-[#365C4B] dark:hover:text-white hover:border-[#365C4B] dark:hover:border-[#5E917A] transition-colors"
-                  aria-label="Pinterest"
-                >
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 0a12 12 0 0 0-4.37 23.18c-.07-.94-.13-2.39.03-3.42l1.09-4.63s-.28-.56-.28-1.39c0-1.3.75-2.28 1.7-2.28.8 0 1.19.6 1.19 1.33 0 .81-.51 2.01-.78 3.13-.22.95.47 1.72 1.4 1.72 1.69 0 2.99-1.78 2.99-4.35 0-2.27-1.63-3.86-3.96-3.86-2.7 0-4.28 2.02-4.28 4.11 0 .81.31 1.68.7 2.16.08.1.09.18.06.33l-.26 1.08c-.04.18-.15.22-.34.13-1.28-.59-2.07-2.46-2.07-3.96 0-3.23 2.35-6.2 6.78-6.2 3.56 0 6.32 2.54 6.32 5.93 0 3.54-2.23 6.38-5.32 6.38-1.04 0-2.02-.54-2.35-1.18l-.64 2.45c-.23.89-.86 2.01-1.28 2.7A12 12 0 1 0 12 0z" />
-                  </svg>
-                </a>
-              </div>
+              {(SITE_SOCIAL_PROFILES.x || SITE_SOCIAL_PROFILES.youtube || SITE_SOCIAL_PROFILES.pinterest) && (
+                <div className="flex items-center gap-2">
+                  {SITE_SOCIAL_PROFILES.x && (
+                    <a
+                      href={SITE_SOCIAL_PROFILES.x}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-lg bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] flex items-center justify-center text-[#252B27]/70 dark:text-slate-400 hover:text-[#365C4B] dark:hover:text-white hover:border-[#365C4B] dark:hover:border-[#5E917A] transition-colors"
+                      aria-label="X (Twitter)"
+                    >
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
+                    </a>
+                  )}
+                  {SITE_SOCIAL_PROFILES.youtube && (
+                    <a
+                      href={SITE_SOCIAL_PROFILES.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-lg bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] flex items-center justify-center text-[#252B27]/70 dark:text-slate-400 hover:text-[#365C4B] dark:hover:text-white hover:border-[#365C4B] dark:hover:border-[#5E917A] transition-colors"
+                      aria-label="YouTube"
+                    >
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                      </svg>
+                    </a>
+                  )}
+                  {SITE_SOCIAL_PROFILES.pinterest && (
+                    <a
+                      href={SITE_SOCIAL_PROFILES.pinterest}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-lg bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] flex items-center justify-center text-[#252B27]/70 dark:text-slate-400 hover:text-[#365C4B] dark:hover:text-white hover:border-[#365C4B] dark:hover:border-[#5E917A] transition-colors"
+                      aria-label="Pinterest"
+                    >
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 0a12 12 0 0 0-4.37 23.18c-.07-.94-.13-2.39.03-3.42l1.09-4.63s-.28-.56-.28-1.39c0-1.3.75-2.28 1.7-2.28.8 0 1.19.6 1.19 1.33 0 .81-.51 2.01-.78 3.13-.22.95.47 1.72 1.4 1.72 1.69 0 2.99-1.78 2.99-4.35 0-2.27-1.63-3.86-3.96-3.86-2.7 0-4.28 2.02-4.28 4.11 0 .81.31 1.68.7 2.16.08.1.09.18.06.33l-.26 1.08c-.04.18-.15.22-.34.13-1.28-.59-2.07-2.46-2.07-3.96 0-3.23 2.35-6.2 6.78-6.2 3.56 0 6.32 2.54 6.32 5.93 0 3.54-2.23 6.38-5.32 6.38-1.04 0-2.02-.54-2.35-1.18l-.64 2.45c-.23.89-.86 2.01-1.28 2.7A12 12 0 1 0 12 0z" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              )}
 
               <Link
                 href="/tools"

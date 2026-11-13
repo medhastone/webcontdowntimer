@@ -1,6 +1,7 @@
 import { buildPageMetadata } from '@/lib/seo-metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import BreadcrumbJsonLd from '@/components/common/BreadcrumbJsonLd';
 import { ArrowRight, Tv, Trophy, Scale, Clock, Globe, Calculator } from 'lucide-react';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -10,6 +11,12 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function GuidesPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Guides & Standards', path: '/guides' },
+        ]}
+      />
       {/* Header */}
       <div className="space-y-4 border-b border-neutral-200 dark:border-neutral-800 pb-8">
         <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-neutral-500">

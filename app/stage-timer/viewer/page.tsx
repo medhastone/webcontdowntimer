@@ -2,6 +2,7 @@ import { buildPageMetadata } from '@/lib/seo-metadata';
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import StageConfidenceMonitor from '@/components/tools/StageConfidenceMonitor';
+import BreadcrumbJsonLd from '@/components/common/BreadcrumbJsonLd';
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata('/stage-timer/viewer');
@@ -41,5 +42,16 @@ export default async function StageTimerViewerPage({
 }: {
   searchParams?: Promise<{ room?: string }>;
 }) {
-  return <ViewerWrapper searchParams={searchParams} />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Stage Timer', path: '/stage-timer' },
+          { name: 'Confidence Monitor', path: '/stage-timer/viewer' },
+        ]}
+      />
+      <ViewerWrapper searchParams={searchParams} />
+    </>
+  );
 }

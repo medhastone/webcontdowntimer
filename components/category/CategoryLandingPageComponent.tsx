@@ -337,13 +337,13 @@ export default function CategoryLandingPageComponent({ data }: Props) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://WebCountDownTimer.com/',
+        item: 'https://WebCountDownTimer.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
-        name: data.parentName,
-        item: `https://WebCountDownTimer.com${data.parentHref}`,
+        name: 'All Tools',
+        item: 'https://WebCountDownTimer.com/tools',
       },
       {
         '@type': 'ListItem',
@@ -397,8 +397,8 @@ export default function CategoryLandingPageComponent({ data }: Props) {
             </li>
             <li className="text-[#252B27]/30 dark:text-slate-600">›</li>
             <li>
-              <Link href={data.parentHref} className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
-                {data.parentName}
+              <Link href="/tools" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
+                All Tools
               </Link>
             </li>
             <li className="text-[#252B27]/30 dark:text-slate-600">›</li>
@@ -448,9 +448,10 @@ export default function CategoryLandingPageComponent({ data }: Props) {
                 <Image
                   src={data.heroImage.src}
                   alt={data.heroImage.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  width={800}
+                  height={600}
+                  sizes="(max-width: 1024px) 100vw, 560px"
+                  className="w-full h-full object-cover"
                   priority
                   referrerPolicy="no-referrer"
                 />
@@ -503,8 +504,8 @@ export default function CategoryLandingPageComponent({ data }: Props) {
               </div>
             </div>
 
-            {/* Center: The Interactive Dial & Controls */}
-            <div className="lg:col-span-5 bg-white dark:bg-[#1A201C] rounded-2xl border border-[#E4E1D9] dark:border-[#2D352F] p-6 shadow-sm flex flex-col justify-between">
+            {/* Right: The Interactive Dial & Controls */}
+            <div className="lg:col-span-8 bg-white dark:bg-[#1A201C] rounded-2xl border border-[#E4E1D9] dark:border-[#2D352F] p-6 shadow-sm flex flex-col justify-between">
               {/* Tabs: Countdown / Visual / Alarm */}
               <div className="flex items-center justify-between border-b border-[#E4E1D9] dark:border-[#2D352F] pb-4 mb-4">
                 <div className="inline-flex p-1 bg-[#F7F6F2] dark:bg-[#252D28] rounded-xl text-xs font-medium">
@@ -641,25 +642,6 @@ export default function CategoryLandingPageComponent({ data }: Props) {
                       );
                     })}
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Editorial Photo Card */}
-            <div className="lg:col-span-3">
-              <div className="relative rounded-2xl overflow-hidden border border-[#E4E1D9] dark:border-[#2D352F] h-full min-h-[260px] bg-[#252B27]">
-                <Image
-                  src={data.featuredTool.photo.src}
-                  alt={data.featuredTool.photo.alt}
-                  fill
-                  className="object-cover opacity-85"
-                  sizes="(max-width: 1024px) 100vw, 25vw"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-5">
-                  <p className="font-serif italic text-lg sm:text-xl text-[#F7F6F2] font-normal leading-snug">
-                    {data.featuredTool.photo.caption || 'Small Timers Big Learning'}
-                  </p>
                 </div>
               </div>
             </div>

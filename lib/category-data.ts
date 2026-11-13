@@ -48,7 +48,7 @@ export interface CategoryData {
     checklist: string[];
     defaultDurationSec: number;
     presets: Array<{ label: string; sec: number }>;
-    photo: {
+    photo?: {
       src: string;
       alt: string;
       caption?: string;
@@ -96,7 +96,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     heroCtaText: 'Open Classroom Timer',
     heroCtaHref: '/classroom-timer',
     heroImage: {
-      src: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
+      src: '/images/cat-hero-education.webp',
       alt: 'Classroom desk with vintage timer clock, green plant and chalkboard',
       chalkText: 'Good Ideas Take Time',
     },
@@ -121,11 +121,6 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
         { label: '20 min', sec: 1200 },
         { label: '30 min', sec: 1800 },
       ],
-      photo: {
-        src: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80',
-        alt: 'Chalkboard with stacked books',
-        caption: 'Small Timers Big Learning',
-      },
     },
     toolsHeading: 'Explore All Education & Classroom Tools',
     toolsKicker: 'ALL EDUCATION TOOLS',
@@ -376,7 +371,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     heroCtaText: 'Open Countdown Timer',
     heroCtaHref: '/countdown-timer',
     heroImage: {
-      src: 'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?auto=format&fit=crop&w=800&q=80',
+      src: '/images/cat-timers.webp',
       alt: 'Classic analog alarm clock on wooden table',
       chalkText: 'Track Every Second',
     },
@@ -401,11 +396,6 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
         { label: '30 min', sec: 1800 },
         { label: '1 hour', sec: 3600 },
       ],
-      photo: {
-        src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-        alt: 'Desk notebook and coffee cup',
-        caption: 'Focus on What Matters',
-      },
     },
     toolsHeading: 'Explore All Everyday Timers & Stopwatches',
     toolsKicker: 'ALL TIMERS',
@@ -725,7 +715,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     heroCtaText: 'Open Stage Timer',
     heroCtaHref: '/stage-timer',
     heroImage: {
-      src: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80',
+      src: '/images/cat-events.webp',
       alt: 'Stage microphone in auditorium spotlight',
       chalkText: 'Showtime Pacing',
     },
@@ -750,11 +740,6 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
         { label: '30 min', sec: 1800 },
         { label: '45 min', sec: 2700 },
       ],
-      photo: {
-        src: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80',
-        alt: 'Auditorium lighting and stage atmosphere',
-        caption: 'Flawless Event Timing',
-      },
     },
     toolsHeading: 'Explore All Event & Presentation Tools',
     toolsKicker: 'ALL EVENT TOOLS',
@@ -968,7 +953,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     heroCtaText: 'Open Interval Timer',
     heroCtaHref: '/interval-timer',
     heroImage: {
-      src: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
+      src: '/images/cat-fitness.webp',
       alt: 'Athletic gym training session with weights and stopwatch',
       chalkText: 'Push Every Second',
     },
@@ -993,11 +978,6 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
         { label: '2 min Round', sec: 120 },
         { label: '3 min Sparring', sec: 180 },
       ],
-      photo: {
-        src: 'https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=800&q=80',
-        alt: 'Runner timing pace with wrist stopwatch',
-        caption: 'Train With Structure',
-      },
     },
     toolsHeading: 'Explore All Fitness & Training Tools',
     toolsKicker: 'ALL FITNESS TOOLS',
@@ -1195,7 +1175,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     heroCtaText: 'Open Pomodoro Timer',
     heroCtaHref: '/pomodoro-timer',
     heroImage: {
-      src: 'https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=800&q=80',
+      src: '/images/cat-productivity.webp',
       alt: 'Clean wooden desk with notebook, coffee and minimalist clock',
       chalkText: 'Deep Work Flow',
     },
@@ -1220,11 +1200,6 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
         { label: '50 min academic', sec: 3000 },
         { label: '90 min ultradian', sec: 5400 },
       ],
-      photo: {
-        src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-        alt: 'Productivity journal and pen on desk',
-        caption: 'One Task at a Time',
-      },
     },
     toolsHeading: 'Explore All Productivity & Focus Tools',
     toolsKicker: 'ALL PRODUCTIVITY TOOLS',
@@ -1426,7 +1401,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     heroCtaText: 'Open World Clock',
     heroCtaHref: '/world-clock',
     heroImage: {
-      src: 'https://images.unsplash.com/photo-1508873696983-2df5293cb395?auto=format&fit=crop&w=800&q=80',
+      src: '/images/cat-world.webp',
       alt: 'Global world map and compass on rustic desk',
       chalkText: 'Connect Worldwide',
     },
@@ -1449,11 +1424,6 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
         { label: 'Tokyo (JST)', sec: 0 },
         { label: 'Sydney (AEST)', sec: 0 },
       ],
-      photo: {
-        src: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80',
-        alt: 'World map projection with time zones',
-        caption: 'Global Time at a Glance',
-      },
     },
     toolsHeading: 'Explore All World Clock & Time Zone Tools',
     toolsKicker: 'ALL GLOBAL TOOLS',
@@ -1624,7 +1594,7 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     heroCtaText: 'Open Time Duration Calculator',
     heroCtaHref: '/time-duration-calculator',
     heroImage: {
-      src: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      src: '/images/cat-calculators.webp',
       alt: 'Calculator, notebook, and financial ledger on clean wooden desk',
       chalkText: 'Accurate to the Second',
     },
@@ -1647,11 +1617,6 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
         { label: '1 Hour Lunch', sec: 3600 },
         { label: '30-Min Sprint', sec: 1800 },
       ],
-      photo: {
-        src: 'https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=800&q=80',
-        alt: 'Stopwatch and paperwork calculating duration',
-        caption: 'Accurate Math for Time',
-      },
     },
     toolsHeading: 'Explore All Time & Date Calculators',
     toolsKicker: 'ALL CALCULATORS',

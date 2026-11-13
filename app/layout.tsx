@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { SoundThemeProvider } from '@/components/sound/SoundThemeProvider';
 import { LanguageProvider } from '@/components/i18n/LanguageProvider';
+import { REAL_SAME_AS_URLS } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://WebCountDownTimer.com'),
@@ -43,11 +44,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': 'https://WebCountDownTimer.com/#organization',
     name: 'WebCountDownTimer',
     url: 'https://WebCountDownTimer.com',
     logo: 'https://WebCountDownTimer.com/logo.svg',
     description:
       'Precision online countdown timers, visual and sensory timers, stage confidence monitors, world clocks, and date/time calculators.',
+    ...(REAL_SAME_AS_URLS.length > 0 ? { sameAs: REAL_SAME_AS_URLS } : {}),
   };
 
   const websiteSchema = {

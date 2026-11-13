@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import {
   ToolDefinition,
   getRelatedTools,
@@ -88,7 +87,7 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
 
   // SEO breadcrumb schema
   const breadcrumbs = [
-    { name: 'Home', item: 'https://WebCountDownTimer.com/' },
+    { name: 'Home', item: 'https://WebCountDownTimer.com' },
     { name: editorial.categoryLabel, item: `https://WebCountDownTimer.com/category/${editorial.categorySlug}` },
     { name: tool.name, item: `https://WebCountDownTimer.com${canonicalPath}` },
   ];
@@ -110,7 +109,7 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
         faqs={specificContent ? specificContent.faqs : tool.faq}
         breadcrumbs={breadcrumbs}
         steps={stepsForSchema}
-        categoryLabel={editorial.categoryLabel}
+        applicationCategory="UtilitiesApplication"
       />
 
       {/* 1. BREADCRUMB BAR */}
@@ -176,9 +175,9 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
         }`}
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-8">
+          <div className="max-w-4xl">
+            {/* Hero Intro Content */}
+            <div>
               <span
                 className={`text-[11px] font-bold tracking-widest uppercase block mb-1 ${
                   tool.slug === 'moon-timer'
@@ -363,92 +362,6 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
                   ))}
                 </div>
               )}
-            </div>
-
-            {/* Right Editorial Hero Desk Artwork */}
-            <div className="lg:col-span-4">
-              <div className="relative rounded-2xl overflow-hidden border border-[#E4E1D9] dark:border-[#2D352F] shadow-md aspect-4/3 bg-[#E7EDE7]/30">
-                <Image
-                  src={editorial.heroImage.src}
-                  alt={editorial.heroImage.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                  priority
-                  referrerPolicy="no-referrer"
-                />
-                {tool.slug === 'rainbow-timer' ? (
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/25 flex items-center justify-end p-4 gap-3">
-                    <div className="bg-[#2B302C] border-[6px] border-[#C89D66] rounded-xl px-4 py-3 shadow-lg text-center relative w-36 sm:w-40 shrink-0 -rotate-2">
-                      <div className="font-serif italic text-white/95 text-sm sm:text-base leading-snug space-y-0.5">
-                        <div>Small</div>
-                        <div>Steps</div>
-                        <div>Bright</div>
-                        <div>Days</div>
-                      </div>
-                      <svg viewBox="0 0 60 34" className="w-12 h-7 ml-auto mt-1">
-                        <path d="M 6 30 A 24 24 0 0 1 54 30" fill="none" stroke="#EF4444" strokeWidth="2.5" strokeLinecap="round" />
-                        <path d="M 10 30 A 20 20 0 0 1 50 30" fill="none" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
-                        <path d="M 14 30 A 16 16 0 0 1 46 30" fill="none" stroke="#FACC15" strokeWidth="2.5" strokeLinecap="round" />
-                        <path d="M 18 30 A 12 12 0 0 1 42 30" fill="none" stroke="#22C55E" strokeWidth="2.5" strokeLinecap="round" />
-                        <path d="M 22 30 A 8 8 0 0 1 38 30" fill="none" stroke="#38BDF8" strokeWidth="2.5" strokeLinecap="round" />
-                        <path d="M 26 30 A 4 4 0 0 1 34 30" fill="none" stroke="#A855F7" strokeWidth="2.5" strokeLinecap="round" />
-                      </svg>
-                    </div>
-                  </div>
-                ) : tool.slug === 'hourglass-timer' ? (
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent to-black/25 flex items-center justify-end p-4 gap-3">
-                    <div className="bg-[#EFE8DB] dark:bg-[#221F1A] border-[6px] border-[#C89D66] rounded-xl px-4 py-3 shadow-lg text-center relative w-32 sm:w-36 shrink-0">
-                      <div className="font-serif text-[#252B27] dark:text-white text-sm sm:text-base leading-snug space-y-0.5">
-                        <div>Good</div>
-                        <div>Things</div>
-                        <div>Take</div>
-                        <div>Time</div>
-                      </div>
-                    </div>
-                  </div>
-                ) : tool.slug === 'circular-timer' ? (
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent to-black/25 flex items-center justify-end p-4 gap-3">
-                    <div className="bg-[#EFE8DB] dark:bg-[#221F1A] border-[6px] border-[#C89D66] rounded-xl px-4 py-3 shadow-lg text-center relative w-32 sm:w-36 shrink-0 -rotate-1">
-                      <div className="font-serif text-[#252B27] dark:text-white text-sm sm:text-base leading-snug space-y-0.5">
-                        <div>Focus</div>
-                        <div>Plan</div>
-                        <div>Do</div>
-                        <div>Repeat</div>
-                      </div>
-                    </div>
-                  </div>
-                ) : tool.slug === 'radial-timer' ? (
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent to-black/25 flex items-center justify-end p-4 gap-3">
-                    <div className="bg-[#EFE8DB] dark:bg-[#221F1A] border-[6px] border-[#C89D66] rounded-xl px-4 py-3 shadow-lg text-center relative w-32 sm:w-36 shrink-0 -rotate-1">
-                      <div className="font-serif text-[#252B27] dark:text-white text-sm sm:text-base leading-snug space-y-0.5">
-                        <div>Focus</div>
-                        <div>Breathe</div>
-                        <div>Learn</div>
-                        <div>Grow</div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  editorial.heroImage.notebookLines &&
-                  editorial.heroImage.notebookLines.length > 0 && (
-                    <div className="absolute top-4 right-4 bg-[#F7F6F2]/95 dark:bg-[#1A201C]/95 backdrop-blur-xs p-3 rounded-xl border border-[#E4E1D9] dark:border-[#2D352F] shadow-sm text-right space-y-0.5 max-w-[220px]">
-                      {editorial.heroImage.notebookLines.map((line, idx) => (
-                        <div
-                          key={idx}
-                          className={`text-xs ${
-                            idx === 0
-                              ? 'font-serif text-[#252B27] dark:text-white font-bold'
-                              : 'font-serif italic text-[#365C4B] dark:text-[#5E917A]'
-                          }`}
-                        >
-                          {line}
-                        </div>
-                      ))}
-                    </div>
-                  )
-                )}
-              </div>
             </div>
           </div>
         </div>

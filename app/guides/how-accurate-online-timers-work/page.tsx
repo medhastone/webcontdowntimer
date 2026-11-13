@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { buildPageMetadata } from '@/lib/seo-metadata';
+import BreadcrumbJsonLd from '@/components/common/BreadcrumbJsonLd';
 import {
   ShieldCheck,
   Clock,
@@ -25,19 +26,28 @@ export default function HowAccurateOnlineTimersWorkPage() {
       'How Accurate Online Timers Work: Browser Tab Throttling, Epoch Delta Math & Information Provenance',
     description:
       'Learn how accurate online timers prevent browser tab throttling using Date.now() epoch deltas, performance.now(), Screen Wake Lock, and Web Audio.',
-    url: 'https://webcountdowntimer.com/guides/how-accurate-online-timers-work',
+    url: 'https://WebCountDownTimer.com/guides/how-accurate-online-timers-work',
     author: {
       '@type': 'Organization',
       name: 'WebCountDownTimer Engineering & Editorial Team',
+      url: 'https://WebCountDownTimer.com',
     },
     publisher: {
       '@type': 'Organization',
       name: 'WebCountDownTimer',
+      url: 'https://WebCountDownTimer.com',
     },
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC] dark:bg-[#0B1120] text-slate-900 dark:text-slate-100">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Guides', path: '/guides' },
+          { name: 'How Accurate Online Timers Work', path: '/guides/how-accurate-online-timers-work' },
+        ]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

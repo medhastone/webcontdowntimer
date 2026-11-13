@@ -116,7 +116,7 @@ export default function FlipTimerPage() {
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: 'https://WebCountDownTimer.com/',
+            item: 'https://WebCountDownTimer.com',
           },
           {
             '@type': 'ListItem',

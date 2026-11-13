@@ -112,13 +112,13 @@ export default function ForestFireTimerPage() {
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: 'https://WebCountDownTimer.com/',
+            item: 'https://WebCountDownTimer.com',
           },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'Timers',
-            item: 'https://WebCountDownTimer.com/timers',
+            item: 'https://WebCountDownTimer.com/tools',
           },
           {
             '@type': 'ListItem',

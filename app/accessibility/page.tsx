@@ -1,6 +1,7 @@
 import { buildPageMetadata } from '@/lib/seo-metadata';
 import type { Metadata } from 'next';
 import { Keyboard, Eye, Volume2, Shield } from 'lucide-react';
+import BreadcrumbJsonLd from '@/components/common/BreadcrumbJsonLd';
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata('/accessibility');
@@ -9,6 +10,12 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function AccessibilityPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 text-neutral-800 dark:text-neutral-200">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Accessibility Statement', path: '/accessibility' },
+        ]}
+      />
       <div className="space-y-2">
         <span className="text-xs font-mono uppercase text-neutral-500">Universal Design</span>
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-white">

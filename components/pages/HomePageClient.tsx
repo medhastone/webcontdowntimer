@@ -663,15 +663,17 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Editorial Lifestyle Photo beside timer */}
+            {/* Editorial Hero Workspace Photo beside timer */}
             <div className="w-full sm:w-56 h-72 relative rounded-3xl overflow-hidden border border-[#E4E1D9] dark:border-[#2D352F] shadow-sm hidden sm:block">
               <Image
-                src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80"
+                src="/images/hero-workspace.webp"
                 alt="Workspace with green plant, coffee and stacked books"
-                fill
-                className="object-cover"
+                width={448}
+                height={576}
+                sizes="224px"
+                priority
+                className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
-                sizes="(max-width: 768px) 100vw, 300px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 p-4 flex flex-col justify-between text-white">
                 <span className="font-serif italic text-sm text-amber-200">Time for a Better You</span>
@@ -871,8 +873,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Middle Column: Interactive 15:00 Timer Card with Presets (5 cols) */}
-            <div className="lg:col-span-5 bg-white dark:bg-[#141816] rounded-3xl border border-[#E4E1D9] dark:border-[#2D352F] p-6 shadow-sm">
+            {/* Interactive 15:00 Timer Card with Presets (8 cols) */}
+            <div className="lg:col-span-8 bg-white dark:bg-[#141816] rounded-3xl border border-[#E4E1D9] dark:border-[#2D352F] p-6 shadow-sm">
               {/* Tabs: Countdown / Stopwatch / Interval */}
               <div className="flex items-center justify-between pb-4 border-b border-[#E4E1D9] dark:border-[#262D28]">
                 <div className="flex items-center gap-1 bg-[#F7F6F2] dark:bg-[#1E2521] p-1 rounded-xl">
@@ -1015,26 +1017,6 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-
-            {/* Right Column: Editorial Notepad & Mug Photo (3 cols) */}
-            <div className="lg:col-span-3 h-80 relative rounded-3xl overflow-hidden border border-[#D5DDD5] dark:border-[#2A352E] shadow-sm">
-              <Image
-                src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80"
-                alt="Notebook checklist with coffee mug"
-                fill
-                className="object-cover"
-                referrerPolicy="no-referrer"
-                sizes="(max-width: 768px) 100vw, 350px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 p-4 flex flex-col justify-between text-white">
-                <span className="font-serif italic text-sm text-amber-200">Good Time Good Work</span>
-                <div className="bg-black/40 backdrop-blur-xs p-2.5 rounded-xl text-xs space-y-1">
-                  <div className="font-bold text-emerald-300">✓ Focus</div>
-                  <div className="font-bold text-emerald-300">✓ More Done</div>
-                  <div className="font-bold text-emerald-300">✓ Better Results</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -1159,7 +1141,7 @@ export default function HomePage() {
               title: 'Everyday Timers',
               href: '/category/timers',
               cta: 'Open Everyday Timers',
-              img: 'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?auto=format&fit=crop&w=600&q=80',
+              img: '/images/cat-timers.webp',
               alt: 'Analog alarm clock on wooden table',
               tools: [
                 { label: 'Flip Clock', href: '/timers/flip-clock', tier: 'new' as ToolTier },
@@ -1172,7 +1154,7 @@ export default function HomePage() {
               title: 'Presentation & Event Tools',
               href: '/category/events',
               cta: 'Open Event Tools',
-              img: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=600&q=80',
+              img: '/images/cat-events.webp',
               alt: 'Stage microphone in auditorium',
               tools: [
                 { label: 'Stage Timer', href: '/stage-timer', tier: 'hot' as ToolTier },
@@ -1185,7 +1167,7 @@ export default function HomePage() {
               title: 'Education & Classroom',
               href: '/category/education',
               cta: 'Open Classroom Tools',
-              img: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80',
+              img: '/images/cat-education.webp',
               alt: 'Classroom desks and chalkboard',
               tools: [
                 { label: 'Sensory Timers', href: '/timers/sensory-timers', tier: 'new' as ToolTier },
@@ -1198,7 +1180,7 @@ export default function HomePage() {
               title: 'Fitness & Wellness',
               href: '/category/fitness',
               cta: 'Open Fitness Tools',
-              img: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80',
+              img: '/images/cat-fitness.webp',
               alt: 'Gym shoe and dumbbell weights',
               tools: [
                 { label: 'Interval Timer', href: '/interval-timer', tier: 'hot' as ToolTier },
@@ -1211,7 +1193,7 @@ export default function HomePage() {
               title: 'World Time & Calculators',
               href: '/category/world',
               cta: 'Open World Clock & Tools',
-              img: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=600&q=80',
+              img: '/images/cat-world.webp',
               alt: 'Vintage desktop globe with compass',
               tools: [
                 { label: 'World Clock', href: '/world-clock', tier: 'hot' as ToolTier },
@@ -1225,12 +1207,15 @@ export default function HomePage() {
               key={cat.title}
               className="bg-white dark:bg-[#1A201C] rounded-2xl overflow-hidden border border-[#E4E1D9] dark:border-[#2D352F] flex flex-col justify-between shadow-2xs"
             >
-              <div className="h-32 relative">
+              <div className="h-32 relative overflow-hidden">
                 <Image
                   src={cat.img}
                   alt={cat.alt}
-                  fill
-                  className="object-cover"
+                  width={800}
+                  height={600}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
+                  loading="lazy"
+                  className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
               </div>

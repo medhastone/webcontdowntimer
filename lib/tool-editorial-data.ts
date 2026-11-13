@@ -18,7 +18,7 @@ export interface ToolEditorialData {
   categoryLabel: string;
   heroSubtitle: string;
   featurePills: string[];
-  heroImage: {
+  heroImage?: {
     src: string;
     alt: string;
     notebookLines: string[];
@@ -63,7 +63,7 @@ export interface ToolEditorialData {
     problemsTitle: string;
     problemsRows: ProblemSolutionRow[];
   };
-  quoteCard: {
+  quoteCard?: {
     src: string;
     alt: string;
     checklist: string[];
@@ -84,11 +84,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Simple and easy to use',
       'Works on all devices',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=800&q=80',
-      alt: 'Wooden desk with plant, notebook, and coffee mug',
-      notebookLines: ['Good Focus', 'Better Work', 'Brighter You'],
-    },
     quickPresets: [
       { icon: '🍅', label: '25 / 5', sublabel: 'Classic Pomodoro', workSec: 1500, breakSec: 300 },
       { icon: '📦', label: '50 / 10', sublabel: 'Deep Work', workSec: 3000, breakSec: 600 },
@@ -208,12 +203,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         },
       ],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Focus checklist notebook with coffee cup on desk',
-      checklist: ['Focus', 'Work', 'Break', 'Repeat'],
-      quote: '“A focused mind gets more done.”',
-    },
   },
 
   'countdown-timer': {
@@ -228,11 +217,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Fullscreen projection',
       'Works on all devices',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?auto=format&fit=crop&w=800&q=80',
-      alt: 'Classic analog alarm clock on wooden table',
-      notebookLines: ['Track Every Second', 'Clear Deadlines', 'Stay On Time'],
-    },
     quickPresets: [
       { icon: '⏱', label: '1 min', sublabel: 'Quick Sprint', sec: 60 },
       { icon: '⏱', label: '5 min', sublabel: 'Turn & Talk', sec: 300 },
@@ -337,12 +321,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         },
       ],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Desk notebook and coffee cup',
-      checklist: ['Plan', 'Timebox', 'Execute', 'Finish'],
-      quote: '“Time is what we want most, but what we use worst.”',
-    },
   },
 
   'visual-timer': {
@@ -356,11 +334,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
-      alt: 'Desk with potted plant and framed sign A Focused Mind A Brighter Day',
-      notebookLines: ['A Focused Mind', 'A Brighter Day'],
-    },
     quickPresets: [
       { icon: '⏱', label: '1 min', sublabel: 'Quick Task', sec: 60 },
       { icon: '⏱', label: '5 min', sublabel: 'Short Exercise', sec: 300 },
@@ -458,12 +431,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         },
       ],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
-      alt: 'Desk with framed sign Good Things Take Time',
-      checklist: ['Good Things Take Time'],
-      quote: '“A visual timer helps you stay present and make time more meaningful.”',
-    },
   },
 
   'world-clock': {
@@ -472,17 +439,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
     categoryLabel: 'World Clock',
     heroSubtitle: 'Compare local times and plan meetings across the world.',
     featurePills: [],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80',
-      alt: 'Desk with vintage globe, books, and potted plant',
-      notebookLines: [
-        'Different Places',
-        'Same Time',
-        'Better Meetings',
-        'Global Teams',
-        'Same Time Stronger Teams',
-      ],
-    },
     quickPresets: [],
     steps: [],
     guide: {
@@ -518,12 +474,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'UTC Offsets Explained',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1508873696983-2df5293cb395?auto=format&fit=crop&w=800&q=80',
-      alt: 'Desk with clock, coffee cup, and notepad',
-      checklist: ['Plan smarter meetings across time zones.'],
-      quote: '“Different time zones, same opportunities.”',
-    },
   },
 
   'time-duration-calculator': {
@@ -538,11 +488,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Handles overnight hours',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80',
-      alt: 'Desk with analog clock, green plant, and stacked books',
-      notebookLines: ['Plan Today', 'Track Time', 'Get More Done'],
-    },
     quickPresets: [],
     steps: [],
     guide: {
@@ -587,12 +532,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: '',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80',
-      alt: 'Notepad with handwritten notes on wooden desk with plant',
-      checklist: ['Time is a tool.', 'Use it well.'],
-      quote: '“Easy time calculations for work, study and everyday life.”',
-    },
   },
 
   'sand-timer': {
@@ -606,11 +545,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
-      alt: 'Wooden desk with potted green plant, books, and framed sign Good Time Better Habits',
-      notebookLines: ['Good', 'Time', 'Better', 'Habits'],
-    },
     quickPresets: [],
     steps: [],
     guide: {
@@ -651,12 +585,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Digital Sand Timer vs Traditional Hourglass',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=800&q=80',
-      alt: 'Traditional glass hourglass on wooden desk with books and plant',
-      checklist: [],
-      quote: '“A simple timer for a more focused and mindful day.”',
-    },
   },
 
   'liquid-timer': {
@@ -670,11 +598,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
-      alt: 'Wooden desk with potted green plants, books, and framed sign Small Steps Bright Days',
-      notebookLines: ['Small', 'Steps', 'Bright', 'Days'],
-    },
     quickPresets: [],
     steps: [],
     guide: {
@@ -715,12 +638,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Liquid Timer Styles',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=800&q=80',
-      alt: 'Clear glass filled with sparkling green liquid on wooden desk',
-      checklist: [],
-      quote: '“A visual timer that helps you focus, create better habits and make time easier to see.”',
-    },
   },
 
   'rainbow-timer': {
@@ -734,11 +651,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
-      alt: 'Wooden desk with potted green plant, stacked books, and chalkboard Small Steps Bright Days with rainbow',
-      notebookLines: ['Small', 'Steps', 'Bright', 'Days'],
-    },
     quickPresets: [],
     steps: [],
     guide: {
@@ -779,12 +691,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Rainbow Timer vs Digital Timer',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80',
-      alt: 'Colorful wooden rainbow toy on desk with pencils and plant',
-      checklist: [],
-      quote: '“A brighter way to keep track of time for focused and happier days.”',
-    },
   },
 
   'hourglass-timer': {
@@ -798,11 +704,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Multiple preset times',
       'Works on all devices',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=800&q=80',
-      alt: 'Wooden desk with potted green plant, wooden hourglass, and framed sign Good Things Take Time',
-      notebookLines: ['Good', 'Things', 'Take', 'Time'],
-    },
     quickPresets: [],
     steps: [],
     guide: {
@@ -848,12 +749,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Online Hourglass vs Traditional Sand Clock',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=800&q=80',
-      alt: 'Wooden-framed hourglass on desk with books and plant',
-      checklist: [],
-      quote: '“A simple hourglass timer to make daily activities more focused and enjoyable.”',
-    },
   },
 
   'circular-timer': {
@@ -867,11 +762,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
-      alt: 'Wooden desk with potted green plant, books, and framed sign Focus Plan Do Repeat',
-      notebookLines: ['Focus', 'Plan', 'Do', 'Repeat'],
-    },
     quickPresets: [],
     steps: [],
     guide: {
@@ -911,12 +801,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Circular Timer vs Progress Bar Timer',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Tablet displaying circular countdown timer 05:00 on wooden desk with plant',
-      checklist: [],
-      quote: '“A clear visual timer makes it easier to stay focused and make the most of your time.”',
-    },
   },
 
   'radial-timer': {
@@ -930,11 +814,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
-      alt: 'Wooden desk with potted green plant, books, and framed sign Focus Breathe Learn Grow',
-      notebookLines: ['Focus', 'Breathe', 'Learn', 'Grow'],
-    },
     quickPresets: [],
     steps: [],
     guide: {
@@ -975,12 +854,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Radial Timer vs Circular Timer',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Tablet displaying radial countdown timer 05:00 on wooden desk with plant',
-      checklist: [],
-      quote: '“A clear visual timer that helps you stay focused and make the most of your time.”',
-    },
   },
   'rings-timer': {
     slug: 'rings-timer',
@@ -993,11 +866,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80',
-      alt: 'Bright wooden desk with green plant, stacked books, and framed Focus Time Progress Achieve sign with concentric rings',
-      notebookLines: [],
-    },
     quickPresets: [],
     steps: [],
     guide: {
@@ -1038,12 +906,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Rings Timer vs Circular Timer',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Tablet displaying concentric rings countdown timer 05:00 on wooden desk',
-      checklist: [],
-      quote: '“Multiple rings give you a clear and visual way to track your time and stay in flow.”',
-    },
   },
   'progress-timer': {
     slug: 'progress-timer',
@@ -1056,11 +918,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80',
-      alt: 'Bright wooden desk with green plant, coffee cup, stacked books, and framed Plan Focus Progress Achieve checklist sign',
-      notebookLines: [],
-    },
     quickPresets: [],
     steps: [],
     guide: {
@@ -1102,12 +959,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Progress Timer vs Countdown Timer',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Laptop displaying Progress Timer Study Session 05:00 on wooden desk',
-      checklist: [],
-      quote: '“A clear progress bar helps you stay focused and visually track your time.”',
-    },
   },
   'pixel-timer': {
     categorySlug: 'everyday',
@@ -1120,11 +971,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80',
-      alt: 'Wooden desk with LED pixel board FOCUS PLAY LEARN REPEAT and retro pixel fox mascot',
-      notebookLines: ['FOCUS', 'PLAY', 'LEARN', 'REPEAT'],
-    },
     steps: [],
     guide: {
       tableOfContents: [
@@ -1163,12 +1009,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Customizing Pixel Countdown Styles',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Retro LED pixel display frame showing 05:00 on wooden desk',
-      checklist: [],
-      quote: '“A fun and visual way to stay focused, take breaks and make timed activities more enjoyable.”',
-    },
   },
   'blocks-timer': {
     categorySlug: 'everyday',
@@ -1181,11 +1021,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80',
-      alt: 'Wooden desk with chalkboard sign One Block Closer to Your Goal and stacked colorful wooden blocks',
-      notebookLines: ['One', 'Block', 'Closer', 'to Your', 'Goal!'],
-    },
     steps: [],
     guide: {
       tableOfContents: [
@@ -1224,12 +1059,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Visual Blocks vs Digital Countdown',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Stack of colorful wooden blocks on wooden desk',
-      checklist: [],
-      quote: '“A simple and visual way to make time visible, fun and easy to follow for everyone.”',
-    },
   },
   'candle-timer': {
     categorySlug: 'everyday',
@@ -1242,11 +1071,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80',
-      alt: 'Warm desk with wooden framed sign Focus Relax Read Breathe Be Present',
-      notebookLines: ['Focus', 'Relax', 'Read', 'Breathe', 'Be Present'],
-    },
     steps: [],
     guide: {
       tableOfContents: [
@@ -1285,12 +1109,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Digital Candle Timer vs Physical Candles',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Forest green candle burning peacefully on a wooden desk beside books',
-      checklist: [],
-      quote: '“A simple visual timer that creates a peaceful space to focus, read and take mindful breaks.”',
-    },
   },
   'aesthetic-timer': {
     categorySlug: 'everyday',
@@ -1303,11 +1121,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80',
-      alt: 'Warm study desk with books and wooden framed sign Good Focus Good Progress A Better You',
-      notebookLines: ['Good', 'Focus', 'Good', 'Progress', 'A Better You'],
-    },
     steps: [],
     guide: {
       tableOfContents: [
@@ -1347,12 +1160,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Choosing a Calm Timer Design',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Laptop on warm wooden desk displaying aesthetic circular timer 25:00 beside coffee cup and books',
-      checklist: [],
-      quote: '“A beautiful timer can turn a simple task into a more enjoyable and focused experience.”',
-    },
   },
   'picture-reveal-timer': {
     categorySlug: 'everyday',
@@ -1366,11 +1173,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80',
-      alt: 'Wooden desk with potted green plant, books, and chalkboard sign Turn Time Into Surprises!',
-      notebookLines: ['Turn', 'Time', 'Into', 'Surprises!'],
-    },
     steps: [],
     guide: {
       tableOfContents: [
@@ -1411,12 +1213,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Image Privacy and Browser Processing',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80',
-      alt: 'Golden retriever photo gradually revealed through a grid of tiles',
-      checklist: [],
-      quote: '“Turn any countdown into an interactive guessing game or classroom surprise.”',
-    },
   },
   'heart-timer': {
     categorySlug: 'everyday',
@@ -1429,11 +1225,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80',
-      alt: 'Warm desk with roses, teacup, and heart plaque inscribed Small Steps Big Dreams',
-      notebookLines: ['Small', 'Steps', 'Big Dreams'],
-    },
     steps: [],
     guide: {
       tableOfContents: [
@@ -1472,12 +1263,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Customize the Heart Timer Display',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Heart-shaped desk clock displaying 25:00 on warm wooden desk beside open book and plants',
-      checklist: [],
-      quote: '“A little time for yourself can make a big difference.”',
-    },
   },
   'moon-timer': {
     categorySlug: 'everyday',
@@ -1490,11 +1275,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=1000&q=80',
-      alt: 'Luminous full moon over a tranquil night lake framed by pine trees and stars',
-      notebookLines: [],
-    },
     steps: [],
     guide: {
       tableOfContents: [
@@ -1534,12 +1314,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Moon Timer vs Actual Lunar Phases',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
-      alt: 'Full moon glowing over a calm mountain lake at night',
-      checklist: [],
-      quote: '“A calm mind and a little more time can make everyday moments more meaningful.”',
-    },
   },
   'sun-timer': {
     categorySlug: 'everyday',
@@ -1552,11 +1326,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80',
-      alt: 'Warm golden sun rising over serene mountain ridges and pine trees with Bright Moments Brighter Days motto',
-      notebookLines: ['Bright', 'Moments', 'Brighter Days'],
-    },
     steps: [],
     guide: {
       tableOfContents: [
@@ -1597,12 +1366,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Sun Timer vs Sunrise and Sunset Calculator',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-      alt: 'Warm golden sun reflecting over mountain lake framed by pine trees',
-      checklist: [],
-      quote: '“A little time in the right direction can bring a brighter day.”',
-    },
   },
   'bubble-timer': {
     categorySlug: 'everyday',
@@ -1615,11 +1378,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1000&q=80',
-      alt: 'Translucent bubbles floating gently upward in a sunlit underwater ocean reef scene',
-      notebookLines: [],
-    },
     steps: [],
     guide: {
       tableOfContents: [
@@ -1659,12 +1417,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Customizing Bubble Movement and Appearance',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80',
-      alt: 'Sunlight streaming through clear ocean water with coral reef and rising translucent bubbles',
-      checklist: [],
-      quote: '“Small breaks can make a big difference.”',
-    },
   },
   'coral-timer': {
     slug: 'coral-timer',
@@ -1678,11 +1430,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1546026423-cc4642628d2b?auto=format&fit=crop&w=900&q=80',
-      alt: 'Sunlit tropical coral reef with clownfish and colorful branching corals',
-      notebookLines: ['Focus Deeply', 'Grow Steadily', 'Stay Calm'],
-    },
     quickPresets: [
       { icon: '🪸', label: '1 Minute', sublabel: 'Quick break', sec: 60 },
       { icon: '🪸', label: '3 Minutes', sublabel: 'Short focus', sec: 180 },
@@ -1728,12 +1475,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Customize Your Underwater Timer',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1546026423-cc4642628d2b?auto=format&fit=crop&w=800&q=80',
-      alt: 'Underwater coral reef with clownfish and sunbeams',
-      checklist: [],
-      quote: '“Small moments of focus can help great ideas grow.”',
-    },
   },
   'lichen-timer': {
     slug: 'lichen-timer',
@@ -1747,11 +1488,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=900&q=80',
-      alt: 'Close-up of foliose sage lichen and moss on forest stone in warm sunlight',
-      notebookLines: ['Small Moments', 'Big Focus'],
-    },
     quickPresets: [
       { icon: '🌿', label: '1 Minute', sublabel: 'Quick break', sec: 60 },
       { icon: '🌿', label: '3 Minutes', sublabel: 'Short focus', sec: 180 },
@@ -1797,12 +1533,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Customizing the Lichen Display',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80',
-      alt: 'Close-up of foliose sage lichen rosettes on natural forest stone',
-      checklist: [],
-      quote: '“Let time grow something beautiful.”',
-    },
   },
   'frost-timer': {
     slug: 'frost-timer',
@@ -1816,11 +1546,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80',
-      alt: 'Frosted window glass overlooking a sunlit winter forest with delicate ice crystal ferns',
-      notebookLines: ['Calm', 'Focus', 'Clear Mind'],
-    },
     quickPresets: [
       { icon: '❄️', label: '1 Minute', sublabel: 'Quick break', sec: 60 },
       { icon: '❄️', label: '3 Minutes', sublabel: 'Short focus', sec: 180 },
@@ -1866,12 +1591,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Frost Timer Display Settings',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517299321609-52687d1bc55a?auto=format&fit=crop&w=800&q=80',
-      alt: 'Delicate frost crystals framing a window pane overlooking winter trees at sunrise',
-      checklist: [],
-      quote: '“A little focus today can create a clearer tomorrow.”',
-    },
   },
   'snow-timer': {
     heroSubtitle:
@@ -1882,11 +1601,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
-      alt: 'Snow-covered wooden cabin nestled among snowy evergreen pine trees and distant winter mountains',
-      notebookLines: [],
-    },
     quickPresets: [
       { icon: '❄️', label: '1 Minute', sublabel: 'Quick break', sec: 60 },
       { icon: '❄️', label: '3 Minutes', sublabel: 'Short focus', sec: 180 },
@@ -1932,12 +1646,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Customize the Snowfall Effect',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517299321609-52687d1bc55a?auto=format&fit=crop&w=800&q=80',
-      alt: 'Peaceful winter sunrise over snow-covered pine forest and mountains',
-      checklist: [],
-      quote: '“A simple snow timer can bring a calm and focused feel to your time.”',
-    },
   },
   'galaxy-timer': {
     heroSubtitle:
@@ -1948,11 +1656,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=800&q=80',
-      alt: 'Luminous spiral galaxy with golden core, violet nebula clouds, starfield, and exoplanet horizon',
-      notebookLines: [],
-    },
     quickPresets: [
       { icon: '🌌', label: '1 Minute', sublabel: 'Quick break', sec: 60 },
       { icon: '🌌', label: '3 Minutes', sublabel: 'Short focus', sec: 180 },
@@ -1998,12 +1701,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Customize Your Galaxy Countdown',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-      alt: 'Silhouette of a person sitting on a mountain ridge gazing at the glowing Milky Way galaxy',
-      checklist: [],
-      quote: '“A calm space theme can help you focus for longer.”',
-    },
   },
   'lava-lamp-timer': {
     heroSubtitle:
@@ -2014,11 +1711,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80',
-      alt: 'Cozy retro desk with glowing amber lava lamp, rainbow wall arch, books, houseplants, and vintage radio',
-      notebookLines: [],
-    },
     quickPresets: [
       { icon: '⏳', label: '1 Minute', sublabel: 'Quick break', sec: 60 },
       { icon: '⏳', label: '3 Minutes', sublabel: 'Short focus', sec: 180 },
@@ -2064,12 +1756,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       problemsTitle: 'Customize Your Lava Lamp Theme',
       problemsRows: [],
     },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80',
-      alt: 'Warm glowing retro lava lamp on a wooden desk next to a houseplant',
-      checklist: [],
-      quote: '“A retro visual timer that brings calm, focus and creativity.”',
-    },
   },
   'spinner-timer': {
     heroSubtitle:
@@ -2080,11 +1766,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       'Works on all devices',
       'Free to use',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80',
-      alt: 'Sunlit study desk with notebook, green houseplants, and sticky note checklist for Study, Workout, Game, and Group Activity',
-      notebookLines: [],
-    },
     quickPresets: [
       { icon: '⏱', label: '1 Minute', sublabel: 'Quick break', sec: 60 },
       { icon: '⏱', label: '3 Minutes', sublabel: 'Short focus', sec: 180 },
@@ -2129,12 +1810,6 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       tipsList: [],
       problemsTitle: 'Spinner Timer vs Random Spinner Wheel',
       problemsRows: [],
-    },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80',
-      alt: 'Glowing green segmented spinner countdown dial',
-      checklist: [],
-      quote: '“A simple spinning timer to keep activities on track.”',
     },
   },
   'time-calculator': {
@@ -5992,11 +5667,6 @@ export function getToolEditorialData(tool: ToolDefinition): ToolEditorialData {
         'Fullscreen display',
         'Zero setup required',
       ],
-      heroImage: custom.heroImage || {
-        src: 'https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=800&q=80',
-        alt: `${tool.name} workspace on wooden desk`,
-        notebookLines: ['Good Focus', 'Better Work', 'Brighter You'],
-      },
       quickPresets: custom.quickPresets || [
         { icon: '⏱', label: '1 min', sublabel: 'Quick Sprint', sec: 60 },
         { icon: '⏱', label: '5 min', sublabel: 'Short Block', sec: 300 },
@@ -6095,12 +5765,6 @@ export function getToolEditorialData(tool: ToolDefinition): ToolEditorialData {
           },
         ],
       },
-      quoteCard: custom.quoteCard || {
-        src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-        alt: 'Productivity journal and pen on desk',
-        checklist: ['Focus', 'Measure', 'Reflect', 'Improve'],
-        quote: '“Time is the most valuable thing a person can spend.”',
-      },
     };
   }
 
@@ -6116,11 +5780,6 @@ export function getToolEditorialData(tool: ToolDefinition): ToolEditorialData {
       'Fullscreen display',
       'Zero setup required',
     ],
-    heroImage: {
-      src: 'https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=800&q=80',
-      alt: `${tool.name} workspace on wooden desk`,
-      notebookLines: ['Good Focus', 'Better Work', 'Brighter You'],
-    },
     quickPresets: [
       { icon: '⏱', label: '1 min', sublabel: 'Quick Sprint', sec: 60 },
       { icon: '⏱', label: '5 min', sublabel: 'Short Block', sec: 300 },
@@ -6218,12 +5877,6 @@ export function getToolEditorialData(tool: ToolDefinition): ToolEditorialData {
           solution: 'Click anywhere on the tool or toggle the audio icon to enable sound',
         },
       ],
-    },
-    quoteCard: {
-      src: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80',
-      alt: 'Productivity journal and pen on desk',
-      checklist: ['Focus', 'Measure', 'Reflect', 'Improve'],
-      quote: '“Time is the most valuable thing a person can spend.”',
     },
   };
 }

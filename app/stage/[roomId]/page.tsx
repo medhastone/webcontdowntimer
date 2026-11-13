@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import StageTimerComponent from '@/components/tools/StageTimerComponent';
 import { buildPageMetadata } from '@/lib/seo-metadata';
+import BreadcrumbJsonLd from '@/components/common/BreadcrumbJsonLd';
 
 export async function generateMetadata({
   params,
@@ -29,8 +30,17 @@ export default async function RemoteStageDisplayPage({
   const roomId = resolved.roomId || 'annual-conf-2026';
 
   return (
-    <Suspense fallback={<div className="fixed inset-0 bg-[#0B1120] text-white flex items-center justify-center font-mono">Connecting to Stage Sync...</div>}>
-      <StageTimerComponent initialViewMode="display" initialRoomId={roomId} />
-    </Suspense>
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Stage Timer', path: '/stage-timer' },
+          { name: 'Live Stage Display', path: `/stage/${roomId}` },
+        ]}
+      />
+      <Suspense fallback={<div className="fixed inset-0 bg-[#0B1120] text-white flex items-center justify-center font-mono">Connecting to Stage Sync...</div>}>
+        <StageTimerComponent initialViewMode="display" initialRoomId={roomId} />
+      </Suspense>
+    </>
   );
 }

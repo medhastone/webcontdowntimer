@@ -2,6 +2,7 @@ import { buildPageMetadata } from '@/lib/seo-metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ShieldCheck, Zap, Globe, Clock, Tv } from 'lucide-react';
+import BreadcrumbJsonLd from '@/components/common/BreadcrumbJsonLd';
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata('/about');
@@ -10,6 +11,12 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'About & Methodology', path: '/about' },
+        ]}
+      />
       <div className="space-y-4">
         <span className="text-xs font-mono uppercase text-neutral-500">About &amp; Technical Methodology</span>
         <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-neutral-900 dark:text-white">

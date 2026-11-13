@@ -38,6 +38,20 @@ export default function SensoryTimersCollectionPage() {
     '@context': 'https://schema.org',
     '@graph': [
       {
+        '@type': 'WebApplication',
+        name: 'Sensory Visual Timers',
+        url: 'https://WebCountDownTimer.com/timers/sensory-timers',
+        applicationCategory: 'UtilitiesApplication',
+        operatingSystem: 'All',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+        description:
+          'A collection of calm, visually engaging timers with gentle motion and distraction-free designs including Sand, Liquid, Rainbow, Bubble, Frost, Snow, Lichen, and Moon Timers.',
+      },
+      {
         '@type': 'CollectionPage',
         name: 'Sensory Visual Timers',
         url: 'https://WebCountDownTimer.com/timers/sensory-timers',
@@ -51,7 +65,7 @@ export default function SensoryTimersCollectionPage() {
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: 'https://WebCountDownTimer.com/',
+            item: 'https://WebCountDownTimer.com',
           },
           {
             '@type': 'ListItem',

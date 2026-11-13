@@ -7,6 +7,7 @@ import {
   getToolCanonicalPath,
 } from '@/lib/tools-registry';
 import { getDurationPageData, APPROVED_DURATION_SLUGS } from '@/lib/duration-timers-data';
+import BreadcrumbJsonLd from '@/components/common/BreadcrumbJsonLd';
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata('/sitemap');
@@ -35,6 +36,12 @@ export default function HtmlSitemapPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'HTML Sitemap', path: '/sitemap' },
+        ]}
+      />
       <div className="space-y-3 border-b border-[#E4E1D9] dark:border-[#262D28] pb-8">
         <span className="text-xs font-mono uppercase tracking-wider text-[#365C4B] dark:text-[#5E917A]">
           Site Architecture &amp; Index

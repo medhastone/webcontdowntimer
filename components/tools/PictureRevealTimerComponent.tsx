@@ -44,49 +44,49 @@ const SAMPLE_IMAGES: SampleImage[] = [
   {
     id: 'golden-retriever',
     label: 'Golden Retriever',
-    url: 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1000&q=85',
+    url: '/images/reveal/golden-retriever.webp',
     hint: 'Friendly dog in nature',
   },
   {
     id: 'mountain-lake',
     label: 'Mountain Lake',
-    url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=85',
+    url: '/images/reveal/mountain-lake.webp',
     hint: 'Alpine peaks & reflection',
   },
   {
     id: 'macaw-parrot',
     label: 'Macaw Parrot',
-    url: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=1000&q=85',
+    url: '/images/reveal/macaw-parrot.webp',
     hint: 'Tropical blue & gold bird',
   },
   {
     id: 'tabby-cat',
     label: 'Tabby Cat',
-    url: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1000&q=85',
+    url: '/images/reveal/tabby-cat.webp',
     hint: 'Curious whiskered feline',
   },
   {
     id: 'sunflowers',
     label: 'Sunflowers',
-    url: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=1000&q=85',
+    url: '/images/reveal/sunflowers.webp',
     hint: 'Bright yellow summer blooms',
   },
   {
     id: 'red-sports-car',
     label: 'Red Sports Car',
-    url: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1000&q=85',
+    url: '/images/reveal/red-sports-car.webp',
     hint: 'Classic red supercar',
   },
   {
     id: 'birthday-cake',
     label: 'Birthday Cake',
-    url: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85',
+    url: '/images/reveal/birthday-cake.webp',
     hint: 'Celebration cake with candles',
   },
   {
     id: 'eiffel-tower',
     label: 'Eiffel Tower',
-    url: 'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?auto=format&fit=crop&w=1000&q=85',
+    url: '/images/reveal/eiffel-tower.webp',
     hint: 'Iconic Paris landmark',
   },
 ];
@@ -524,6 +524,8 @@ export default function PictureRevealTimerComponent() {
                   <img
                     src={imageUrl}
                     alt={imageLabel || 'Hidden picture reveal'}
+                    width={800}
+                    height={533}
                     referrerPolicy="no-referrer"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
@@ -659,6 +661,9 @@ export default function PictureRevealTimerComponent() {
                         <img
                           src={imageUrl}
                           alt={imageLabel || 'Current image preview'}
+                          width={800}
+                          height={533}
+                          loading="lazy"
                           referrerPolicy="no-referrer"
                           className="h-full w-full object-cover"
                         />
@@ -1095,6 +1100,9 @@ export default function PictureRevealTimerComponent() {
                 <img
                   src={sample.url}
                   alt={sample.label}
+                  width={800}
+                  height={533}
+                  loading="lazy"
                   referrerPolicy="no-referrer"
                   className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />

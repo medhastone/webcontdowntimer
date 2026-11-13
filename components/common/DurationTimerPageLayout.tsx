@@ -24,7 +24,7 @@ export default function DurationTimerPageLayout({ data }: DurationTimerPageLayou
   const faqsForSchema = specificContent ? specificContent.faqs : data.faqs;
 
   const breadcrumbs = [
-    { name: 'Home', item: 'https://WebCountDownTimer.com/' },
+    { name: 'Home', item: 'https://WebCountDownTimer.com' },
     { name: 'Timers', item: 'https://WebCountDownTimer.com/category/timers' },
     { name: data.h1, item: `https://WebCountDownTimer.com/${data.slug}` },
   ];
@@ -38,7 +38,7 @@ export default function DurationTimerPageLayout({ data }: DurationTimerPageLayou
         faqs={faqsForSchema}
         breadcrumbs={breadcrumbs}
         steps={data.howToUseSteps}
-        categoryLabel="Online Countdown Timers"
+        applicationCategory="UtilitiesApplication"
       />
 
       {/* 1. BREADCRUMB BAR */}

@@ -4,14 +4,32 @@ import Link from 'next/link';
 import { Home, ChevronRight, GraduationCap } from 'lucide-react';
 import ClassroomTimerDashboard from '@/components/tools/ClassroomTimerDashboard';
 import ToolSpecificContentSection from '@/components/common/ToolSpecificContentSection';
+import SEOStructuredData from '@/components/common/SEOStructuredData';
+import { getToolSpecificContent } from '@/lib/tool-specific-content';
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata('/classroom-timer');
 }
 
 export default function ClassroomTimerPage() {
+  const specificContent = getToolSpecificContent('classroom-timer');
+  const breadcrumbs = [
+    { name: 'Home', item: 'https://WebCountDownTimer.com' },
+    { name: 'Classroom Timers', item: 'https://WebCountDownTimer.com/category/education' },
+    { name: 'Classroom Timer', item: 'https://WebCountDownTimer.com/classroom-timer' },
+  ];
+
   return (
     <main className="min-h-screen bg-[#F8FAFC] dark:bg-[#0B0F19] text-slate-900 dark:text-slate-100 pb-12 transition-colors">
+      <SEOStructuredData
+        toolName="Classroom Timer"
+        description="Keep your class focused, organized and on track with a simple visual timer for lessons, activities, group work and breaks."
+        url="https://WebCountDownTimer.com/classroom-timer"
+        faqs={specificContent ? specificContent.faqs : []}
+        breadcrumbs={breadcrumbs}
+        steps={specificContent ? specificContent.howToUse : []}
+        applicationCategory="UtilitiesApplication"
+      />
       {/* ================================================================= */}
       {/* FULL-WIDTH HERO BANNER WITH INTEGRATED CHALKBOARD SCENE           */}
       {/* ================================================================= */}
