@@ -4,6 +4,8 @@ import { CATEGORIES_DATA } from '@/lib/category-data';
 import { APPROVED_DURATION_SLUGS } from '@/lib/duration-timers-data';
 import { SITE_BASE_URL, ROUTE_SEO_REGISTRY } from '@/lib/seo-metadata';
 
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE_BASE_URL.replace(/\/+$/, '');
   const lastModified = new Date();

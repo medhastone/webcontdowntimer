@@ -16,7 +16,10 @@ import {
   BookOpen,
 } from 'lucide-react';
 import { playTimerSound } from '@/lib/sound';
-import type { SearchGroundingResponse } from '@/app/api/search-grounding/route';
+import {
+  buildFallbackClassroomContext,
+  type SearchGroundingResponse,
+} from '@/lib/search-grounding-fallback';
 
 const CLASSROOM_GROUNDING_TOPICS = [
   {
@@ -100,9 +103,15 @@ export default function ClassroomNoiseMeterComponent() {
         if (res.ok) {
           const data: SearchGroundingResponse = await res.json();
           setGroundingData(data);
+        } else {
+          setGroundingData(
+            buildFallbackClassroomContext(queryToRun, currentLevel, currentThreshold, alerts)
+          );
         }
       } catch {
-        // Keep previous grounded data if offline
+        setGroundingData(
+          buildFallbackClassroomContext(queryToRun, currentLevel, currentThreshold, alerts)
+        );
       } finally {
         setIsLoadingGrounding(false);
       }

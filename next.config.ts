@@ -36,6 +36,11 @@ const VISUAL_TIMER_SUBPATH_SLUGS = [
   'train-timer',
 ];
 
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
+const githubPagesBasePath = isGithubPages
+  ? (process.env.NEXT_PUBLIC_BASE_PATH || '').replace(/\/+$/, '')
+  : '';
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   eslint: {
@@ -44,65 +49,75 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  async redirects() {
-    const explicitMinuteRedirects = REDIRECTED_MINUTES.map((m) => ({
-      source: `/${m}-minute-timer`,
-      destination: `/countdown-timer?m=${m}`,
-      statusCode: 301 as const,
-    }));
+  ...(githubPagesBasePath
+    ? {
+        basePath: githubPagesBasePath,
+        assetPrefix: githubPagesBasePath,
+      }
+    : {}),
+  ...(!isGithubPages
+    ? {
+        async redirects() {
+          const explicitMinuteRedirects = REDIRECTED_MINUTES.map((m) => ({
+            source: `/${m}-minute-timer`,
+            destination: `/countdown-timer?m=${m}`,
+            statusCode: 301 as const,
+          }));
 
-    const rootVisualTimerRedirects = VISUAL_TIMER_SUBPATH_SLUGS.map((slug) => ({
-      source: `/${slug}`,
-      destination: `/timers/${slug}`,
-      statusCode: 301 as const,
-    }));
+          const rootVisualTimerRedirects = VISUAL_TIMER_SUBPATH_SLUGS.map((slug) => ({
+            source: `/${slug}`,
+            destination: `/timers/${slug}`,
+            statusCode: 301 as const,
+          }));
 
-    return [
-      // Duplicate tool & category URL canonicalization (301)
-      {
-        source: '/international-meeting-planner',
-        destination: '/meeting-planner',
-        statusCode: 301,
-      },
-      {
-        source: '/education',
-        destination: '/category/education',
-        statusCode: 301,
-      },
-      {
-        source: '/category/everyday',
-        destination: '/category/timers',
-        statusCode: 301,
-      },
-      {
-        source: '/category/stage',
-        destination: '/category/events',
-        statusCode: 301,
-      },
-      {
-        source: '/category/world-clock',
-        destination: '/category/world',
-        statusCode: 301,
-      },
-      {
-        source: '/timers/visual-timer',
-        destination: '/visual-timer',
-        statusCode: 301,
-      },
-      ...rootVisualTimerRedirects,
-      ...explicitMinuteRedirects,
-      // Catch any other /N-minute-timer route except the 6 kept pages (1, 5, 10, 15, 30, 60)
-      {
-        source: '/:n((?!1$|5$|10$|15$|30$|60$)\\d+)-minute-timer',
-        destination: '/countdown-timer?m=:n',
-        statusCode: 301,
-      },
-    ];
-  },
+          return [
+            // Duplicate tool & category URL canonicalization (301)
+            {
+              source: '/international-meeting-planner',
+              destination: '/meeting-planner',
+              statusCode: 301,
+            },
+            {
+              source: '/education',
+              destination: '/category/education',
+              statusCode: 301,
+            },
+            {
+              source: '/category/everyday',
+              destination: '/category/timers',
+              statusCode: 301,
+            },
+            {
+              source: '/category/stage',
+              destination: '/category/events',
+              statusCode: 301,
+            },
+            {
+              source: '/category/world-clock',
+              destination: '/category/world',
+              statusCode: 301,
+            },
+            {
+              source: '/timers/visual-timer',
+              destination: '/visual-timer',
+              statusCode: 301,
+            },
+            ...rootVisualTimerRedirects,
+            ...explicitMinuteRedirects,
+            // Catch any other /N-minute-timer route except the 6 kept pages (1, 5, 10, 15, 30, 60)
+            {
+              source: '/:n((?!1$|5$|10$|15$|30$|60$)\\d+)-minute-timer',
+              destination: '/countdown-timer?m=:n',
+              statusCode: 301,
+            },
+          ];
+        },
+      }
+    : {}),
   images: {
-    unoptimized: false,
+    unoptimized: isGithubPages,
   },
-  output: process.env.VERCEL ? undefined : 'standalone',
+  output: isGithubPages ? 'export' : process.env.VERCEL ? undefined : 'standalone',
   transpilePackages: ['motion'],
   webpack: (config, {dev}) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.

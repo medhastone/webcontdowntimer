@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-static';
+
 export async function GET() {
   const content = `# WebCountDownTimer.com — Precision Online Timers, Visual Timers, World Clocks & Time Calculators
 

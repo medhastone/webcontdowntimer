@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
+    "build:gh-pages": "node scripts/build-gh-pages.mjs",
     "start": "next start",
     "lint": "eslint .",
     "test": "node --import tsx --test 'tests/**/*.test.ts'",

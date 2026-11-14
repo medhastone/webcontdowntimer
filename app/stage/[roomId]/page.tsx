@@ -4,6 +4,13 @@ import StageTimerComponent from '@/components/tools/StageTimerComponent';
 import { buildPageMetadata } from '@/lib/seo-metadata';
 import BreadcrumbJsonLd from '@/components/common/BreadcrumbJsonLd';
 
+export function generateStaticParams() {
+  return [
+    { roomId: 'global-product-summit' },
+    { roomId: 'annual-conf-2026' },
+  ];
+}
+
 export async function generateMetadata({
   params,
 }: {

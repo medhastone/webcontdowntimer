@@ -73,15 +73,23 @@ export default function CountdownTimerComponent({
     { label: '30 min', sec: 1800 },
   ];
 
-  // Sync ?m=N from URL query string on client mount if present
+  // Sync ?m=N or ?s=N from URL query string on client mount if present
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
     const mParam = params.get('m');
+    const sParam = params.get('s');
     if (mParam) {
       const m = Number(mParam);
       if (Number.isFinite(m) && m > 0 && m <= 1440) {
         const sec = Math.round(m * 60);
+        setTotalSeconds(sec);
+        timer.setDuration(sec * 1000);
+      }
+    } else if (sParam) {
+      const s = Number(sParam);
+      if (Number.isFinite(s) && s > 0 && s <= 86400) {
+        const sec = Math.round(s);
         setTotalSeconds(sec);
         timer.setDuration(sec * 1000);
       }

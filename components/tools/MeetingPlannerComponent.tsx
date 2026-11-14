@@ -12,7 +12,10 @@ import {
   ExternalLink,
   CalendarClock,
 } from 'lucide-react';
-import type { SearchGroundingResponse } from '@/app/api/search-grounding/route';
+import {
+  buildFallbackMeetingContext,
+  type SearchGroundingResponse,
+} from '@/lib/search-grounding-fallback';
 
 const MEETING_GROUNDING_TOPICS = [
   {
@@ -73,9 +76,11 @@ export default function MeetingPlannerComponent() {
         if (res.ok) {
           const data: SearchGroundingResponse = await res.json();
           setGroundingData(data);
+        } else {
+          setGroundingData(buildFallbackMeetingContext(queryToRun, cityNames, utcH));
         }
       } catch {
-        // Keep previous grounded data if offline
+        setGroundingData(buildFallbackMeetingContext(queryToRun, cityNames, utcH));
       } finally {
         setIsLoadingGrounding(false);
       }
