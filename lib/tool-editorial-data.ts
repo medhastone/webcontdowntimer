@@ -5630,6 +5630,531 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       ],
     },
   },
+
+  'custom-timer': {
+    categorySlug: 'timers',
+    categoryLabel: 'Timers & Stopwatches',
+    heroSubtitle:
+      'Build, customize, and save your own personalized countdown timers with custom titles, task notes, icons, color themes, and 10 animated visual styles—accessible from any page via your header Saved List.',
+    featurePills: [
+      '10 animated visual styles',
+      'Custom titles, notes & icons',
+      'Header Saved List + Pre-Saved templates',
+      'Shareable URL parameters',
+    ],
+    quickPresets: [
+      { icon: '🧠', label: '25 min', sublabel: 'Deep Work', sec: 1500 },
+      { icon: '☕', label: '5 min', sublabel: 'Coffee Break', sec: 300 },
+      { icon: '🔥', label: '7 min', sublabel: 'HIIT Circuit', sec: 420 },
+      { icon: '📚', label: '45 min', sublabel: 'Study Block', sec: 2700 },
+      { icon: '🧘', label: '10 min', sublabel: 'Meditation', sec: 600 },
+    ],
+    steps: [
+      { step: 1, title: 'Name your timer & add notes', description: 'Type a custom title (e.g., "Morning Deep Work") and optional task instructions or reminders.' },
+      { step: 2, title: 'Pick icon, color & visual style', description: 'Select from 12 icons, 8 accent colors, and 10 live-animated countdown visuals.' },
+      { step: 3, title: 'Set duration & save to list', description: 'Enter Hours, Minutes, and Seconds, then click "Save to My Saved List" for instant header access.' },
+      { step: 4, title: 'Launch fullscreen or share link', description: 'Press Spacebar to start, F for fullscreen display, or copy a shareable URL with your exact setup.' },
+    ],
+    guide: {
+      tableOfContents: [
+        'What Is the Custom Timer Builder?',
+        'How the 10 Animated Visual Styles & Saved List Work',
+        'How to Build & Save Your Custom Timer',
+        'Key Features & Personalization Options',
+        'Practical Workflows & Use Cases',
+        'Who Benefits Most?',
+        'Pro Tips for Custom Timer Routines',
+        'Troubleshooting & FAQ Reference',
+      ],
+      whatIsTitle: 'What Is the Custom Timer Builder?',
+      whatIsBody: [
+        'Standard online timers force you to re-enter your duration, re-select your visual theme, and remember which task you are timing every single session. The Custom Timer Builder solves this by combining a live visual countdown stage with a personal routine studio where you can name each timer, attach task instructions, pick an icon and color theme, and choose from 10 distinct animated visuals.',
+        'Whether you are a teacher rotating through named classroom stations, a developer alternating between 25-minute coding sprints and 5-minute posture breaks, or a presenter rehearsing a keynote, your saved timers stay pinned in the top navigation bar under "Saved List" so you can launch or delete them from anywhere on the site.',
+      ],
+      howItWorksTitle: 'How the 10 Animated Visual Styles & Saved List Work',
+      howItWorksBody: [
+        'Every custom timer combines three layers: metadata (custom title, subtitle/notes, category icon, and color palette), a drift-free monotonic countdown engine (using Date.now() delta math so background tabs never lose a second), and a live-switchable visual renderer supporting Circular Ring, Hourglass Sand, Traffic Light, Liquid Wave, Progress Bar, Rainbow Arc, Cozy Candle, Pixel Grid, Neon Pulse, and Minimal Digital.',
+        'When you click "Save to My Saved List", your configuration is serialized to local browser storage (localStorage) and broadcast via a custom window event so the global Header Saved List updates immediately. We also pre-load 6 starter Pre-Saved timers so you can test different visual styles right away, delete any preset you do not need, or restore the starter pack with a single click.',
+      ],
+      calloutNote:
+        'Every custom timer can also be shared via a self-contained URL query string—send your link to students, teammates, or clients and your exact title, notes, duration, and visual animation load automatically.',
+      howToUseTitle: 'How to Build & Manage Custom Timers',
+      howToUseSteps: [
+        'Enter your timer Title and optional Description/Task Notes in the builder panel.',
+        'Choose a custom Icon, Color Theme, and Duration (via quick buttons or exact Hours, Minutes, Seconds).',
+        'Select one of the 10 Animated Visual Styles and preview it live on the countdown stage.',
+        'Click "Save to My Saved List" to pin the timer to your header dropdown, or click the Trash icon on any saved item to remove it.',
+      ],
+      featuresTitle: 'Custom Timer Studio Capabilities',
+      featuresList: [
+        '10 Live Animated Visuals: Switch anytime between Circular Ring, Hourglass Sand, Traffic Light, Liquid Wave, Progress Bar, Rainbow Arc, Cozy Candle, Pixel Grid, Neon Pulse, and Minimal Digital.',
+        'Global Header Saved List: Launch, inspect, or delete any saved or pre-saved timer directly from the site header dropdown.',
+        '6 Pre-Saved Starter Templates: Includes ready-to-run Deep Work, Coffee Break, HIIT, Study Block, Meditation, and Presentation timers with one-click delete and restore.',
+        'Responsive Fullscreen Stage: Scales the visual graphic and digital readout dynamically across mobile phones, tablets, laptops, and 4K classroom projectors.',
+        'Keyboard & Wake Lock Support: Full support for Spacebar (Start/Pause), R (Reset), F (Fullscreen), ? (Shortcuts modal), and Screen Wake Lock.',
+      ],
+      practicalExamples: [
+        { icon: 'GraduationCap', title: 'Classroom Station Rotations', description: 'Display "Station 3: Microscope Lab — 12 Mins" with a Traffic Light or Hourglass visual so students know both the task and remaining time.' },
+        { icon: 'Monitor', title: 'Deep Work & Coding Sprints', description: 'Run a 25-minute Circular Ring or Pixel Grid timer titled "Feature Sprint — No Slack" and switch to a 5-minute Liquid Wave break.' },
+        { icon: 'Flame', title: 'Home HIIT & Mobility Sets', description: 'Launch a 7-minute Neon Pulse circuit or 10-minute Cozy Candle evening stretch from your Saved List.' },
+        { icon: 'Presentation', title: 'Keynote & Pitch Rehearsals', description: 'Use a 15-minute Traffic Light custom timer that shifts automatically from green to amber (under 30% left) to red (under 10% left).' },
+      ],
+      whoBenefitsTitle: 'Who Uses the Custom Timer Studio?',
+      whoBenefitsList: [
+        'Teachers and professors managing named daily classroom transitions and lab blocks',
+        'Software engineers, writers, and students with repeatable deep-work blocks',
+        'Neurodivergent and ADHD users who benefit from pairing explicit task notes with visual time cues',
+        'Event moderators, coaches, and facilitators who switch rapidly between pre-built session durations',
+      ],
+      tipsTitle: 'Pro Tips for Getting the Most Out of Custom Timers',
+      tipsList: [
+        'Write your single most important outcome in the Description field (e.g., "Draft 300 words of Section 2 before chime") to prevent task-switching.',
+        'Use Traffic Light mode for speeches and exams where participants need unmistakable green, yellow, and red phase warnings.',
+        'Bookmark or copy the Share Link of your favorite custom timer to embed it in Notion, Google Classroom, or team wikis.',
+      ],
+      problemsTitle: 'Troubleshooting Custom & Saved Timers',
+      problemsRows: [
+        { problem: 'Saved timer missing on another device', cause: 'Saved List is stored privately in local browser storage', solution: 'Use the "Share Link" button to open and save the exact timer URL on your second device' },
+        { problem: 'Accidentally deleted a Pre-Saved timer', cause: 'Clicked the Trash icon on a starter preset', solution: 'Click "Restore Pre-Saved" in the Saved Timers drawer or page library to bring back all 6 starter timers' },
+        { problem: 'No sound at 00:00 completion', cause: 'Sound toggle is muted or system volume is off', solution: 'Ensure the Sound switch is green and click Start to unlock browser Web Audio' },
+      ],
+    },
+  },
+
+  'flip-clock': {
+    categorySlug: 'timers',
+    categoryLabel: 'Timers & Stopwatches',
+    heroSubtitle:
+      'A realistic retro mechanical split-flap clock combining a Live Time-of-Day Clock (with global time-zone selector), a Flip Countdown Timer, and a Flip Stopwatch.',
+    featurePills: [
+      '3-in-1: Live Clock, Countdown & Stopwatch',
+      '3D mechanical split-flap cards',
+      '12h / 24h & Time Zone selector',
+      'Dark & Light studio themes',
+    ],
+    quickPresets: [
+      { icon: '🕰️', label: 'Live Clock', sublabel: 'Wall Time', sec: 0 },
+      { icon: '⏱', label: '10 min', sublabel: 'Flip Countdown', sec: 600 },
+      { icon: '⏱', label: '25 min', sublabel: 'Pomodoro Flip', sec: 1500 },
+      { icon: '⏱', label: '45 min', sublabel: 'Study Block', sec: 2700 },
+      { icon: '⏱', label: '60 min', sublabel: 'Full Hour', sec: 3600 },
+    ],
+    steps: [
+      { step: 1, title: 'Select Clock, Countdown, or Stopwatch', description: 'Switch modes at the top of the split-flap display.' },
+      { step: 2, title: 'Configure display format & zone', description: 'Toggle 12-hour AM/PM or 24-hour time, Show/Hide Seconds, and select Local Time or any global city.' },
+      { step: 3, title: 'Choose Dark or Light housing', description: 'Pick classic matte-black split-flap cards or warm ivory cards.' },
+      { step: 4, title: 'Enter fullscreen desk mode', description: 'Press F to turn a secondary monitor, iPad, or laptop into a dedicated desk timepiece.' },
+    ],
+    guide: {
+      tableOfContents: [
+        'What Is the Online Flip Clock?',
+        'How 3D Split-Flap Mechanics & Time Zones Work',
+        'How to Use Live Clock, Countdown & Stopwatch Modes',
+        'Key Display & Audio Features',
+        'Best Workspace & Studio Setups',
+        'Who Uses the Flip Clock?',
+        'Tips for Ambient Desk Displays',
+        'Common Questions & Troubleshooting',
+      ],
+      whatIsTitle: 'What Is the Online Flip Clock?',
+      whatIsBody: [
+        'Inspired by mid-century Italian Solari departure boards and classic electro-mechanical desk clocks, the Online Flip Clock renders large, high-contrast split-flap numerals that physically hinge and drop as each second or minute advances.',
+        'Unlike single-purpose screensavers that require paid downloads, this browser-native timepiece integrates three full instruments in one view: a Live Time-of-Day Clock with international time-zone support, a configurable Flip Countdown Timer, and a Flip Stopwatch.',
+      ],
+      howItWorksTitle: 'How 3D Split-Flap Mechanics & Time Zones Work',
+      howItWorksBody: [
+        'Each digit card is split into upper and lower halves animated with hardware-accelerated 3D CSS perspective transforms. In Live Clock mode, the clock queries your system clock and the browser’s IANA Intl.DateTimeFormat database to display exact local or international wall time.',
+        'In Countdown and Stopwatch modes, elapsed and remaining time are calculated against monotonic epoch timestamps (Date.now()) so tab switching or computer sleep never introduces drift.',
+      ],
+      calloutNote:
+        'Want a calmer peripheral desk display while writing or studying? Toggle off "Show Seconds" so the split-flap cards only turn once per minute.',
+      howToUseTitle: 'How to Configure Your Flip Clock',
+      howToUseSteps: [
+        'Choose Live Clock, Countdown, or Stopwatch mode.',
+        'In Live Clock mode, select 12h or 24h format and pick Local Time or a target world time zone.',
+        'Toggle Show Seconds, Tick Sound, and Dark/Light theme according to your room lighting.',
+        'Press F for borderless fullscreen mode on your desk monitor or tablet stand.',
+      ],
+      featuresTitle: 'Flip Clock Highlights',
+      featuresList: [
+        'Three Modes in One: Seamlessly switch between Live Wall Clock, Countdown Timer, and Elapsed Stopwatch.',
+        'Global Time Zone Selector: Display live split-flap time for New York, London, Tokyo, Sydney, UTC, or your local zone.',
+        'Show or Hide Seconds: Run a 3-panel HH:MM:SS display or a calm 2-panel HH:MM display.',
+        'Optional Mechanical Tick & Chime: Synthesizes crisp split-flap card ticks and completion chimes via Web Audio API.',
+      ],
+      practicalExamples: [
+        { icon: 'Monitor', title: 'Dual-Monitor Desk Setup', description: 'Keep a full-screen matte-black Flip Clock on your secondary display or docked tablet.' },
+        { icon: 'Tv', title: 'Study-With-Me & Livestream Overlay', description: 'Capture the clean split-flap window in OBS for YouTube or Twitch productivity streams.' },
+        { icon: 'GraduationCap', title: 'Exam Hall Wall Clock', description: 'Project official 12h or 24h wall time at the front of a testing room.' },
+        { icon: 'Globe', title: 'Remote Team HQ Clock', description: 'Pin your headquarters time zone so distributed teammates always know home-office hours.' },
+      ],
+      whoBenefitsTitle: 'Who Benefits From the Flip Clock?',
+      whoBenefitsList: [
+        'Remote workers and designers curating minimalist desk setups',
+        'Study-With-Me creators and livestreamers needing a crisp on-camera clock',
+        'Teachers and exam proctors projecting a distraction-free room clock',
+        'Anyone repurposing an old iPad or laptop into a dedicated bedside or shelf clock',
+      ],
+      tipsTitle: 'Pro Tips for Flip Clock Displays',
+      tipsList: [
+        'Enable the Dark theme on OLED tablets or monitors to minimize glare and reduce power consumption.',
+        'Enable Screen Wake Lock before stepping away so your tablet or laptop screen stays illuminated.',
+      ],
+      problemsTitle: 'Troubleshooting Flip Clock Display',
+      problemsRows: [
+        { problem: 'Screen dims after 5 minutes', cause: 'OS power-saving sleep timer', solution: 'Toggle on "Keep Screen Awake" (Wake Lock) in the control bar' },
+        { problem: 'Seconds movement feels distracting', cause: 'Every-second card flip in peripheral vision', solution: 'Toggle off "Show Seconds" for a calm HH:MM display' },
+      ],
+    },
+  },
+
+  'flip-timer': {
+    categorySlug: 'timers',
+    categoryLabel: 'Timers & Stopwatches',
+    heroSubtitle:
+      'A tactile mechanical split-flap countdown timer with 3D flipping cards, 4 studio themes, custom session labels, and optional mechanical tick sounds.',
+    featurePills: [
+      '3D split-flap countdown cards',
+      '4 curated studio themes',
+      'Optional mechanical tick audio',
+      'Fullscreen projection ready',
+    ],
+    quickPresets: [
+      { icon: '⏱', label: '5 min', sublabel: 'Short Break', sec: 300 },
+      { icon: '⏱', label: '15 min', sublabel: 'Standup', sec: 900 },
+      { icon: '⏱', label: '25 min', sublabel: 'Pomodoro', sec: 1500 },
+      { icon: '⏱', label: '45 min', sublabel: 'Deep Work', sec: 2700 },
+      { icon: '⏱', label: '60 min', sublabel: '1 Hour Block', sec: 3600 },
+    ],
+    steps: [
+      { step: 1, title: 'Set your countdown duration', description: 'Pick a quick preset (1m to 60m) or enter custom Hours, Minutes, and Seconds.' },
+      { step: 2, title: 'Select a split-flap theme', description: 'Choose Classic Dark, Warm Ivory, Retro Amber, or Midnight Slate.' },
+      { step: 3, title: 'Configure audio & session label', description: 'Add a custom task title and toggle mechanical flip ticks or completion chime.' },
+      { step: 4, title: 'Start & expand fullscreen', description: 'Press Spacebar to start and F for full-viewport readability.' },
+    ],
+    guide: {
+      tableOfContents: [
+        'What Is the Split-Flap Flip Timer?',
+        'Why Mechanical Flip Cards Improve Time Awareness',
+        'How to Use the Flip Timer',
+        'Themes & Customization Settings',
+        'Real-World Scenarios',
+        'Who Benefits Most?',
+        'Tips for Focus & Classroom Projection',
+        'Troubleshooting',
+      ],
+      whatIsTitle: 'What Is the Split-Flap Flip Timer?',
+      whatIsBody: [
+        'The Flip Timer is a dedicated countdown clock modeled after vintage split-flap station boards and retro desk chronometers. Every second or minute transition is marked by a crisp 3D card flip across Hours, Minutes, and Seconds panels.',
+        'Because each digit sits inside its own high-contrast card housing, the remaining time is legible from across a classroom, conference room, or home gym while adding tactile visual rhythm to study and work blocks.',
+      ],
+      howItWorksTitle: 'Why Mechanical Flip Cards Improve Time Awareness',
+      howItWorksBody: [
+        'Flat digital numbers change silently without catching peripheral vision, which makes it easy to lose track of 30 minutes during an exam or coding sprint. The subtle hinge motion of a split-flap card provides a gentle visual cue as each minute turns over.',
+        'Under the hood, the countdown engine calculates exact remaining milliseconds from a monotonic target timestamp so the flip animation stays accurate even if you switch tabs and return later.',
+      ],
+      calloutNote:
+        'Add a custom session title (such as "Section B: Essay Writing — 40 Mins") above the split-flap board so everyone in the room knows the active task.',
+      howToUseTitle: 'How to Run a Split-Flap Countdown',
+      howToUseSteps: [
+        'Click a preset duration or enter custom Hours, Minutes, and Seconds.',
+        'Choose from Classic Dark, Warm Ivory, Retro Amber, or Midnight Slate themes.',
+        'Toggle the mechanical tick sound and completion alarm on or off.',
+        'Press Spacebar to start/pause, R to reset, and F for fullscreen.',
+      ],
+      featuresTitle: 'Flip Timer Key Features',
+      featuresList: [
+        'Authentic 3D Split-Flap Animation: Smooth upper/lower card hinge physics on every digit change.',
+        '4 Curated Color Themes: Classic Dark, Warm Ivory, Retro Amber, and Midnight Slate.',
+        'Custom Session Banner: Display your current subject, meeting agenda item, or workout block.',
+        'Zero-Drift Timestamp Accuracy: Never loses time when browser tabs are backgrounded.',
+      ],
+      practicalExamples: [
+        { icon: 'BookOpen', title: 'Pomodoro & Exam Sprints', description: 'Run 25-minute or 50-minute study blocks with high-contrast mechanical numerals.' },
+        { icon: 'Presentation', title: 'Workshop & Breakout Pacing', description: 'Project the Retro Amber or Classic Dark board during 15-minute group exercises.' },
+        { icon: 'Tv', title: 'Livestream Starting-Soon Screen', description: 'Use a 5-minute split-flap countdown before webinars and live broadcasts.' },
+        { icon: 'CheckSquare', title: 'Daily Timeboxing', description: 'Keep inbox triage and administrative tasks strictly within a 20-minute window.' },
+      ],
+      whoBenefitsTitle: 'Who Benefits From the Flip Timer?',
+      whoBenefitsList: [
+        'Students and researchers running structured study and writing blocks',
+        'Teachers and exam proctors projecting clear front-of-room countdowns',
+        'Workshop facilitators and agile scrum masters timing team sprints',
+        'Content creators recording time-lapses or study streams',
+      ],
+      tipsTitle: 'Tips for Best Results',
+      tipsList: [
+        'Use the Retro Amber theme in dim lecture halls for warm, low-glare legibility.',
+        'Keep the mechanical tick sound off during silent exams, and turn it on during fast-paced 1-to-5-minutelightning rounds.',
+      ],
+      problemsTitle: 'Common Questions & Solutions',
+      problemsRows: [
+        { problem: 'Want live wall time instead of a countdown', cause: 'Flip Timer is dedicated to countdowns', solution: 'Switch to the Online Flip Clock (/timers/flip-clock) which includes Live Clock, Countdown, and Stopwatch modes' },
+        { problem: 'No chime at 00:00', cause: 'Mute toggle enabled', solution: 'Click the Sound button in the control bar to enable the Web Audio completion alert' },
+      ],
+    },
+  },
+
+  'train-timer': {
+    categorySlug: 'education',
+    categoryLabel: 'Education & Classroom',
+    heroSubtitle:
+      'A charming railway station departure-board countdown where an illustrated train travels steadily along the track from Departure to Arrival as time counts down.',
+    featurePills: [
+      'Moving train progress animation',
+      'Split-flap station departure board',
+      '4 scenic railway themes',
+      'Custom route & activity titles',
+    ],
+    quickPresets: [
+      { icon: '🚂', label: '2 min', sublabel: 'Quick Cleanup', sec: 120 },
+      { icon: '🚂', label: '5 min', sublabel: 'Station Transition', sec: 300 },
+      { icon: '🚂', label: '10 min', sublabel: 'Reading Express', sec: 600 },
+      { icon: '🚂', label: '15 min', sublabel: 'Group Activity', sec: 900 },
+      { icon: '🚂', label: '25 min', sublabel: 'Study Journey', sec: 1500 },
+    ],
+    steps: [
+      { step: 1, title: 'Set journey duration & route name', description: 'Pick a preset or custom duration and type a fun station title (e.g., "Cleanup Express" or "Reading Line").' },
+      { step: 2, title: 'Choose a railway scene', description: 'Select Classic Station, Alpine Express, Sunset Rail, or Night Sleeper.' },
+      { step: 3, title: 'Start the departure countdown', description: 'Click Start (Spacebar) and watch the train depart the left platform and travel toward the destination.' },
+      { step: 4, title: 'Arrive on time at 00:00', description: 'The train pulls into the arrival station at 00:00 with an optional station bell chime.' },
+    ],
+    guide: {
+      tableOfContents: [
+        'What Is the Train Timer?',
+        'How Spatial Journey Pacing Helps Young Learners',
+        'How to Use the Train Departure Timer',
+        'Railway Themes & Departure Board Features',
+        'Classroom & Event Use Cases',
+        'Who Benefits Most?',
+        'Teacher & Facilitator Tips',
+        'Troubleshooting',
+      ],
+      whatIsTitle: 'What Is the Train Timer?',
+      whatIsBody: [
+        'The Train Timer pairs a classic railway station split-flap departure board with an animated locomotive that travels horizontally along a track from the Departure platform (100% time remaining) to the Arrival station (00:00).',
+        'For elementary classrooms, neurodivergent learners, and workshop breaks, translating abstract minutes into a concrete physical journey ("finish putting away markers before the train reaches the station") eliminates transition arguments and makes time visible from across the room.',
+      ],
+      howItWorksTitle: 'How Spatial Journey Pacing Helps Young Learners',
+      howItWorksBody: [
+        'Children under age 10 often struggle to interpret digital numbers like "03:45", but they immediately understand spatial distance along a track. Watching the train pass the halfway bridge and approach the final station platform gives students an intuitive sense of how fast they need to wrap up.',
+        'At the same time, older students and adults can read the crisp split-flap departure board numerals and custom route banner at the top of the screen.',
+      ],
+      calloutNote:
+        'Rename the route banner to match your exact transition—such as "Carpet Time Express", "Center Rotation 2", or "Intermission Boarding"—to reinforce instructions without repeating yourself.',
+      howToUseTitle: 'How to Run the Train Timer',
+      howToUseSteps: [
+        'Select a preset time (1m, 3m, 5m, 10m, 15m, 25m) or enter custom Hours, Minutes, and Seconds.',
+        'Type a custom Station / Activity Label in the departure board header.',
+        'Pick from 4 railway themes: Classic Station, Alpine Express, Sunset Rail, or Night Sleeper.',
+        'Press Start (Spacebar) and F for fullscreen whiteboard projection.',
+      ],
+      featuresTitle: 'Train Timer Features',
+      featuresList: [
+        'Synchronized Train & Track Progress: The locomotive’s position along the rail maps 1:1 to elapsed percentage.',
+        'Split-Flap Departure Header: Displays remaining time, status badge (BOARDING, IN TRANSIT, ARRIVED), and custom activity name.',
+        '4 Illustrated Scenic Themes: Daylight Alpine mountains, warm Sunset rails, Classic terminal, and calm Night Sleeper.',
+        'Gentle Station Bell Alert: Optional Web Audio chime when the train pulls into the final platform.',
+      ],
+      practicalExamples: [
+        { icon: 'GraduationCap', title: 'Elementary Cleanup & Line-Up', description: 'Challenge students to clear their desks and line up before the 3-minute Cleanup Express reaches the platform.' },
+        { icon: 'BookOpen', title: 'Independent Reading Journeys', description: 'Run a calm 15-minute Night Sleeper or Alpine Express train during silent reading blocks.' },
+        { icon: 'Presentation', title: 'Conference Break Boarding', description: 'Project a 10-minute "Next Keynote Boarding" train timer during workshop coffee breaks.' },
+        { icon: 'Users', title: 'Family Morning & Bedtime Routines', description: 'Use a 5-minute toothbrushing and pajama train countdown for toddlers and young kids.' },
+      ],
+      whoBenefitsTitle: 'Who Loves the Train Timer?',
+      whoBenefitsList: [
+        'Kindergarten, elementary, and special education teachers',
+        'Parents guiding morning getting-ready and bedtime routines',
+        'Pediatric occupational therapists and speech pathologists',
+        'Workshop facilitators running playful session break countdowns',
+      ],
+      tipsTitle: 'Classroom & Facilitation Tips',
+      tipsList: [
+        'Give a verbal halfway check when the train passes the center of the screen ("The train is halfway to the station—check your desk!").',
+        'Switch to the Night Sleeper theme during quiet writing or calm-down periods.',
+      ],
+      problemsTitle: 'Troubleshooting the Train Timer',
+      problemsRows: [
+        { problem: 'Students watching the train instead of working', cause: 'Novelty on first introduction', solution: 'Run a quick 30-second demo journey first, or enable Reduced Motion for a calmer display' },
+        { problem: 'Need a silent arrival at 00:00', cause: 'Quiet testing or reading environment', solution: 'Toggle off the Sound button so only the visual ARRIVED badge triggers at 00:00' },
+      ],
+    },
+  },
+
+  'forest-fire-timer': {
+    categorySlug: 'timers',
+    categoryLabel: 'Timers & Stopwatches',
+    heroSubtitle:
+      'A high-energy nature visual countdown where a stylized ember glow spreads steadily across an illustrated woodland landscape as time runs out.',
+    featurePills: [
+      'Dynamic spreading ember progress',
+      '4 woodland & elemental themes',
+      'High-contrast digital overlay',
+      'Reduced-motion calm mode',
+    ],
+    quickPresets: [
+      { icon: '🔥', label: '1 min', sublabel: 'Lightning Round', sec: 60 },
+      { icon: '🔥', label: '3 min', sublabel: 'Brainstorm', sec: 180 },
+      { icon: '🔥', label: '5 min', sublabel: 'Quick Sprint', sec: 300 },
+      { icon: '🔥', label: '10 min', sublabel: 'Challenge Block', sec: 600 },
+      { icon: '🔥', label: '20 min', sublabel: 'Focus Burn', sec: 1200 },
+    ],
+    steps: [
+      { step: 1, title: 'Choose your countdown duration', description: 'Select a quick sprint preset or enter custom Hours, Minutes, and Seconds.' },
+      { step: 2, title: 'Select a woodland color theme', description: 'Pick Wildfire Amber, Autumn Canopy, Campfire Dusk, or Mystic Aurora.' },
+      { step: 3, title: 'Start the countdown', description: 'Watch the warm illumination progress across the treeline from 0% to 100%.' },
+      { step: 4, title: 'Beat the clock before 00:00', description: 'Use Fullscreen (F) for group games, trivia challenges, and fast-paced sprints.' },
+    ],
+    guide: {
+      tableOfContents: [
+        'What Is the Forest Fire Timer?',
+        'How Progressive Landscape Illumination Works',
+        'How to Use the Forest Fire Timer',
+        'Themes & Accessibility Controls',
+        'Best Use Cases for High-Energy Sprints',
+        'Who Benefits Most?',
+        'Facilitator Tips',
+        'Troubleshooting',
+      ],
+      whatIsTitle: 'What Is the Forest Fire Timer?',
+      whatIsBody: [
+        'The Forest Fire Timer is a dramatic, nature-inspired visual countdown where a stylized warm glow advances across a layered woodland silhouette in direct proportion to elapsed time.',
+        'While calm sensory timers (like Lichen, Frost, or Moon) are designed for quiet relaxation, the Forest Fire Timer creates healthy visual momentum for brainstorming sprints, classroom review games, escape-room puzzles, and beat-the-clock challenges.',
+      ],
+      howItWorksTitle: 'How Progressive Landscape Illumination Works',
+      howItWorksBody: [
+        'As the timer counts down from 100% to 0%, the active illumination line moves smoothly across the forest canopy while floating ember particles rise gently in the foreground.',
+        'If you prefer a gentler aesthetic without flickering particles, switching to the Mystic Aurora or Autumn Canopy theme—or enabling the Reduced Motion toggle—turns the scene into a smooth, tranquil color transition.',
+      ],
+      calloutNote:
+        'Use the Forest Fire Timer for "Beat the Clock" team challenges where participants must solve a puzzle or complete a brainstorm before the glow reaches the far ridge.',
+      howToUseTitle: 'How to Run the Forest Fire Timer',
+      howToUseSteps: [
+        'Set your countdown time using the preset chips or custom H:M:S inputs.',
+        'Select one of the 4 landscape themes (Wildfire Amber, Autumn Canopy, Campfire Dusk, or Mystic Aurora).',
+        'Toggle Reduced Motion or Sound Alerts as needed.',
+        'Press Spacebar to start and F for fullscreen projection.',
+      ],
+      featuresTitle: 'Forest Fire Timer Highlights',
+      featuresList: [
+        'Proportional Horizon Progress: Judge remaining time instantly by how far the glow has traveled across the trees.',
+        '4 Distinct Palette Themes: From energetic Wildfire Amber to soothing Mystic Aurora greens and violets.',
+        'Reduced Motion Accessibility: Disables particle flicker while preserving smooth progress progression.',
+        'Drift-Free Monotonic Timing: Accurate to the millisecond across all browsers.',
+      ],
+      practicalExamples: [
+        { icon: 'GraduationCap', title: 'Classroom Escape Rooms & Trivia', description: 'Project a 5-minute or 10-minute challenge clock that builds excitement during team review games.' },
+        { icon: 'Flame', title: 'Rapid Brainstorming Sprints', description: 'Give design or product teams 3 minutes to generate sticky-note ideas before the canopy fills.' },
+        { icon: 'CheckSquare', title: 'Speed-Cleaning Challenges', description: 'Turn a 5-minute room tidy or desk reset into a fast-paced game.' },
+        { icon: 'Monitor', title: 'Coding & Writing Blitzes', description: 'Use a 15-minute Campfire Dusk sprint to push through writer’s block.' },
+      ],
+      whoBenefitsTitle: 'Who Uses the Forest Fire Timer?',
+      whoBenefitsList: [
+        'Teachers running gamified classroom quizzes and STEM challenges',
+        'Workshop facilitators leading design sprints and rapid ideation rounds',
+        'Game masters hosting tabletop RPGs, trivia nights, or escape rooms',
+        'Students who need high-contrast visual urgency to beat procrastination',
+      ],
+      tipsTitle: 'Tips for Best Results',
+      tipsList: [
+        'Switch to Mystic Aurora or enable Reduced Motion if you want the woodland artwork without high-urgency orange tones.',
+        'Press F for fullscreen mode so the layered forest illustration fills the entire projector screen.',
+      ],
+      problemsTitle: 'Common Questions & Fixes',
+      problemsRows: [
+        { problem: 'Visual feels too intense for quiet study', cause: 'Default Wildfire Amber palette is high-energy', solution: 'Select the Mystic Aurora theme and enable Reduced Motion, or try the Lichen or Snow Timer' },
+        { problem: 'Want to hide the digital numbers', cause: 'Pure visual pacing preferred', solution: 'Toggle off "Show Time Text" so participants rely purely on the landscape progress' },
+      ],
+    },
+  },
+
+  'sensory-timers': {
+    categorySlug: 'education',
+    categoryLabel: 'Education & Classroom',
+    heroSubtitle:
+      'Explore and filter our complete collection of calm, low-distraction sensory visual timers—engineered with gentle motion, soft palettes, and muted-by-default options for neurodivergent learners, classrooms, and therapy spaces.',
+    featurePills: [
+      'Interactive sensory attribute filters',
+      'Live inline animation previews',
+      'Calm motion & soft color palettes',
+      'ADHD, autism & classroom friendly',
+    ],
+    quickPresets: [
+      { icon: '⏳', label: 'Sand Timer', sublabel: 'Falling Grains', sec: 300 },
+      { icon: '💧', label: 'Liquid Timer', sublabel: 'Smooth Drain', sec: 300 },
+      { icon: '❄️', label: 'Frost Timer', sublabel: 'Ice Crystals', sec: 600 },
+      { icon: '🌙', label: 'Moon Timer', sublabel: 'Lunar Phase', sec: 900 },
+      { icon: '🌿', label: 'Lichen Timer', sublabel: 'Organic Growth', sec: 900 },
+    ],
+    steps: [
+      { step: 1, title: 'Filter by sensory preference', description: 'Check attributes such as Low motion, No sound, Soft colors, Numeric display, or Visual-only display.' },
+      { step: 2, title: 'Test live inline previews', description: 'Click the Preview button on any timer card to watch its animation style before leaving the page.' },
+      { step: 3, title: 'Compare best-for recommendations', description: 'Read the sensory profile tags on each card to match the visual metaphor to your student or workspace.' },
+      { step: 4, title: 'Launch your chosen sensory timer', description: 'Click "Open Timer" to enter the full interactive tool with fullscreen and Reduced Motion controls.' },
+    ],
+    guide: {
+      tableOfContents: [
+        'What Are Sensory Visual Timers?',
+        'Why Low-Stimulation Visual Pacing Matters for ADHD & Autism',
+        'How to Filter & Preview the Sensory Timer Collection',
+        'Overview of Available Sensory Metaphors',
+        'Classroom, Therapy & Home Applications',
+        'Who Benefits Most?',
+        'Practitioner Guidelines for Sensory-Friendly Timing',
+        'Troubleshooting & Accessibility Reference',
+      ],
+      whatIsTitle: 'What Are Sensory Visual Timers?',
+      whatIsBody: [
+        'Sensory visual timers replace harsh ticking clocks and abrupt buzzers with calm, continuous natural metaphors—draining liquid, falling sand grains, rising bubbles, spreading frost crystals, accumulating snow, growing lichen, and lunar phases.',
+        'For children and adults with autism, ADHD, sensory processing sensitivity, or test anxiety, rapid flashing digits and loud alarms can trigger dysregulation or task freeze. A sensory timer externalizes the passage of time gently so the brain can monitor pacing in peripheral vision without stress.',
+      ],
+      howItWorksTitle: 'Why Low-Stimulation Visual Pacing Matters for ADHD & Autism',
+      howItWorksBody: [
+        'Executive function researchers refer to difficulty estimating elapsed time as "time blindness." When a learner cannot see time moving, a 10-minute worksheet feels endless, and a 2-minute transition warning feels sudden and unfair.',
+        'Our Sensory Visual Timers hub lets teachers, occupational therapists, parents, and students filter 8+ specialized visual timers by sensory traits—such as "Low motion", "Soft colors", and "Visual-only display"—and preview the live animation on the spot before launching fullscreen mode.',
+      ],
+      calloutNote:
+        'Letting a student or therapy client pick their own sensory timer (e.g., choosing between Bubble Timer and Snow Timer) dramatically increases buy-in during transitions and independent work.',
+      howToUseTitle: 'How to Choose the Right Sensory Timer',
+      howToUseSteps: [
+        'Use the interactive filter checkboxes at the top of the hub to narrow by Low motion, Soft colors, or Visual-only support.',
+        'Click "Preview" on any card to watch a live demonstration of its visual motion.',
+        'Click "Open Timer" to launch that timer’s dedicated page, where you can set exact durations, mute audio, or hide numbers.',
+      ],
+      featuresTitle: 'Sensory Hub Capabilities',
+      featuresList: [
+        'Trait-Based Sensory Filtering: Instantly filter by Low motion, No sound, Soft colors, Numeric display, and Visual-only mode.',
+        'Live Card Previews: Inspect motion speed and visual contrast before opening a full timer.',
+        'Universal Reduced Motion & Mute: Every timer in the collection supports silent visual completion and reduced particle motion.',
+        'Zero Ads & Zero Clutter: Clean, calming typography and natural palettes across both light and dark modes.',
+      ],
+      practicalExamples: [
+        { icon: 'GraduationCap', title: 'Special Education & IEP Support', description: 'Pair individual tablets or smartboards with low-motion Frost, Lichen, or Sand timers during structured tasks.' },
+        { icon: 'Heart', title: 'Calm-Down Corners & OT Sessions', description: 'Run a 3-minute Bubble, Lava Lamp, or Liquid timer for sensory regulation and breathing breaks.' },
+        { icon: 'BookOpen', title: 'Silent Reading & Exam Accommodations', description: 'Use Moon or Sun arc timers with numbers hidden to remove clock-watching anxiety.' },
+        { icon: 'Users', title: 'Neurodivergent Home Routines', description: 'Support smooth homework, screen-time wind-down, and bedtime transitions.' },
+      ],
+      whoBenefitsTitle: 'Who Benefits From Sensory Visual Timers?',
+      whoBenefitsList: [
+        'Neurodivergent students and adults with ADHD, autism, or time blindness',
+        'Special education teachers, school psychologists, and occupational therapists',
+        'Early childhood educators teaching time concepts without numeracy barriers',
+        'Writers, programmers, and meditators seeking calm ambient desk timers',
+      ],
+      tipsTitle: 'Best Practices for Sensory-Friendly Timing',
+      tipsList: [
+        'For learners who fixate on counting down seconds, toggle off "Show Time Text" inside the chosen timer so only the natural visual metaphor is shown.',
+        'Keep audio muted by default in sensory-sensitive rooms and rely on the gentle 00:00 visual completion state.',
+      ],
+      problemsTitle: 'Matching Sensory Profiles to the Right Timer',
+      problemsRows: [
+        { problem: 'Student is distracted by rising bubbles or falling particles', cause: 'High sensitivity to vertical particle motion', solution: 'Filter by "Low motion" and choose the Lichen, Frost, Moon, or Rainbow Timer' },
+        { problem: 'Bright white screen causes eye strain', cause: 'Photophobia or fluorescent classroom lighting', solution: 'Choose the Moon Timer, Galaxy Timer, or enable Dark Mode' },
+        { problem: 'Want to create a custom named sensory timer', cause: 'Need custom task text on screen', solution: 'Open the Custom Timer Builder (/custom-timer) and choose Liquid Wave, Hourglass Sand, or Cozy Candle' },
+      ],
+    },
+  },
 };
 
 function normalizeCategorySlug(rawSlug: string, categoryLabel?: string): string {

@@ -10,6 +10,7 @@ interface SEOStructuredDataProps {
   breadcrumbs?: Array<{ name: string; item: string }>;
   steps?: StepItem[];
   applicationCategory?: string;
+  featureList?: string[];
 }
 
 export default function SEOStructuredData({
@@ -20,6 +21,7 @@ export default function SEOStructuredData({
   breadcrumbs = [],
   steps = [],
   applicationCategory = 'UtilitiesApplication',
+  featureList = [],
 }: SEOStructuredDataProps) {
   const webAppSchema = {
     '@context': 'https://schema.org',
@@ -30,6 +32,17 @@ export default function SEOStructuredData({
     applicationCategory: applicationCategory || 'UtilitiesApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires JavaScript. Requires HTML5.',
+    isAccessibleForFree: true,
+    ...(featureList.length > 0 ? { featureList } : {}),
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: [
+        '#ai-quick-answer',
+        '#use-cases-heading',
+        '#how-to-use-heading',
+        '#faq-heading',
+      ],
+    },
     offers: {
       '@type': 'Offer',
       price: '0',

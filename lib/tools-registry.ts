@@ -668,8 +668,34 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
   },
 
   // ==========================================================================
-  // PHASE 1 ADDITIONS: Visual Timer, Multi Stopwatch, Embed Timer
+  // PHASE 1 ADDITIONS: Visual Timer, Custom Timer, Multi Stopwatch, Embed Timer
   // ==========================================================================
+  {
+    slug: 'custom-timer',
+    name: 'Custom Timer',
+    category: 'everyday',
+    categoryLabel: 'Timers & Stopwatches',
+    description: 'Create your own custom visual timer with custom titles, descriptions, activity icons, 10 animated visual styles, milestone chimes, and header Saved List.',
+    badge: 'New',
+    icon: 'Wand2',
+    keywords: ['custom timer', 'custom visual timer', 'saved timers', 'animated timer', 'personalized timer'],
+    targetAudience: 'Focus enthusiasts, students, teachers, creators, coaches, and daily routine builders',
+    instructions: [
+      'Enter your own Custom Title, Custom Description / Goal, and pick an Activity Icon.',
+      'Choose a duration and select from 10 animated visual styles including Growing Bloom, Liquid Wave, Breathing Orb, Energy Cells, Rainbow, and Hourglass.',
+      'Click "Save to My Saved List" to pin your custom timer directly into the header Saved List for instant 1-click navigation anywhere on the site.',
+    ],
+    faq: [
+      {
+        question: 'Where are my saved custom timers stored?',
+        answer: 'Your custom timers and liked presets are saved locally in your browser and appear immediately in the Saved List menu in the website header.',
+      },
+      {
+        question: 'Can I share a custom timer with its title and animated visual?',
+        answer: 'Yes! Click Share Custom Timer Link to copy a direct URL containing your custom title, description, icon, color, duration, and animated visual.',
+      },
+    ],
+  },
   {
     slug: 'visual-timer',
     name: 'Visual Timer',
@@ -3665,7 +3691,8 @@ const CONTEXTUAL_RELATED_MAP: Record<string, string[]> = {
   'rainbow-timer': ['progress-timer', 'rings-timer', 'radial-timer', 'visual-timer', 'countdown-timer'],
   'sand-timer': ['hourglass-timer', 'circular-timer', 'radial-timer', 'rainbow-timer', 'liquid-timer'],
   'liquid-timer': ['progress-timer', 'rings-timer', 'radial-timer', 'circular-timer', 'hourglass-timer'],
-  'visual-timer': ['progress-timer', 'rings-timer', 'radial-timer', 'circular-timer', 'hourglass-timer'],
+  'visual-timer': ['custom-timer', 'progress-timer', 'rings-timer', 'radial-timer', 'circular-timer', 'hourglass-timer'],
+  'custom-timer': ['visual-timer', 'liquid-timer', 'rainbow-timer', 'sand-timer', 'pomodoro-timer', 'sensory-timers'],
   'presentation-timer': ['stage-timer', 'speech-time-calculator', 'speaker-timer', 'countdown-timer'],
   'stage-timer': ['presentation-timer', 'meeting-planner', 'speaker-timer', 'webinar-timer'],
   'multi-stopwatch': ['interval-timer', 'stopwatch', 'tabata-timer', 'countdown-timer'],

@@ -32,6 +32,12 @@ import {
   CheckSquare,
   Droplets,
   Heart,
+  Sparkles,
+  BookOpen,
+  Lightbulb,
+  Wrench,
+  CheckCircle2,
+  Cpu,
 } from 'lucide-react';
 
 interface ToolPageLayoutProps {
@@ -100,16 +106,36 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
       }))
     : editorial.steps;
 
+  // Merge and deduplicate FAQs from both tool-specific-content and tools-registry
+  const seenFaqKeys = new Set<string>();
+  const mergedFaqs: Array<{ question: string; answer: string }> = [];
+  const primaryFaqs = specificContent ? specificContent.faqs : [];
+  const secondaryFaqs = tool.faq || [];
+  for (const item of [...primaryFaqs, ...secondaryFaqs]) {
+    const key = item.question.trim().toLowerCase();
+    if (!seenFaqKeys.has(key)) {
+      seenFaqKeys.add(key);
+      mergedFaqs.push(item);
+    }
+  }
+
+  const isCalculatorOrClock =
+    editorial.categorySlug === 'calculators' ||
+    editorial.categorySlug === 'world' ||
+    tool.category === 'world' ||
+    tool.slug === 'world-clock';
+
   return (
     <div className="min-h-screen bg-[#F7F6F2] dark:bg-[#141816] text-[#252B27] dark:text-slate-100 transition-colors">
       <SEOStructuredData
         toolName={tool.name}
         description={tool.description}
         url={`https://WebCountDownTimer.com${canonicalPath}`}
-        faqs={specificContent ? specificContent.faqs : tool.faq}
+        faqs={mergedFaqs}
         breadcrumbs={breadcrumbs}
         steps={stepsForSchema}
         applicationCategory="UtilitiesApplication"
+        featureList={editorial.featurePills}
       />
 
       {/* 1. BREADCRUMB BAR */}
@@ -245,6 +271,8 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
                   ? 'LAVA LAMP TIMER'
                   : tool.slug === 'spinner-timer'
                   ? 'SPINNER TIMER'
+                  : tool.slug === 'custom-timer'
+                  ? 'CUSTOM TIMER'
                   : tool.slug === 'world-clock'
                   ? 'WORLD CLOCK'
                   : tool.slug === 'time-duration-calculator'
@@ -374,14 +402,282 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
         </div>
       </section>
 
-      {/* 4. SECTION 3 — TOOL-SPECIFIC USE CASES, HOW TO USE & 3 UNIQUE FAQS (150-250 WORDS) */}
+      {/* 4. SECTION 3 — AI OVERVIEW QUICK ANSWER, USE CASES, STEP-BY-STEP & MERGED FAQS */}
       <section className="py-12 sm:py-16 border-b border-[#E4E1D9] dark:border-[#262D28]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
-          <ToolSpecificContentSection slug={tool.slug} toolName={tool.name} />
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 space-y-8">
+          {/* AI Overview Quick Answer & Specification Matrix */}
+          <div
+            id="ai-quick-answer"
+            data-ai-summary="true"
+            className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+              {/* Left: Direct Answer Summary & Practitioner Callout */}
+              <div className="lg:col-span-7 space-y-4">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800/60 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                    <Sparkles className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold tracking-widest uppercase text-[#B7804C] dark:text-[#cda06f] block">
+                      Quick Answer &amp; Overview
+                    </span>
+                    <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                      What is the {tool.name} and how does it work?
+                    </h2>
+                  </div>
+                </div>
+
+                <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                  <strong>{tool.name}</strong> is a free, browser-native {editorial.categoryLabel.toLowerCase()} tool: {tool.description}{' '}
+                  {Array.isArray(editorial.guide.whatIsBody)
+                    ? editorial.guide.whatIsBody[0]
+                    : editorial.guide.whatIsBody}
+                </p>
+
+                {editorial.guide.calloutNote && (
+                  <div className="p-4 rounded-2xl bg-[#FAF6F0] dark:bg-slate-800/70 border border-[#E8DEC8] dark:border-slate-700 flex items-start gap-3">
+                    <Lightbulb className="w-4 h-4 text-[#B7804C] dark:text-[#cda06f] shrink-0 mt-0.5" />
+                    <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
+                      <strong className="font-semibold text-slate-900 dark:text-white">Practitioner Tip: </strong>
+                      {editorial.guide.calloutNote}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Right: Structured Technical & AI Agent Specification Matrix (<dl>) */}
+              <div className="lg:col-span-5 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200/80 dark:border-slate-700/60 p-5">
+                <div className="flex items-center gap-2 mb-3.5 pb-2.5 border-b border-slate-200 dark:border-slate-700">
+                  <Cpu className="w-4 h-4 text-[#365C4B] dark:text-[#5E917A]" />
+                  <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+                    Technical Specifications &amp; Controls
+                  </h3>
+                </div>
+                <dl className="space-y-2.5 text-xs sm:text-sm">
+                  <div className="flex flex-col sm:flex-row sm:justify-between gap-1 pb-2 border-b border-slate-200/60 dark:border-slate-700/50">
+                    <dt className="font-semibold text-slate-500 dark:text-slate-400">Category</dt>
+                    <dd className="font-medium text-slate-900 dark:text-white sm:text-right">{editorial.categoryLabel}</dd>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:justify-between gap-1 pb-2 border-b border-slate-200/60 dark:border-slate-700/50">
+                    <dt className="font-semibold text-slate-500 dark:text-slate-400">Timing &amp; Math Engine</dt>
+                    <dd className="font-medium text-slate-900 dark:text-white sm:text-right">
+                      {isCalculatorOrClock
+                        ? 'IANA Time Zone & Calendar Math (Client-Side)'
+                        : 'Monotonic Timestamp Delta (Zero Tab Drift)'}
+                    </dd>
+                  </div>
+                  {!isCalculatorOrClock && (
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-1 pb-2 border-b border-slate-200/60 dark:border-slate-700/50">
+                      <dt className="font-semibold text-slate-500 dark:text-slate-400">Keyboard Shortcuts</dt>
+                      <dd className="font-mono text-xs font-semibold text-slate-900 dark:text-white sm:text-right">
+                        Space (Start/Pause) · R (Reset) · F (Fullscreen)
+                      </dd>
+                    </div>
+                  )}
+                  <div className="flex flex-col sm:flex-row sm:justify-between gap-1 pb-2 border-b border-slate-200/60 dark:border-slate-700/50">
+                    <dt className="font-semibold text-slate-500 dark:text-slate-400">Audio &amp; Alerts</dt>
+                    <dd className="font-medium text-slate-900 dark:text-white sm:text-right">
+                      {isCalculatorOrClock ? 'Instant Copy & CSV/Text Export' : 'Web Audio API Synthesis + Mute Toggle'}
+                    </dd>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:justify-between gap-1">
+                    <dt className="font-semibold text-slate-500 dark:text-slate-400">Privacy &amp; Cost</dt>
+                    <dd className="font-medium text-emerald-700 dark:text-emerald-400 sm:text-right">
+                      100% Free · No Login · Runs Locally in Browser
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+          <ToolSpecificContentSection
+            slug={tool.slug}
+            toolName={tool.name}
+            extraFaqs={tool.faq}
+          />
         </div>
       </section>
 
-      {/* 5. SECTION 4 — RELATED TOOLS */}
+      {/* 5. SECTION 4 — IN-DEPTH PRACTITIONER GUIDE, EXAMPLES & TROUBLESHOOTING TABLE */}
+      <section
+        aria-labelledby="in-depth-guide-heading"
+        className="py-12 sm:py-16 border-b border-[#E4E1D9] dark:border-[#262D28] bg-[#F7F6F2] dark:bg-[#141816]"
+      >
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 space-y-8">
+          {/* Deep-Dive Mechanics + Key Features */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* How It Works Deep Dive */}
+            <article className="lg:col-span-7 bg-white dark:bg-[#1A201C] rounded-3xl border border-[#E4E1D9] dark:border-[#2D352F] p-6 sm:p-8 shadow-2xs flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2.5 mb-3">
+                  <div className="w-8 h-8 rounded-xl bg-[#E7EDE7] dark:bg-[#252E28] text-[#365C4B] dark:text-[#5E917A] flex items-center justify-center">
+                    <BookOpen className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#365C4B] dark:text-[#5E917A]">
+                    In-Depth Operational Guide
+                  </span>
+                </div>
+                <h2
+                  id="in-depth-guide-heading"
+                  className="font-serif text-2xl sm:text-3xl font-normal text-[#252B27] dark:text-white mb-3"
+                >
+                  {editorial.guide.howItWorksTitle}
+                </h2>
+                <div className="space-y-3 text-sm sm:text-base text-[#252B27]/80 dark:text-slate-300 leading-relaxed mb-6">
+                  {Array.isArray(editorial.guide.howItWorksBody) ? (
+                    editorial.guide.howItWorksBody.map((para, idx) => (
+                      <p key={idx}>{para}</p>
+                    ))
+                  ) : (
+                    <p>{editorial.guide.howItWorksBody}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Key Features Sub-List */}
+              <div className="pt-5 border-t border-[#E4E1D9] dark:border-[#2D352F]">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-[#252B27]/70 dark:text-slate-400 mb-3">
+                  Key Capabilities &amp; Design Highlights
+                </h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {editorial.guide.featuresList.map((feat, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-2 text-xs sm:text-sm text-[#252B27]/85 dark:text-slate-200"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-[#365C4B] dark:text-[#5E917A] shrink-0 mt-0.5" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+
+            {/* Who Benefits Most */}
+            <div className="lg:col-span-5 bg-white dark:bg-[#1A201C] rounded-3xl border border-[#E4E1D9] dark:border-[#2D352F] p-6 sm:p-8 shadow-2xs">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#B7804C] dark:text-[#cda06f] block mb-1">
+                Target Workflows
+              </span>
+              <h2 className="font-serif text-2xl font-normal text-[#252B27] dark:text-white mb-4">
+                {editorial.guide.whoBenefitsTitle || `Who Benefits Most from ${tool.name}`}
+              </h2>
+              <ul className="space-y-3">
+                {editorial.guide.whoBenefitsList.map((benefit, idx) => (
+                  <li
+                    key={idx}
+                    className="p-3.5 rounded-2xl bg-[#F7F6F2] dark:bg-[#222924] border border-[#E4E1D9] dark:border-[#2D352F] flex items-start gap-3 text-xs sm:text-sm text-[#252B27]/85 dark:text-slate-200 leading-relaxed"
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-[#E7EDE7] dark:bg-[#2D3831] text-[#365C4B] dark:text-[#5E917A] flex items-center justify-center shrink-0 mt-0.5">
+                      <Users className="w-3.5 h-3.5" />
+                    </div>
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Practical Examples + Pro Tips Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* Real-World Scenarios */}
+            <div className="lg:col-span-6 bg-white dark:bg-[#1A201C] rounded-3xl border border-[#E4E1D9] dark:border-[#2D352F] p-6 sm:p-8 shadow-2xs">
+              <h3 className="font-serif text-xl sm:text-2xl font-normal text-[#252B27] dark:text-white mb-4">
+                Real-World Timing &amp; Planning Scenarios
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {editorial.guide.practicalExamples.map((example, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 rounded-2xl bg-[#F7F6F2] dark:bg-[#222924] border border-[#E4E1D9] dark:border-[#2D352F]"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-[#E7EDE7] dark:bg-[#2D3831] text-[#365C4B] dark:text-[#5E917A] flex items-center justify-center mb-2.5">
+                      {renderEditorialIcon(example.icon, 'w-4 h-4')}
+                    </div>
+                    <h4 className="text-sm font-bold text-[#252B27] dark:text-white mb-1">
+                      {example.title}
+                    </h4>
+                    <p className="text-xs text-[#252B27]/75 dark:text-slate-300 leading-relaxed">
+                      {example.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Practitioner Pro Tips */}
+            <div className="lg:col-span-6 bg-white dark:bg-[#1A201C] rounded-3xl border border-[#E4E1D9] dark:border-[#2D352F] p-6 sm:p-8 shadow-2xs">
+              <h3 className="font-serif text-xl sm:text-2xl font-normal text-[#252B27] dark:text-white mb-4">
+                Expert Tips for Best Results
+              </h3>
+              <ul className="space-y-3">
+                {editorial.guide.tipsList.map((tip, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-3 text-xs sm:text-sm text-[#252B27]/85 dark:text-slate-300 leading-relaxed"
+                  >
+                    <Lightbulb className="w-4 h-4 text-[#B7804C] dark:text-[#cda06f] shrink-0 mt-0.5" />
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Troubleshooting & Quick Fixes Table */}
+          {editorial.guide.problemsRows && editorial.guide.problemsRows.length > 0 && (
+            <div className="bg-white dark:bg-[#1A201C] rounded-3xl border border-[#E4E1D9] dark:border-[#2D352F] p-6 sm:p-8 shadow-2xs">
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800/60 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                  <Wrench className="w-4 h-4" />
+                </div>
+                <h3 className="font-serif text-xl sm:text-2xl font-normal text-[#252B27] dark:text-white">
+                  {editorial.guide.problemsTitle}
+                </h3>
+              </div>
+
+              <div className="rounded-2xl border border-[#E4E1D9] dark:border-[#2D352F] overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead>
+                      <tr className="bg-[#365C4B] text-white">
+                        <th scope="col" className="py-3 px-4 font-semibold">Issue or Question</th>
+                        <th scope="col" className="py-3 px-4 font-semibold">Common Cause</th>
+                        <th scope="col" className="py-3 px-4 font-semibold">Recommended Solution</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#E4E1D9] dark:divide-[#2D352F]">
+                      {editorial.guide.problemsRows.map((row, idx) => (
+                        <tr
+                          key={idx}
+                          className={
+                            idx % 2 === 0
+                              ? 'bg-transparent'
+                              : 'bg-[#F7F6F2]/60 dark:bg-[#222924]/50'
+                          }
+                        >
+                          <td className="py-3 px-4 font-semibold text-[#252B27] dark:text-white">
+                            {row.problem}
+                          </td>
+                          <td className="py-3 px-4 text-[#252B27]/75 dark:text-slate-300">
+                            {row.cause}
+                          </td>
+                          <td className="py-3 px-4 text-[#252B27]/85 dark:text-slate-200">
+                            {row.solution}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* 6. SECTION 5 — RELATED TOOLS */}
       <section className="py-14 sm:py-20 bg-white/40 dark:bg-[#181D1A]/40">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">

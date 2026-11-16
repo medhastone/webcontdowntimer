@@ -126,6 +126,14 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     toolsKicker: 'ALL EDUCATION TOOLS',
     tools: [
       {
+        name: 'Custom Timer',
+        description: 'Build personalized visual countdowns with custom titles, icons, 10 animated themes, and Saved List presets.',
+        href: '/custom-timer',
+        iconName: 'Clock',
+        badge: 'New',
+        tier: 'new',
+      },
+      {
         name: 'Sensory Visual Timers',
         description: 'Calm, low-distraction visual timers with gentle motion and muted audio by default.',
         href: '/timers/sensory-timers',
@@ -234,6 +242,12 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
           bestFor: 'Managing class activities',
           keyFeatures: 'Countdown, visual display, alarm',
           exampleUseCases: 'Lessons, group work, transitions',
+        },
+        {
+          tool: 'Custom Timer',
+          bestFor: 'Personalized class stations & saved routines',
+          keyFeatures: 'Custom titles, 10 animated visuals, Saved List',
+          exampleUseCases: 'Morning bell-ringers, lab stations, reading blocks',
         },
         {
           tool: 'Visual Timer',
@@ -400,6 +414,14 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
     toolsHeading: 'Explore All Everyday Timers & Stopwatches',
     toolsKicker: 'ALL TIMERS',
     tools: [
+      {
+        name: 'Custom Timer',
+        description: 'Create and save your own custom timers with personalized titles, notes, icons, and 10 animated visual styles.',
+        href: '/custom-timer',
+        iconName: 'Clock',
+        badge: 'New',
+        tier: 'new',
+      },
       {
         name: 'Sensory Visual Timers',
         description: 'A dedicated collection of calm, low-distraction sensory visual timers with gentle motion and filters.',
@@ -600,6 +622,12 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
           bestFor: 'Deadlines, cooking, meetings',
           keyFeatures: 'Counts down to 00:00, alarm chime',
           exampleUseCases: 'Classrooms, speaking, presentations',
+        },
+        {
+          tool: 'Custom Timer',
+          bestFor: 'Recurring named routines & visual themes',
+          keyFeatures: 'Custom titles, 10 visual animations, Saved List',
+          exampleUseCases: 'Study blocks, HIIT sets, tea steeping, standups',
         },
         {
           tool: 'Visual Timer',
@@ -1211,6 +1239,14 @@ export const CATEGORIES_DATA: Record<string, CategoryData> = {
         iconName: 'Tomato',
         badge: 'Hot',
         tier: 'hot',
+      },
+      {
+        name: 'Custom Timer',
+        description: 'Design custom named focus blocks with 10 animated visual styles and one-click Saved List access.',
+        href: '/custom-timer',
+        iconName: 'Clock',
+        badge: 'New',
+        tier: 'new',
       },
       {
         name: 'Flip Clock',

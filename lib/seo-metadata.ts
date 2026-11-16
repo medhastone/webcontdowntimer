@@ -538,9 +538,15 @@ export const ROUTE_SEO_REGISTRY: Record<string, RouteSeoEntry> = {
   },
   '/visual-timer': {
     path: '/visual-timer',
-    title: 'Visual Timer – 6-Mode Shrinking Clock | WebCountDownTimer',
+    title: 'Visual Timer – 10-Mode Animated Shrinking Clock | WebCountDownTimer',
     description:
-      'Switch live between Circular Disc, Linear Bar, Hourglass, Traffic Light, Rainbow, and Sand visual countdown modes for classrooms and ADHD focus.',
+      'Switch live between Growing Bloom, Liquid Wave, Breathing Orb, Energy Cells, Circular Disc, Linear Bar, Hourglass, Traffic Light, Rainbow, and Minimal Digital modes.',
+  },
+  '/custom-timer': {
+    path: '/custom-timer',
+    title: 'Custom Timer Studio – Create & Save Animated Visual Timers | WebCountDownTimer',
+    description:
+      'Create custom timers with your own title, description, activity icon, and 10 animated visual styles. Save them to your header Saved List for instant 1-click access.',
   },
   '/stage-timer': {
     path: '/stage-timer',

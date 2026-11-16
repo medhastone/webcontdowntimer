@@ -2750,6 +2750,39 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       },
     ],
   },
+
+  'custom-timer': {
+    slug: 'custom-timer',
+    useCasesIntro:
+      'A personal visual countdown studio where you can set custom titles, task descriptions, icons, color themes, and 10 animated visual styles—and save your favorite presets directly to your header Saved List for one-click access.',
+    useCases: [
+      'Recurring Deep Work & Study Rituals: Save named timers like "25m Deep Coding Block" or "45m Thesis Writing" with your preferred visual animation and launch them in one click from the header.',
+      'Named Classroom & Workshop Stations: Build dedicated timers with clear on-screen titles and instructions (e.g., "Station 2: Lab Cleanup - Wipe benches & return goggles") so students or attendees see both the task and the countdown.',
+      'Fitness, Cooking & Daily Habits: Keep a personal library of pre-saved and custom timers—from 7-minute HIIT circuits and 10-minute morning breathwork to exact tea-steeping and espresso routines.',
+    ],
+    howToUse: [
+      'Enter a Custom Title and Description/Notes in the Custom Timer Builder, or click any Pre-Saved / Saved Timer from the library or top header.',
+      'Pick your preferred Icon, Color Theme, Duration (presets or custom H:M:S), and choose from 10 Animated Visual Styles (Circular Ring, Hourglass Sand, Traffic Light, Liquid Wave, Progress Bar, Rainbow Arc, Cozy Candle, Pixel Grid, Neon Pulse, or Minimal Digital).',
+      'Click "Save to My Saved List" to store the timer in your browser and header dropdown, then press Start (Spacebar) or Fullscreen (F) to run your personalized countdown.',
+    ],
+    faqs: [
+      {
+        question: 'Where are my saved custom timers stored, and can I delete or restore pre-saved timers?',
+        answer:
+          'All saved timers are stored locally in your browser via localStorage with zero account sign-up required. You can delete any custom or pre-saved timer using the Trash icon in the header Saved List or page library, and restore the 6 starter pre-saved timers anytime with one click.',
+      },
+      {
+        question: 'What animated visual styles can I choose for a custom timer?',
+        answer:
+          'You can switch live between 10 animated visual styles: Circular Ring, Hourglass Sand, Traffic Light, Liquid Wave, Progress Bar, Rainbow Arc, Cozy Candle, Pixel Grid, Neon Pulse, and Minimal Digital.',
+      },
+      {
+        question: 'Can I share a custom timer with a colleague or bookmark it with my exact settings?',
+        answer:
+          'Yes, clicking "Share Link" generates a direct URL containing your custom title, description, duration, icon, color accent, and animated visual style in the query parameters so anyone opening the link sees your exact timer configuration.',
+      },
+    ],
+  },
 };
 
 export const DURATION_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {

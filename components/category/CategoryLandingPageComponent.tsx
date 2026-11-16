@@ -44,6 +44,7 @@ interface Props {
 }
 
 const NEW_TOOL_KEYS = new Set([
+  'custom-timer',
   'sensory-timers',
   'flip-clock',
   'forest-fire-timer',
@@ -321,7 +322,27 @@ export default function CategoryLandingPageComponent({ data }: Props) {
     description: data.description,
     url: categoryUrl,
     inLanguage: 'en',
-    dateModified: '2026-11-04',
+    dateModified: '2026-11-16',
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: [
+        '#category-quick-answer',
+        '#guide-overview',
+        '#frequently-asked-questions',
+      ],
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      name: data.toolsHeading,
+      numberOfItems: data.tools.length,
+      itemListElement: data.tools.map((t, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        name: t.name,
+        description: t.description,
+        url: `https://WebCountDownTimer.com${t.href}`,
+      })),
+    },
     isPartOf: {
       '@type': 'WebSite',
       name: 'WebCountDownTimer',
@@ -750,9 +771,44 @@ export default function CategoryLandingPageComponent({ data }: Props) {
         </div>
       </section>
 
-      {/* 5. COMPARISON TABLE */}
+      {/* 5. AI OVERVIEW QUICK ANSWER & COMPARISON TABLE */}
       <section className="py-14 sm:py-20 bg-[#F7F6F2] dark:bg-[#141816] border-b border-[#E4E1D9] dark:border-[#262D28]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+          {/* AI Overview Category Quick Answer Card */}
+          <div
+            id="category-quick-answer"
+            data-ai-summary="true"
+            className="mb-10 bg-white dark:bg-[#1A201C] rounded-2xl border border-[#E4E1D9] dark:border-[#2D352F] p-6 sm:p-8 shadow-sm"
+          >
+            <div className="flex items-center gap-2.5 mb-3">
+              <div className="w-8 h-8 rounded-xl bg-[#E7EDE7] dark:bg-[#252E28] text-[#365C4B] dark:text-[#5E917A] flex items-center justify-center">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <span className="text-[11px] font-bold tracking-widest uppercase text-[#B7804C] dark:text-[#cda06f]">
+                Quick Decision Summary · {data.tools.length} Free Browser Tools
+              </span>
+            </div>
+            <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#252B27] dark:text-white mb-2.5">
+              How to Choose the Best {data.title} Tool for Your Workflow
+            </h2>
+            <p className="text-sm sm:text-base text-[#252B27]/85 dark:text-slate-300 leading-relaxed mb-4">
+              {data.description} For the fastest start, launch <strong>{data.featuredTool.title}</strong> ({data.featuredTool.description.toLowerCase()}), or compare the specialized options in the matrix below:
+              {data.comparisonTable.rows.slice(0, 3).map((r) => ` use ${r.tool} for ${r.bestFor.toLowerCase()}`).join('; ')}. Every tool runs 100% locally in your browser with zero login and drift-free timestamp accuracy.
+            </p>
+            <div className="flex flex-wrap items-center gap-2 text-xs text-[#252B27]/75 dark:text-slate-300">
+              <span className="font-bold text-[#365C4B] dark:text-[#5E917A]">Top Picks:</span>
+              {data.tools.slice(0, 5).map((t) => (
+                <Link
+                  key={t.name}
+                  href={t.href}
+                  className="px-3 py-1 rounded-full bg-[#F7F6F2] dark:bg-[#252D28] border border-[#E4E1D9] dark:border-[#2D352F] hover:border-[#365C4B] transition-colors font-medium"
+                >
+                  {t.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <div className="max-w-3xl mb-8">
             <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#252B27] dark:text-white mb-3">
               {data.comparisonTable.title}

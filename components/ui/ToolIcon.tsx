@@ -56,7 +56,8 @@ import {
   Gem,
   RefreshCw,
   TrendingUp,
-   type LucideIcon,
+  Wand2,
+  type LucideIcon,
 } from 'lucide-react';
 
 export type ToolTier = 'trending' | 'hot' | 'new';
@@ -335,6 +336,15 @@ const TOOL_ICON_MAP: Record<string, ToolIconMeta> = {
     ringClass: 'border-orange-200 dark:border-orange-500/45',
     dotColor: '#EA580C',
   },
+  'custom-timer': {
+    icon: Wand2,
+    accentIcon: Sparkles,
+    bgClass:
+      'bg-gradient-to-br from-emerald-50 via-teal-100 to-amber-50 dark:from-emerald-950 dark:via-teal-950 dark:to-amber-900/80',
+    iconClass: 'text-emerald-700 dark:text-emerald-300',
+    ringClass: 'border-emerald-200 dark:border-emerald-500/45',
+    dotColor: '#365C4B',
+  },
   stopwatch: {
     icon: Watch,
     bgClass:
@@ -589,6 +599,7 @@ export function normalizeToolKey(hrefOrName: string): string {
   if (lower.includes('multi-stopwatch') || lower.includes('multi stopwatch')) return 'multi-stopwatch';
   if (lower.includes('stopwatch')) return 'stopwatch';
   if (lower.includes('pomodoro') || lower.includes('productivity')) return 'pomodoro-timer';
+  if (lower.includes('custom timer')) return 'custom-timer';
   if (lower.includes('visual timer')) return 'visual-timer';
   if (lower.includes('stage') || lower.includes('event')) return 'stage-timer';
   if (lower.includes('presentation')) return 'presentation-timer';

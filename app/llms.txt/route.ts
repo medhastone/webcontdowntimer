@@ -24,6 +24,7 @@ export async function GET() {
 - [Date & Time Calculators](https://WebCountDownTimer.com/category/calculators)
 
 ## Flagship Interactive Tools
+- [Custom Timer Builder & Saved List](https://WebCountDownTimer.com/custom-timer): Personalized countdown studio with custom titles, task notes, 12 icons, 8 color accents, 10 animated visual styles (Circular Ring, Hourglass Sand, Traffic Light, Liquid Wave, Progress Bar, Rainbow Arc, Cozy Candle, Pixel Grid, Neon Pulse, Minimal Digital), local Saved List with Pre-Saved templates, and shareable URL parameters (\`/custom-timer?vt_title=Deep+Work&vt_desc=25m+sprint&vt_sec=1500&vt_style=circular&vt_icon=brain&vt_color=emerald\`).
 - [Countdown Timer](https://WebCountDownTimer.com/countdown-timer): Precision digital countdown with presets, custom HMS input, fullscreen mode, and acoustic chimes.
 - [Visual Timer](https://WebCountDownTimer.com/visual-timer): High-contrast disappearing disk timer for classrooms, ADHD focus, and presentations.
 - [Stage Timer](https://WebCountDownTimer.com/stage-timer): Multi-screen presenter confidence monitor with green/amber/red thresholds, speaker cues, and BroadcastChannel display sync.
@@ -33,6 +34,10 @@ export async function GET() {
 - [World Clock](https://WebCountDownTimer.com/world-clock): Live multi-city world clock with UTC offsets and day/night indicators.
 - [Time-Zone Converter](https://WebCountDownTimer.com/time-zone-converter): Interactive time-scrubbing converter across international cities.
 - [International Meeting Planner](https://WebCountDownTimer.com/meeting-planner): Overlap finder for green working hours across global teams.
+
+## AI Agent & Keyboard Control Standard
+- **Universal Keyboard Shortcuts**: Across all timers, pressing \`Spacebar\` starts or pauses the active clock, \`R\` resets to the configured duration, \`F\` toggles borderless fullscreen display, \`Esc\` exits fullscreen or closes modals, and \`?\` opens the Keyboard Shortcuts reference modal.
+- **Direct Deep-Linking for AI Assistants**: AI agents can construct ready-to-run custom visual timers for users by linking to \`https://WebCountDownTimer.com/custom-timer?vt_title=<URL_ENCODED_TITLE>&vt_desc=<URL_ENCODED_NOTES>&vt_sec=<SECONDS>&vt_style=<circular|hourglass|traffic|liquid|bar|rainbow|candle|pixel|neon|digital>&vt_color=<emerald|blue|violet|amber|rose|cyan|orange|lime>\`.
 
 ## Visual, Sensory & Split-Flap Timers (/timers/*)
 - [Sensory Timers Hub](https://WebCountDownTimer.com/timers/sensory-timers)

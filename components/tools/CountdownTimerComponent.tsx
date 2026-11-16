@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useCountdown } from '@/hooks/use-timer-engine';
 import { playTimerSound } from '@/lib/sound';
 import { requestWakeLock, releaseWakeLock } from '@/lib/wakelock';
-import { Play, Pause, RotateCcw, Volume2, VolumeX, Maximize, Minimize, Repeat, Clock } from 'lucide-react';
+import { Play, Pause, RotateCcw, Volume2, VolumeX, Maximize, Minimize, Repeat, Clock, Keyboard, X } from 'lucide-react';
 
 interface CountdownTimerComponentProps {
   initialSeconds?: number;
@@ -20,6 +20,7 @@ export default function CountdownTimerComponent({
   const [isLooping, setIsLooping] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showShortcutsModal, setShowShortcutsModal] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const loopingRef = useRef(isLooping);
@@ -79,20 +80,24 @@ export default function CountdownTimerComponent({
     const params = new URLSearchParams(window.location.search);
     const mParam = params.get('m');
     const sParam = params.get('s');
+    let nextSec: number | null = null;
     if (mParam) {
       const m = Number(mParam);
       if (Number.isFinite(m) && m > 0 && m <= 1440) {
-        const sec = Math.round(m * 60);
-        setTotalSeconds(sec);
-        timer.setDuration(sec * 1000);
+        nextSec = Math.round(m * 60);
       }
     } else if (sParam) {
       const s = Number(sParam);
       if (Number.isFinite(s) && s > 0 && s <= 86400) {
-        const sec = Math.round(s);
-        setTotalSeconds(sec);
-        timer.setDuration(sec * 1000);
+        nextSec = Math.round(s);
       }
+    }
+    if (nextSec !== null) {
+      const targetSec = nextSec;
+      queueMicrotask(() => {
+        setTotalSeconds(targetSec);
+        timer.setDuration(targetSec * 1000);
+      });
     }
   }, [timer.setDuration]);
 
@@ -130,7 +135,7 @@ export default function CountdownTimerComponent({
     timer.setDuration(total * 1000);
   };
 
-  const toggleFullscreen = () => {
+  const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(() => {});
       const orientation = (screen as unknown as { orientation?: { lock?: (mode: string) => Promise<void> } }).orientation;
@@ -142,7 +147,47 @@ export default function CountdownTimerComponent({
       orientation?.unlock?.();
       setIsFullscreen(false);
     }
-  };
+  }, []);
+
+  // Keyboard shortcuts (Space: Start/Pause, R: Reset, F: Fullscreen, ?: Shortcuts, Esc: Close/Exit)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+      if (e.key === 'Escape') {
+        if (showShortcutsModal) {
+          e.preventDefault();
+          setShowShortcutsModal(false);
+          return;
+        }
+        if (isFullscreen) {
+          setIsFullscreen(false);
+        }
+        return;
+      }
+
+      if (e.key === '?') {
+        e.preventDefault();
+        setShowShortcutsModal((prev) => !prev);
+        return;
+      }
+
+      if (e.code === 'Space') {
+        e.preventDefault();
+        handleStartPause();
+      } else if (e.key === 'r' || e.key === 'R') {
+        e.preventDefault();
+        handleReset();
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleStartPause, handleReset, toggleFullscreen, showShortcutsModal, isFullscreen]);
 
   const remainingSeconds = Math.ceil(timer.remainingMs / 1000);
   const { hours, minutes, seconds } = timer.timeUnits;
@@ -221,6 +266,41 @@ export default function CountdownTimerComponent({
                 </>
               )}
             </button>
+            {/* Non-intrusive Keyboard Shortcuts Trigger with Hover Tooltip & Modal */}
+            <div className="relative group">
+              <button
+                type="button"
+                onClick={() => setShowShortcutsModal((prev) => !prev)}
+                className="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#252B27]/70 dark:text-slate-300 hover:bg-[#F7F6F2] dark:hover:bg-[#252E28] flex items-center gap-1.5 cursor-pointer"
+                aria-label="Keyboard Shortcuts"
+                aria-haspopup="dialog"
+                aria-expanded={showShortcutsModal}
+              >
+                <Keyboard className="w-4 h-4 text-[#365C4B] dark:text-[#5E917A]" />
+                <span className="hidden md:inline">Shortcuts</span>
+              </button>
+
+              <div
+                role="tooltip"
+                className="pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-150 absolute right-0 top-full mt-2 w-56 p-2.5 rounded-xl bg-[#181F1B] text-white text-[11px] leading-relaxed shadow-lg border border-[#2A342D] z-30 hidden sm:block"
+              >
+                <p className="font-semibold text-white/95 mb-1">Keyboard Shortcuts</p>
+                <div className="space-y-1 text-slate-300">
+                  <div className="flex items-center justify-between">
+                    <span>Start / Pause</span>
+                    <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px] text-white">Space</kbd>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Reset Timer</span>
+                    <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px] text-white">R</kbd>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Fullscreen</span>
+                    <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px] text-white">F</kbd>
+                  </div>
+                </div>
+              </div>
+            </div>
             <button
               type="button"
               onClick={toggleFullscreen}
@@ -383,6 +463,78 @@ export default function CountdownTimerComponent({
                   {d.label} Timer
                 </Link>
               ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Keyboard Shortcuts Modal */}
+      {showShortcutsModal && (
+        <div
+          className="fixed inset-0 z-[100000] flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs"
+          onClick={() => setShowShortcutsModal(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="countdown-shortcuts-title"
+        >
+          <div
+            className="w-full max-w-sm rounded-2xl border border-[#E4E1D9] dark:border-[#2D352F] bg-white dark:bg-[#1A201C] text-[#252B27] dark:text-white p-5 sm:p-6 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between gap-3 pb-3.5 border-b border-[#E4E1D9] dark:border-[#2D352F]">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-[#365C4B] flex items-center justify-center text-white shrink-0">
+                  <Keyboard className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 id="countdown-shortcuts-title" className="text-sm sm:text-base font-bold leading-tight">
+                    Keyboard Shortcuts
+                  </h3>
+                  <p className="text-[11px] text-[#252B27]/60 dark:text-slate-400">
+                    Quickly control the timer
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowShortcutsModal(false)}
+                className="p-1.5 rounded-lg text-[#252B27]/60 dark:text-slate-400 hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer"
+                aria-label="Close keyboard shortcuts modal"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="py-4 space-y-2.5 text-xs sm:text-sm">
+              {[
+                { action: 'Start / Pause timer', keyLabel: 'Spacebar' },
+                { action: 'Reset timer', keyLabel: 'R' },
+                { action: 'Toggle Fullscreen', keyLabel: 'F' },
+                { action: 'Exit Fullscreen / Close', keyLabel: 'Esc' },
+                { action: 'Show / Hide shortcuts', keyLabel: '?' },
+              ].map((item) => (
+                <div
+                  key={item.keyLabel}
+                  className="flex items-center justify-between gap-4 px-3 py-2 rounded-xl bg-[#F7F6F2] dark:bg-[#212A25]"
+                >
+                  <span className="font-medium text-[#252B27]/85 dark:text-slate-200">
+                    {item.action}
+                  </span>
+                  <kbd className="px-2.5 py-1 rounded-lg border border-[#E4E1D9] dark:border-[#2A342D] bg-white dark:bg-[#181F1B] font-mono text-xs font-semibold shadow-2xs shrink-0">
+                    {item.keyLabel}
+                  </kbd>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-2 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setShowShortcutsModal(false)}
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-[#365C4B] text-white transition-opacity hover:opacity-95 cursor-pointer"
+              >
+                Got it
+              </button>
             </div>
           </div>
         </div>

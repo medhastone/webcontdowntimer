@@ -15,6 +15,12 @@ import {
   Sparkles,
   Flame,
   TrendingUp,
+  Bookmark,
+  Heart,
+  Trash2,
+  Plus,
+  Wand2,
+  RotateCcw,
 } from 'lucide-react';
 import { ALL_HOME_TOOLS } from '@/lib/home-data';
 import { ToolIconBadge, ToolTierTag, type ToolTier } from '@/components/ui/ToolIcon';
@@ -27,6 +33,18 @@ import {
 } from '@/lib/i18n';
 import { LanguageFlag, LANGUAGE_META } from '@/components/ui/LanguageFlag';
 import { BrandLogo } from '@/components/ui/BrandLogo';
+import {
+  subscribeCustomTimers,
+  getCustomTimersSnapshot,
+  getServerCustomTimersSnapshot,
+  buildCustomTimerHref,
+  toggleLikeSavedTimer,
+  deleteSavedTimer,
+  restoreDefaultSavedTimers,
+  DEFAULT_CUSTOM_TIMERS,
+  PRE_SAVED_IDS,
+} from '@/lib/custom-timers-store';
+import { CustomTimerIcon } from '@/components/tools/VisualTimerCustomStudio';
 
 const themeListeners = new Set<() => void>();
 
@@ -258,8 +276,14 @@ export default function Navbar() {
   );
   const [navSearchQuery, setNavSearchQuery] = useState('');
   const [navSearchOpen, setNavSearchOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<'timers' | 'categories' | null>(null);
+  const [activeDropdown, setActiveDropdown] = useState<'timers' | 'categories' | 'saved' | null>(null);
   const [mobileTierTab, setMobileTierTab] = useState<ToolTier>('new');
+
+  const savedTimers = useSyncExternalStore(
+    subscribeCustomTimers,
+    getCustomTimersSnapshot,
+    getServerCustomTimersSnapshot
+  );
 
   const navRef = useRef<HTMLDivElement>(null);
   const langRef = useRef<HTMLDivElement>(null);
@@ -443,11 +467,178 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* 2. World Clock */}
+            {/* 2. Custom Timer (New Dedicated Builder Page) */}
+            <Link
+              href="/custom-timer"
+              onClick={() => setActiveDropdown(null)}
+              className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl transition-colors whitespace-nowrap ${
+                pathname.startsWith('/custom-timer')
+                  ? 'bg-[#E7EDE7]/80 dark:bg-[#222B25] text-[#365C4B] dark:text-[#5E917A]'
+                  : 'text-[#252B27]/80 dark:text-slate-300 hover:text-[#365C4B] dark:hover:text-[#5E917A] hover:bg-[#E7EDE7]/40 dark:hover:bg-[#1E2521]'
+              }`}
+            >
+              <Wand2 className="w-3.5 h-3.5 text-[#365C4B] dark:text-[#70B393]" />
+              <span>Custom Timer</span>
+            </Link>
+
+            {/* 3. Saved List Dropdown in Header for Easy Navigation */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveDropdown(activeDropdown === 'saved' ? null : 'saved')
+                }
+                aria-expanded={activeDropdown === 'saved'}
+                className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl transition-colors cursor-pointer whitespace-nowrap ${
+                  activeDropdown === 'saved'
+                    ? 'bg-[#E7EDE7]/80 dark:bg-[#222B25] text-[#365C4B] dark:text-[#5E917A]'
+                    : 'text-[#252B27]/80 dark:text-slate-300 hover:text-[#365C4B] dark:hover:text-[#5E917A] hover:bg-[#E7EDE7]/40 dark:hover:bg-[#1E2521]'
+                }`}
+              >
+                <Bookmark className="w-3.5 h-3.5 text-[#365C4B] dark:text-[#70B393]" />
+                <span>Saved List</span>
+                <span className="px-1.5 py-0.5 rounded-md text-[10px] font-mono font-bold bg-[#365C4B]/15 text-[#365C4B] dark:bg-[#365C4B]/40 dark:text-[#8CD4B2]">
+                  {savedTimers.length}
+                </span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    activeDropdown === 'saved' ? 'rotate-180 text-[#365C4B]' : 'opacity-60'
+                  }`}
+                />
+              </button>
+
+              {activeDropdown === 'saved' && (
+                <div className="absolute left-0 top-full mt-2.5 w-[380px] p-3.5 bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F] rounded-2xl shadow-2xl z-50 animate-in fade-in slide-in-from-top-1">
+                  <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-[#F0EDE6] dark:border-[#262D28]">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#365C4B] dark:text-[#5E917A]">
+                      My Saved Timers ({savedTimers.length})
+                    </span>
+                    <div className="flex items-center gap-2.5">
+                      {DEFAULT_CUSTOM_TIMERS.some((d) => !savedTimers.some((s) => s.id === d.id)) && (
+                        <button
+                          type="button"
+                          onClick={() => restoreDefaultSavedTimers()}
+                          className="text-[11px] font-semibold text-[#252B27]/65 dark:text-slate-300 hover:text-[#365C4B] dark:hover:text-[#70B393] inline-flex items-center gap-1 cursor-pointer"
+                          title="Restore pre-saved timers"
+                        >
+                          <RotateCcw className="w-3 h-3" />
+                          <span>Restore Pre-Saved</span>
+                        </button>
+                      )}
+                      <Link
+                        href="/custom-timer"
+                        onClick={() => setActiveDropdown(null)}
+                        className="text-[11px] font-bold text-[#365C4B] dark:text-[#70B393] hover:underline inline-flex items-center gap-1"
+                      >
+                        <Plus className="w-3 h-3" />
+                        <span>New Timer</span>
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="max-h-80 overflow-y-auto py-2 space-y-1.5">
+                    {savedTimers.length === 0 ? (
+                      <div className="py-6 px-3 text-center space-y-2.5">
+                        <p className="text-xs text-[#252B27]/65 dark:text-slate-400">
+                          Your saved list is currently empty.
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => restoreDefaultSavedTimers()}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#365C4B]/40 text-xs font-semibold text-[#365C4B] dark:text-[#70B393] hover:bg-[#E7EDE7]/60 dark:hover:bg-[#232B26] cursor-pointer"
+                        >
+                          <RotateCcw className="w-3.5 h-3.5" />
+                          <span>Load Pre-Saved Timers</span>
+                        </button>
+                      </div>
+                    ) : (
+                      savedTimers.map((item) => {
+                        const mins = Math.floor(item.durationSec / 60);
+                        const secs = item.durationSec % 60;
+                        const durText = secs > 0 ? `${mins}m ${secs}s` : `${mins} min`;
+                        const isPreSaved = PRE_SAVED_IDS.has(item.id);
+                        return (
+                          <div
+                            key={item.id}
+                            className="group flex items-center justify-between gap-2 p-2 rounded-xl hover:bg-[#F7F6F2] dark:hover:bg-[#232B26] transition-colors"
+                          >
+                            <Link
+                              href={buildCustomTimerHref(item)}
+                              onClick={() => setActiveDropdown(null)}
+                              className="flex items-center gap-2.5 min-w-0 flex-1"
+                            >
+                              <span
+                                className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0 shadow-2xs"
+                                style={{ backgroundColor: item.color }}
+                              >
+                                <CustomTimerIcon icon={item.icon} className="w-4 h-4" />
+                              </span>
+                              <div className="min-w-0 flex-1">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="text-xs font-bold text-[#252B27] dark:text-white group-hover:text-[#365C4B] dark:group-hover:text-[#70B393] truncate">
+                                    {item.title}
+                                  </span>
+                                  {isPreSaved && (
+                                    <span className="px-1.5 py-0.2 rounded text-[9px] font-bold uppercase tracking-wide bg-[#365C4B]/10 text-[#365C4B] dark:bg-[#365C4B]/30 dark:text-[#8CD4B2] shrink-0">
+                                      Pre-Saved
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="text-[11px] text-[#252B27]/60 dark:text-slate-400 truncate">
+                                  {durText} · {item.visualStyle.replace('-', ' ')}
+                                </div>
+                              </div>
+                            </Link>
+
+                            <div className="flex items-center gap-0.5 shrink-0">
+                              <button
+                                type="button"
+                                onClick={() => toggleLikeSavedTimer(item.id)}
+                                className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                                  item.liked
+                                    ? 'text-[#D93B8A]'
+                                    : 'text-slate-400 hover:text-[#D93B8A]'
+                                }`}
+                                title={item.liked ? 'Liked' : 'Like timer'}
+                                aria-label="Toggle like"
+                              >
+                                <Heart className={`w-3.5 h-3.5 ${item.liked ? 'fill-current' : ''}`} />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => deleteSavedTimer(item.id)}
+                                className="p-1.5 rounded-lg text-slate-400 hover:text-[#D94343] hover:bg-[#D94343]/10 transition-colors cursor-pointer"
+                                title="Delete from saved list"
+                                aria-label={`Delete ${item.title} from saved list`}
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })
+                    )}
+                  </div>
+
+                  <div className="pt-2.5 border-t border-[#E4E1D9] dark:border-[#262D28]">
+                    <Link
+                      href="/custom-timer"
+                      onClick={() => setActiveDropdown(null)}
+                      className="w-full py-2 px-3 rounded-xl bg-[#365C4B] text-white text-xs font-semibold flex items-center justify-center gap-1.5 hover:opacity-95 transition-opacity"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>Create &amp; Save Custom Timer</span>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 4. World Clock */}
             <Link
               href="/world-clock"
               onClick={() => setActiveDropdown(null)}
-              className={`px-3.5 py-2 rounded-xl transition-colors ${
+              className={`px-3 py-2 rounded-xl transition-colors whitespace-nowrap ${
                 pathname.startsWith('/world-clock') || pathname.startsWith('/category/world')
                   ? 'bg-[#E7EDE7]/80 dark:bg-[#222B25] text-[#365C4B] dark:text-[#5E917A]'
                   : 'text-[#252B27]/80 dark:text-slate-300 hover:text-[#365C4B] dark:hover:text-[#5E917A] hover:bg-[#E7EDE7]/40 dark:hover:bg-[#1E2521]'
@@ -456,7 +647,7 @@ export default function Navbar() {
               World Clock
             </Link>
 
-            {/* 3. Categories Dropdown (Classroom, Events, Productivity, Fitness) */}
+            {/* 5. Categories Dropdown (Classroom, Events, Productivity, Fitness) */}
             <div className="relative">
               <button
                 type="button"
@@ -464,7 +655,7 @@ export default function Navbar() {
                   setActiveDropdown(activeDropdown === 'categories' ? null : 'categories')
                 }
                 aria-expanded={activeDropdown === 'categories'}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-colors cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl transition-colors cursor-pointer whitespace-nowrap ${
                   isCategoriesActive ||
                   pathname === '/category/education' ||
                   activeDropdown === 'categories'
@@ -511,25 +702,11 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* 4. Calculators */}
-            <Link
-              href="/category/calculators"
-              onClick={() => setActiveDropdown(null)}
-              className={`px-3.5 py-2 rounded-xl transition-colors ${
-                pathname.startsWith('/category/calculators') ||
-                pathname === '/time-duration-calculator'
-                  ? 'bg-[#E7EDE7]/80 dark:bg-[#222B25] text-[#365C4B] dark:text-[#5E917A]'
-                  : 'text-[#252B27]/80 dark:text-slate-300 hover:text-[#365C4B] dark:hover:text-[#5E917A] hover:bg-[#E7EDE7]/40 dark:hover:bg-[#1E2521]'
-              }`}
-            >
-              Calculators
-            </Link>
-
-            {/* 5. All Tools */}
+            {/* 6. All Tools */}
             <Link
               href="/tools"
               onClick={() => setActiveDropdown(null)}
-              className={`px-3.5 py-2 rounded-xl transition-colors ${
+              className={`px-3 py-2 rounded-xl transition-colors whitespace-nowrap ${
                 pathname.startsWith('/tools')
                   ? 'bg-[#E7EDE7]/80 dark:bg-[#222B25] text-[#365C4B] dark:text-[#5E917A]'
                   : 'text-[#252B27]/80 dark:text-slate-300 hover:text-[#365C4B] dark:hover:text-[#5E917A] hover:bg-[#E7EDE7]/40 dark:hover:bg-[#1E2521]'
@@ -766,10 +943,10 @@ export default function Navbar() {
             {/* Minimal Top-Level Links */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-bold">
               {[
+                { label: 'Custom Timer', href: '/custom-timer', iconKey: 'custom-timer' },
                 { label: 'Timers', href: '/category/timers', iconKey: 'countdown-timer' },
                 { label: 'World Clock', href: '/world-clock', iconKey: 'world-clock' },
                 { label: 'Education', href: '/category/education', iconKey: 'classroom-timer' },
-                { label: 'Events & Stage', href: '/category/events', iconKey: 'stage-timer' },
                 { label: 'Calculators', href: '/category/calculators', iconKey: 'time-duration-calculator' },
                 { label: 'All Tools', href: '/tools', iconKey: 'sensory-timers' },
               ].map((navItem) => (
@@ -783,6 +960,94 @@ export default function Navbar() {
                   <span>{navItem.label}</span>
                 </Link>
               ))}
+            </div>
+
+            {/* Mobile Saved List Quick Navigation */}
+            <div className="pt-2 border-t border-[#E4E1D9] dark:border-[#262D28] space-y-2">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#365C4B] dark:text-[#70B393] flex items-center gap-1.5">
+                  <Bookmark className="w-3.5 h-3.5" />
+                  <span>Saved List ({savedTimers.length})</span>
+                </span>
+                <div className="flex items-center gap-2.5">
+                  {DEFAULT_CUSTOM_TIMERS.some((d) => !savedTimers.some((s) => s.id === d.id)) && (
+                    <button
+                      type="button"
+                      onClick={() => restoreDefaultSavedTimers()}
+                      className="text-[11px] font-semibold text-[#252B27]/70 dark:text-slate-300 inline-flex items-center gap-1 cursor-pointer"
+                    >
+                      <RotateCcw className="w-3 h-3" />
+                      <span>Restore</span>
+                    </button>
+                  )}
+                  <Link
+                    href="/custom-timer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-[11px] font-bold text-[#365C4B] dark:text-[#70B393]"
+                  >
+                    + Create Custom
+                  </Link>
+                </div>
+              </div>
+              {savedTimers.length === 0 ? (
+                <div className="p-3 rounded-xl bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F] text-center space-y-2">
+                  <p className="text-xs text-[#252B27]/65 dark:text-slate-400">
+                    Your saved list is empty.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => restoreDefaultSavedTimers()}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#365C4B] text-white text-xs font-semibold cursor-pointer"
+                  >
+                    <RotateCcw className="w-3 h-3" />
+                    <span>Load Pre-Saved Timers</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 max-h-56 overflow-y-auto">
+                  {savedTimers.map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex items-center justify-between gap-1.5 p-2 rounded-xl bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F]"
+                    >
+                      <Link
+                        href={buildCustomTimerHref(item)}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-2 min-w-0 flex-1 text-xs font-semibold text-[#252B27] dark:text-white"
+                      >
+                        <span
+                          className="w-6 h-6 rounded-md flex items-center justify-center text-white shrink-0"
+                          style={{ backgroundColor: item.color }}
+                        >
+                          <CustomTimerIcon icon={item.icon} className="w-3.5 h-3.5" />
+                        </span>
+                        <span className="truncate">{item.title}</span>
+                      </Link>
+                      <div className="flex items-center gap-0.5 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => toggleLikeSavedTimer(item.id)}
+                          className={`p-1 rounded-md cursor-pointer ${
+                            item.liked ? 'text-[#D93B8A]' : 'text-slate-400'
+                          }`}
+                          aria-label="Toggle like"
+                        >
+                          <Heart className={`w-3.5 h-3.5 ${item.liked ? 'fill-current' : ''}`} />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => deleteSavedTimer(item.id)}
+                          className="p-1 rounded-md text-slate-400 hover:text-[#D94343] cursor-pointer"
+                          aria-label={`Delete ${item.title} from saved list`}
+                          title="Delete from saved list"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Organized Trending / Hot / New Quick Tabs for Mobile */}
