@@ -121,7 +121,10 @@ export default function ClassroomNoiseMeterComponent() {
 
   // Initial search-grounded context fetch on mount
   useEffect(() => {
-    fetchGroundedContext(CLASSROOM_GROUNDING_TOPICS[0].query, 0, 65, 0);
+    const timerId = setTimeout(() => {
+      fetchGroundedContext(CLASSROOM_GROUNDING_TOPICS[0].query, 0, 65, 0);
+    }, 0);
+    return () => clearTimeout(timerId);
   }, [fetchGroundedContext]);
 
   const startMonitoring = async () => {

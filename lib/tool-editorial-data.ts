@@ -388,46 +388,81 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       choosingStyleTitle: 'Choosing the Right Visual Timer Style',
       choosingStyleBody:
         'Different visual styles work better for different situations. The circular timer is simple and popular, while the progress bar works well for wide displays. The hourglass style is great for a classic look, and the traffic light style is especially useful for children.',
-      featuresTitle: 'Visual Timers for Classrooms',
+      featuresTitle: 'Key Capabilities & Visual Styles',
       featuresList: [
-        'Visual timers are widely used in classrooms to help students stay on task during activities, transitions and tests. Teachers can use them for group work, reading time, or to signal the end of an activity. The clear visual display helps younger students understand time more easily.',
+        '6 Live Visual Countdown Styles: Switch seamlessly between Circular Disc, Progress Bar, Hourglass Sand, Traffic Light, Rainbow Arc, and Minimal Digital.',
+        'Duration & Target End-Time Modes: Count down a fixed duration (e.g., 15 minutes) or count down to an exact wall-clock time (e.g., 2:45 PM).',
+        'Responsive Fullscreen Stage: Scales both the visual graphic and digital readout for phones, tablets, laptops, and classroom projectors.',
+        'Elapsed Time & Hide-Numbers Toggles: Count upward or hide the digital numerals so learners focus purely on the shrinking visual shape.',
+        'Screen Wake Lock & Web Audio Chimes: Keeps your display awake and plays a clear completion chime at 00:00.',
       ],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Who Can Benefit From This Tool?',
-      whoBenefitsList: [],
-      tipsTitle: 'Tips for Better Results',
-      tipsList: [],
+      practicalExamples: [
+        {
+          icon: 'GraduationCap',
+          title: 'Classroom Centers & Transitions',
+          description: 'Project the Traffic Light or Circular disc on a smartboard during 10-minute reading centers and 3-minute cleanup transitions.',
+        },
+        {
+          icon: 'Monitor',
+          title: 'ADHD & Time-Blindness Focus',
+          description: 'Keep a 25-minute shrinking wedge visible on a secondary monitor to externalize time and overcome task-initiation friction.',
+        },
+        {
+          icon: 'Presentation',
+          title: 'Keynote & Standup Pacing',
+          description: 'Run a 15-minute Progress Bar or Traffic Light timer during daily agile standups and pitch rehearsals.',
+        },
+        {
+          icon: 'CheckSquare',
+          title: 'Proctored Exams & Quizzes',
+          description: 'Show both the shrinking visual sector and exact remaining minutes so students pace essay sections calmly.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Benefits Most from the Visual Timer?',
+      whoBenefitsList: [
+        'Elementary, middle-school, and special education teachers managing classroom transitions',
+        'Students and adults with ADHD or executive-function time blindness',
+        'Agile scrum masters, workshop facilitators, and conference speakers',
+        'Parents guiding homework blocks, toothbrushing, and screen-time limits',
+      ],
+      tipsTitle: 'Expert Tips for Visual Timing',
+      tipsList: [
+        'Hide the digital time text for younger children or test-anxious students so they read the shrinking shape rather than fixating on ticking seconds.',
+        'Use Traffic Light mode when participants need automatic Green (>30%), Yellow (10%–30%), and Red (<10%) wrap-up warnings.',
+        'Switch to End Time mode when a class period or meeting must end at a hard wall-clock time like 11:15 AM.',
+        'Press Spacebar to start/pause, R to reset, and F to enter borderless fullscreen mode.',
+      ],
       problemsTitle: 'Choosing the Right Visual Timer Style',
       problemsRows: [
         {
-          problem: 'Circular',
-          cause: 'General use',
-          solution: 'Clear and familiar design',
+          problem: 'Circular Disc',
+          cause: 'General classroom, study & desk focus',
+          solution: 'Shows remaining time as a familiar 360° disappearing wedge',
         },
         {
           problem: 'Progress Bar',
-          cause: 'Presentations, wide screens',
-          solution: 'Easy to see from a distance',
+          cause: 'Presentations, wide monitors & smartboards',
+          solution: 'Horizontal linear depletion bar readable from 30+ feet away',
         },
         {
-          problem: 'Hourglass',
-          cause: 'Classrooms, visual learners',
-          solution: 'Classic and engaging',
+          problem: 'Hourglass Sand',
+          cause: 'Visual learners, board games & short turns',
+          solution: 'Classic upper-to-lower chamber falling sand metaphor',
         },
         {
           problem: 'Traffic Light',
-          cause: 'Children, quick feedback',
-          solution: 'Color-based visual cue',
+          cause: 'Speeches, debates & early elementary classes',
+          solution: 'Automatic Green, Amber, and Red phase transitions',
         },
         {
-          problem: 'Rainbow',
-          cause: 'Fun and creative environments',
-          solution: 'Bright and engaging',
+          problem: 'Rainbow Arc',
+          cause: 'Kids’ activities, art rooms & reading corners',
+          solution: 'Engaging 7-band color arc that recedes smoothly to 00:00',
         },
         {
           problem: 'Minimal Digital',
-          cause: 'Simple and clean look',
-          solution: 'Focus on the time',
+          cause: 'Exams, coding sprints & minimalist desks',
+          solution: 'Ultra-large tabular digits with zero visual clutter',
         },
       ],
     },
@@ -437,10 +472,20 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
     slug: 'world-clock',
     categorySlug: 'world',
     categoryLabel: 'World Clock',
-    heroSubtitle: 'Compare local times and plan meetings across the world.',
-    featurePills: [],
+    heroSubtitle: 'Compare local times, UTC offsets, and business hours across global cities in real time.',
+    featurePills: [
+      'Official IANA time zone engine',
+      'Automatic Daylight Saving (DST)',
+      'Day/Night & working-hours badges',
+      'Instant multi-city comparison',
+    ],
     quickPresets: [],
-    steps: [],
+    steps: [
+      { step: 1, title: 'View or add global cities', description: 'Search and pin cities from North America, Europe, Asia-Pacific, Latin America, and Africa.' },
+      { step: 2, title: 'Compare live UTC offsets & dates', description: 'Inspect each city’s live local time, day of the week, and UTC offset side by side.' },
+      { step: 3, title: 'Check Day/Night & business hours', description: 'Use the sun/moon indicators to see which offices are currently in standard working hours.' },
+      { step: 4, title: 'Scrub future meeting times', description: 'Jump to the Time-Zone Converter or Meeting Planner to test future dates across DST changes.' },
+    ],
     guide: {
       tableOfContents: [
         'Understanding World Clocks',
@@ -458,21 +503,78 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
       ],
       howItWorksTitle: 'How Time-Zone Conversion Works',
       howItWorksBody: [
-        'Time-zone conversion calculates the time in one location based on the time difference between two regions. Each location follows a specific time zone, which is usually expressed as an offset from Coordinated Universal Time (UTC).',
+        'Time-zone conversion calculates the time in one location based on the time difference between two regions. Each location follows a specific time zone, which is usually expressed as an offset from Coordinated Universal Time (UTC) via the official IANA Time Zone Database.',
       ],
       calloutNote:
-        'For example, if it is 10:00 AM in New York (UTC -4), the time in Mumbai (UTC +5:30) will be 7:30 PM on the same day.',
-      howToUseTitle: 'UTC Offsets Explained',
-      howToUseSteps: [],
-      featuresTitle: 'Understanding Daylight-Saving Time',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Planning Meetings Across Countries',
-      whoBenefitsList: [],
-      tipsTitle: 'Common Time-Zone Conversion Mistakes',
-      tipsList: [],
-      problemsTitle: 'UTC Offsets Explained',
-      problemsRows: [],
+        'For example, if it is 10:00 AM in New York (UTC-4 during EDT), the time in Mumbai (UTC+5:30) is 7:30 PM on the same day—a 9.5-hour offset.',
+      howToUseTitle: 'How to Compare Global Time Zones',
+      howToUseSteps: [
+        'Check your local reference time at the top of the World Clock dashboard.',
+        'Add or pin the international cities your team, clients, or family members live in.',
+        'Verify the date badge (+1 Day / -1 Day) when comparing the Americas with Asia or Oceania.',
+        'Toggle between 12-hour AM/PM and 24-hour military/ISO display formats.',
+      ],
+      featuresTitle: 'Key Capabilities & Time-Zone Accuracy',
+      featuresList: [
+        'Official IANA Time Zone Resolution: Automatically handles regional Daylight Saving Time (DST) transitions on the exact date each country switches.',
+        'Fractional UTC Offset Support: Accurately computes 30-minute and 45-minute offsets including India (UTC+5:30), Adelaide (UTC+9:30), Newfoundland (UTC-3:30), and Nepal (UTC+5:45).',
+        'International Date Line Awareness: Clearly flags when a target city is on Tomorrow (+1 day) or Yesterday (-1 day).',
+        'Daylight & Working-Hours Visual Cues: Shows at a glance whether a city is in daytime business hours, evening, or overnight sleep hours.',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Globe',
+          title: 'Distributed Engineering Standups',
+          description: 'Find the morning/afternoon overlap window between San Francisco (PT), New York (ET), London (GMT/BST), and Berlin (CET/CEST).',
+        },
+        {
+          icon: 'Users',
+          title: 'Client Calls Across the Date Line',
+          description: 'Verify that a Thursday 4:00 PM call in Los Angeles lands on Friday 11:00 AM in Sydney without date confusion.',
+        },
+        {
+          icon: 'Tv',
+          title: 'Global Product Launches & Livestreams',
+          description: 'Publish simultaneous launch times for New York, London, Tokyo, and Singapore from a single UTC reference.',
+        },
+        {
+          icon: 'Clock',
+          title: 'Aviation, Financial Markets & Travel',
+          description: 'Track market open/close bells across NYSE, LSE, and Tokyo Stock Exchange alongside UTC/Zulu time.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Uses the World Clock & Time-Zone Suite?',
+      whoBenefitsList: [
+        'Remote software teams, project managers, and executive assistants scheduling global calls',
+        'International sales, customer support, and operations teams covering 24/7 follow-the-sun shifts',
+        'Frequent flyers, digital nomads, and families staying in touch across continents',
+        'Event producers and webinar hosts announcing global broadcast start times',
+      ],
+      tipsTitle: 'Expert Tips to Prevent Time-Zone Mistakes',
+      tipsList: [
+        'Watch out for the 2-to-3-week spring and autumn gap when the US and Europe switch Daylight Saving Time on different Sundays.',
+        'Always include the explicit IANA city or UTC offset in meeting invites (e.g., "14:00 UTC / 10:00 EDT / 15:00 BST").',
+        'Remember that regions like Arizona, Hawaii, Japan, India, and Singapore do not observe Daylight Saving Time.',
+        'Use 24-hour format (e.g., 19:30 instead of 7:30) when coordinating international travel or server maintenance windows.',
+      ],
+      problemsTitle: 'Common Time-Zone Conversion Pitfalls & Solutions',
+      problemsRows: [
+        {
+          problem: 'Meeting is off by 1 hour in March or October',
+          cause: 'US and Europe/UK change Daylight Saving Time on different dates',
+          solution: 'Select the exact future meeting date so the IANA engine applies that day’s DST offset',
+        },
+        {
+          problem: 'Half-hour mismatch with India or Australia',
+          cause: 'Assuming all time zones are whole-hour offsets from UTC',
+          solution: 'Use city-based lookup (Mumbai UTC+5:30, Adelaide UTC+9:30/10:30) instead of manual hour math',
+        },
+        {
+          problem: 'Participant joins 24 hours late',
+          cause: 'Crossing the International Date Line between US afternoon and APAC morning',
+          solution: 'Always check both the weekday name and calendar date shown on each city card',
+        },
+      ],
     },
   },
 
@@ -481,56 +583,108 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
     categorySlug: 'calculators',
     categoryLabel: 'Calculators',
     heroSubtitle:
-      'Calculate the time between two points, including overnight hours.',
+      'Calculate the exact elapsed duration between two times or dates—including overnight shifts, total minutes, and payroll decimal hours.',
     featurePills: [
-      'Accurate time calculations',
-      'Works with dates',
-      'Handles overnight hours',
-      'Free to use',
+      'Exact HH:MM:SS & minute totals',
+      'Multi-day & overnight support',
+      'Payroll decimal hours output',
+      'Break deduction ready',
     ],
     quickPresets: [],
-    steps: [],
+    steps: [
+      { step: 1, title: 'Enter start date & time', description: 'Select your starting time (and date if spanning multiple days).' },
+      { step: 2, title: 'Enter end date & time', description: 'Select your ending time—overnight midnight rollovers are handled automatically.' },
+      { step: 3, title: 'Deduct unpaid breaks (optional)', description: 'Enter any lunch or rest break minutes to compute net working duration.' },
+      { step: 4, title: 'Read standard & decimal totals', description: 'Copy the exact result in hours/minutes, total minutes, total seconds, and decimal hours.' },
+    ],
     guide: {
       tableOfContents: [
         'What Is a Time Duration Calculator?',
         'How to Calculate Time Between Two Times',
         'How to Calculate Overnight Hours',
-        'Convert Hours Into Minutes',
-        'Calculate Decimal Hours',
+        'Convert Hours Into Minutes & Decimal Hours',
         'Practical Examples',
         'Common Mistakes',
         'Frequently Asked Questions',
       ],
       whatIsTitle: 'What Is a Time Duration Calculator?',
       whatIsBody: [
-        'A Time Duration Calculator helps you find the exact time between two points. You can enter a start time and an end time to calculate the duration in hours, minutes, total minutes and decimal hours. It also works with different dates, making it useful for overnight hours and multi-day calculations.',
+        'A Time Duration Calculator finds the exact elapsed time between a start time and an end time. It outputs the result simultaneously in standard hours and minutes (HH:MM:SS), total elapsed minutes, total seconds, and payroll-ready decimal hours (e.g., 7.75 hours).',
       ],
-      howItWorksTitle: 'How to Calculate Time Between Two Times',
-      howItWorksBody: ['Follow these simple steps:'],
+      howItWorksTitle: 'How Base-60 & Overnight Duration Math Works',
+      howItWorksBody: [
+        'Clock time uses base-60 (sexagesimal) arithmetic where 60 minutes equal 1 hour, whereas payroll and billing software require base-10 decimal hours (Minutes ÷ 60). This calculator converts both timestamps into epoch milliseconds, computes the exact delta across midnight or multi-day boundaries, and formats the output in both systems simultaneously.',
+      ],
       calloutNote:
-        'You do not need to manually adjust for midnight. Just enter the correct dates and times and the calculator will handle the rest.',
-      howToUseTitle: 'How to Calculate Overnight Hours',
+        'You do not need to split overnight shifts at midnight. Enter 10:30 PM as the start time and 6:15 AM as the end time, and the calculator automatically resolves the 7-hour 45-minute (7.75 hr) span.',
+      howToUseTitle: 'How to Calculate Overnight & Multi-Day Hours',
       howToUseSteps: [
         'Enter the start date and time.',
         'Enter the end date and time.',
         'Click Calculate Duration.',
         'View the result in hours, minutes, total minutes and decimal hours.',
       ],
-      featuresTitle: 'Common Calculation Mistakes',
+      featuresTitle: 'Key Capabilities & Calculation Outputs',
       featuresList: [
-        'Forgetting to set the correct date when calculating overnight hours.',
-        'Using the wrong AM/PM time.',
-        'Not accounting for breaks.',
-        'Confusing decimal hours with minutes.',
-        'Entering the same start and end time.',
+        'Automatic Midnight Rollover: Accurately computes night shifts (e.g., 22:00 to 06:30 = 8h 30m) without manual 24-hour subtraction.',
+        'Instant Payroll Decimal Conversion: Converts minutes into hundredths of an hour (15m = 0.25h, 30m = 0.50h, 45m = 0.75h).',
+        'Multi-Day & Date-Aware Span: Calculates total elapsed days, hours, and minutes across weekends or project milestones.',
+        'Total Minutes & Seconds Breakdown: Ideal for video editing, aviation logs, lab experiments, and athletic pacing.',
       ],
-      practicalExamples: [],
-      whoBenefitsTitle: '',
-      whoBenefitsList: [],
-      tipsTitle: '',
-      tipsList: [],
-      problemsTitle: '',
-      problemsRows: [],
+      practicalExamples: [
+        {
+          icon: 'Calculator',
+          title: 'Employee Shift & Payroll Verification',
+          description: 'Clock in at 8:15 AM and out at 4:45 PM with a 30-minute lunch break to verify exactly 8h 00m (8.00 decimal hours).',
+        },
+        {
+          icon: 'Clock',
+          title: 'Hospital & Warehouse Night Shifts',
+          description: 'Calculate an overnight shift from 7:00 PM (19:00) to 7:30 AM (07:30) the next morning (= 12h 30m / 12.50 hours).',
+        },
+        {
+          icon: 'Monitor',
+          title: 'Freelance Client Billing',
+          description: 'Convert a 2-hour 20-minute consulting call into 2.33 billable decimal hours for invoicing.',
+        },
+        {
+          icon: 'Globe',
+          title: 'Flight & Layover Elapsed Time',
+          description: 'Measure total transit time between departure and arrival timestamps across multi-day itineraries.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Uses the Time Duration Calculator?',
+      whoBenefitsList: [
+        'Payroll administrators, HR managers, and bookkeepers auditing timesheets',
+        'Nurses, first responders, factory workers, and security staff working overnight shifts',
+        'Freelancers, attorneys, and consultants billing clients in decimal hour increments',
+        'Students, researchers, and video producers calculating exact media or lab runtimes',
+      ],
+      tipsTitle: 'Pro Tips for Accurate Time Math',
+      tipsList: [
+        'Never enter "8:45" into payroll software as "8.45"—45 minutes divided by 60 equals 0.75, so 8 hours 45 minutes is 8.75 decimal hours.',
+        'Double-check AM vs. PM when entering 12:00: 12:00 PM is noon (midday), while 12:00 AM is midnight (start of the day).',
+        'Subtract unpaid meal breaks before multiplying decimal hours by your hourly pay rate.',
+        'Use 24-hour military time input whenever auditing hospital, aviation, or logistics logs to eliminate AM/PM ambiguity.',
+      ],
+      problemsTitle: 'Common Time Calculation Mistakes & Fixes',
+      problemsRows: [
+        {
+          problem: '8 hours 30 minutes entered as 8.30 in payroll',
+          cause: 'Confusing base-60 minutes with base-10 decimals (underpays by 12 minutes)',
+          solution: 'Divide minutes by 60 (30 ÷ 60 = 0.50), giving 8.50 decimal hours',
+        },
+        {
+          problem: 'Negative or 12-hour error on afternoon shifts',
+          cause: 'Selecting 4:30 AM instead of 4:30 PM (16:30)',
+          solution: 'Verify AM/PM indicators or switch to 24-hour input mode',
+        },
+        {
+          problem: 'Overnight shift shows 16 hours instead of 8 hours',
+          cause: 'Start and end times entered in reverse order on the same calendar date',
+          solution: 'Ensure the end date is set to the following calendar day for shifts crossing midnight',
+        },
+      ],
     },
   },
 
@@ -538,12 +692,12 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
     slug: 'sand-timer',
     categorySlug: 'timers',
     categoryLabel: 'Timers',
-    heroSubtitle: 'A realistic digital sand timer to help you stay on track.',
+    heroSubtitle: 'A realistic digital sand timer with falling golden grains to help you stay on track.',
     featurePills: [
-      'Realistic sand animation',
-      'Multiple preset times',
-      'Works on all devices',
-      'Free to use',
+      'Realistic falling sand physics',
+      'Multiple preset & custom times',
+      'One-click hourglass flip',
+      'Fullscreen & silent modes',
     ],
     quickPresets: [],
     steps: [],
@@ -575,15 +729,67 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'The timer will alert you when it reaches zero.',
         'Use Pause or Reset whenever needed.',
       ],
-      featuresTitle: 'Sand Timer for Games and Classrooms',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Sand Timer for Cooking and Everyday Activities',
-      whoBenefitsList: [],
-      tipsTitle: 'Digital Sand Timer vs Traditional Hourglass',
-      tipsList: [],
-      problemsTitle: 'Digital Sand Timer vs Traditional Hourglass',
-      problemsRows: [],
+      featuresTitle: 'Key Capabilities & Visual Controls',
+      featuresList: [
+        'Proportional Upper & Lower Sand Chambers: Upper chamber depletes and lower chamber fills in exact sync with remaining seconds.',
+        'Any Custom Duration: Unlike physical glass sand timers locked to 1, 3, or 5 minutes, set any duration from 10 seconds to 99 minutes.',
+        'Show or Hide Digital Numbers: Run with big digital numerals or pure visual sand flow for non-readers and young children.',
+        'Fullscreen & Reduced Motion Support: Expand across classroom smartboards or enable calm reduced-particle rendering.',
+      ],
+      practicalExamples: [
+        {
+          icon: 'GraduationCap',
+          title: 'Classroom Cleanup & Turn-Taking',
+          description: 'Project a 2-minute or 5-minute sand timer so students finish tidying desks before the top bulb empties.',
+        },
+        {
+          icon: 'Users',
+          title: 'Board Games, Chess & Charades',
+          description: 'Replace lost plastic board-game sand timers with an exact 30-second, 60-second, or 90-second turn clock.',
+        },
+        {
+          icon: 'Clock',
+          title: 'Kids’ Toothbrushing & Bedtime',
+          description: 'Run a 2-minute sand timer at the bathroom sink so children brush until the last grain drops.',
+        },
+        {
+          icon: 'Flame',
+          title: 'Tea Steeping & Kitchen Tasks',
+          description: 'Time 3-minute green tea, 4-minute French press coffee, or 6-minute soft-boiled eggs with an audible chime.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Benefits Most from the Digital Sand Timer?',
+      whoBenefitsList: [
+        'Elementary school teachers and special educators guiding transitions',
+        'Board game players hosting Catan, Pictionary, Articulate, or trivia nights',
+        'Parents helping toddlers and young kids visualize 2-to-10-minute routines',
+        'Students and writers who prefer a warm, tactile hourglass over cold digital numbers',
+      ],
+      tipsTitle: 'Pro Tips for Using the Sand Timer',
+      tipsList: [
+        'Toggle off "Show Time Text" when playing party games so players feel the excitement of watching the final grains fall.',
+        'Press Spacebar to pause the falling sand immediately if a classroom discussion or game rule question interrupts a turn.',
+        'Use Fullscreen (F) on a tablet placed in the center of the game table so every player has an equal view.',
+        'Enable Screen Wake Lock on mobile phones so the screen does not dim during longer 15-to-30-minute study sessions.',
+      ],
+      problemsTitle: 'Digital Sand Timer vs. Traditional Glass Hourglass',
+      problemsRows: [
+        {
+          problem: 'Custom Time Durations',
+          cause: 'Physical glass timers are fixed to a single duration (e.g., 3 mins)',
+          solution: 'Digital Sand Timer lets you set any exact second, minute, or hour duration',
+        },
+        {
+          problem: 'Pausing Mid-Turn',
+          cause: 'Physical hourglasses must be laid flat (and often spill sand)',
+          solution: 'Click Pause or press Spacebar to freeze the countdown with millisecond accuracy',
+        },
+        {
+          problem: 'Room-Wide Visibility & Chime',
+          cause: 'Small desk sand timers are silent and hard to see across a room',
+          solution: 'Fullscreen projection plus an optional Web Audio chime at 00:00',
+        },
+      ],
     },
   },
 
@@ -591,12 +797,12 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
     slug: 'liquid-timer',
     categorySlug: 'timers',
     categoryLabel: 'Timers',
-    heroSubtitle: 'A smooth liquid countdown to help you stay focused and on track.',
+    heroSubtitle: 'A smooth liquid countdown with rising bubbles and 6 color styles to help you stay focused and calm.',
     featurePills: [
-      'Realistic liquid animation',
-      'Multiple color themes',
+      'Smooth draining liquid physics',
+      '6 calming color themes',
       'Works on all devices',
-      'Free to use',
+      'Free & sensory-friendly',
     ],
     quickPresets: [],
     steps: [],
@@ -628,15 +834,67 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Watch the liquid level decrease as time passes.',
         'Use Pause or Reset anytime.',
       ],
-      featuresTitle: 'Liquid Timer for Focus and Study',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Liquid Timer for Kids and Classrooms',
-      whoBenefitsList: [],
-      tipsTitle: 'Choosing a Liquid Timer Style',
-      tipsList: [],
-      problemsTitle: 'Liquid Timer Styles',
-      problemsRows: [],
+      featuresTitle: 'Key Capabilities & Sensory Controls',
+      featuresList: [
+        'Continuous Meniscus Wave Animation: Fluid level lowers smoothly from 100% to 0% with gentle surface wave motion and effervescent bubbles.',
+        '6 Curated Liquid Palettes: Switch between Ocean Blue, Emerald Mint, Sunset Amber, Lavender Mist, Coral Rose, and Midnight Indigo.',
+        'Sensory-Friendly Reduced Motion: Calm the wave and bubble speed for neurodivergent learners or low-distraction study.',
+        'Optional Digital Overlay & Audio: Display or hide the numeric countdown and toggle the completion chime.',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Heart',
+          title: 'Sensory Regulation & Calm-Down Breaks',
+          description: 'Run a 3-to-5-minute Ocean Blue or Lavender liquid timer in occupational therapy rooms or classroom calm corners.',
+        },
+        {
+          icon: 'BookOpen',
+          title: 'Low-Anxiety Study & Reading Sprints',
+          description: 'Use a 25-minute draining liquid vessel on a tablet beside your notebook to track Pomodoro progress without ticking stress.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'Early Childhood Transitions',
+          description: 'Let preschoolers and elementary students watch the colored water drain down to the bottom line during cleanup.',
+        },
+        {
+          icon: 'Droplets',
+          title: 'Hydration, Stretching & Eye Breaks',
+          description: 'Time a 2-minute posture stretch or 60-second breathing reset between meetings.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Benefits Most from the Liquid Timer?',
+      whoBenefitsList: [
+        'Students and adults with ADHD, autism, or sensory processing sensitivity',
+        'Special education teachers, school counselors, and occupational therapists',
+        'Writers, programmers, and students seeking a calm ambient desk timer',
+        'Parents managing gentle transitions for young children at home',
+      ],
+      tipsTitle: 'Tips for Choosing & Using Liquid Timer Styles',
+      tipsList: [
+        'Choose cool tones (Ocean Blue, Emerald Mint, Lavender) for quiet reading, therapy, or wind-down routines.',
+        'Choose warm high-contrast tones (Sunset Amber, Coral Rose) when projecting across a bright classroom.',
+        'Hide the numeric time readout when working with learners who get anxious watching seconds tick down.',
+        'Enable Reduced Motion if rising bubbles feel distracting in peripheral vision.',
+      ],
+      problemsTitle: 'Liquid Timer Color Themes & Best Applications',
+      problemsRows: [
+        {
+          problem: 'Ocean Blue & Emerald Mint',
+          cause: 'Calm sensory regulation & deep study',
+          solution: 'Soothing cool-spectrum hues reduce visual fatigue on desk monitors',
+        },
+        {
+          problem: 'Sunset Amber & Coral Rose',
+          cause: 'Group visibility on classroom projectors',
+          solution: 'Warm high-contrast fill stands out clearly in sunlit rooms',
+        },
+        {
+          problem: 'Digital vs. Physical Liquid Bubbler Toy',
+          cause: 'Plastic oil-and-water bubblers only run for ~45–90 seconds',
+          solution: 'Digital Liquid Timer supports any exact duration from 10 seconds to 2+ hours',
+        },
+      ],
     },
   },
 
@@ -644,12 +902,12 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
     slug: 'rainbow-timer',
     categorySlug: 'timers',
     categoryLabel: 'Timers',
-    heroSubtitle: 'A colorful countdown timer to make time visible and fun.',
+    heroSubtitle: 'A colorful rainbow arc countdown timer that makes remaining time visible, cheerful, and easy to understand.',
     featurePills: [
-      'Colorful visual countdown',
-      'Multiple rainbow styles',
-      'Works on all devices',
-      'Free to use',
+      'Multicolor shrinking rainbow arc',
+      'Multiple rainbow palettes',
+      'Great for kids & classrooms',
+      'Fullscreen & mute options',
     ],
     quickPresets: [],
     steps: [],
@@ -681,15 +939,67 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Watch the rainbow arc decrease as time passes.',
         'Use Pause or Reset whenever needed.',
       ],
-      featuresTitle: 'Rainbow Timer for Kids and Classrooms',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Colorful Timers for Activities and Breaks',
-      whoBenefitsList: [],
-      tipsTitle: 'Customizing Your Rainbow Countdown',
-      tipsList: [],
-      problemsTitle: 'Rainbow Timer vs Digital Timer',
-      problemsRows: [],
+      featuresTitle: 'Key Capabilities & Classroom Highlights',
+      featuresList: [
+        '7-Band Multicolor Arc Depletion: Smoothly sweeps from a full 180° rainbow arch down to 0° as time elapses.',
+        'Multiple Color Palettes: Switch between Classic Vibrant Rainbow, Soft Pastel Rainbow, Sunset Spectrum, and Neon Glow.',
+        'Number-Free Visual Mode: Toggle off digital digits so pre-readers and kindergarteners read the rainbow arc directly.',
+        'Instant Fullscreen Smartboard Mode: Fills interactive classroom whiteboards and home tablets cleanly.',
+      ],
+      practicalExamples: [
+        {
+          icon: 'GraduationCap',
+          title: 'Kindergarten & Elementary Centers',
+          description: 'Project a 10-minute Rainbow Timer during art, phonics, or math stations so young learners see how much arc remains.',
+        },
+        {
+          icon: 'Palette',
+          title: 'Creative Art & Craft Sessions',
+          description: 'Give kids a cheerful 15-minute colorful arc for drawing, painting, or Lego building challenges.',
+        },
+        {
+          icon: 'Users',
+          title: 'Morning Getting-Ready & Chore Races',
+          description: 'Use a 5-minute rainbow countdown for putting on shoes, packing backpacks, or picking up toys.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Pediatric Therapy & Play Breaks',
+          description: 'Provide a friendly, non-intimidating visual boundary for reward breaks and speech therapy games.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Benefits Most from the Rainbow Timer?',
+      whoBenefitsList: [
+        'Preschool, kindergarten, and elementary school teachers',
+        'Young children (ages 3–9) who have not yet mastered reading digital clock numbers',
+        'Pediatric occupational therapists, speech therapists, and child-life specialists',
+        'Parents looking for a positive, frustration-free timer for daily family routines',
+      ],
+      tipsTitle: 'Tips for Using the Rainbow Timer with Kids',
+      tipsList: [
+        'Select the Soft Pastel palette during quiet reading or rest time, and Classic Vibrant during active cleanup or games.',
+        'Give a simple visual cue: "When the rainbow reaches the halfway cloud, start putting caps back on your markers."',
+        'Hide the digital clock text for toddlers so they focus solely on the colorful arch.',
+        'Press F for fullscreen mode when displaying on a classroom smartboard or TV.',
+      ],
+      problemsTitle: 'Rainbow Visual Timer vs. Standard Digital Timer',
+      problemsRows: [
+        {
+          problem: 'Pre-readers cannot interpret "04:30"',
+          cause: 'Abstract base-60 digits require numeracy skills',
+          solution: 'A shrinking rainbow arch is understood intuitively by children as young as 3',
+        },
+        {
+          problem: 'Bright colors feel too stimulating during quiet study',
+          cause: 'Default saturated rainbow spectrum',
+          solution: 'Switch to the Soft Pastel theme and enable Reduced Motion',
+        },
+        {
+          problem: 'Sudden end-of-activity meltdowns',
+          cause: 'Children did not realize time was almost up',
+          solution: 'The receding rainbow arc gives continuous visual notice as the final sliver approaches',
+        },
+      ],
     },
   },
 
@@ -697,11 +1007,11 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
     slug: 'hourglass-timer',
     categorySlug: 'timers',
     categoryLabel: 'Timers',
-    heroSubtitle: 'A classic hourglass countdown with realistic sand animation.',
+    heroSubtitle: 'A classic hourglass countdown with realistic falling sand and one-click flip restart.',
     featurePills: [
-      'Realistic hourglass animation',
-      'Flip and reset',
-      'Multiple preset times',
+      'Realistic glass hourglass animation',
+      'One-click Flip & Restart',
+      'Multiple preset & custom times',
       'Works on all devices',
     ],
     quickPresets: [],
@@ -733,21 +1043,67 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause to stop and Resume to continue.',
         'Click Reset or Flip to turn the hourglass over and start again.',
       ],
-      featuresTitle: 'Online Hourglass vs Traditional Sand Clock',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Hourglass Timer for Games, Learning and Daily Activities',
-      whoBenefitsList: [],
-      tipsTitle: 'Tips for Best Experience',
-      tipsList: [
-        'Use fullscreen for a larger view.',
-        'Enable sound alerts for better focus.',
-        'Try different durations for different activities.',
-        'Use the Flip button to quickly restart.',
-        'Enable reduced motion if you prefer a simpler animation.',
+      featuresTitle: 'Key Capabilities & Design Highlights',
+      featuresList: [
+        'Authentic Dual-Bulb Sand Physics: Watch golden sand grains stream through the narrow glass neck from the top bulb into the rising lower mound.',
+        'Instant Flip-to-Restart Control: Click Flip (or press R) to invert the hourglass and restart your interval immediately.',
+        'Custom Sand & Frame Themes: Customize the sand color, glass vessel style, and dark/light background contrast.',
+        'Zero-Drift Monotonic Engine: Maintains exact millisecond accuracy even if you switch browser tabs mid-countdown.',
       ],
-      problemsTitle: 'Online Hourglass vs Traditional Sand Clock',
-      problemsRows: [],
+      practicalExamples: [
+        {
+          icon: 'Users',
+          title: 'Board Games & Tabletop Turns',
+          description: 'Run 1-minute, 2-minute, or 3-minute player turns for chess, Rummikub, Catan, Boggle, and trivia nights.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'Classroom Think-Pair-Share',
+          description: 'Project the hourglass during 3-minute partner discussions and flip it when partners switch roles.',
+        },
+        {
+          icon: 'BookOpen',
+          title: 'Focused Reading & Writing Sprints',
+          description: 'Set a 25-minute or 45-minute hourglass on your desk for calm, tactile study pacing.',
+        },
+        {
+          icon: 'Flame',
+          title: 'Kitchen, Tea & Coffee Brewing',
+          description: 'Time 4-minute pour-over blooms, herbal infusions, and resting steaks with a clear completion chime.',
+        },
+      ],
+      whoBenefitsTitle: 'Hourglass Timer for Games, Learning and Daily Activities',
+      whoBenefitsList: [
+        'Tabletop gamers, chess players, and quizmasters enforcing fair turn limits',
+        'Teachers and professors running timed partner discussions and station rotations',
+        'Students and writers who enjoy the classic aesthetic of a traditional sand glass',
+        'Families using visual sand flow for kids’ chores, reading minutes, and routines',
+      ],
+      tipsTitle: 'Expert Tips for Best Results',
+      tipsList: [
+        'Use fullscreen (F) for a larger view across a classroom or game table.',
+        'Use the Flip button during two-player games or partner discussions to restart the exact same duration in one click.',
+        'Hide the digital time text if you want players to judge remaining time purely by the sand level in the upper bulb.',
+        'Enable reduced motion if you prefer a calm, simplified sand level indicator without falling particle motion.',
+      ],
+      problemsTitle: 'Online Hourglass vs. Traditional Physical Sand Clock',
+      problemsRows: [
+        {
+          problem: 'Fixed Duration Limitation',
+          cause: 'Physical glass hourglasses only measure one fixed time (e.g., 3 minutes)',
+          solution: 'Set any exact duration from 5 seconds to multiple hours in the digital hourglass',
+        },
+        {
+          problem: 'Accuracy & Clumping',
+          cause: 'Physical sand clocks vary by ±10% and can jam from humidity',
+          solution: 'Monotonic browser timestamp math guarantees 100% digital accuracy',
+        },
+        {
+          problem: 'Pausing & Audible Completion',
+          cause: 'Physical hourglasses cannot be paused cleanly and make no sound when empty',
+          solution: 'Pause/Resume anytime with Spacebar and enable an optional Web Audio chime at 00:00',
+        },
+      ],
     },
   },
 
@@ -755,12 +1111,12 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
     slug: 'circular-timer',
     categorySlug: 'timers',
     categoryLabel: 'Timers',
-    heroSubtitle: 'A simple and visual circle countdown timer to help you stay focused.',
+    heroSubtitle: 'A clean, high-contrast 360° circular countdown timer that shows remaining time as a shrinking sector.',
     featurePills: [
-      'Clear visual countdown',
-      'Multiple color options',
+      '360° shrinking circle display',
+      'Multiple color & ring styles',
       'Works on all devices',
-      'Free to use',
+      'Fullscreen projection ready',
     ],
     quickPresets: [],
     steps: [],
@@ -791,15 +1147,67 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Watch the circle shrink as time decreases.',
         'Use Pause, Resume or Reset whenever needed.',
       ],
-      featuresTitle: 'Circular Timer for Classrooms and Presentations',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Circular Timer vs Progress Bar Timer',
-      whoBenefitsList: [],
-      tipsTitle: 'Circular Timer vs Progress Bar Timer',
-      tipsList: [],
-      problemsTitle: 'Circular Timer vs Progress Bar Timer',
-      problemsRows: [],
+      featuresTitle: 'Key Capabilities & Visual Modes',
+      featuresList: [
+        '360° Proportional Wedge & Ring Modes: View remaining time as a solid pie sector or a clean perimeter progress ring.',
+        'Instant Quarter-Time Recognition: Quickly spot 75%, 50% (halfway), and 25% remaining time based on familiar clock-face geometry.',
+        'High-Contrast Color Themes: Choose Emerald, Cobalt Blue, Amber Gold, Crimson Red, or Violet on light or dark backgrounds.',
+        'Borderless Fullscreen & Wake Lock: Ideal for front-of-room classroom projection and conference monitors.',
+      ],
+      practicalExamples: [
+        {
+          icon: 'GraduationCap',
+          title: 'Classroom Quizzes & Independent Work',
+          description: 'Project a 20-minute circular disc so students see half the circle remaining at 10 minutes and a quarter wedge at 5 minutes.',
+        },
+        {
+          icon: 'Presentation',
+          title: 'Agile Standups & Sprint Demos',
+          description: 'Keep 15-minute team standups and 5-minute lightning demos strictly on schedule.',
+        },
+        {
+          icon: 'Monitor',
+          title: 'Pomodoro & Deep Work Blocks',
+          description: 'Run a 25-minute circular countdown alongside your code editor or writing document.',
+        },
+        {
+          icon: 'CheckSquare',
+          title: 'Standardized Test Practice',
+          description: 'Help students internalize 35-minute and 45-minute exam section pacing visually.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Benefits Most from the Circular Timer?',
+      whoBenefitsList: [
+        'Teachers and exam proctors who want a classic red/green disappearing-disk timer online',
+        'Visual learners and individuals with ADHD who process geometric proportions faster than digits',
+        'Public speakers, moderators, and team leads pacing meetings and presentations',
+        'Students practicing time management for SAT, ACT, AP, or university exams',
+      ],
+      tipsTitle: 'Expert Tips for Circular Timer Pacing',
+      tipsList: [
+        'Teach students the "Quarter Circle Rule": when only one quarter (90°) of the circle remains, begin reviewing and wrapping up.',
+        'Use high-contrast Dark Mode when projecting on LED displays or TVs in dim auditoriums.',
+        'Press Spacebar to start or pause instantly, R to reset, and F to toggle fullscreen.',
+        'Toggle off the digital numbers if you want participants to focus on proportional pacing rather than second-by-second counting.',
+      ],
+      problemsTitle: 'Circular Timer vs. Linear Progress Bar Timer',
+      problemsRows: [
+        {
+          problem: 'Recognizing 1/2 and 1/4 Milestones',
+          cause: 'Human eyes naturally map 90° and 180° angles to quarter and half hours',
+          solution: 'Circular Timer excels when you want instant clock-face fraction awareness',
+        },
+        {
+          problem: 'Ultra-Wide Banners & Split Screens',
+          cause: 'Circles require square vertical space',
+          solution: 'Use Circular Timer for full-screen focus, or Progress Bar Timer for narrow horizontal strips',
+        },
+        {
+          problem: 'Screen Sleeps During 45-Minute Exam',
+          cause: 'Laptop or tablet power settings',
+          solution: 'Keep the Wake Lock toggle enabled so the circular display stays lit until 00:00',
+        },
+      ],
     },
   },
 
@@ -845,14 +1253,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever needed.',
       ],
       featuresTitle: 'Radial Timer for Study and Productivity',
-      featuresList: [],
-      practicalExamples: [],
+      featuresList: [
+        'Segmented radial rays that make micro-milestones easy to count from a distance',
+        'Adjustable spoke density (12, 24, 30, or 60 segments) to match your session length',
+        'High-contrast glowing and minimalist themes for both desktop monitors and classroom boards',
+        'Drift-free timestamp engine that keeps radial segments locked to real elapsed seconds',
+        'Full keyboard control (Spacebar to start/pause, R to reset, F for fullscreen)',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Clock',
+          title: '30-Minute Deep Work Block (30 Segments)',
+          description:
+            'Each radial spoke represents exactly 1 minute of focused coding or writing, letting you see minute-by-minute progress without reading digits.',
+        },
+        {
+          icon: 'Users',
+          title: '12-Minute Lightning Talk (12 Segments)',
+          description:
+            'Speakers can glance at the 12 clock-like radial bars to know exactly how many minutes remain before Q&A.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: '15-Minute Classroom Station Rotation',
+          description:
+            'Students count remaining illuminated spokes from across the room to pace group assignments and lab clean-up.',
+        },
+        {
+          icon: 'CheckSquare',
+          title: '60-Second Circuit Exercise Interval',
+          description:
+            'Use 60 radial ticks so every second extinguishes one spoke during planks, wall sits, or HIIT intervals.',
+        },
+      ],
       whoBenefitsTitle: 'Radial Timer for Group Activities',
-      whoBenefitsList: [],
-      tipsTitle: 'Radial Timer vs Circular Timer',
-      tipsList: [],
+      whoBenefitsList: [
+        'Facilitators and scrum masters running time-boxed standups and retrospectives',
+        'Students and writers who prefer discrete minute-by-minute ticks over a continuous sweep',
+        'Fitness coaches and physical therapists timing isometric holds and circuit stations',
+        'Teachers projecting a structured, easy-to-count visual clock on smartboards',
+      ],
+      tipsTitle: 'Expert Tips for Radial Countdown Pacing',
+      tipsList: [
+        'Match the segment count to your duration: use 12 segments for 12 minutes or 60 segments for 60 seconds so 1 spoke = 1 unit of time.',
+        'Switch to Dark Mode when displaying on television screens or projectors for crisper spoke contrast.',
+        'Press F for Fullscreen Mode so the radial ring fills the viewport during group sessions.',
+        'Combine the radial visual with a gentle warning chime for the final 10% of segments.',
+      ],
       problemsTitle: 'Radial Timer vs Circular Timer',
-      problemsRows: [],
+      problemsRows: [
+        {
+          problem: 'Counting Discrete Units (Minutes or Reps)',
+          cause: 'A solid circular wedge shows overall proportion but not individual increments',
+          solution: 'Radial Timer divides the ring into countable spokes so you can see individual units',
+        },
+        {
+          problem: 'Glanceable Fractions (1/4, 1/2, 3/4)',
+          cause: 'Both circular and radial layouts follow a 360-degree clock geometry',
+          solution: 'Use Radial Timer for discrete ticks, or Circular Timer for a smooth continuous sweep',
+        },
+        {
+          problem: 'Visual Clutter on Very Small Screens',
+          cause: 'High spoke counts can look dense on compact phone screens',
+          solution: 'Choose a lower segment count (12 or 24 spokes) on mobile devices for maximum clarity',
+        },
+      ],
     },
   },
   'rings-timer': {
@@ -897,14 +1362,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever needed.',
       ],
       featuresTitle: 'Multiple Visual Time Indicators',
-      featuresList: [],
-      practicalExamples: [],
+      featuresList: [
+        'Nested concentric rings that track macro session progress and micro intervals simultaneously',
+        'Distinct color coding per ring so you can separate opening, core work, and wrap-up phases',
+        'Smooth 60fps SVG arc rendering that scales cleanly to 4K monitors and classroom displays',
+        'Optional center digital readout that can be hidden for pure geometric focus',
+        'Instant keyboard shortcuts (Spacebar, R, F) and screen wake lock support',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Monitor',
+          title: 'Multi-Stage Coding & Review Sprint (45 Minutes)',
+          description:
+            'Track your overall 45-minute block on the outer ring while inner rings pace 15-minute implementation and testing milestones.',
+        },
+        {
+          icon: 'Presentation',
+          title: 'Workshop Facilitation (Intro, Activity, Debrief)',
+          description:
+            'Keep group workshops on schedule by using concentric rings to visualize when to transition from brainstorming to sharing.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'Essay Practice (Outline, Draft, Proofread)',
+          description:
+            'Students use the nested rings to allocate proportional time to outlining, writing, and reviewing during timed practice exams.',
+        },
+        {
+          icon: 'CheckSquare',
+          title: 'Fitness Warm-Up, Peak Set & Cool-Down',
+          description:
+            'See both the current minute progress and total workout completion at a single glance from across the gym floor.',
+        },
+      ],
       whoBenefitsTitle: 'Rings Timer for Productivity and Learning',
-      whoBenefitsList: [],
-      tipsTitle: 'Rings Timer vs Circular Timer',
-      tipsList: [],
+      whoBenefitsList: [
+        'Product designers, engineers, and writers who break deep work into multi-stage milestones',
+        'Teachers and professors running multi-part lab exercises or timed writing prompts',
+        'Apple Watch and fitness-ring fans who love closing concentric progress loops',
+        'ADHD learners who stay engaged when long durations are broken into nested visual loops',
+      ],
+      tipsTitle: 'Expert Tips for Multi-Ring Time Management',
+      tipsList: [
+        'Assign a mental task to each ring before clicking Start (for example: Outer Ring = Total Session, Inner Ring = Current Sub-Task).',
+        'Use contrasting palette themes so each concentric track stands out clearly from across the room.',
+        'Enter Fullscreen Mode (press F) to turn your second monitor into a dedicated productivity dashboard.',
+        'Enable the completion chime so you know the moment all concentric rings close at zero.',
+      ],
       problemsTitle: 'Rings Timer vs Circular Timer',
-      problemsRows: [],
+      problemsRows: [
+        {
+          problem: 'Losing Momentum in Long 45–60 Minute Sessions',
+          cause: 'A single circle moves very slowly over an hour, making progress feel invisible',
+          solution: 'Rings Timer pairs a fast-moving inner ring with a steady outer ring so you see constant motion',
+        },
+        {
+          problem: 'Tracking Multi-Part Tasks in One Countdown',
+          cause: 'Standard timers only show a single undifferentiated bar or disk',
+          solution: 'Concentric rings let you visually divide a session into distinct phases',
+        },
+        {
+          problem: 'Simple Preschool or Toddler Countdowns',
+          cause: 'Multiple rings may be more detail than young children need',
+          solution: 'Use Rings Timer for study/work milestones, or Circular/Rainbow Timer for early learners',
+        },
+      ],
     },
   },
   'progress-timer': {
@@ -950,14 +1472,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever needed.',
       ],
       featuresTitle: 'Progress Timer for Work and Study',
-      featuresList: [],
-      practicalExamples: [],
+      featuresList: [
+        'Clean linear horizontal and segmented progress bars that show exact percentage completion',
+        'Space-efficient layout that docks neatly beside study notes, code editors, or slide decks',
+        'Automatic or custom color transitions as the bar approaches the final minutes',
+        'Optional percentage, elapsed time, and remaining digital readout toggles',
+        'Accurate background tab timing using high-precision system timestamps',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Monitor',
+          title: 'Split-Screen Study & Coding Sprints',
+          description:
+            'Keep the horizontal progress bar docked at the edge of your laptop screen while taking notes or writing code.',
+        },
+        {
+          icon: 'Presentation',
+          title: 'Webinar Breaks & Live Stream Intermissions',
+          description:
+            'Screen-share a clean "Back in 5:00" progress bar during Zoom workshops, Twitch streams, or virtual conferences.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'Timed Quizzes & Standardized Test Prep',
+          description:
+            'Simulate computer-based testing interfaces that display a horizontal time-remaining bar at the top of the screen.',
+        },
+        {
+          icon: 'Users',
+          title: 'Agile Standup & Agenda Time-Boxing',
+          description:
+            'Give each agenda topic a 10-minute linear bar so everyone in the meeting sees when to move to action items.',
+        },
+      ],
       whoBenefitsTitle: 'Using Progress Indicators for Timed Activities',
-      whoBenefitsList: [],
-      tipsTitle: 'Progress Timer vs Countdown Timer',
-      tipsList: [],
+      whoBenefitsList: [
+        'Remote workers, streamers, and webinar hosts sharing a visual break bar on screen',
+        'Students preparing for digital exams (GRE, GMAT, SAT, nursing boards) that use linear timer bars',
+        'Project managers and facilitators keeping agenda items strictly on schedule',
+        'Anyone who prefers a left-to-right progress bar over a circular clock face',
+      ],
+      tipsTitle: 'Expert Tips for Linear Progress Timing',
+      tipsList: [
+        'Add a custom task label (e.g., "Q3 Planning — Wrap up at 20%") so teammates immediately know the goal of the timer.',
+        'Use segmented bar style when you want clear 10% or 25% checkpoint markers along the track.',
+        'Enable the final warning chime to alert speakers before the bar hits zero.',
+        'Press F for Fullscreen Mode when displaying a break countdown on a conference room screen.',
+      ],
       problemsTitle: 'Progress Timer vs Countdown Timer',
-      problemsRows: [],
+      problemsRows: [
+        {
+          problem: 'Estimating Halfway or 75% Completion Instantly',
+          cause: 'Digits like 18:45 out of 25:00 require mental division to judge progress',
+          solution: 'A linear Progress Bar makes 50%, 75%, and 90% milestones immediately obvious',
+        },
+        {
+          problem: 'Fitting a Timer into a Narrow Split-Screen Window',
+          cause: 'Large circular or hourglass graphics need square vertical height',
+          solution: 'Horizontal Progress Timer fits comfortably in compact side-by-side browser windows',
+        },
+        {
+          problem: 'Audience Asking "How Much Longer Is the Break?"',
+          cause: 'Static slides give no live indication of remaining break time',
+          solution: 'Share the Progress Timer tab so remote and in-room attendees see the live bar fill',
+        },
+      ],
     },
   },
   'pixel-timer': {
@@ -1000,14 +1579,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever needed.',
       ],
       featuresTitle: 'Pixel Timer for Gaming and Study Breaks',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Customizing Pixel Countdown Styles',
-      whoBenefitsList: [],
+      featuresList: [
+        'Crisp 8-bit and 16-bit retro pixel grid animations that clear block-by-block as time elapses',
+        'Adjustable grid density so you can choose chunky arcade blocks or fine mosaic matrices',
+        'Nostalgic arcade, neon synthwave, and classic handheld color palettes',
+        'Gamified visual feedback that makes study sprints and chore countdowns feel like a game level',
+        'Full-screen display and keyboard shortcuts (Spacebar, R, F) for desktop and classroom setups',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Monitor',
+          title: 'Pomodoro Study & Coding Sprints (25 Minutes)',
+          description:
+            'Turn exam revision or bug-squashing sessions into an arcade challenge by clearing the entire pixel matrix before taking a break.',
+        },
+        {
+          icon: 'Tv',
+          title: 'Gaming Screen Time & Break Limits',
+          description:
+            'Help kids and teens manage video game sessions or intermission breaks with a visual timer that matches their gaming setup.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'STEM, Coding & Robotics Club Challenges',
+          description:
+            'Project the retro pixel grid during Scratch, Python, or robotics classroom challenges to build excitement without stress.',
+        },
+        {
+          icon: 'Users',
+          title: 'Trivia Nights & Game Show Rounds',
+          description:
+            'Display a bold 60-second pixel matrix on a TV so teams can watch the remaining squares vanish during lightning rounds.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Benefits from a Retro Pixel Timer?',
+      whoBenefitsList: [
+        'Gamers, streamers, and developers who love retro 8-bit and pixel-art aesthetics on their desk setup',
+        'Students with ADHD who find gamified grid clearing more motivating than a plain digital clock',
+        'Coding teachers, STEM club leaders, and esports coaches timing practice drills',
+        'Parents setting fair, visual video-game turn timers for siblings',
+      ],
       tipsTitle: 'Customizing Pixel Countdown Styles',
-      tipsList: [],
-      problemsTitle: 'Customizing Pixel Countdown Styles',
-      problemsRows: [],
+      tipsList: [
+        'Choose a lower pixel density for short 1–5 minute tasks so every disappearing square feels like a visible milestone.',
+        'Switch to a high-density pixel grid for 25–60 minute study blocks so the matrix updates every few seconds.',
+        'Pair with Dark Mode on OLED or dual-monitor setups for an authentic arcade cabinet glow.',
+        'Use the Spacebar shortcut to pause instantly when answering a question or switching tasks.',
+      ],
+      problemsTitle: 'Pixel Grid Timer vs Standard Digital Timer',
+      problemsRows: [
+        {
+          problem: 'Boredom During Repetitive Homework or Drills',
+          cause: 'Plain numeric timers feel clinical and uninspiring',
+          solution: 'Pixel Timer gamifies the countdown so watching the grid clear feels rewarding',
+        },
+        {
+          problem: 'Judging Area vs Reading Digits',
+          cause: 'Calculating remaining percentage from MM:SS takes mental effort',
+          solution: 'The 2D pixel grid shows exact area remaining—half the grid lit means half the time left',
+        },
+        {
+          problem: 'Matching a Gaming or Stream Overlay Aesthetic',
+          cause: 'Office timers clash with gaming setups and coding themes',
+          solution: 'Retro pixel palettes blend naturally into developer and streamer workspaces',
+        },
+      ],
     },
   },
   'blocks-timer': {
@@ -1050,14 +1686,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever needed.',
       ],
       featuresTitle: 'Blocks Timer for Games and Classroom Activities',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Visual Blocks vs Digital Countdown',
-      whoBenefitsList: [],
-      tipsTitle: 'Visual Blocks vs Digital Countdown',
-      tipsList: [],
+      featuresList: [
+        'Tactile stacked-block visualization where each block represents a fixed chunk of time',
+        'Configurable block counts (e.g., 5, 10, 15, or 20 blocks) to match any activity length',
+        'Crystal-clear countable milestones ideal for children, classrooms, and time-chunking',
+        'Bright, high-contrast color themes that remain legible across a classroom or gym',
+        'Distraction-free fullscreen mode with optional digital readout and end-of-timer sound',
+      ],
+      practicalExamples: [
+        {
+          icon: 'GraduationCap',
+          title: '10-Minute Classroom Clean-Up (10 Blocks = 1 Min Each)',
+          description:
+            'Set 10 blocks for 10 minutes so young students know that every time a block disappears, one minute has passed.',
+        },
+        {
+          icon: 'CheckSquare',
+          title: '25-Minute Time-Chunked Study (5 Blocks = 5 Min Each)',
+          description:
+            'Break a 25-minute homework session into 5 manageable 5-minute building blocks to prevent overwhelm.',
+        },
+        {
+          icon: 'Users',
+          title: 'Board Games & Turn-Taking',
+          description:
+            'Give each player a 5-block stack during family game night so everyone can see how many blocks remain in their turn.',
+        },
+        {
+          icon: 'Clock',
+          title: 'Morning Routine & Getting Ready for School',
+          description:
+            'Use a 15-minute block tower for getting dressed and packing backpacks—kids race to finish before the bottom block vanishes.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Benefits Most from a Stacked Blocks Timer?',
+      whoBenefitsList: [
+        'Elementary school teachers and special educators teaching time-chunking and counting',
+        'Children who understand concrete building blocks long before they can read a clock',
+        'Adults with ADHD or executive dysfunction who benefit from breaking tasks into 5-minute blocks',
+        'Occupational and speech therapists pacing structured therapy exercises',
+      ],
+      tipsTitle: 'Tips for Effective Time-Chunking with Blocks',
+      tipsList: [
+        'Set the number of blocks to match the number of minutes (e.g., 5 blocks for 5 minutes) so 1 block = 1 minute.',
+        'For longer 30-minute study sessions, use 6 blocks so each block represents a clear 5-minute mini-goal.',
+        'Challenge students or kids to complete one sub-task (like 3 math problems) per block.',
+        'Use Fullscreen Mode on a tablet or smartboard so the block stack is large and easy to count.',
+      ],
       problemsTitle: 'Visual Blocks vs Digital Countdown',
-      problemsRows: [],
+      problemsRows: [
+        {
+          problem: 'Task Paralysis on Long Assignments',
+          cause: 'A 30:00 digital timer looks like one giant wall of time',
+          solution: 'Blocks Timer breaks the session into bite-sized, countable chunks',
+        },
+        {
+          problem: 'Rapidly Changing Seconds Causing Anxiety',
+          cause: 'Ticking seconds create visual noise for sensitive learners',
+          solution: 'Blocks update in calm, discrete steps while keeping exact time',
+        },
+        {
+          problem: 'Helping Kids Pace Multi-Step Chores',
+          cause: 'Children spend 90% of the time on the first step',
+          solution: 'Assign 1–2 blocks per chore step so kids pace themselves evenly',
+        },
+      ],
     },
   },
   'candle-timer': {
@@ -1100,14 +1793,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever needed.',
       ],
       featuresTitle: 'Candle Timer for Reading and Quiet Activities',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Digital Candle Timer vs Physical Candles',
-      whoBenefitsList: [],
-      tipsTitle: 'Digital Candle Timer vs Physical Candles',
-      tipsList: [],
+      featuresList: [
+        'Warm, gently flickering flame animation paired with proportional wax melting',
+        'Inspired by historic medieval time-candles with clear horizontal height progression',
+        'Cozy dark-academia and evening themes that reduce harsh blue light during late study sessions',
+        '100% safe, smoke-free, and classroom/dorm-compliant alternative to open flames',
+        'Optional soft acoustic chime when the candle burns down to the base',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Flame',
+          title: 'Evening Reading & Journaling (20–30 Minutes)',
+          description:
+            'Set a 30-minute candle timer on your nightstand or iPad to unwind with a book before bed without checking your phone.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'Dark Academia Study & Essay Writing',
+          description:
+            'Create a cozy library atmosphere on your secondary monitor while writing papers or studying literature.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Meditation, Breathwork & Trataka Focus',
+          description:
+            'Use the gentle flickering flame as a calm focal point during 10-minute mindfulness or yoga cool-down sessions.',
+        },
+        {
+          icon: 'Users',
+          title: 'Classroom Silent Sustained Reading (SSR)',
+          description:
+            'Project the melting candle on the classroom board during quiet reading time—students stay quiet while the candle is lit.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Uses the Digital Candle Timer?',
+      whoBenefitsList: [
+        'Students and writers who love cozy "study with me" and dark-academia desk aesthetics',
+        'College students in dorms and teachers in classrooms where real candles are prohibited',
+        'Meditation practitioners, yoga instructors, and evening readers seeking a low-glare timer',
+        'Anyone who finds mechanical ticking clocks too harsh for creative or reflective work',
+      ],
+      tipsTitle: 'Tips for Creating a Calm Candle-Timed Routine',
+      tipsList: [
+        'Switch to Dark Mode and Fullscreen (press F) to let the warm amber flame glow softly in a dim room.',
+        'Hide the digital numbers when journaling or meditating so you only notice the natural wax height.',
+        'Use a 45-minute candle for deep writing blocks and a short 5-minute votive for tea breaks.',
+        'Keep Screen Wake Lock enabled so your tablet or laptop stays lit for the entire burn duration.',
+      ],
       problemsTitle: 'Digital Candle Timer vs Physical Candles',
-      problemsRows: [],
+      problemsRows: [
+        {
+          problem: 'Exact Countdown Accuracy',
+          cause: 'Real wax candles burn unevenly depending on room drafts and wick length',
+          solution: 'Digital Candle Timer melts at a mathematically exact rate to finish at 00:00',
+        },
+        {
+          problem: 'Fire Safety in Dorms, Classrooms & Bedrooms',
+          cause: 'Open flames pose fire hazards and are banned in schools and dormitories',
+          solution: 'Enjoy the warm ambient glow of a candle on any screen with zero fire or smoke risk',
+        },
+        {
+          problem: 'Reusability Across Any Duration',
+          cause: 'A physical candle cannot be reset or adjusted from 5 minutes to 60 minutes',
+          solution: 'Reset and reuse your digital candle infinitely for any time length',
+        },
+      ],
     },
   },
   'aesthetic-timer': {
@@ -1151,14 +1901,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever needed.',
       ],
       featuresTitle: 'Aesthetic Timer for Studying',
-      featuresList: [],
-      practicalExamples: [],
+      featuresList: [
+        'Curated designer palettes including Minimal Ivory, Dark Academia, Matcha Forest, Warm Sunset, and Soft Pastel',
+        'Refined editorial typography with balanced whitespace designed for modern desk setups',
+        'Custom session labels so you can display your current study subject or goal right on screen',
+        'Distraction-free fullscreen mode that turns any iPad, laptop, or monitor into a minimalist desk clock',
+        'Gentle, non-jarring completion chimes and persistent theme preferences',
+      ],
+      practicalExamples: [
+        {
+          icon: 'GraduationCap',
+          title: '"Study With Me" & Pomodoro Desk Setups',
+          description:
+            'Place an iPad or secondary monitor on your desk running a 50/10 study block in Minimal Ivory or Matcha Green.',
+        },
+        {
+          icon: 'Palette',
+          title: 'Creative Design, Writing & Illustration Sessions',
+          description:
+            'Keep time without breaking your visual flow using a calm, color-coordinated countdown alongside Figma or Notion.',
+        },
+        {
+          icon: 'Monitor',
+          title: 'Content Creation & Livestream Backdrops',
+          description:
+            'Display a clean, photogenic timer on camera during YouTube study vlogs, co-working streams, or TikTok time-lapses.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Morning Coffee, Journaling & Self-Care Routines',
+          description:
+            'Start your morning with a peaceful 15-minute Warm Sunset countdown for stretching, planning, and mindfulness.',
+        },
+      ],
       whoBenefitsTitle: 'Aesthetic Timer for Work and Productivity',
-      whoBenefitsList: [],
+      whoBenefitsList: [
+        'Students and "Studygram" / "StudyTok" creators who curate calm, inspiring desk setups',
+        'Designers, writers, and Notion enthusiasts who dislike cluttered, utilitarian utility websites',
+        'Remote workers who keep a dedicated tablet or portrait monitor as a desk dashboard',
+        'Sensitive focusers who want a peaceful visual timer without aggressive flashing red numbers',
+      ],
       tipsTitle: 'Choosing a Calm Timer Design',
-      tipsList: [],
-      problemsTitle: 'Choosing a Calm Timer Design',
-      problemsRows: [],
+      tipsList: [
+        'Match your timer palette to the time of day: use airy Ivory or Coastal Blue in the morning and Dark Academia or Sunset in the evening.',
+        'Add a specific intention in the session label (e.g., "Chapter 4 Organic Chemistry Notes") to anchor your attention.',
+        'Press F to enter Fullscreen Mode and hide browser tabs for a clean, frame-worthy display.',
+        'Enable Screen Wake Lock on tablets so your desk timer never dims mid-Pomodoro.',
+      ],
+      problemsTitle: 'Aesthetic Timer vs Standard Utility Timers',
+      problemsRows: [
+        {
+          problem: 'Harsh, Cluttered Utility Websites Ruining Focus',
+          cause: 'Many online timers are surrounded by flashing banners and jarring neon colors',
+          solution: 'Aesthetic Timer uses calm editorial typography and zero-clutter themes',
+        },
+        {
+          problem: 'Phone Timers Leading to Social Media Distraction',
+          cause: 'Picking up your phone to check the timer triggers notification checking',
+          solution: 'Keep the Aesthetic Timer open in fullscreen on your laptop or iPad so your phone stays away',
+        },
+        {
+          problem: 'Eye Strain During Late-Night Study Sessions',
+          cause: 'Pure white #FFFFFF backgrounds cause glare in dim rooms',
+          solution: 'Switch to Warm Paper, Dark Academia, or Dusk palettes for comfortable low-light viewing',
+        },
+      ],
     },
   },
   'picture-reveal-timer': {
@@ -1204,14 +2011,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever needed.',
       ],
       featuresTitle: 'Picture Reveal Timer for Classrooms',
-      featuresList: [],
-      practicalExamples: [],
+      featuresList: [
+        'Instant local photo upload (JPG, PNG, WebP) with 100% client-side browser privacy',
+        'Configurable tile grid sizes from simple 3×3 grids up to challenging 10×10 puzzles',
+        'Multiple reveal orders including Random Scatter, Sequential Row-by-Row, and Spiral',
+        'Synchronized tile removal that uncovers the final tile at the exact moment 00:00 is reached',
+        'Pause-and-guess support using the Spacebar so teachers and quizmasters can take answers mid-countdown',
+      ],
+      practicalExamples: [
+        {
+          icon: 'GraduationCap',
+          title: 'Classroom Bell-Ringers & Mystery Lesson Hooks',
+          description:
+            'Upload a photo of a historical landmark, animal, or science diagram and let students guess today’s lesson topic as tiles vanish.',
+        },
+        {
+          icon: 'Users',
+          title: 'Trivia Nights & Zoom Icebreakers',
+          description:
+            'Run a "Guess the Celebrity, Movie Poster, or City" round where teams earn more points the earlier they buzz in.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Reward & Surprise Announcements for Kids',
+          description:
+            'Motivate kids during a 10-minute room clean-up by revealing a picture of their weekend treat or outing as they tidy up.',
+        },
+        {
+          icon: 'Presentation',
+          title: 'ESL & Vocabulary Flashcard Games',
+          description:
+            'Language teachers pause the timer every few tiles to let students practice describing visual clues in the target language.',
+        },
+      ],
       whoBenefitsTitle: 'Photo Guessing Games and Group Activities',
-      whoBenefitsList: [],
-      tipsTitle: 'Image Privacy and Browser Processing',
-      tipsList: [],
-      problemsTitle: 'Image Privacy and Browser Processing',
-      problemsRows: [],
+      whoBenefitsList: [
+        'Elementary, middle, and high school teachers creating interactive bell-ringers and review games',
+        'Trivia hosts, youth group leaders, and event facilitators running live or virtual game shows',
+        'Speech-language pathologists (SLPs) and ESL instructors prompting descriptive conversation',
+        'Parents turning daily chores into an exciting mystery picture reveal for children',
+      ],
+      tipsTitle: 'Image Privacy and Browser Processing Tips',
+      tipsList: [
+        'Your uploaded photos never leave your device—all slicing and tile animation happen locally in your browser memory.',
+        'Use a Random reveal pattern for guessing games so the center of the photo isn’t given away predictably.',
+        'Press Spacebar at any moment to freeze the tiles while a student or team makes a guess, then press Spacebar again to resume.',
+        'Choose a higher grid density (e.g., 8×8 or 10×10) when playing with older students or adults to keep the mystery challenging.',
+      ],
+      problemsTitle: 'Picture Reveal Timer Troubleshooting & Best Practices',
+      problemsRows: [
+        {
+          problem: 'Students Guess the Picture Too Quickly',
+          cause: 'Large tiles uncover big sections of the subject right away',
+          solution: 'Increase the grid size and select Random Reveal so smaller clues appear gradually',
+        },
+        {
+          problem: 'School Privacy Policy for Classroom Photos',
+          cause: 'Cloud upload tools store images on external servers',
+          solution: 'Picture Reveal Timer processes files 100% locally in the browser with zero server uploads',
+        },
+        {
+          problem: 'Image Aspect Ratio Cropping',
+          cause: 'Tall portrait photos on wide landscape screens',
+          solution: 'Use landscape (16:9 or 4:3) images for the best full-screen smartboard fit',
+        },
+      ],
     },
   },
   'heart-timer': {
@@ -1254,14 +2118,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever needed.',
       ],
       featuresTitle: 'Heart Timer for Activities and Games',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Customize the Heart Timer Display',
-      whoBenefitsList: [],
+      featuresList: [
+        'Smooth liquid-fill and pulse animations inside a sculpted heart silhouette',
+        'Warm rose, coral, berry, and pastel color themes for a friendly, uplifting vibe',
+        'Proportional vertical fill level that shows remaining time at a single glance',
+        'Gentle optional pulse rhythm that doubles as a calming visual anchor',
+        'Full-screen mode and one-key shortcuts (Spacebar, R, F) across mobile and desktop',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Heart',
+          title: 'Self-Care, Skincare & Mindfulness Breaks',
+          description:
+            'Time a 10-minute face mask, gratitude journaling session, or breathing break with a warm, encouraging visual.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'Social-Emotional Learning (SEL) & Sharing Circles',
+          description:
+            'Teachers pass a talking piece around the circle while the Heart Timer gives each student 2 minutes to share.',
+        },
+        {
+          icon: 'CheckSquare',
+          title: 'Cardio, Jump Rope & Wellness Circuits',
+          description:
+            'Use the heart visual during PE class or home cardio intervals to keep energy positive and motivating.',
+        },
+        {
+          icon: 'Users',
+          title: 'Valentine’s Day, Classroom Parties & Icebreakers',
+          description:
+            'Project the Heart Timer on a smartboard during themed classroom games, speed-friending, or party stations.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Loves Using the Heart Timer?',
+      whoBenefitsList: [
+        'Teachers leading Social-Emotional Learning (SEL), morning meetings, and kindness activities',
+        'Children who respond warmly to friendly, approachable shapes during homework or chores',
+        'Wellness coaches, counselors, and therapists timing reflection or relaxation exercises',
+        'Students and creators who enjoy cute, kawaii, or pastel desk setups',
+      ],
       tipsTitle: 'Customize the Heart Timer Display',
-      tipsList: [],
-      problemsTitle: 'Customize the Heart Timer Display',
-      problemsRows: [],
+      tipsList: [
+        'Use soft pastel rose or lavender themes for calm reflection, or vibrant ruby red for energetic classroom games.',
+        'Toggle off the digital clock digits when you want children or clients to focus purely on the visual fill level.',
+        'Press F for Fullscreen Mode so the heart fills the screen on tablets or classroom projectors.',
+        'Pair with a gentle chime alert so transitions feel warm and supportive rather than abrupt.',
+      ],
+      problemsTitle: 'Heart Visual Timer vs Standard Digital Timers',
+      problemsRows: [
+        {
+          problem: 'Timers Feeling Cold or Punitive for Young Kids',
+          cause: 'Harsh red digits and loud buzzers can feel stressful during timeouts or transitions',
+          solution: 'The Heart Timer frames time limits in a warm, positive, and comforting shape',
+        },
+        {
+          problem: 'Keeping Seasonal or SEL Activities Engaging',
+          cause: 'Plain utility timers break the mood of themed classroom events',
+          solution: 'Customizable heart styles match wellness, kindness, and party themes effortlessly',
+        },
+        {
+          problem: 'Judging Halfway Point Without Reading Numbers',
+          cause: 'Pre-readers cannot interpret MM:SS digits',
+          solution: 'Watching the heart fill drop to the middle gives instant visual feedback',
+        },
+      ],
     },
   },
   'moon-timer': {
@@ -1305,14 +2226,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever needed.',
       ],
       featuresTitle: 'Moon Timer for Quiet Activities and Evening Routines',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Moon Timer vs Actual Lunar Phases',
-      whoBenefitsList: [],
-      tipsTitle: 'Moon Timer vs Actual Lunar Phases',
-      tipsList: [],
+      featuresList: [
+        'Smooth lunar phase progression that transitions from a glowing full moon to crescent and new moon',
+        'Eye-friendly midnight, indigo, and starlight palettes designed for dim rooms and evening wind-downs',
+        'Zero harsh flashing elements—ideal for bedtime routines, nap time, and late-night studying',
+        'Optional numerical readout that can be hidden for a pure celestial display',
+        'Built-in Screen Wake Lock and quiet chime options for gentle transitions',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Clock',
+          title: 'Kids’ Bedtime Wind-Down (15–20 Minutes)',
+          description:
+            'Let children read or play quietly until the full moon slowly wanes into a sleepy crescent—signaling lights-out without arguments.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'Preschool & Kindergarten Rest / Quiet Time',
+          description:
+            'Project the calming night sky on the classroom screen during post-lunch rest time so children see how long quiet time lasts.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Evening Meditation, Yin Yoga & Breathwork',
+          description:
+            'Dim the room lights and use a 20-minute lunar countdown to hold restorative poses or practice evening mindfulness.',
+        },
+        {
+          icon: 'Monitor',
+          title: 'Late-Night Study & Creative Writing',
+          description:
+            'Avoid bright white screens after 9 PM by using the low-glare Moon Timer on your secondary display.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Benefits Most from the Moon Visual Timer?',
+      whoBenefitsList: [
+        'Parents establishing peaceful, predictable bedtime and storytime routines for young children',
+        'Early childhood educators managing classroom nap time, quiet reading, and calm-down corners',
+        'Night-owl students, programmers, and writers who prefer dark, low-blue-light visuals at night',
+        'Yoga teachers, sound-bath facilitators, and meditation guides pacing evening sessions',
+      ],
+      tipsTitle: 'Tips for Evening & Quiet-Time Pacing',
+      tipsList: [
+        'Tell young kids: "When the moon turns into a tiny sliver, it’s time to tuck in"—visual cues work far better than clock numbers at bedtime.',
+        'Lower your screen brightness slightly and press F for Fullscreen Mode to create an ambient nightlight effect.',
+        'Disable or soften the end alarm when using the Moon Timer for falling asleep or savasana relaxation.',
+        'Use the Spacebar to pause smoothly if bedtime story questions take an extra minute.',
+      ],
       problemsTitle: 'Moon Timer vs Actual Lunar Phases',
-      problemsRows: [],
+      problemsRows: [
+        {
+          problem: 'Countdown Duration vs 29.5-Day Astronomical Cycle',
+          cause: 'The real moon takes 29.5 days to cycle from full to new',
+          solution: 'Moon Timer scales the lunar shadow animation to match your exact chosen minutes and seconds',
+        },
+        {
+          problem: 'Bright Screens Disrupting Melatonin Before Bed',
+          cause: 'Standard white timers emit harsh glare in dark rooms',
+          solution: 'Deep night-sky backgrounds keep ambient light soft and sleep-friendly',
+        },
+        {
+          problem: 'Toddlers Asking "Is Rest Time Over Yet?"',
+          cause: 'Young children cannot read digital clocks',
+          solution: 'The waning moon shadow shows clearly how much rest time remains',
+        },
+      ],
     },
   },
   'sun-timer': {
@@ -1357,14 +2335,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever needed.',
       ],
       featuresTitle: 'Sun Timer for Morning and Daily Routines',
-      featuresList: [],
-      practicalExamples: [],
+      featuresList: [
+        'Natural solar arc animation that travels smoothly across the horizon from start to finish',
+        'Dynamic sky gradient transitions including Dawn Gold, Midday Azure, and Golden Hour Sunset',
+        'Intuitive horizon-based progress—when the sun nears the horizon, time is almost up',
+        'Optional session label and digital time overlay that can be toggled on or off',
+        'Full-screen mode and Screen Wake Lock for morning routines and classroom smartboards',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Clock',
+          title: 'School Morning Routine (20–30 Minutes)',
+          description:
+            'Help children finish breakfast, brush teeth, and put on shoes before the sun completes its arc across the kitchen tablet.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'Classroom Morning Meeting & Warm-Up',
+          description:
+            'Start the school day with a cheerful 10-minute sunrise timer projected on the board during morning journal prompts.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Morning Yoga, Sun Salutations & Mobility',
+          description:
+            'Pace a 15-minute morning stretch or sunlight exposure routine with a calming horizon visual.',
+        },
+        {
+          icon: 'Monitor',
+          title: 'End-of-Workday Shutdown Ritual',
+          description:
+            'Run a 15-minute Sunset theme at 4:45 PM to clear your inbox, write tomorrow’s to-do list, and close your laptop on time.',
+        },
+      ],
       whoBenefitsTitle: 'Sun-Inspired Timers for Learning and Activities',
-      whoBenefitsList: [],
-      tipsTitle: 'Sun Timer vs Sunrise and Sunset Calculator',
-      tipsList: [],
+      whoBenefitsList: [
+        'Parents and children who want a cheerful, natural visual cue to keep busy mornings on schedule',
+        'Elementary teachers leading morning circle time, weather discussions, and daily warm-ups',
+        'Remote workers creating structured morning startup and evening wind-down rituals',
+        'Visual learners who intuitively understand the sun’s height in the sky as remaining time',
+      ],
+      tipsTitle: 'Tips for Pacing Routines with the Sun Timer',
+      tipsList: [
+        'Use the Sunrise / Morning sky theme to energize early study blocks, and switch to Golden Hour Sunset for afternoon wrap-ups.',
+        'Point out the "High Noon" halfway mark at the top of the arc so kids know when half their time has elapsed.',
+        'Press F for Fullscreen Mode to turn a kitchen tablet or classroom smartboard into a scenic sky window.',
+        'Pair with a gentle chime alert to signal the end of morning prep without stressful alarms.',
+      ],
       problemsTitle: 'Sun Timer vs Sunrise and Sunset Calculator',
-      problemsRows: [],
+      problemsRows: [
+        {
+          problem: 'Custom Countdown vs Local Astronomical Daylight',
+          cause: 'Real daylight lasts 9–15 hours depending on latitude and season',
+          solution: 'Sun Timer compresses the solar sky arc into your exact chosen countdown duration (e.g., 5 or 25 minutes)',
+        },
+        {
+          problem: 'Morning Rush Stress with Loud Alarm Clocks',
+          cause: 'Sudden buzzing alarms create rush and frustration for kids',
+          solution: 'Watching the sun travel across the sky gives continuous, stress-free advance notice',
+        },
+        {
+          problem: 'Checking Real-World Sunrise / Golden Hour Times',
+          cause: 'Planning outdoor photography requires geographic solar coordinates',
+          solution: 'Use Sun Timer for activity countdowns, or our Sunrise & Sunset Calculator for real astronomical times',
+        },
+      ],
     },
   },
   'bubble-timer': {
@@ -1408,14 +2443,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever you need to.',
       ],
       featuresTitle: 'Bubble Timer for Classrooms and Everyday Activities',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Customizing Bubble Movement and Appearance',
-      whoBenefitsList: [],
+      featuresList: [
+        'Buoyant, physics-inspired floating bubbles that thin out and settle as time counts down',
+        'Adjustable bubble density and rise speed for either playful energy or sensory calm',
+        'Soothing aqua, pastel, Iridescent Pearl, and Deep Ocean color themes',
+        'Ideal sensory regulation visual for autism, ADHD, and early childhood classrooms',
+        'Instant fullscreen projection and one-key shortcuts (Spacebar, R, F)',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Droplets',
+          title: '2-Minute Toothbrushing & Bathroom Routine',
+          description:
+            'Prop a phone or tablet on the bathroom counter so kids brush until the last floating soap bubbles pop at 00:00.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Sensory Calm-Down & Emotional Regulation (3–5 Minutes)',
+          description:
+            'Students take slow belly breaths while watching gentle bubbles rise in the classroom calm-down corner.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'Preschool Clean-Up & Transition Game',
+          description:
+            'Challenge preschoolers to put away all toys and sit on the rug before the bubbles finish floating away.',
+        },
+        {
+          icon: 'CheckSquare',
+          title: 'Short Stretch & Eye-Rest Breaks (60 Seconds)',
+          description:
+            'Look away from spreadsheets and relax your eyes for 1 minute with a soothing aquatic bubble display.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Benefits Most from the Bubble Timer?',
+      whoBenefitsList: [
+        'Preschool and elementary teachers managing classroom transitions, handwashing, and clean-up',
+        'Occupational therapists, school counselors, and parents supporting sensory regulation',
+        'Young children who love playful bubble visuals during toothbrushing and bedtime prep',
+        'Anyone looking for a lighthearted, low-stress break timer between study sessions',
+      ],
       tipsTitle: 'Customizing Bubble Movement and Appearance',
-      tipsList: [],
-      problemsTitle: 'Customizing Bubble Movement and Appearance',
-      problemsRows: [],
+      tipsList: [
+        'Select a lower bubble density and slow speed when using the timer for breathing exercises or sensory decompression.',
+        'Switch to a high bubble density for energetic 2-minute classroom clean-up races.',
+        'Hide the digital numbers when working with toddlers so they simply watch the bubble count dwindle.',
+        'Press F to fill the entire smartboard or iPad screen for group activities.',
+      ],
+      problemsTitle: 'Bubble Visual Timer vs Standard Digital Timers',
+      problemsRows: [
+        {
+          problem: 'Sensory Overload from Harsh Countdown Clocks',
+          cause: 'Flashing digits and sharp ticks heighten anxiety during meltdowns',
+          solution: 'Floating translucent bubbles provide a gentle, non-threatening visual anchor',
+        },
+        {
+          problem: 'Getting Kids to Brush Teeth for a Full 2 Minutes',
+          cause: '2 minutes feels endless to a child staring at a bathroom mirror',
+          solution: 'Watching rising bubbles makes the 120-second hygiene routine fly by',
+        },
+        {
+          problem: 'Maintaining Accuracy with Playful Animations',
+          cause: 'Toy liquid bubblers run for random, uncalibrated durations',
+          solution: 'Digital Bubble Timer combines soothing bubble motion with exact second-level accuracy',
+        },
+      ],
     },
   },
   'coral-timer': {
@@ -1466,14 +2558,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever you need to.',
       ],
       featuresTitle: 'Ocean-Themed Visual Timers for Learning',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Customize Your Underwater Timer',
-      whoBenefitsList: [],
+      featuresList: [
+        'Generative branching coral animation that blooms from a small reef base into a full structure',
+        'Positive "growth" framing—instead of losing time, your focused minutes build a living reef',
+        'Tranquil underwater palettes including Tropical Reef, Bioluminescent Deep, and Seafoam Lagoon',
+        'Synchronized growth mathematics that reaches 100% full bloom at the exact end of your countdown',
+        'Full-screen display with optional digital clock toggle and gentle ocean-friendly chimes',
+      ],
+      practicalExamples: [
+        {
+          icon: 'GraduationCap',
+          title: '25-Minute Pomodoro Study Reef',
+          description:
+            'Reward yourself for staying focused for 25 minutes by watching a complete branching coral structure grow on your desk screen.',
+        },
+        {
+          icon: 'Palette',
+          title: 'Marine Biology & Science Classroom Stations',
+          description:
+            'Science teachers project the Coral Timer during oceanography labs, ecosystem discussions, and independent research blocks.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Calm Reading & Homework Time for Kids',
+          description:
+            'Children who feel anxious when watching a bar shrink love watching their reading minutes grow a colorful coral reef.',
+        },
+        {
+          icon: 'Monitor',
+          title: 'Ambient Second-Monitor Focus Companion',
+          description:
+            'Turn an idle monitor into a peaceful underwater reef that quietly tracks your 45-minute deep work block.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Benefits Most from a Coral Growth Timer?',
+      whoBenefitsList: [
+        'Students and writers who prefer positive "building/growing" visuals over depleting countdown bars',
+        'Science and elementary teachers running ocean-themed units or quiet independent work',
+        'Neurodivergent learners who experience countdown anxiety when watching sand or bars run out',
+        'Anyone who loves marine life, aquariums, and biophilic desk aesthetics',
+      ],
       tipsTitle: 'Customize Your Underwater Timer',
-      tipsList: [],
-      problemsTitle: 'Customize Your Underwater Timer',
-      problemsRows: [],
+      tipsList: [
+        'Use the Coral Timer for longer 15–45 minute study sessions so you can appreciate the intricate branching stages.',
+        'Try the Bioluminescent Dark theme during evening study sessions for a soothing deep-sea glow.',
+        'Hide the digital timer text if ticking seconds distract you—let the size of the coral tell you how far along you are.',
+        'Press Spacebar to pause growth if you need to step away, or R to plant a fresh coral base.',
+      ],
+      problemsTitle: 'Growth-Based Coral Timer vs Depleting Timers',
+      problemsRows: [
+        {
+          problem: 'Scarcity Anxiety from Shrinking Timer Bars',
+          cause: 'Watching time drain away can trigger urgency stress during creative work',
+          solution: 'Coral Timer flips the psychology: every minute of focus grows a beautiful structure',
+        },
+        {
+          problem: 'Distracting Fast-Moving Animations',
+          cause: 'Rapid spinners or flashing digits pull peripheral vision away from reading',
+          solution: 'Organic coral branches unfurl gradually, keeping peripheral motion calm',
+        },
+        {
+          problem: 'Knowing When the Session Is Complete',
+          cause: 'Organic shapes need a clear completion state',
+          solution: 'The coral reaches full canopy height at 00:00 and plays an optional completion chime',
+        },
+      ],
     },
   },
   'lichen-timer': {
@@ -1524,14 +2673,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever you need to.',
       ],
       featuresTitle: 'Nature-Inspired Timers for Quiet Activities',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Customizing the Lichen Display',
-      whoBenefitsList: [],
+      featuresList: [
+        'Organic botanical moss and lichen colony simulation that spreads across natural stone or bark',
+        'Earthy biophilic color palettes including Woodland Moss, Alpine Slate, Golden Sunburst Lichen, and Boreal Bark',
+        'Ultra-low peripheral distraction—designed for deep reading, writing, and contemplative work',
+        'Proportional surface coverage that reaches 100% bloom when your timer hits 00:00',
+        'Full-screen mode, keyboard shortcuts (Spacebar, R, F), and screen wake lock',
+      ],
+      practicalExamples: [
+        {
+          icon: 'GraduationCap',
+          title: 'Deep Reading & Literature Study (30–60 Minutes)',
+          description:
+            'Let a slow-growing moss and lichen colony accompany long textbook chapters or thesis research without pulling your eyes from the page.',
+        },
+        {
+          icon: 'Palette',
+          title: 'Botanical Sketching, Journaling & Creative Writing',
+          description:
+            'Pair a 20-minute freewriting or sketching block with an earthy woodland visual that inspires calm creativity.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Forest-Bathing Mindfulness & Grounding Breaks',
+          description:
+            'Bring nature indoors during a 10-minute tea break or breathing exercise at your office desk.',
+        },
+        {
+          icon: 'Users',
+          title: 'Biology & Ecology Classroom Labs',
+          description:
+            'Project a time-lapse style lichen growth countdown during botany, symbiosis, or environmental science lessons.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Uses the Biophilic Lichen Timer?',
+      whoBenefitsList: [
+        'Writers, researchers, and academics who want an ultra-calm, non-mechanical timer for deep focus',
+        'Nature lovers, botanists, and cottagecore / goblincore / green-academia enthusiasts',
+        'Highly sensitive focusers who find spinning wheels or flashing bars visually fatiguing',
+        'Biology and environmental science educators timing quiet lab observations',
+      ],
       tipsTitle: 'Customizing the Lichen Display',
-      tipsList: [],
-      problemsTitle: 'Customizing the Lichen Display',
-      problemsRows: [],
+      tipsList: [
+        'Choose Woodland Moss on dark slate for a low-glare evening study aesthetic, or Golden Lichen for warm daytime contrast.',
+        'Toggle off the digital numbers when doing creative writing so you experience time as gradual organic growth.',
+        'Use Fullscreen Mode (press F) on a secondary display to create a calm biophilic window on your desk.',
+        'Enable the soft chime alert so you can immerse yourself in your book without checking the screen.',
+      ],
+      problemsTitle: 'Organic Lichen Timer vs Standard Digital Timers',
+      problemsRows: [
+        {
+          problem: 'Visual Fatigue from High-Motion Timers',
+          cause: 'Fast-moving animations demand constant eye attention',
+          solution: 'Lichen grows at a serene, botanical pace that respects deep concentration',
+        },
+        {
+          problem: 'Sterile Office Aesthetics',
+          cause: 'Plain black-and-white utility clocks feel cold and stressful',
+          solution: 'Natural stone, bark, and moss textures bring calming biophilic design to your screen',
+        },
+        {
+          problem: 'Tracking Progress Without Reading Digits',
+          cause: 'Checking MM:SS interrupts verbal and reading comprehension',
+          solution: 'Glance at how much of the stone surface is covered in moss to judge elapsed time instantly',
+        },
+      ],
     },
   },
   'frost-timer': {
@@ -1582,14 +2788,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever you need to.',
       ],
       featuresTitle: 'Frost Timer for Focus and Classroom Activities',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Frost Timer Display Settings',
-      whoBenefitsList: [],
-      tipsTitle: 'Frost Timer Display Settings',
-      tipsList: [],
-      problemsTitle: 'Frost Timer Display Settings',
-      problemsRows: [],
+      featuresList: [
+        'Intricate crystalline frost fractals that branch inward from the window edges as time progresses',
+        'Crisp winter palettes including Glacial Blue, Arctic Silver, Aurora Ice, and Midnight Frost',
+        'Clear perimeter-to-center visual progression that shows how close the window is to freezing over',
+        'Soothing "cool-down" visual metaphor for emotional regulation and focused study',
+        'Full-screen display with keyboard shortcuts (Spacebar, R, F) and Wake Lock',
+      ],
+      practicalExamples: [
+        {
+          icon: 'GraduationCap',
+          title: 'Classroom Winter Centres & Quiet Reading',
+          description:
+            'Project the Frost Timer on your classroom smartboard during winter literacy centers—students finish their station before the window freezes over.',
+        },
+        {
+          icon: 'Heart',
+          title: '"Cool Down" Emotional Regulation Break (3–5 Minutes)',
+          description:
+            'Help frustrated or overstimulated children take a 3-minute "cool down" breath break while watching delicate ice crystals form.',
+        },
+        {
+          icon: 'Monitor',
+          title: '25-Minute Crisp Deep-Work Sprint',
+          description:
+            'Use the clean, high-contrast Arctic Silver frost theme on a second monitor for distraction-free coding or data analysis.',
+        },
+        {
+          icon: 'CheckSquare',
+          title: 'Cold Plunge, Ice Bath & Recovery Timing',
+          description:
+            'Time a 2-minute or 3-minute cold shower or contrast-therapy recovery interval with a fitting glacial visual.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Benefits Most from the Frost Visual Timer?',
+      whoBenefitsList: [
+        'Teachers looking for engaging seasonal winter timers for classroom smartboards',
+        'Counselors and parents using a soothing "cool-down" visual for emotional self-regulation',
+        'Students and programmers who love crisp, cool-toned blue and silver desk setups',
+        'Wellness and cold-exposure practitioners timing recovery sessions',
+      ],
+      tipsTitle: 'Frost Timer Display Settings & Tips',
+      tipsList: [
+        'Tell students: "When the frost reaches the center of the window, pencils down!" for a clear, stress-free cue.',
+        'Switch to the Midnight Frost or Aurora theme in dim rooms for glowing ice-crystal contrast.',
+        'Hide the digital clock readout if you want a pure winter window effect during silent reading.',
+        'Press R at any time to "defrost" the window instantly and start a fresh round.',
+      ],
+      problemsTitle: 'Frost Crystal Timer vs Standard Digital Timers',
+      problemsRows: [
+        {
+          problem: 'Keeping Classroom Timers Fresh in Winter Months',
+          cause: 'Using the same plain circle timer every day leads to student tune-out',
+          solution: 'Frost Timer brings seasonal excitement while keeping exact countdown structure',
+        },
+        {
+          problem: 'Helping Kids "Cool Down" When Angry or Overwhelmed',
+          cause: 'Red timers feel aggressive when a child is already upset',
+          solution: 'Cool icy blues and slow crystal formation naturally encourage calm breathing',
+        },
+        {
+          problem: 'Peripheral Glare on Dual Monitors',
+          cause: 'Bright white backgrounds strain eyes during long workdays',
+          solution: 'Deep glacial navy and slate backgrounds keep the frost crystals easy on the eyes',
+        },
+      ],
     },
   },
   'snow-timer': {
@@ -1637,14 +2900,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Click Reset to set a new time and start again.',
       ],
       featuresTitle: 'Winter-Themed Timers for Classrooms and Activities',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Customize the Snowfall Effect',
-      whoBenefitsList: [],
+      featuresList: [
+        'Gentle drifting snowflakes paired with a rising snowbank accumulation bar that tracks elapsed time',
+        'Adjustable snowfall intensity from a quiet flurry to a playful winter blizzard',
+        'Cozy winter sky themes including Alpine Night, Nordic Twilight, and Snowy Pine',
+        'Dual visual feedback: soothing falling flakes for calm focus plus snow depth for exact progress',
+        'Full-screen mode and keyboard shortcuts (Spacebar, R, F) for smartboards and desk monitors',
+      ],
+      practicalExamples: [
+        {
+          icon: 'GraduationCap',
+          title: 'Classroom Cozy Reading & Winter Writing Prompts',
+          description:
+            'Display the falling snow scene on the classroom projector during 20-minute independent reading or creative winter storytelling.',
+        },
+        {
+          icon: 'Monitor',
+          title: 'Cozy Study Sessions & Hot Cocoa Breaks',
+          description:
+            'Pair a 25-minute study block with a peaceful Alpine Night snowfall on your iPad or secondary screen.',
+        },
+        {
+          icon: 'Users',
+          title: 'Holiday Classroom Parties & Station Rotations',
+          description:
+            'Keep December classroom craft stations and winter games running on time with a festive, kid-friendly snow drift countdown.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Evening Wind-Down & Quiet Reflection',
+          description:
+            'Watch slow, silent snowflakes settle for 10 minutes before bedtime to quiet a busy mind.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Loves the Snowfall Visual Timer?',
+      whoBenefitsList: [
+        'Elementary and middle school teachers creating a calm, cozy classroom atmosphere in winter',
+        'Students who enjoy "cozy study with me" winter scenes while preparing for December or January exams',
+        'Children with sensory sensitivities who find gentle falling snow deeply soothing',
+        'Families timing holiday games, baking steps, or evening storytime',
+      ],
       tipsTitle: 'Customize the Snowfall Effect',
-      tipsList: [],
-      problemsTitle: 'Customize the Snowfall Effect',
-      problemsRows: [],
+      tipsList: [
+        'Use low snowfall intensity for 25–45 minute study sessions so the gentle flurries keep your peripheral vision relaxed.',
+        'Watch the rising snowdrift at the bottom of the screen to judge how much time has passed without reading numbers.',
+        'Press F for Fullscreen Mode to turn your television or smartboard into a peaceful winter window.',
+        'Enable Screen Wake Lock so your winter scene stays active throughout the entire countdown.',
+      ],
+      problemsTitle: 'Snow Timer vs Static Winter Wallpapers',
+      problemsRows: [
+        {
+          problem: 'Ambient Video Loops Don’t Track Real Time',
+          cause: 'YouTube snowfall videos loop infinitely without telling you how much study time is left',
+          solution: 'Snow Timer links the rising snowbank directly to your exact countdown duration',
+        },
+        {
+          problem: 'Overexcited Classrooms Before Winter Break',
+          cause: 'Loud or flashy timers increase classroom restlessness',
+          solution: 'Quiet drifting snow calms the room while keeping students aware of remaining time',
+        },
+        {
+          problem: 'Restarting for the Next Group Rotation',
+          cause: 'Scrubbing video timers back to zero is clumsy',
+          solution: 'Press R to clear the snowbank and restart your exact preset in one keystroke',
+        },
+      ],
     },
   },
   'galaxy-timer': {
@@ -1692,14 +3012,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever you need to.',
       ],
       featuresTitle: 'Space-Themed Timers for Study and Productivity',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Customize Your Galaxy Countdown',
-      whoBenefitsList: [],
+      featuresList: [
+        'Swirling spiral galaxy, nebula clouds, and starfield illumination that evolve with your countdown',
+        'OLED-friendly deep-space backgrounds (Andromeda Violet, Cosmic Teal, Supernova Gold, Deep Void)',
+        'Low-glare dark palette that prevents eye strain during late-night coding, gaming, or studying',
+        'Smooth orbital rotation and star-density progression tied to exact elapsed percentage',
+        'Full-screen planetarium mode (press F) with optional digital clock toggle',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Monitor',
+          title: 'Late-Night Coding & Engineering Sprints',
+          description:
+            'Run a 45-minute deep-space countdown on your secondary OLED monitor without any harsh white light in your dark office.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'Astronomy & STEM Classroom Activities',
+          description:
+            'Science teachers project the swirling nebula timer during space units, physics labs, and planetarium stations.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Cosmic Decompression & Audio Meditation',
+          description:
+            'Pair a 10-minute ambient music or binaural-beats break with a slow-rotating starfield to reset between intense meetings.',
+        },
+        {
+          icon: 'Tv',
+          title: 'Sci-Fi Tabletop RPG & Board Game Rounds',
+          description:
+            'Use the Galaxy Timer on a tablet at the gaming table to pace turn decisions in sci-fi board games and RPG encounters.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Uses the Galaxy Visual Timer?',
+      whoBenefitsList: [
+        'Developers, night-owl students, and gamers who work in dark rooms with dark-mode setups',
+        'Science and astronomy teachers looking for an inspiring space-themed classroom timer',
+        'Sci-fi writers, worldbuilders, and tabletop RPG game masters',
+        'Neurodivergent learners who find slow cosmic motion grounding and calming',
+      ],
       tipsTitle: 'Customize Your Galaxy Countdown',
-      tipsList: [],
-      problemsTitle: 'Customize Your Galaxy Countdown',
-      problemsRows: [],
+      tipsList: [
+        'Select low-motion or slow rotation speed during reading-heavy tasks so the starfield stays serene.',
+        'Press F to enter Fullscreen Mode on an external monitor for an immersive planetarium desk backdrop.',
+        'Hide the digital MM:SS text when you want to judge progress purely by the brightness and fullness of the nebula.',
+        'Use the Spacebar shortcut to pause the cosmos instantly if interrupted.',
+      ],
+      problemsTitle: 'Galaxy Timer vs Standard Dark-Mode Timers',
+      problemsRows: [
+        {
+          problem: 'Eye Strain from Bright Timers at Night',
+          cause: 'High-brightness screens ruin night vision and cause fatigue',
+          solution: 'Deep-space nebula palettes use true dark backgrounds with soft starlight accents',
+        },
+        {
+          problem: 'Plain Black Timers Feeling Empty or Boring',
+          cause: 'A lone white number on a black screen offers no visual sense of progress',
+          solution: 'The evolving starfield and spiral arms show proportional completion artistically',
+        },
+        {
+          problem: 'Keeping STEM Students Engaged During Lab Work',
+          cause: 'Generic timers disconnect from the lesson theme',
+          solution: 'Galaxy Timer reinforces astronomy and physics themes while keeping strict time',
+        },
+      ],
     },
   },
   'lava-lamp-timer': {
@@ -1747,14 +3124,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Use Pause or Reset whenever you need to.',
       ],
       featuresTitle: 'Lava Lamp Timer for Study and Quiet Activities',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Customize Your Lava Lamp Theme',
-      whoBenefitsList: [],
+      featuresList: [
+        'Hypnotic, organic metaball wax blobs that rise, split, and merge inside a classic glass lamp silhouette',
+        'Groovy 1970s retro and modern neon color combinations (Magma Orange, Cyber Purple, Emerald Glow, Sunset Pink)',
+        'Calibrated countdown progression tied to exact system clock timestamps',
+        'Ideal sensory decompression and "visual fidget" timer for ADHD and creative brainstorming',
+        'Full-screen display mode with optional digital time readout and completion chime',
+      ],
+      practicalExamples: [
+        {
+          icon: 'Palette',
+          title: 'Creative Brainstorming & Lo-Fi Study Sessions',
+          description:
+            'Put on a lo-fi hip-hop playlist and run a 25-minute Lava Lamp Timer on your desk tablet while sketching, coding, or studying.',
+        },
+        {
+          icon: 'Heart',
+          title: 'Sensory Decompression & Anxiety Reset (5 Minutes)',
+          description:
+            'Watch the slow, predictable rise and fall of warm wax blobs for 5 minutes to lower stress after a hectic class or meeting.',
+        },
+        {
+          icon: 'GraduationCap',
+          title: 'Classroom Calm-Down Corner & Quiet Reading',
+          description:
+            'Give students a safe, heat-free digital lava lamp on an iPad to pace their 5-minute sensory break before rejoining the class.',
+        },
+        {
+          icon: 'Monitor',
+          title: 'Retro Desk Setup & Stream Background',
+          description:
+            'Add a nostalgic 70s/90s lava lamp vibe to your dual-monitor workspace while keeping your Pomodoro breaks strictly on time.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Loves the Retro Lava Lamp Timer?',
+      whoBenefitsList: [
+        'Students and creatives who listen to lo-fi beats and want a relaxing, groovy desk companion',
+        'Neurodivergent individuals (ADHD, autism) who benefit from soothing "visual stimming" motion',
+        'Teachers and school counselors equipping a classroom sensory or calm-down station without hot glass lamps',
+        'Anyone who finds rigid geometric timers too clinical for creative or evening work',
+      ],
       tipsTitle: 'Customize Your Lava Lamp Theme',
-      tipsList: [],
-      problemsTitle: 'Customize Your Lava Lamp Theme',
-      problemsRows: [],
+      tipsList: [
+        'Choose a slow blob speed when studying or reading so the lamp acts as calm ambient lighting.',
+        'Use a real physical lava lamp? Remember real wax takes 45–60 minutes just to heat up—this digital version starts flowing at 00:01!',
+        'Press F for Fullscreen Mode and switch to Dark Mode so the glowing wax colors pop against your screen.',
+        'Toggle the digital numbers off during mindfulness breaks for a pure retro lamp experience.',
+      ],
+      problemsTitle: 'Digital Lava Lamp Timer vs Physical Lava Lamps',
+      problemsRows: [
+        {
+          problem: '45-Minute Warm-Up Wait Time',
+          cause: 'Real paraffin wax lamps require an incandescent bulb to heat up for nearly an hour',
+          solution: 'Digital Lava Lamp Timer flows immediately with zero warm-up delay',
+        },
+        {
+          problem: 'Hot Glass Hazard in Classrooms & Kids’ Rooms',
+          cause: 'Physical lava lamps get dangerously hot to the touch and can shatter if knocked over',
+          solution: '100% cool, shatter-proof visual experience on any tablet, Chromebook, or smartboard',
+        },
+        {
+          problem: 'Tracking Exact Study Intervals',
+          cause: 'A physical lamp offers no way to measure a 15- or 25-minute work block',
+          solution: 'Combines hypnotic wax motion with a precise countdown and end-of-session chime',
+        },
+      ],
     },
   },
   'spinner-timer': {
@@ -1802,14 +3236,71 @@ export const TOOL_EDITORIAL_CUSTOM: Record<string, Partial<ToolEditorialData>> =
         'Click Reset to set a new time and start again.',
       ],
       featuresTitle: 'Spinner Timer for Games and Group Activities',
-      featuresList: [],
-      practicalExamples: [],
-      whoBenefitsTitle: 'Spinner Timer vs Random Spinner Wheel',
-      whoBenefitsList: [],
-      tipsTitle: 'Spinner Timer vs Random Spinner Wheel',
-      tipsList: [],
+      featuresList: [
+        'Dynamic rotating turbine/wheel visual paired with a high-contrast outer progress ring',
+        'Clear active-running indicator—anyone in the room can see immediately that the clock is live',
+        'Customizable rotation direction (clockwise or counter-clockwise) and color themes',
+        'Drift-free millisecond timing engine that braking-stops smoothly at 00:00',
+        'One-key controls (Spacebar to start/pause, R to reset, F for fullscreen) for fast game hosting',
+      ],
+      practicalExamples: [
+        {
+          icon: 'RotateCcw',
+          title: '60-Second Trivia & Lightning Quiz Rounds',
+          description:
+            'Build game-show momentum by projecting the rotating Spinner Timer while teams race to write down their answers.',
+        },
+        {
+          icon: 'Users',
+          title: 'Classroom "Beat the Spinner" Clean-Up & Transitions',
+          description:
+            'Give students 2 minutes to swap notebooks and line up before the spinning wheel comes to a stop.',
+        },
+        {
+          icon: 'CheckSquare',
+          title: 'HIIT, CrossFit & Circuit Gym Stations',
+          description:
+            'Athletes can see from across the gym that the interval is actively running thanks to the continuous rotational motion.',
+        },
+        {
+          icon: 'Presentation',
+          title: 'Rapid-Fire Brainstorming & Design Sprints',
+          description:
+            'Run a "Crazy 8s" sketching exercise where participants sketch one idea every 60 seconds while the spinner turns.',
+        },
+      ],
+      whoBenefitsTitle: 'Who Uses the Spinner Countdown Timer?',
+      whoBenefitsList: [
+        'Teachers and game hosts running high-energy review games, trivia nights, and Minute-to-Win-It challenges',
+        'PE instructors and fitness coaches timing active workout stations',
+        'Workshop facilitators leading rapid-fire ideation and design thinking sprints',
+        'Students who stay more engaged when the timer has lively, kinetic motion',
+      ],
+      tipsTitle: 'Tips for Hosting Games & Sprints with the Spinner Timer',
+      tipsList: [
+        'Use the Spinner Timer for short, energetic bursts (30 seconds to 5 minutes) where kinetic motion keeps momentum high.',
+        'Keep your hand near the Spacebar during trivia or classroom games so you can freeze the spinner the instant a team buzzes in.',
+        'Press F for Fullscreen Mode on a TV or projector so the outer progress ring is visible from the back row.',
+        'Enable the end alarm chime so everyone hears the exact buzzer moment when the wheel stops.',
+      ],
       problemsTitle: 'Spinner Timer vs Random Spinner Wheel',
-      problemsRows: [],
+      problemsRows: [
+        {
+          problem: 'Counting Down Time vs Picking a Random Name',
+          cause: 'Users searching "spinner" sometimes want a countdown and sometimes a random picker',
+          solution: 'Spinner Timer measures exact countdown durations; for random name picking, use a decision wheel',
+        },
+        {
+          problem: 'Knowing If a Static Timer Is Paused or Running',
+          cause: 'On a long countdown, a slow-moving bar can look frozen from across the room',
+          solution: 'Continuous wheel rotation proves at a glance that the countdown is actively running',
+        },
+        {
+          problem: 'Motion Sensitivity During Long Reading Sessions',
+          cause: 'Continuous rotation can be too energetic for 60-minute silent reading',
+          solution: 'Use Spinner Timer for energetic games/workouts, or switch to Circular/Lichen Timer for quiet study',
+        },
+      ],
     },
   },
   'time-calculator': {

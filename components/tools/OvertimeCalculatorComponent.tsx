@@ -96,15 +96,16 @@ export default function OvertimeCalculatorComponent() {
 
   // Split each day into Regular vs Overtime hours
   const dailyBreakdownData = useMemo(() => {
-    let runningTotal = 0;
     const dailyCap = regularThresholdHours / 5;
-    return dailyDistribution.map((item) => {
-      const prevTotal = runningTotal;
-      runningTotal += item.hours;
+    return dailyDistribution.map((item, idx) => {
+      const prevTotal = dailyDistribution
+        .slice(0, idx)
+        .reduce((acc, d) => acc + d.hours, 0);
+      const currentRunningTotal = prevTotal + item.hours;
 
       let regHours = 0;
       let otHours = 0;
-      if (runningTotal <= regularThresholdHours) {
+      if (currentRunningTotal <= regularThresholdHours) {
         if (totalHoursWorked > regularThresholdHours && item.hours > dailyCap) {
           regHours = Number(Math.min(item.hours, dailyCap).toFixed(2));
           otHours = Number(Math.max(0, item.hours - dailyCap).toFixed(2));

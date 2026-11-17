@@ -609,11 +609,42 @@ export default function VisualTimerComponent() {
     return () => document.removeEventListener('fullscreenchange', onFsChange);
   }, []);
 
-  // Keyboard shortcuts (Space: Start/Pause, R: Reset, F: Fullscreen, ?: Shortcuts, Esc: Close/Exit)
+  // Keyboard shortcuts (Space: Start/Pause, R: Reset, F: Fullscreen, M: Mute, ?: Shortcuts, Esc: Close/Exit)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const tag = (e.target as HTMLElement)?.tagName;
-      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+      const targetEl = e.target as HTMLElement | null;
+      const tag = targetEl?.tagName;
+
+      if (tag === 'TEXTAREA' || tag === 'SELECT' || targetEl?.isContentEditable) {
+        if (e.key === 'Escape') {
+          targetEl?.blur?.();
+        }
+        return;
+      }
+
+      if (tag === 'INPUT') {
+        const inputEl = targetEl as HTMLInputElement;
+        const inputType = (inputEl.type || 'text').toLowerCase();
+        const inputMode = (inputEl.getAttribute('inputmode') || '').toLowerCase();
+        const isNumericOrControlInput =
+          inputMode === 'numeric' ||
+          inputMode === 'decimal' ||
+          inputType === 'number' ||
+          inputType === 'range' ||
+          inputType === 'time' ||
+          inputType === 'checkbox' ||
+          inputType === 'radio' ||
+          inputType === 'color';
+
+        if (!isNumericOrControlInput) {
+          if (e.key === 'Escape') {
+            inputEl.blur();
+          }
+          return;
+        }
+      }
 
       if (e.key === 'Escape') {
         if (showShortcutsModal) {
@@ -622,19 +653,23 @@ export default function VisualTimerComponent() {
           return;
         }
         if (isFullscreen) {
+          e.preventDefault();
           setIsFullscreen(false);
         }
         return;
       }
 
-      if (e.key === '?') {
+      if (e.key === '?' || (e.shiftKey && e.code === 'Slash')) {
         e.preventDefault();
+        targetEl?.blur?.();
         setShowShortcutsModal((prev) => !prev);
         return;
       }
 
-      if (e.code === 'Space') {
+      if (e.code === 'Space' || e.key === ' ') {
         e.preventDefault();
+        targetEl?.blur?.();
+        if (showShortcutsModal) setShowShortcutsModal(false);
         if (status === 'running') {
           handlePause();
         } else {
@@ -642,15 +677,23 @@ export default function VisualTimerComponent() {
         }
       } else if (e.key === 'r' || e.key === 'R') {
         e.preventDefault();
+        targetEl?.blur?.();
+        if (showShortcutsModal) setShowShortcutsModal(false);
         handleReset();
       } else if (e.key === 'f' || e.key === 'F') {
         e.preventDefault();
+        targetEl?.blur?.();
+        if (showShortcutsModal) setShowShortcutsModal(false);
         handleToggleFullscreen();
+      } else if (e.key === 'm' || e.key === 'M') {
+        e.preventDefault();
+        targetEl?.blur?.();
+        setSoundEnabled((prev) => !prev);
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, { capture: true });
+    return () => window.removeEventListener('keydown', handleKeyDown, { capture: true });
   });
 
   // Calculate fractions
@@ -1634,24 +1677,40 @@ export default function VisualTimerComponent() {
                 </kbd>
               </button>
 
-              {/* Subtle Hover/Focus Tooltip */}
+              {/* Interactive Hover/Focus Tooltip */}
               <div
                 role="tooltip"
-                className="pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-150 absolute right-0 top-full mt-2 w-60 p-2.5 rounded-xl bg-[#181F1B] text-white text-[11px] leading-relaxed shadow-lg border border-[#2A342D] z-30 hidden sm:block"
+                className="opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-opacity duration-150 absolute right-0 top-full pt-2 w-64 z-30 hidden sm:block"
               >
-                <p className="font-semibold text-white/95 mb-1">Keyboard Shortcuts</p>
-                <div className="space-y-1 text-slate-300">
-                  <div className="flex items-center justify-between">
-                    <span>Start / Pause</span>
-                    <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px] text-white">Space</kbd>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span>Reset Timer</span>
-                    <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px] text-white">R</kbd>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span>Fullscreen</span>
-                    <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px] text-white">F</kbd>
+                <div className="p-2.5 rounded-xl bg-[#181F1B] text-white text-[11px] leading-relaxed shadow-lg border border-[#2A342D]">
+                  <p className="font-semibold text-white/95 mb-1.5 px-1">
+                    Keyboard Shortcuts <span className="text-[10px] font-normal text-slate-400">(press key or click)</span>
+                  </p>
+                  <div className="space-y-1 text-slate-300">
+                    <button
+                      type="button"
+                      onClick={() => (status === 'running' ? handlePause() : handleStart())}
+                      className="w-full flex items-center justify-between px-1.5 py-1 rounded-lg hover:bg-white/10 transition-colors cursor-pointer text-left"
+                    >
+                      <span>Start / Pause</span>
+                      <kbd className="px-1.5 py-0.5 rounded bg-white/15 font-mono text-[10px] text-white">Space</kbd>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleReset()}
+                      className="w-full flex items-center justify-between px-1.5 py-1 rounded-lg hover:bg-white/10 transition-colors cursor-pointer text-left"
+                    >
+                      <span>Reset Timer</span>
+                      <kbd className="px-1.5 py-0.5 rounded bg-white/15 font-mono text-[10px] text-white">R</kbd>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleToggleFullscreen()}
+                      className="w-full flex items-center justify-between px-1.5 py-1 rounded-lg hover:bg-white/10 transition-colors cursor-pointer text-left"
+                    >
+                      <span>Fullscreen</span>
+                      <kbd className="px-1.5 py-0.5 rounded bg-white/15 font-mono text-[10px] text-white">F</kbd>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2480,19 +2539,70 @@ export default function VisualTimerComponent() {
               </button>
             </div>
 
-            <div className="py-4 space-y-2.5 text-xs sm:text-sm">
-              {[
-                { action: 'Start / Pause timer', keyLabel: 'Spacebar' },
-                { action: 'Reset timer', keyLabel: 'R' },
-                { action: 'Toggle Fullscreen', keyLabel: 'F' },
-                { action: 'Exit Fullscreen / Close', keyLabel: 'Esc' },
-                { action: 'Show / Hide shortcuts', keyLabel: '?' },
-              ].map((item) => (
-                <div
+            <div className="py-4 space-y-2 text-xs sm:text-sm">
+              <p className="text-[11px] text-[#252B27]/65 dark:text-slate-400 pb-1">
+                Press the key on your keyboard or click any row below to trigger the action immediately:
+              </p>
+              {(
+                [
+                  {
+                    id: 'space' as const,
+                    action: status === 'running' ? 'Pause timer' : 'Start / Resume timer',
+                    keyLabel: 'Spacebar',
+                  },
+                  {
+                    id: 'reset' as const,
+                    action: 'Reset timer',
+                    keyLabel: 'R',
+                  },
+                  {
+                    id: 'fullscreen' as const,
+                    action: isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen',
+                    keyLabel: 'F',
+                  },
+                  {
+                    id: 'mute' as const,
+                    action: soundEnabled ? 'Mute sound alerts' : 'Unmute sound alerts',
+                    keyLabel: 'M',
+                  },
+                  {
+                    id: 'escape' as const,
+                    action: 'Exit Fullscreen / Close modal',
+                    keyLabel: 'Esc',
+                  },
+                  {
+                    id: 'help' as const,
+                    action: 'Show / Hide shortcuts modal',
+                    keyLabel: '?',
+                  },
+                ]
+              ).map((item) => (
+                <button
                   key={item.keyLabel}
-                  className={`flex items-center justify-between gap-4 px-3 py-2 rounded-xl ${secondaryBoxBg}`}
+                  type="button"
+                  onClick={() => {
+                    if (item.id === 'space') {
+                      setShowShortcutsModal(false);
+                      if (status === 'running') handlePause();
+                      else handleStart();
+                    } else if (item.id === 'reset') {
+                      setShowShortcutsModal(false);
+                      handleReset();
+                    } else if (item.id === 'fullscreen') {
+                      setShowShortcutsModal(false);
+                      handleToggleFullscreen();
+                    } else if (item.id === 'mute') {
+                      setSoundEnabled((prev) => !prev);
+                    } else if (item.id === 'escape') {
+                      setShowShortcutsModal(false);
+                      if (isFullscreen) setIsFullscreen(false);
+                    } else {
+                      setShowShortcutsModal(false);
+                    }
+                  }}
+                  className={`w-full flex items-center justify-between gap-4 px-3.5 py-2.5 rounded-xl border border-transparent hover:border-[#365C4B]/40 transition-all cursor-pointer text-left ${secondaryBoxBg}`}
                 >
-                  <span className="font-medium text-[#252B27]/85 dark:text-slate-200">
+                  <span className="font-medium text-[#252B27]/90 dark:text-slate-200">
                     {item.action}
                   </span>
                   <kbd
@@ -2506,7 +2616,7 @@ export default function VisualTimerComponent() {
                   >
                     {item.keyLabel}
                   </kbd>
-                </div>
+                </button>
               ))}
             </div>
 

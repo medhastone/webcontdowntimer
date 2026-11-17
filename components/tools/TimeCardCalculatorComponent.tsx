@@ -56,17 +56,19 @@ export default function TimeCardCalculatorComponent() {
 
   // Enrich each day with Regular vs Overtime hours & Earnings progression
   const enrichedDays = useMemo(() => {
-    let cumulativeNetHours = 0;
-    let cumulativeEarnings = 0;
-
-    return summary.days.map((day, idx) => {
+    const baseDays = summary.days.map((day, idx) => {
       const shift = shifts[idx];
       const shortDay = day.dayName.slice(0, 3);
       const netHrs = day.netHoursDecimal;
       const breakHrs = Number((day.breakMinutes / 60).toFixed(2));
 
-      const prevCumulative = cumulativeNetHours;
-      cumulativeNetHours = Number((cumulativeNetHours + netHrs).toFixed(2));
+      const prevCumulative = Number(
+        summary.days
+          .slice(0, idx)
+          .reduce((acc, d) => acc + d.netHoursDecimal, 0)
+          .toFixed(2)
+      );
+      const cumulativeNetHours = Number((prevCumulative + netHrs).toFixed(2));
 
       const dailyReg = Math.min(netHrs, dailyOtThreshold);
       const dailyOt = Math.max(0, netHrs - dailyOtThreshold);
@@ -86,7 +88,6 @@ export default function TimeCardCalculatorComponent() {
       const regPay = Number((regHours * hourlyRate).toFixed(2));
       const otPay = Number((otHours * hourlyRate * otMultiplier).toFixed(2));
       const totalDayPay = Number((regPay + otPay).toFixed(2));
-      cumulativeEarnings = Number((cumulativeEarnings + totalDayPay).toFixed(2));
 
       return {
         ...day,
@@ -101,6 +102,18 @@ export default function TimeCardCalculatorComponent() {
         otPay,
         totalDayPay,
         cumulativeNetHours,
+      };
+    });
+
+    return baseDays.map((item, idx) => {
+      const cumulativeEarnings = Number(
+        baseDays
+          .slice(0, idx + 1)
+          .reduce((acc, d) => acc + d.totalDayPay, 0)
+          .toFixed(2)
+      );
+      return {
+        ...item,
         cumulativeEarnings,
       };
     });

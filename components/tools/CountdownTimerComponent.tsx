@@ -136,24 +136,61 @@ export default function CountdownTimerComponent({
   };
 
   const toggleFullscreen = useCallback(() => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(() => {});
-      const orientation = (screen as unknown as { orientation?: { lock?: (mode: string) => Promise<void> } }).orientation;
-      orientation?.lock?.('landscape')?.catch(() => {});
-      setIsFullscreen(true);
-    } else {
-      document.exitFullscreen().catch(() => {});
-      const orientation = (screen as unknown as { orientation?: { unlock?: () => void } }).orientation;
-      orientation?.unlock?.();
-      setIsFullscreen(false);
-    }
+    setIsFullscreen((prev) => {
+      const next = !prev;
+      if (next) {
+        if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        }
+        const orientation = (screen as unknown as { orientation?: { lock?: (mode: string) => Promise<void> } }).orientation;
+        orientation?.lock?.('landscape')?.catch(() => {});
+      } else {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
+        const orientation = (screen as unknown as { orientation?: { unlock?: () => void } }).orientation;
+        orientation?.unlock?.();
+      }
+      return next;
+    });
   }, []);
 
-  // Keyboard shortcuts (Space: Start/Pause, R: Reset, F: Fullscreen, ?: Shortcuts, Esc: Close/Exit)
+  // Keyboard shortcuts (Space: Start/Pause, R: Reset, F: Fullscreen, M: Mute, ?: Shortcuts, Esc: Close/Exit)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const tag = (e.target as HTMLElement)?.tagName;
-      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+      const targetEl = e.target as HTMLElement | null;
+      const tag = targetEl?.tagName;
+
+      if (tag === 'TEXTAREA' || tag === 'SELECT' || targetEl?.isContentEditable) {
+        if (e.key === 'Escape') {
+          targetEl?.blur?.();
+        }
+        return;
+      }
+
+      if (tag === 'INPUT') {
+        const inputEl = targetEl as HTMLInputElement;
+        const inputType = (inputEl.type || 'text').toLowerCase();
+        const inputMode = (inputEl.getAttribute('inputmode') || '').toLowerCase();
+        const isNumericOrControlInput =
+          inputMode === 'numeric' ||
+          inputMode === 'decimal' ||
+          inputType === 'number' ||
+          inputType === 'range' ||
+          inputType === 'time' ||
+          inputType === 'checkbox' ||
+          inputType === 'radio' ||
+          inputType === 'color';
+
+        if (!isNumericOrControlInput) {
+          if (e.key === 'Escape') {
+            inputEl.blur();
+          }
+          return;
+        }
+      }
 
       if (e.key === 'Escape') {
         if (showShortcutsModal) {
@@ -162,31 +199,43 @@ export default function CountdownTimerComponent({
           return;
         }
         if (isFullscreen) {
+          e.preventDefault();
           setIsFullscreen(false);
         }
         return;
       }
 
-      if (e.key === '?') {
+      if (e.key === '?' || (e.shiftKey && e.code === 'Slash')) {
         e.preventDefault();
+        targetEl?.blur?.();
         setShowShortcutsModal((prev) => !prev);
         return;
       }
 
-      if (e.code === 'Space') {
+      if (e.code === 'Space' || e.key === ' ') {
         e.preventDefault();
+        targetEl?.blur?.();
+        if (showShortcutsModal) setShowShortcutsModal(false);
         handleStartPause();
       } else if (e.key === 'r' || e.key === 'R') {
         e.preventDefault();
+        targetEl?.blur?.();
+        if (showShortcutsModal) setShowShortcutsModal(false);
         handleReset();
       } else if (e.key === 'f' || e.key === 'F') {
         e.preventDefault();
+        targetEl?.blur?.();
+        if (showShortcutsModal) setShowShortcutsModal(false);
         toggleFullscreen();
+      } else if (e.key === 'm' || e.key === 'M') {
+        e.preventDefault();
+        targetEl?.blur?.();
+        setSoundEnabled((prev) => !prev);
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, { capture: true });
+    return () => window.removeEventListener('keydown', handleKeyDown, { capture: true });
   }, [handleStartPause, handleReset, toggleFullscreen, showShortcutsModal, isFullscreen]);
 
   const remainingSeconds = Math.ceil(timer.remainingMs / 1000);
@@ -282,21 +331,37 @@ export default function CountdownTimerComponent({
 
               <div
                 role="tooltip"
-                className="pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-150 absolute right-0 top-full mt-2 w-56 p-2.5 rounded-xl bg-[#181F1B] text-white text-[11px] leading-relaxed shadow-lg border border-[#2A342D] z-30 hidden sm:block"
+                className="opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-opacity duration-150 absolute right-0 top-full pt-2 w-60 z-30 hidden sm:block"
               >
-                <p className="font-semibold text-white/95 mb-1">Keyboard Shortcuts</p>
-                <div className="space-y-1 text-slate-300">
-                  <div className="flex items-center justify-between">
-                    <span>Start / Pause</span>
-                    <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px] text-white">Space</kbd>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span>Reset Timer</span>
-                    <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px] text-white">R</kbd>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span>Fullscreen</span>
-                    <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px] text-white">F</kbd>
+                <div className="p-2.5 rounded-xl bg-[#181F1B] text-white text-[11px] leading-relaxed shadow-lg border border-[#2A342D]">
+                  <p className="font-semibold text-white/95 mb-1.5 px-1">
+                    Keyboard Shortcuts <span className="text-[10px] font-normal text-slate-400">(press or click)</span>
+                  </p>
+                  <div className="space-y-1 text-slate-300">
+                    <button
+                      type="button"
+                      onClick={handleStartPause}
+                      className="w-full flex items-center justify-between px-1.5 py-1 rounded-lg hover:bg-white/10 transition-colors cursor-pointer text-left"
+                    >
+                      <span>Start / Pause</span>
+                      <kbd className="px-1.5 py-0.5 rounded bg-white/15 font-mono text-[10px] text-white">Space</kbd>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleReset}
+                      className="w-full flex items-center justify-between px-1.5 py-1 rounded-lg hover:bg-white/10 transition-colors cursor-pointer text-left"
+                    >
+                      <span>Reset Timer</span>
+                      <kbd className="px-1.5 py-0.5 rounded bg-white/15 font-mono text-[10px] text-white">R</kbd>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={toggleFullscreen}
+                      className="w-full flex items-center justify-between px-1.5 py-1 rounded-lg hover:bg-white/10 transition-colors cursor-pointer text-left"
+                    >
+                      <span>Fullscreen</span>
+                      <kbd className="px-1.5 py-0.5 rounded bg-white/15 font-mono text-[10px] text-white">F</kbd>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -505,25 +570,69 @@ export default function CountdownTimerComponent({
               </button>
             </div>
 
-            <div className="py-4 space-y-2.5 text-xs sm:text-sm">
+            <div className="py-4 space-y-2 text-xs sm:text-sm">
+              <p className="text-[11px] text-[#252B27]/65 dark:text-slate-400 pb-1">
+                Press the key on your keyboard or click any row below to trigger the action immediately:
+              </p>
               {[
-                { action: 'Start / Pause timer', keyLabel: 'Spacebar' },
-                { action: 'Reset timer', keyLabel: 'R' },
-                { action: 'Toggle Fullscreen', keyLabel: 'F' },
-                { action: 'Exit Fullscreen / Close', keyLabel: 'Esc' },
-                { action: 'Show / Hide shortcuts', keyLabel: '?' },
+                {
+                  action: isRunning ? 'Pause timer' : 'Start / Resume timer',
+                  keyLabel: 'Spacebar',
+                  onTrigger: () => {
+                    setShowShortcutsModal(false);
+                    handleStartPause();
+                  },
+                },
+                {
+                  action: 'Reset timer',
+                  keyLabel: 'R',
+                  onTrigger: () => {
+                    setShowShortcutsModal(false);
+                    handleReset();
+                  },
+                },
+                {
+                  action: isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen',
+                  keyLabel: 'F',
+                  onTrigger: () => {
+                    setShowShortcutsModal(false);
+                    toggleFullscreen();
+                  },
+                },
+                {
+                  action: soundEnabled ? 'Mute sound alerts' : 'Unmute sound alerts',
+                  keyLabel: 'M',
+                  onTrigger: () => {
+                    setSoundEnabled((prev) => !prev);
+                  },
+                },
+                {
+                  action: 'Exit Fullscreen / Close modal',
+                  keyLabel: 'Esc',
+                  onTrigger: () => {
+                    setShowShortcutsModal(false);
+                    if (isFullscreen) setIsFullscreen(false);
+                  },
+                },
+                {
+                  action: 'Show / Hide shortcuts modal',
+                  keyLabel: '?',
+                  onTrigger: () => setShowShortcutsModal(false),
+                },
               ].map((item) => (
-                <div
+                <button
                   key={item.keyLabel}
-                  className="flex items-center justify-between gap-4 px-3 py-2 rounded-xl bg-[#F7F6F2] dark:bg-[#212A25]"
+                  type="button"
+                  onClick={item.onTrigger}
+                  className="w-full flex items-center justify-between gap-4 px-3.5 py-2.5 rounded-xl bg-[#F7F6F2] dark:bg-[#212A25] border border-transparent hover:border-[#365C4B]/40 transition-all cursor-pointer text-left"
                 >
-                  <span className="font-medium text-[#252B27]/85 dark:text-slate-200">
+                  <span className="font-medium text-[#252B27]/90 dark:text-slate-200">
                     {item.action}
                   </span>
                   <kbd className="px-2.5 py-1 rounded-lg border border-[#E4E1D9] dark:border-[#2A342D] bg-white dark:bg-[#181F1B] font-mono text-xs font-semibold shadow-2xs shrink-0">
                     {item.keyLabel}
                   </kbd>
-                </div>
+                </button>
               ))}
             </div>
 

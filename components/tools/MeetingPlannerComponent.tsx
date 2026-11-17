@@ -90,11 +90,14 @@ export default function MeetingPlannerComponent() {
 
   // Initial search-grounded context fetch on mount
   useEffect(() => {
-    fetchGroundedMeetingContext(
-      MEETING_GROUNDING_TOPICS[0].query,
-      ['San Francisco', 'London', 'Berlin', 'Singapore'],
-      14
-    );
+    const timerId = setTimeout(() => {
+      fetchGroundedMeetingContext(
+        MEETING_GROUNDING_TOPICS[0].query,
+        ['San Francisco', 'London', 'Berlin', 'Singapore'],
+        14
+      );
+    }, 0);
+    return () => clearTimeout(timerId);
   }, [fetchGroundedMeetingContext]);
 
   const getHourScore = (utcH: number) => {

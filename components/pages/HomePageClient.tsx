@@ -353,6 +353,28 @@ export default function HomePage() {
     setHeroRemainingSec(heroDurationSec);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey) return;
+      const target = e.target as HTMLElement | null;
+      const tag = target?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target?.isContentEditable) {
+        return;
+      }
+      if (e.code === 'Space') {
+        e.preventDefault();
+        setHeroRemainingSec((prev) => (prev === 0 ? heroDurationSec : prev));
+        setHeroIsRunning((prev) => !prev);
+      } else if (e.key === 'r' || e.key === 'R') {
+        e.preventDefault();
+        setHeroIsRunning(false);
+        setHeroRemainingSec(heroDurationSec);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [heroDurationSec]);
+
   const heroMins = Math.floor(heroRemainingSec / 60);
   const heroSecs = heroRemainingSec % 60;
   const heroFormatted = `${String(heroMins).padStart(2, '0')}:${String(heroSecs).padStart(2, '0')}`;
