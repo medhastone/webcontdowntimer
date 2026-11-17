@@ -7,12 +7,12 @@ import { LanguageProvider } from '@/components/i18n/LanguageProvider';
 import { REAL_SAME_AS_URLS } from '@/lib/site-config';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://WebCountDownTimer.com'),
+  metadataBase: new URL('https://webcountdowntimer.com'),
   title: 'Free Online Countdown Timer, Stage Timer & Visual Timer | WebCountDownTimer',
   description:
     'Free online countdown timer, stopwatch, stage timer, and visual timers for classrooms, meetings, workouts, and daily tasks. No sign-up required.',
   alternates: {
-    canonical: 'https://WebCountDownTimer.com',
+    canonical: 'https://webcountdowntimer.com',
   },
   icons: {
     icon: [
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'Free Online Countdown Timer, Stage Timer & Visual Timer | WebCountDownTimer',
     description:
       'Free online countdown timer, stopwatch, stage timer, and visual timers for classrooms, meetings, workouts, and daily tasks. No sign-up required.',
-    url: 'https://WebCountDownTimer.com',
+    url: 'https://webcountdowntimer.com',
     type: 'website',
     siteName: 'WebCountDownTimer',
     images: [{ url: '/logo.svg', width: 512, height: 512, alt: 'WebCountDownTimer Logo' }],
@@ -44,10 +44,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': 'https://WebCountDownTimer.com/#organization',
+    '@id': 'https://webcountdowntimer.com/#organization',
     name: 'WebCountDownTimer',
-    url: 'https://WebCountDownTimer.com',
-    logo: 'https://WebCountDownTimer.com/logo.svg',
+    url: 'https://webcountdowntimer.com',
+    logo: 'https://webcountdowntimer.com/logo.svg',
     description:
       'Precision online countdown timers, visual and sensory timers, stage confidence monitors, world clocks, and date/time calculators.',
     ...(REAL_SAME_AS_URLS.length > 0 ? { sameAs: REAL_SAME_AS_URLS } : {}),
@@ -57,10 +57,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'WebCountDownTimer',
-    url: 'https://WebCountDownTimer.com',
+    url: 'https://webcountdowntimer.com',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://WebCountDownTimer.com/tools?q={search_term_string}',
+      target: 'https://webcountdowntimer.com/tools?q={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   };

@@ -73,9 +73,16 @@ export default function ToolSpecificContentSection({
               id="how-to-use-heading"
               className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white"
             >
-              How to Use the {toolName} (Step-by-Step)
+              How to Use the {toolName}
             </h2>
           </div>
+          {content.howToUseNarrative && content.howToUseNarrative.length > 0 && (
+            <div className="space-y-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              {content.howToUseNarrative.map((para, pIdx) => (
+                <p key={pIdx}>{para}</p>
+              ))}
+            </div>
+          )}
           <ol className="space-y-3 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
             {content.howToUse.map((step, idx) => (
               <li key={idx} className="flex items-start gap-3">

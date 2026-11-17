@@ -18,9 +18,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const data = getDurationPageData(slug);
+  const normalized = slug.toLowerCase();
+  const data = getDurationPageData(normalized);
   if (!data) {
-    return buildPageMetadata(`/${slug}`, {
+    return buildPageMetadata(`/${normalized}`, {
       title: 'Page Not Found | WebCountDownTimer',
       description:
         'The requested timer duration page could not be found. Browse all free online countdown timers, stopwatches, and visual clocks at WebCountDownTimer.',
@@ -37,17 +38,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function DurationTimerDynamicPage({ params }: PageProps) {
   const { slug } = await params;
+  const normalized = slug.toLowerCase();
+
+  if (slug !== normalized && getDurationPageData(normalized)) {
+    permanentRedirect(`/${normalized}`);
+  }
 
   // Redirect any /N-minute-timer that is not in the kept set [1, 5, 10, 15, 30, 60]
-  const minMatch = /^(\d+)-minute-timer$/.exec(slug);
+  const minMatch = /^(\d+)-minute-timer$/.exec(normalized);
   if (minMatch) {
     const minutes = Number(minMatch[1]);
     if (!KEPT_MINUTE_TIMERS.includes(minutes as (typeof KEPT_MINUTE_TIMERS)[number])) {
-      permanentRedirect(`/countdown-timer?m=${minutes}`);
+      if (minutes === 25) permanentRedirect('/pomodoro-timer');
+      if (minutes === 50) permanentRedirect('/study-timer');
+      if (minutes === 20) permanentRedirect('/eye-break-timer');
+      permanentRedirect('/countdown-timer');
     }
   }
 
-  const data = getDurationPageData(slug);
+  // Redirect any unapproved /N-second-timer directly to /countdown-timer (or /tabata-timer for 20s)
+  const secMatch = /^(\d+)-second-timer$/.exec(normalized);
+  if (secMatch && !APPROVED_DURATION_SLUGS.includes(normalized)) {
+    const seconds = Number(secMatch[1]);
+    if (seconds === 20) permanentRedirect('/tabata-timer');
+    permanentRedirect('/countdown-timer');
+  }
+
+  const data = getDurationPageData(normalized);
 
   if (!data) {
     notFound();

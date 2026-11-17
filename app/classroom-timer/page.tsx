@@ -14,8 +14,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function ClassroomTimerPage() {
   const specificContent = getToolSpecificContent('classroom-timer');
   const breadcrumbs = [
-    { name: 'Home', item: 'https://WebCountDownTimer.com' },
-    { name: 'Classroom Timers', item: 'https://WebCountDownTimer.com/category/education' },
+    { name: 'Home', item: 'https://WebCountDownTimer.com/' },
+    { name: 'Tools', item: 'https://WebCountDownTimer.com/tools' },
     { name: 'Classroom Timer', item: 'https://WebCountDownTimer.com/classroom-timer' },
   ];
 
@@ -23,12 +23,12 @@ export default function ClassroomTimerPage() {
     <main className="min-h-screen bg-[#F8FAFC] dark:bg-[#0B0F19] text-slate-900 dark:text-slate-100 pb-12 transition-colors">
       <SEOStructuredData
         toolName="Classroom Timer"
-        description="Keep your class focused, organized and on track with a simple visual timer for lessons, activities, group work and breaks."
+        description="Projector-ready classroom countdown for K–12 teachers with a shrinking visual ring, +1 min live extension, station chimes, and silent exam mode."
         url="https://WebCountDownTimer.com/classroom-timer"
         faqs={specificContent ? specificContent.faqs : []}
         breadcrumbs={breadcrumbs}
         steps={specificContent ? specificContent.howToUse : []}
-        applicationCategory="UtilitiesApplication"
+        applicationCategory="UtilityApplication"
       />
       {/* ================================================================= */}
       {/* FULL-WIDTH HERO BANNER WITH INTEGRATED CHALKBOARD SCENE           */}

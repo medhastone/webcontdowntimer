@@ -37,6 +37,8 @@ import {
   Sparkles,
 } from 'lucide-react';
 import type { CategoryData, CategoryToolItem } from '@/lib/category-data';
+import { TOOLS_REGISTRY, getToolCanonicalPath } from '@/lib/tools-registry';
+import { APPROVED_DURATION_SLUGS, getDurationPageData } from '@/lib/duration-timers-data';
 import { ToolIconBadge, ToolTierTag, type ToolTier } from '@/components/ui/ToolIcon';
 
 interface Props {
@@ -160,12 +162,97 @@ export default function CategoryLandingPageComponent({ data }: Props) {
   const [activeTocIndex, setActiveTocIndex] = useState<number>(0);
   const [tierFilter, setTierFilter] = useState<'all' | ToolTier>('all');
 
+  const mergedCategoryTools = React.useMemo(() => {
+    const existingHrefs = new Set(data.tools.map((t) => t.href));
+    const extras: CategoryToolItem[] = [];
+    const catSlug = data.slug;
+
+    for (const regTool of TOOLS_REGISTRY) {
+      const canonicalHref = getToolCanonicalPath(regTool.slug);
+      if (existingHrefs.has(canonicalHref) || existingHrefs.has(`/${regTool.slug}`)) {
+        continue;
+      }
+
+      const isFitness =
+        regTool.slug === 'tabata-timer' ||
+        regTool.slug === 'boxing-timer' ||
+        regTool.slug === 'meditation-timer' ||
+        regTool.slug === 'breathing-timer' ||
+        regTool.slug === 'interval-timer' ||
+        regTool.slug === 'multi-stopwatch' ||
+        regTool.slug === 'heart-timer';
+
+      const isEducation =
+        regTool.slug === 'classroom-timer' ||
+        regTool.slug === 'random-name-picker' ||
+        regTool.slug === 'random-group-generator' ||
+        regTool.slug === 'classroom-noise-meter' ||
+        regTool.slug === 'quiz-timer' ||
+        regTool.slug === 'classroom-scoreboard' ||
+        regTool.slug === 'bingo-caller' ||
+        regTool.slug === 'seating-chart-maker' ||
+        regTool.slug === 'visual-timer' ||
+        regTool.slug === 'picture-reveal-timer' ||
+        regTool.slug === 'rainbow-timer';
+
+      const isCalculator =
+        regTool.slug.includes('calculator') ||
+        regTool.slug === 'time-converter' ||
+        regTool.slug === 'minutes-to-hours' ||
+        regTool.slug === 'seconds-to-minutes' ||
+        regTool.slug === 'hours-to-minutes' ||
+        regTool.slug === 'what-time-will-it-be' ||
+        regTool.slug === 'unix-timestamp-converter';
+
+      let matchesHub = false;
+      if (catSlug === 'education' && isEducation) matchesHub = true;
+      else if ((catSlug === 'events' || catSlug === 'stage') && regTool.category === 'stage' && !isEducation) matchesHub = true;
+      else if (catSlug === 'fitness' && isFitness) matchesHub = true;
+      else if (catSlug === 'productivity' && regTool.category === 'productivity' && !isFitness) matchesHub = true;
+      else if (catSlug === 'calculators' && isCalculator) matchesHub = true;
+      else if ((catSlug === 'world' || catSlug === 'world-clock') && regTool.category === 'world') matchesHub = true;
+      else if ((catSlug === 'timers' || catSlug === 'everyday') && regTool.category === 'everyday') matchesHub = true;
+
+      if (matchesHub) {
+        existingHrefs.add(canonicalHref);
+        extras.push({
+          name: regTool.name,
+          description: regTool.description,
+          href: canonicalHref,
+          iconName: regTool.icon || 'Clock',
+          badge: regTool.badge,
+        });
+      }
+    }
+
+    if (catSlug === 'timers' || catSlug === 'everyday') {
+      for (const durSlug of APPROVED_DURATION_SLUGS) {
+        const durHref = `/${durSlug}`;
+        if (!existingHrefs.has(durHref)) {
+          const durData = getDurationPageData(durSlug);
+          if (durData) {
+            existingHrefs.add(durHref);
+            extras.push({
+              name: `${durData.unitLabel} Timer`,
+              description: durData.metaDescription,
+              href: durHref,
+              iconName: 'Clock',
+              tier: 'hot',
+            });
+          }
+        }
+      }
+    }
+
+    return [...data.tools, ...extras];
+  }, [data.slug, data.tools]);
+
   const organizedToolGroups = React.useMemo(() => {
     const trending: CategoryToolItem[] = [];
     const hot: CategoryToolItem[] = [];
     const newest: CategoryToolItem[] = [];
 
-    data.tools.forEach((tool, idx) => {
+    mergedCategoryTools.forEach((tool, idx) => {
       const resolvedTier = resolveCategoryToolTier(tool, idx);
       const enriched = { ...tool, tier: resolvedTier };
       if (resolvedTier === 'trending') trending.push(enriched);
@@ -193,7 +280,7 @@ export default function CategoryLandingPageComponent({ data }: Props) {
         tools: newest,
       },
     ].filter((group) => group.tools.length > 0);
-  }, [data.tools]);
+  }, [mergedCategoryTools]);
 
   const categoryTocSectionIds = [
     'guide-overview',
@@ -690,7 +777,7 @@ export default function CategoryLandingPageComponent({ data }: Props) {
               aria-label="Filter category tools by Trending, Hot, or New"
             >
               {[
-                { id: 'all', label: `All (${data.tools.length})`, icon: null },
+                { id: 'all', label: `All (${mergedCategoryTools.length})`, icon: null },
                 { id: 'trending', label: 'Trending', icon: TrendingUp },
                 { id: 'hot', label: 'Hot', icon: Flame },
                 { id: 'new', label: 'New', icon: Sparkles },

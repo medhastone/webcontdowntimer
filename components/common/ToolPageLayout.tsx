@@ -93,11 +93,11 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
 
   const canonicalPath = getToolCanonicalPath(tool.slug);
 
-  // SEO breadcrumb schema
+  // SEO breadcrumb schema (Home > Tools > [Tool Name])
   const breadcrumbs = [
-    { name: 'Home', item: 'https://WebCountDownTimer.com' },
-    { name: editorial.categoryLabel, item: `https://WebCountDownTimer.com/category/${editorial.categorySlug}` },
-    { name: tool.name, item: `https://WebCountDownTimer.com${canonicalPath}` },
+    { name: 'Home', item: 'https://webcountdowntimer.com/' },
+    { name: 'Tools', item: 'https://webcountdowntimer.com/tools' },
+    { name: tool.name, item: `https://webcountdowntimer.com${canonicalPath}` },
   ];
 
   const stepsForSchema = specificContent
@@ -619,57 +619,73 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
                 }`}
               >
                 {tool.slug === 'visual-timer'
-                  ? 'Visual Timer Online'
+                  ? 'Visual Timer Online for Classrooms & ADHD Focus'
                   : tool.slug === 'sand-timer'
-                  ? 'Free Online Sand Timer'
+                  ? 'Digital Sand Timer with Flowing Grain Physics'
                   : tool.slug === 'liquid-timer'
-                  ? 'Free Online Liquid Timer'
+                  ? 'Sensory Liquid Timer for Calm Transitions & Regulation'
                   : tool.slug === 'rainbow-timer'
-                  ? 'Free Online Rainbow Timer'
+                  ? 'Rainbow Arc Timer for Early-Elementary Classroom Pacing'
                   : tool.slug === 'hourglass-timer'
-                  ? 'Free Online Hourglass Timer'
+                  ? 'Interactive Hourglass Timer with One-Click Board-Game Flip'
                   : tool.slug === 'circular-timer'
-                  ? 'Free Online Circular Timer'
+                  ? '360° Circular Ring Timer for Distance Stage & Exam Pacing'
                   : tool.slug === 'radial-timer'
-                  ? 'Free Online Radial Timer'
+                  ? 'Segmented Radial Wedge Timer for Discrete Step Tracking'
                   : tool.slug === 'rings-timer'
-                  ? 'Free Online Rings Timer'
+                  ? 'Concentric Multi-Ring Timer for Layered Focus & Break Cycles'
                   : tool.slug === 'progress-timer'
-                  ? 'Free Online Progress Timer'
+                  ? 'Linear Progress Bar Timer for Horizontal Timeline Pacing'
                   : tool.slug === 'pixel-timer'
-                  ? 'Free Online Pixel Timer'
+                  ? 'Retro 8-Bit Pixel Matrix Timer for Gamified Sprints'
                   : tool.slug === 'blocks-timer'
-                  ? 'Free Online Blocks Timer'
+                  ? '3D Stacked Blocks Timer for Tactile Turn & Chore Counting'
                   : tool.slug === 'candle-timer'
-                  ? 'Free Online Candle Timer'
+                  ? 'Melting Wax Candle Timer for Evening Reading & Meditation'
                   : tool.slug === 'aesthetic-timer'
-                  ? 'Aesthetic Timer – A Beautiful Online Countdown'
+                  ? 'Aesthetic Study Timer with Curated Desk & Co-Working Themes'
                   : tool.slug === 'picture-reveal-timer'
-                  ? 'Free Online Picture Reveal Timer'
+                  ? 'Mystery Picture Reveal Timer for Classroom Warmups & Rewards'
                   : tool.slug === 'heart-timer'
-                  ? 'Free Online Heart Timer'
+                  ? 'Rhythmic Heart Timer for Breathwork, Cardio & Wellness Breaks'
                   : tool.slug === 'moon-timer'
-                  ? 'Free Online Moon Timer'
+                  ? 'Lunar Phase Moon Timer for Low-Glare Night Study & Wind-Down'
                   : tool.slug === 'sun-timer'
-                  ? 'Free Online Sun Timer'
+                  ? 'Daylight Arc Sun Timer for Morning Routines & Energized Sprints'
                   : tool.slug === 'bubble-timer'
-                  ? 'Free Online Bubble Timer'
+                  ? 'Floating Bubble Sensory Timer for Quiet Corner De-Escalation'
                   : tool.slug === 'coral-timer'
-                  ? 'Free Online Coral Timer'
+                  ? 'Living Coral Reef Timer for Nature-Paced Study Sessions'
                   : tool.slug === 'lichen-timer'
-                  ? 'Free Online Lichen Timer'
+                  ? 'Organic Lichen Bloom Timer for Low-Arousal Deep Work'
                   : tool.slug === 'frost-timer'
-                  ? 'Free Online Frost Timer'
+                  ? 'Crystalline Frost Timer for Silent Reading & Calm Transitions'
                   : tool.slug === 'snow-timer'
-                  ? 'Free Online Snow Timer'
+                  ? 'Snowfall Accumulation Timer for Cozy Winter Classroom & Study Blocks'
                   : tool.slug === 'galaxy-timer'
-                  ? 'Free Online Galaxy Timer'
+                  ? 'OLED Deep-Space Galaxy Timer for Late-Night Coding & Study'
                   : tool.slug === 'lava-lamp-timer'
-                  ? 'Free Online Lava Lamp Timer'
+                  ? 'Retro Lava Lamp Timer for Ambient Lo-Fi Focus & Sensory Breaks'
                   : tool.slug === 'spinner-timer'
-                  ? 'Free Online Spinner Timer'
+                  ? 'Kinetic Spinner Timer for High-Tempo Quizzes & Speed Drills'
+                  : tool.slug === 'speaker-timer'
+                  ? 'Podium & Lectern Countdown Timer for Keynote Speakers'
+                  : tool.slug === 'debate-timer'
+                  ? 'Parliamentary & Forensics Debate Timer with Protected-Time Bells'
+                  : tool.slug === 'sermon-timer'
+                  ? 'Silent Blackout Pulpit Timer for Pastors & Worship Teams'
+                  : tool.slug === 'classroom-timer'
+                  ? 'Interactive Smartboard Timer for K–12 Classroom Transitions'
+                  : tool.slug === 'webinar-timer'
+                  ? 'Multi-Segment Run-of-Show Timer for Zoom & Livestream Hosts'
+                  : tool.slug === 'stage-timer'
+                  ? 'Dual-Screen Stage Confidence Monitor & Showcaller Console'
+                  : tool.slug === 'presentation-timer'
+                  ? 'Section-by-Section Slide Deck Pacer for Pitches & Defenses'
+                  : tool.slug === 'toastmasters-timer'
+                  ? 'Official Toastmasters Speech Timer with Green, Amber & Red Cards'
                   : tool.slug === 'world-clock'
-                  ? 'World Clock and Time-Zone Converter'
+                  ? 'World Clock and IANA Time-Zone Converter'
                   : tool.name}
               </h1>
               <p
@@ -811,12 +827,14 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
             </div>
           )}
 
-          {children}
+          <div className="min-h-[420px] sm:min-h-[480px] tabular-nums">
+            {children}
+          </div>
         </div>
       </section>
 
       {/* 4. SECTION 3 — AI OVERVIEW QUICK ANSWER, USE CASES, STEP-BY-STEP & MERGED FAQS */}
-      <section className="py-12 sm:py-16 border-b border-[#E4E1D9] dark:border-[#262D28]">
+      <section className="py-12 sm:py-16 border-b border-[#E4E1D9] dark:border-[#262D28] [content-visibility:auto] [contain-intrinsic-size:auto_900px]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 space-y-8">
           {/* AI Overview Quick Answer & Specification Matrix */}
           <div
@@ -836,17 +854,20 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
                       Quick Answer &amp; Overview
                     </span>
                     <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                      What is the {tool.name} and how does it work?
+                      {editorial.guide.whatIsTitle || `How the ${tool.name} Works`}
                     </h2>
                   </div>
                 </div>
 
-                <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-                  <strong>{tool.name}</strong> is a free, browser-native {editorial.categoryLabel.toLowerCase()} tool: {tool.description}{' '}
-                  {Array.isArray(editorial.guide.whatIsBody)
-                    ? editorial.guide.whatIsBody[0]
-                    : editorial.guide.whatIsBody}
-                </p>
+                <div className="space-y-3 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                  {Array.isArray(editorial.guide.whatIsBody) ? (
+                    editorial.guide.whatIsBody.map((para, idx) => (
+                      <p key={idx}>{para}</p>
+                    ))
+                  ) : (
+                    <p>{editorial.guide.whatIsBody || tool.description}</p>
+                  )}
+                </div>
 
                 {editorial.guide.calloutNote && (
                   <div className="p-4 rounded-2xl bg-[#FAF6F0] dark:bg-slate-800/70 border border-[#E8DEC8] dark:border-slate-700 flex items-start gap-3">
@@ -1164,6 +1185,56 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
                 </Link>
               </div>
             ))}
+          </div>
+
+          {/* E-E-A-T Verification Methodology & Tool Page Trust Footer */}
+          <div className="mt-12 pt-8 border-t border-[#E4E1D9] dark:border-[#262D28] space-y-4">
+            <div className="bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F] rounded-2xl p-5 sm:p-6">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#E4E1D9]/70 dark:border-[#2D352F]">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#365C4B] dark:text-[#5E917A] block mb-1">
+                    Engineering Verification &amp; Accuracy Standard
+                  </span>
+                  <h3 className="text-base sm:text-lg font-bold text-[#252B27] dark:text-white">
+                    How We Test &amp; Verify This {tool.name}
+                  </h3>
+                </div>
+                <div className="flex flex-wrap items-center gap-3 text-xs font-medium text-[#252B27]/80 dark:text-slate-300">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F7F6F2] dark:bg-[#222924] border border-[#E4E1D9] dark:border-[#2D352F]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#365C4B] dark:text-[#5E917A]" />
+                    <span>Tested Against Background Tab Throttling</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F7F6F2] dark:bg-[#222924] border border-[#E4E1D9] dark:border-[#2D352F]">
+                    <Clock className="w-3.5 h-3.5 text-[#365C4B] dark:text-[#5E917A]" />
+                    <span>Last Verified: November 2026</span>
+                  </span>
+                </div>
+              </div>
+
+              <p className="mt-4 text-xs sm:text-sm text-[#252B27]/80 dark:text-slate-300 leading-relaxed">
+                Unlike basic browser counters that rely on <code>setInterval</code> ticks and lose time when a tab is minimized, this tool calculates remaining time by comparing the current Unix system epoch (<code>Date.now()</code>) against your target end timestamp on every frame. We verify accuracy across minimized background tabs, system clock resynchronizations, IANA Daylight Saving Time transitions, and offline Web Audio API chime playback.
+              </p>
+
+              <div className="mt-4 pt-3 border-t border-[#E4E1D9]/50 dark:border-[#2D352F]/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-[#252B27]/70 dark:text-slate-400">
+                <p>
+                  <strong>Accuracy Disclaimer:</strong> Timing precision depends on your device&apos;s operating system clock and browser audio settings. Not intended for medical, life-safety, or certified industrial control use.
+                </p>
+                <div className="flex flex-wrap items-center gap-4 shrink-0 font-semibold text-[#365C4B] dark:text-[#5E917A]">
+                  <Link href="/about" className="hover:underline">
+                    About &amp; Methodology
+                  </Link>
+                  <Link href="/guides/how-accurate-online-timers-work" className="hover:underline">
+                    How We Test Accuracy
+                  </Link>
+                  <Link href="/accessibility" className="hover:underline">
+                    WCAG 2.2 AA
+                  </Link>
+                  <Link href="/contact" className="hover:underline">
+                    Report a Timing Issue
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

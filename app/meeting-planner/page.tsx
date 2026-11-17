@@ -12,8 +12,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function MeetingPlannerPage() {
   const specificContent = getToolSpecificContent('meeting-planner');
   const breadcrumbs = [
-    { name: 'Home', item: 'https://WebCountDownTimer.com' },
-    { name: 'World Clock & Time Zones', item: 'https://WebCountDownTimer.com/category/world' },
+    { name: 'Home', item: 'https://WebCountDownTimer.com/' },
+    { name: 'Tools', item: 'https://WebCountDownTimer.com/tools' },
     { name: 'Meeting Planner', item: 'https://WebCountDownTimer.com/meeting-planner' },
   ];
 
@@ -26,7 +26,7 @@ export default function MeetingPlannerPage() {
         faqs={specificContent ? specificContent.faqs : []}
         breadcrumbs={breadcrumbs}
         steps={specificContent ? specificContent.howToUse : []}
-        applicationCategory="UtilitiesApplication"
+        applicationCategory="UtilityApplication"
       />
       <EventSchedulePlannerDashboard />
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

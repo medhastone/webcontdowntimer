@@ -24,21 +24,21 @@ export default function DurationTimerPageLayout({ data }: DurationTimerPageLayou
   const faqsForSchema = specificContent ? specificContent.faqs : data.faqs;
 
   const breadcrumbs = [
-    { name: 'Home', item: 'https://WebCountDownTimer.com' },
-    { name: 'Timers', item: 'https://WebCountDownTimer.com/category/timers' },
-    { name: data.h1, item: `https://WebCountDownTimer.com/${data.slug}` },
+    { name: 'Home', item: 'https://WebCountDownTimer.com/' },
+    { name: 'Tools', item: 'https://WebCountDownTimer.com/tools' },
+    { name: data.unitLabel + ' Timer', item: `https://WebCountDownTimer.com/${data.slug}` },
   ];
 
   return (
     <div className="min-h-screen bg-[#F7F6F2] dark:bg-[#141816] text-[#252B27] dark:text-slate-100 transition-colors">
       <SEOStructuredData
-        toolName={data.h1}
+        toolName={`${data.unitLabel} Timer`}
         description={data.metaDescription}
         url={`https://WebCountDownTimer.com/${data.slug}`}
         faqs={faqsForSchema}
         breadcrumbs={breadcrumbs}
         steps={data.howToUseSteps}
-        applicationCategory="UtilitiesApplication"
+        applicationCategory="UtilityApplication"
       />
 
       {/* 1. BREADCRUMB BAR */}

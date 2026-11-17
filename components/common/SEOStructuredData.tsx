@@ -19,30 +19,23 @@ export default function SEOStructuredData({
   url,
   faqs = [],
   breadcrumbs = [],
-  steps = [],
-  applicationCategory = 'UtilitiesApplication',
-  featureList = [],
 }: SEOStructuredDataProps) {
-  const webAppSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+  const normalizedBreadcrumbs =
+    breadcrumbs.length > 0
+      ? breadcrumbs
+      : [
+          { name: 'Home', item: 'https://WebCountDownTimer.com/' },
+          { name: 'Tools', item: 'https://WebCountDownTimer.com/tools' },
+          { name: toolName, item: url },
+        ];
+
+  const softwareApplicationNode = {
+    '@type': 'SoftwareApplication',
     name: toolName,
     url: url,
     description: description,
-    applicationCategory: applicationCategory || 'UtilitiesApplication',
-    operatingSystem: 'All',
-    browserRequirements: 'Requires JavaScript. Requires HTML5.',
-    isAccessibleForFree: true,
-    ...(featureList.length > 0 ? { featureList } : {}),
-    speakable: {
-      '@type': 'SpeakableSpecification',
-      cssSelector: [
-        '#ai-quick-answer',
-        '#use-cases-heading',
-        '#how-to-use-heading',
-        '#faq-heading',
-      ],
-    },
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -50,86 +43,45 @@ export default function SEOStructuredData({
     },
   };
 
-  const faqSchema =
-    faqs.length > 0
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: faqs.map((faq) => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: faq.answer,
-            },
-          })),
-        }
-      : null;
+  const breadcrumbListNode = {
+    '@type': 'BreadcrumbList',
+    itemListElement: normalizedBreadcrumbs.map((crumb, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: crumb.name,
+      item: crumb.item,
+    })),
+  };
 
-  const breadcrumbSchema =
-    breadcrumbs.length > 0
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: breadcrumbs.map((crumb, idx) => ({
-            '@type': 'ListItem',
-            position: idx + 1,
-            name: crumb.name,
-            item: crumb.item,
-          })),
-        }
-      : null;
+  const graphNodes: Record<string, unknown>[] = [
+    softwareApplicationNode,
+    ...(faqs.length > 0
+      ? [
+          {
+            '@type': 'FAQPage',
+            mainEntity: faqs.map((faq) => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.answer,
+              },
+            })),
+          },
+        ]
+      : []),
+    breadcrumbListNode,
+  ];
 
-  const howToSchema =
-    steps.length > 0
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'HowTo',
-          name: `How to Use ${toolName}`,
-          description: description,
-          step: steps.map((item, idx) => {
-            if (typeof item === 'string') {
-              return {
-                '@type': 'HowToStep',
-                position: idx + 1,
-                name: `Step ${idx + 1}`,
-                text: item,
-              };
-            }
-            return {
-              '@type': 'HowToStep',
-              position: item.step ?? idx + 1,
-              name: item.title || `Step ${idx + 1}`,
-              text: item.description,
-            };
-          }),
-        }
-      : null;
+  const structuredDataGraph = {
+    '@context': 'https://schema.org',
+    '@graph': graphNodes,
+  };
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
-      />
-      {faqSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      )}
-      {breadcrumbSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        />
-      )}
-      {howToSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-        />
-      )}
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredDataGraph) }}
+    />
   );
 }

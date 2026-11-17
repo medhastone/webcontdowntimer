@@ -5,7 +5,7 @@ import { StageMonitorFromQuery } from '@/components/tools/StageQueryWrappers';
 import BreadcrumbJsonLd from '@/components/common/BreadcrumbJsonLd';
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildPageMetadata('/stage-timer/viewer');
+  return buildPageMetadata('/stage-timer/viewer', { noIndex: true });
 }
 
 export default function StageTimerViewerPage() {

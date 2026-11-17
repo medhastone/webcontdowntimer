@@ -12,8 +12,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function StageTimerPage() {
   const specificContent = getToolSpecificContent('stage-timer');
   const breadcrumbs = [
-    { name: 'Home', item: 'https://WebCountDownTimer.com' },
-    { name: 'Events & Presentation Tools', item: 'https://WebCountDownTimer.com/category/events' },
+    { name: 'Home', item: 'https://WebCountDownTimer.com/' },
+    { name: 'Tools', item: 'https://WebCountDownTimer.com/tools' },
     { name: 'Stage Timer', item: 'https://WebCountDownTimer.com/stage-timer' },
   ];
 
@@ -21,12 +21,12 @@ export default function StageTimerPage() {
     <div>
       <SEOStructuredData
         toolName="Stage Timer"
-        description="Free browser-based stage timer and presenter confidence monitor with green/amber/red cues, overtime tracking, and multi-screen sync."
+        description="Sync a backstage operator console with a fullscreen stage confidence monitor. Flash silent cues, adjust live minutes, and track speaker overtime."
         url="https://WebCountDownTimer.com/stage-timer"
         faqs={specificContent ? specificContent.faqs : []}
         breadcrumbs={breadcrumbs}
         steps={specificContent ? specificContent.howToUse : []}
-        applicationCategory="UtilitiesApplication"
+        applicationCategory="UtilityApplication"
       />
       <Suspense
         fallback={

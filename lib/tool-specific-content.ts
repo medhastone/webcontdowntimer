@@ -2,6 +2,7 @@ export interface ToolSpecificContent {
   slug: string;
   useCasesIntro: string;
   useCases: string[];
+  howToUseNarrative?: string[];
   howToUse: string[];
   faqs: [
     { question: string; answer: string },
@@ -20,6 +21,10 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       'Academic Paper Defenses: Keep 12-minute faculty presentations and 3-minute Q&A transitions strictly on schedule.',
       'Executive Town Halls: Track department updates on a floor monitor without interrupting speakers verbally.',
     ],
+    howToUseNarrative: [
+      'Conference moderators and keynote presenters set up this lectern clock on a tablet propped on the podium shelf or on a floor wedge positioned at the foot of the stage. Before the session begins, select the speaker’s allocated slot—such as 18 minutes for a TED-style talk or 40 minutes for an opening plenary—and mute audio chimes (M key) so no electronic beep bleeds into the lapel or gooseneck microphone.',
+      'Press Spacebar as the speaker delivers their opening line and hit F to lock the display in borderless Fullscreen mode, which automatically activates the browser Screen Wake Lock so the iPad or laptop never dims mid-talk. During the main body of the address, high-contrast digits remain green so the presenter knows they are on pace at a peripheral glance. When the clock enters the wrap-up threshold, the interface shifts to amber, signaling that it is time to transition toward closing takeaways. In the final 60 seconds, the display turns bold red; if the speaker continues past 00:00, the clock automatically flips into red count-up overtime (+00:01, +00:02) so session chairs can manage Q&A time without stepping onto the stage.',
+    ],
     howToUse: [
       'Select a speech duration preset (5, 10, 15, 20, or 45 minutes) or enter custom minutes and seconds.',
       'Press Start (or Spacebar) and click Fullscreen (F) on your podium tablet or downstage monitor.',
@@ -29,17 +34,17 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       {
         question: 'When do the amber and red stage warning colors trigger on the Speaker Timer?',
         answer:
-          'The display stays green during the main talk, shifts to amber for the wrap-up window, and turns red in the final minute.',
+          'The display stays green during the main talk, shifts to amber during the wrap-up window (the final 20% or 2 minutes), and turns red for the final 60 seconds.',
       },
       {
         question: 'What happens on screen if a keynote speaker talks past 00:00?',
         answer:
-          'Instead of stopping, the clock switches into red overtime count-up mode so the moderator and speaker see exact elapsed overtime.',
+          'Instead of stopping at zero, the clock immediately switches into red overtime count-up mode (+MM:SS) so both the speaker and session chair see exact overrun time.',
       },
       {
-        question: 'Which keyboard shortcuts control the podium display without a mouse?',
+        question: 'Will my podium tablet screen dim or lock during a 45-minute keynote?',
         answer:
-          'Press Spacebar to start or pause, R to reset to your preset duration, F for fullscreen, and M to mute chimes.',
+          'No. Running the timer engages the browser Screen Wake Lock API to keep your lectern display illuminated for the entire talk.',
       },
     ],
   },
@@ -53,6 +58,10 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       'Quarterly Business Reviews: Allocate fixed minutes per slide section so executive discussion never gets cut short.',
       'University Dissertation Defenses: Pace literature review, methodology, and findings before committee questions.',
     ],
+    howToUseNarrative: [
+      'Unlike a single-block lectern clock, this slide-deck pacer is built for founders, consultants, and graduate students who need to budget a single talk across multiple distinct deck chapters. Start by mapping your slide outline into timed segments—for example, splitting a 15-minute venture pitch into a 2-minute Problem statement, a 5-minute Live Product Demo, a 3-minute Business Model review, and a protected 5-minute Partner Q&A block.',
+      'Position the browser window alongside PowerPoint or Keynote Presenter View on your laptop, or prop it on your phone beside your trackpad, and press Spacebar as you advance past your title slide. The dual progress readout tracks both the active section countdown and your cumulative deck time remaining. That prevents the most common presentation failure: spending eight minutes elaborating on early background slides and being forced to rush through your core demo or financial conclusions. You can enable subtle section-transition chimes during solo rehearsals to build muscle memory for your slide transitions, then press M to switch to silent visual-bar cues during the live client or committee presentation.',
+    ],
     howToUse: [
       'Set your total presentation time and configure individual section durations for your deck outline.',
       'Click Start as you advance past your title slide and monitor both section time and total time remaining.',
@@ -62,17 +71,17 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       {
         question: 'How should I divide a 20-minute slide deck presentation with audience Q&A?',
         answer:
-          'Reserve 15 minutes for slides (roughly 10 to 12 slides at 90 seconds each) and protect the final 5 minutes for Q&A.',
+          'Reserve 15 minutes for slides (roughly 10 to 12 slides at 90 seconds each) and lock the final 5 minutes as a dedicated Q&A segment.',
       },
       {
         question: 'Can I run the Presentation Timer alongside PowerPoint or Keynote Presenter View?',
         answer:
-          'Yes, dock the browser window beside your speaker notes or run it on a companion tablet propped next to your laptop.',
+          'Yes, dock the browser window beside your speaker notes on your primary laptop screen or run it on a companion phone next to your keyboard.',
       },
       {
         question: 'How do I keep early introductory slides from eating into my demo time?',
         answer:
-          'Assign a strict 2-minute cap to your introduction segment so the pacing bar alerts you to transition into your core material.',
+          'Assign a strict 2-minute cap to your introduction segment so the section pacing bar alerts you to advance into your core material on time.',
       },
     ],
   },
@@ -86,6 +95,10 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       'Live Broadcast & Streaming Studios: Flash silent cue messages like "WRAP UP" or "MIC CHECK" to on-camera talent.',
       'Award Ceremonies & Panels: Add or subtract 1 minute on the fly when live program segments shift.',
     ],
+    howToUseNarrative: [
+      'Event AV engineers and show callers use this two-window system to control a downstage confidence monitor remotely from the front-of-house tech booth without ever touching the screen on stage. Connect your secondary HDMI, SDI, or NDI display output in Extended Desktop mode, keep the Operator Console open on your control laptop, and click "Open Stage Display" to launch the blackout viewer window. Drag that viewer window onto the downstage monitor facing the talent and press F to lock it into Fullscreen.',
+      'Both windows synchronize in sub-millisecond real time via the browser’s local BroadcastChannel and storage state bus using your shared room ID—meaning your stage clock continues running even if venue Wi-Fi drops completely. From the Operator Console, show callers can start, pause, or switch speaker presets between panels, click +1m or -1m to absorb live run-of-show delays on the fly, and broadcast high-contrast text prompts (such as "PLEASE WRAP UP", "HOLD FOR MIC", or "2 MINUTES TO Q&A") that flash immediately beneath the presenter’s countdown digits.',
+    ],
     howToUse: [
       'Keep the Operator Console open on your control laptop and click "Open Stage Display" to launch the viewer window.',
       'Drag the Stage Display window onto your extended HDMI/SDI confidence monitor and press F for fullscreen.',
@@ -93,19 +106,19 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
     ],
     faqs: [
       {
-        question: 'How does the Operator Console sync with the Stage Display window?',
+        question: 'How does the Operator Console sync with the Stage Display window without Wi-Fi?',
         answer:
-          'Both windows communicate instantaneously over the browser BroadcastChannel and local state sync using your shared room ID.',
+          'Both windows communicate directly over the browser BroadcastChannel API and local state bus on your machine, delivering zero-latency sync with no internet dependency.',
       },
       {
         question: 'Can I send a silent text cue to the presenter while the countdown is running?',
         answer:
-          'Yes, type any prompt into the Operator Console message box and click Show Message to flash it beneath the stage digits.',
+          'Yes, type any prompt into the Operator Console message box and toggle Show Message to flash it in bold letters beneath the stage digits.',
       },
       {
-        question: 'Can I add extra time to a live speaker without restarting their clock?',
+        question: 'Can I add or subtract time for a live speaker without restarting their clock?',
         answer:
-          'Yes, use the +1m and -1m live adjustment buttons in the Operator Console to modify remaining time seamlessly.',
+          'Yes, use the +1m and -1m live adjustment buttons in the Operator Console to modify remaining time seamlessly on the confidence monitor.',
       },
     ],
   },
@@ -119,6 +132,10 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       'Prepared Pathways Speeches (5–7 Minutes): Trigger Green at 5:00, Amber at 6:00, and Red at 7:00 automatically.',
       'Speech Evaluations & Icebreakers: Run official 2–3 minute evaluation or 4–6 minute Icebreaker timing rules.',
     ],
+    howToUseNarrative: [
+      'Serving as the official Timer at a Toastmasters International club meeting or Area speech contest requires strict adherence to elapsed-time color thresholds and 30-second qualification grace windows. Before each speaker is introduced by the Toastmaster of the Day, select the corresponding speech category preset: Table Topics (1 to 2 minutes), Speech Evaluation (2 to 3 minutes), Icebreaker (4 to 6 minutes), or Standard Pathways Prepared Speech (5 to 7 minutes).',
+      'Click Start (or press Spacebar) at the speaker’s first word or non-verbal gesture toward the audience. Unlike a regular countdown, this tool tracks elapsed speech time and floods the entire screen background with the official qualification cards at the exact rulebook marks: for a 5–7 minute speech, the screen turns solid Green at 5:00, shifts to Amber at 6:00, and locks onto Red at 7:00 without ringing any disqualifying audible buzzer. When the speaker sits down, stop the clock to log their exact MM:SS time in the Timer’s Report and verify whether they finished inside the official qualification window (between 4:30 and 7:30).',
+    ],
     howToUse: [
       'Choose your official Toastmasters speech role preset (Table Topics, Evaluation, Icebreaker, or 5–7m Prepared Speech).',
       'Click Start when the speaker begins; the background automatically shifts to Green, Amber, and Red at official marks.',
@@ -128,17 +145,17 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       {
         question: 'What are the official Green, Amber, and Red marks for a 5-to-7 minute Toastmasters speech?',
         answer:
-          'The Green signal appears at 5:00, the Amber signal appears at 6:00, and the Red signal appears at 7:00.',
+          'The Green signal illuminates at 5:00 elapsed, the Amber signal appears at 6:00, and the Red signal turns on at 7:00 and stays visible until the speaker finishes.',
       },
       {
-        question: 'When is a speaker disqualified in a Toastmasters speech contest?',
+        question: 'When is a speaker disqualified in an official Toastmasters speech contest?',
         answer:
-          'Contestants are disqualified if they finish before the minimum qualifying time (or more than 30s under) or more than 30 seconds past Red.',
+          'Under Toastmasters contest rules, a contestant is disqualified if they speak for more than 30 seconds under the minimum time (under 4:30 for a 5–7m speech) or more than 30 seconds past Red (over 7:30).',
       },
       {
-        question: 'Does the Red card stay on screen after the maximum speech time is reached?',
+        question: 'Can I share the Toastmasters color cards on Zoom for a hybrid or online club meeting?',
         answer:
-          'Yes, following Toastmasters protocol, the Red background remains displayed until the speaker concludes their remarks.',
+          'Yes, put the timer in Fullscreen (F) and either share the window in Zoom or set it as your virtual camera background so remote speakers see the Green, Amber, and Red signals clearly.',
       },
     ],
   },
@@ -152,6 +169,10 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       'Lincoln-Douglas & Public Forum Rounds: Time constructive speeches, cross-examinations, and prep-time banks.',
       'World Schools & Oxford Style Debates: Enforce opening and closing protected minutes where interruptions are barred.',
     ],
+    howToUseNarrative: [
+      'Forensics judges, timekeepers, and debate coaches use this specialized adjudication clock to enforce speech limits, protected-time boundaries, and prep-time banks across British Parliamentary (BP), World Schools, Public Forum, and Lincoln-Douglas tournaments. Begin by selecting your round format—such as a 7-minute BP constructive speech or an 8-minute World Schools address—and verify that acoustic gavel bells are enabled.',
+      'Press Spacebar the moment the speaker begins their constructive or rebuttal speech. During the opening 60 seconds, the status banner displays "PROTECTED TIME — NO POIs," alerting the room that opposing debaters may not rise to offer Points of Information. At 01:00 elapsed, a single bell sounds automatically and the banner shifts to green ("POI WINDOW OPEN") for the middle five minutes. With 60 seconds remaining (06:00 elapsed in BP), a second single bell rings to re-enter closing Protected Time. At 07:00 (00:00 remaining), a double gavel bell sounds and the clock tracks the 15-second adjudicator grace window; past 15 seconds overtime, a triple bell signals that judges should stop flowing new arguments.',
+    ],
     howToUse: [
       'Select your debate format (British Parliamentary 7m, World Schools 8m, Lincoln-Douglas, or custom rebuttal length).',
       'Click Start when the debater rises to speak; watch the status badge indicate Protected Time vs. Open POI Window.',
@@ -161,17 +182,17 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       {
         question: 'What is Protected Time in British Parliamentary and World Schools debate?',
         answer:
-          'Protected Time covers the first and final minute of a speech, during which opposing teams cannot offer Points of Information.',
+          'Protected Time covers the first 60 seconds and final 60 seconds of a constructive speech, during which opposing teams are strictly barred from offering Points of Information (POIs).',
       },
       {
         question: 'When do the single and double acoustic bells ring during a 7-minute BP speech?',
         answer:
-          'A single bell rings at 1:00 elapsed to open POIs, a single bell rings at 6:00 to close POIs, and a double bell sounds at 7:00.',
+          'A single bell rings at 1:00 elapsed to open the POI window, a single bell rings at 6:00 to close POIs for the final protected minute, and a double bell sounds at 7:00.',
       },
       {
-        question: 'How much grace time do adjudicators allow after the final double bell?',
+        question: 'How much overtime grace do adjudicators allow after the final double bell?',
         answer:
-          'Judges typically grant a 15-second grace window (up to 7:15) for the speaker to finish their active sentence.',
+          'Tournament adjudicators grant a 15-second grace period (up to 7:15) for the speaker to finish their current sentence before penalizing or ignoring new material.',
       },
     ],
   },
@@ -185,6 +206,10 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       'Worship Transitions & Communion: Time 5-minute welcome announcements, prayer segments, and musical interludes.',
       'Pulpit Confidence Monitors: Display low-glare dark-mode digits that never cast harsh light onto the sanctuary stage.',
     ],
+    howToUseNarrative: [
+      'Church production directors and teaching pastors rely on this low-glare sanctuary clock to keep multi-service Sunday schedules aligned without breaking the reverence of worship or altar ministry. Mount a tablet on the pulpit lectern or feed a rear-wall confidence monitor from the media booth, select your message duration (typically 30, 35, or 40 minutes), and confirm that Silent Visual Mode is active so no audible alarm ever interrupts closing prayer.',
+      'Unlike bright white office timers that cast harsh blue light across the pastor’s face on livestream cameras, this interface renders in deep matte obsidian with warm, readable numerals. When the message begins, press Spacebar and F for Fullscreen. The numerals remain calm green throughout the main teaching body, then transition to warm amber with 5 minutes remaining—giving both the pastor and the backstage worship leader a synchronized visual cue for when the band should quietly take the platform for the closing song. If the sermon runs past 00:00, the clock counts up silently in muted red (+01:30) so the pastor knows exactly how much time to trim from announcements before the next service parking lot turnover.',
+    ],
     howToUse: [
       'Select your sermon length (25, 35, or 45 minutes) or enter a custom duration matching your service order.',
       'Launch Fullscreen mode on the pulpit tablet or rear sanctuary confidence monitor with audio chimes muted.',
@@ -192,19 +217,19 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
     ],
     faqs: [
       {
-        question: 'Why does the Sermon Timer use a dark matte display by default?',
+        question: 'Why does the Sermon Timer use a matte blackout background by default?',
         answer:
-          'A pure dark background prevents bright monitor glare on the pastor’s face and blends into dimmed sanctuary lighting.',
+          'A deep blackout display prevents distracting monitor glare on the pastor’s face and keeps stage lighting clean for sanctuary cameras and livestreams.',
       },
       {
-        question: 'Does the Sermon Timer play any audible alarm that could interrupt prayer?',
+        question: 'Will any audible alarm sound if the pastor preaches past 00:00 during prayer?',
         answer:
-          'Silent mode can be toggled on so all wrap-up and completion cues are 100% visual with zero audible bells.',
+          'No. With Silent Visual Mode enabled, all wrap-up and overtime transitions are 100% visual so no chime ever interrupts prayer or communion.',
       },
       {
-        question: 'How does the timer help worship bands coordinate the closing song?',
+        question: 'How does this timer help multi-service churches prevent parking lot gridlock?',
         answer:
-          'Both the pulpit and backstage monitor show the exact final 5-minute amber window so musicians know when to return to stage.',
+          'By showing exact red overtime minutes (+MM:SS), pastors and service producers know immediately how much to shorten closing announcements so dismissal stays on schedule for incoming second-service families.',
       },
     ],
   },
@@ -218,6 +243,10 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       'Literacy & Lab Station Rotations: Time 12-minute small-group stations followed by a 2-minute cleanup transition.',
       'Independent Reading & Exit Tickets: Project a shrinking progress ring so students self-pace without asking how much time is left.',
     ],
+    howToUseNarrative: [
+      'K–12 teachers and university lab instructors project this smartboard countdown at the front of the room to structure bell-ringer warmups, small-group literacy stations, and timed exit tickets. Choose a quick classroom preset—such as 5 minutes for a morning "Do Now" journal prompt, 12 minutes for science lab rotations, or 20 minutes for silent sustained reading—and press F to expand the clock across your interactive whiteboard or projector screen.',
+      'Because younger learners and neurodivergent students often struggle to estimate abstract digital numbers, the interface pairs oversized numerals with a high-contrast proportional ring that visibly shrinks as the activity progresses. Students can glance up from the back row and immediately see whether they have half their work window left or need to start wrapping up, eliminating repetitive "How much time is left?" interruptions. If a lively group discussion needs an extra moment, click the +1 Min button on the fly without resetting the countdown. For station rotations and cleanup transitions, enable the gentle acoustic chime so the whole room hears the rotation cue; for standardized quizzes, press M to switch to silent visual-flash mode.',
+    ],
     howToUse: [
       'Pick a classroom preset (Quick Quiz 5m, Group Work 10m, Silent Reading 15m) or enter custom minutes.',
       'Click Fullscreen (F) to project the extra-large digits and shrinking visual ring on your interactive whiteboard.',
@@ -225,19 +254,19 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
     ],
     faqs: [
       {
-        question: 'Why does combining a shrinking ring with digits help younger students?',
+        question: 'Why does pairing a shrinking ring with large digits help K–12 students?',
         answer:
-          'Elementary students grasp a shrinking colored ring visually even before they are fluent at subtracting digital minutes.',
+          'Elementary and ADHD learners perceive a shrinking colored arc spatially at a glance, reducing time blindness and transition anxiety without requiring mental subtraction.',
       },
       {
-        question: 'Can I add 1 or 2 bonus minutes mid-activity without resetting the clock?',
+        question: 'Can I add 1 or 2 bonus minutes mid-activity without resetting the smartboard clock?',
         answer:
-          'Yes, use the quick time adjustment controls to extend an active group discussion or quiz on the fly.',
+          'Yes, click the live +1 Min adjustment button while the timer is running to extend a group activity or cleanup window seamlessly.',
       },
       {
-        question: 'Can I silence the end bell during standardized testing or silent reading?',
+        question: 'How do I silence the end chime during quiet testing or independent reading?',
         answer:
-          'Yes, click the mute control (or press M) so the timer finishes with a visual flash only.',
+          'Press the M key (or click the speaker icon) to mute audio chimes so the countdown finishes with a calm visual screen cue only.',
       },
     ],
   },
@@ -251,6 +280,10 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
       'Virtual Workshops & Bootcamps: Pace breakout exercises and live screen-share tutorials without running over the hour.',
       'OBS & StreamYard Broadcasts: Keep a compact run-of-show clock beside your webcam to hit exact segment marks.',
     ],
+    howToUseNarrative: [
+      'Virtual event producers, Zoom hosts, and livestream moderators use this run-of-show agenda timer to keep multi-segment broadcasts on schedule without breaking eye contact with the webcam. Before going live, build your broadcast queue by assigning minutes to each run-of-show block—for example, a 60-minute product webinar split into 5m Host Welcome & Housekeeping, 25m Keynote & Screen-Share Demo, 15m Fireside Customer Panel, and 15m Live Audience Q&A.',
+      'Dock the compact browser window directly beneath your webcam lens on your primary monitor (or capture it as a Window Source inside OBS Studio / vMix multiview) and press Spacebar as soon as your broadcast stream starts. You see two simultaneous readouts: the countdown for the active agenda segment and the total time remaining before the top-of-the-hour hard stop. Because browser audio plays locally unless you check "Share Computer Sound" in Zoom or Teams, you can keep gentle headset transition chimes on to alert yourself when to bring the next panelist on screen while your remote audience hears only your voice.',
+    ],
     howToUse: [
       'Define your webinar agenda segments (such as Intro, Keynote, Demo, and Q&A) and assign minutes to each.',
       'Click Start when your broadcast goes live to track both the current segment and overall webinar time remaining.',
@@ -258,19 +291,19 @@ export const TOOL_SPECIFIC_CONTENT: Record<string, ToolSpecificContent> = {
     ],
     faqs: [
       {
-        question: 'How do I prevent a 60-minute webinar from running out of time for audience Q&A?',
+        question: 'How do I keep a 60-minute webinar from running out of time before live audience Q&A?',
         answer:
-          'Create a dedicated 15-minute Q&A segment in the agenda queue so your presentation countdown alerts you at the 40-minute mark.',
+          'Lock the final 15 minutes as a dedicated Q&A segment in your run-of-show queue so the demo segment timer alerts you to transition at the 45-minute mark.',
       },
       {
-        question: 'Will webinar attendees hear the segment transition chime on Zoom?',
+        question: 'Will Zoom or Microsoft Teams attendees hear the timer chime when a segment ends?',
         answer:
-          'Attendees only hear browser audio if you enable "Share Computer Sound"; otherwise, chimes play privately in your headset.',
+          'No, unless you explicitly enable "Share Computer Audio" during screen sharing, the Web Audio chime plays privately in the host’s headphones.',
       },
       {
-        question: 'Can I capture the Webinar Timer inside OBS Studio as a producer overlay?',
+        question: 'Can I feed the Webinar Timer into OBS Studio or vMix for a producer multiview?',
         answer:
-          'Yes, add the browser window as a Window Capture source in OBS or vMix for your studio multiview monitor.',
+          'Yes, add the browser window as a Window Capture source in OBS or vMix so co-hosts and technical directors see live segment pacing.',
       },
     ],
   },

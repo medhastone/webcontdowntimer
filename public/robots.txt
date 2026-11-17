@@ -1,49 +1,108 @@
-# WebCountDownTimer.com — Search Engine & AI Crawler Access Rules
+# webcountdowntimer.com — Search Engine & AI Crawler Access Rules
 User-agent: *
 Allow: /
+Allow: /_next/static/
+Allow: /_next/image
 Disallow: /api/
 Disallow: /embed-widget
 Disallow: /stage/
+Disallow: /stage-timer/viewer
+Disallow: /*?m=*
+Disallow: /*?duration=*
+Disallow: /*?room=*
 
 User-agent: Googlebot
 Allow: /
+Allow: /_next/static/
+Allow: /_next/image
 Disallow: /api/
 Disallow: /embed-widget
 Disallow: /stage/
+Disallow: /stage-timer/viewer
+Disallow: /*?m=*
+Disallow: /*?duration=*
+Disallow: /*?room=*
 
 User-agent: Bingbot
 Allow: /
+Allow: /_next/static/
+Allow: /_next/image
 Disallow: /api/
 Disallow: /embed-widget
 Disallow: /stage/
+Disallow: /stage-timer/viewer
+Disallow: /*?m=*
+Disallow: /*?duration=*
+Disallow: /*?room=*
 
 User-agent: OAI-SearchBot
 Allow: /
 Disallow: /api/
+Disallow: /embed-widget
+Disallow: /stage/
+Disallow: /stage-timer/viewer
+Disallow: /*?m=*
+Disallow: /*?duration=*
+Disallow: /*?room=*
 
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /api/
+Disallow: /embed-widget
+Disallow: /stage/
+Disallow: /stage-timer/viewer
+Disallow: /*?m=*
+Disallow: /*?duration=*
+Disallow: /*?room=*
 
 User-agent: GPTBot
 Allow: /
 Disallow: /api/
+Disallow: /embed-widget
+Disallow: /stage/
+Disallow: /stage-timer/viewer
+Disallow: /*?m=*
+Disallow: /*?duration=*
+Disallow: /*?room=*
 
 User-agent: ClaudeBot
 Allow: /
 Disallow: /api/
+Disallow: /embed-widget
+Disallow: /stage/
+Disallow: /stage-timer/viewer
+Disallow: /*?m=*
+Disallow: /*?duration=*
+Disallow: /*?room=*
 
 User-agent: PerplexityBot
 Allow: /
 Disallow: /api/
+Disallow: /embed-widget
+Disallow: /stage/
+Disallow: /stage-timer/viewer
+Disallow: /*?m=*
+Disallow: /*?duration=*
+Disallow: /*?room=*
 
 User-agent: Google-Extended
 Allow: /
 Disallow: /api/
+Disallow: /embed-widget
+Disallow: /stage/
+Disallow: /stage-timer/viewer
+Disallow: /*?m=*
+Disallow: /*?duration=*
+Disallow: /*?room=*
 
 User-agent: Applebot-Extended
 Allow: /
 Disallow: /api/
+Disallow: /embed-widget
+Disallow: /stage/
+Disallow: /stage-timer/viewer
+Disallow: /*?m=*
+Disallow: /*?duration=*
+Disallow: /*?room=*
 
-Sitemap: https://WebCountDownTimer.com/sitemap.xml
-
+Sitemap: https://webcountdowntimer.com/sitemap.xml

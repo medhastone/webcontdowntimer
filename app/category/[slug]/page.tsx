@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import CategoryLandingPageComponent from '@/components/category/CategoryLandingPageComponent';
 import { CATEGORIES_DATA } from '@/lib/category-data';
 import { buildPageMetadata } from '@/lib/seo-metadata';
@@ -26,6 +26,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function DynamicCategoryPage({ params }: PageProps) {
   const { slug } = await params;
   const normalized = slug.toLowerCase();
+  if (slug !== normalized && normalized in CATEGORIES_DATA) {
+    permanentRedirect(`/category/${normalized}`);
+  }
   const data = CATEGORIES_DATA[normalized];
   if (!data) {
     notFound();

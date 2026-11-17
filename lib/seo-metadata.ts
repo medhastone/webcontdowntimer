@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-export const SITE_BASE_URL = 'https://WebCountDownTimer.com';
+export const SITE_BASE_URL = 'https://webcountdowntimer.com';
 
 export interface RouteSeoEntry {
   path: string;
@@ -12,12 +12,13 @@ export interface RouteSeoEntry {
 
 /**
  * Normalizes a route path so canonical and og:url are always:
- * - Absolute (https://WebCountDownTimer.com...)
- * - Free of trailing slashes (even on root: https://WebCountDownTimer.com)
+ * - Absolute (https://webcountdowntimer.com...)
+ * - Lowercase (prevents case-variation duplicate indexing)
+ * - Free of trailing slashes (even on root: https://webcountdowntimer.com)
  * - Free of query strings or hash fragments
  */
 export function getCanonicalUrl(routePath: string): string {
-  const cleanPath = routePath.split('?')[0].split('#')[0].trim();
+  const cleanPath = routePath.split('?')[0].split('#')[0].trim().toLowerCase();
   const normalizedPath =
     cleanPath === '/' || cleanPath === ''
       ? ''
@@ -550,57 +551,58 @@ export const ROUTE_SEO_REGISTRY: Record<string, RouteSeoEntry> = {
   },
   '/stage-timer': {
     path: '/stage-timer',
-    title: 'Stage Timer – Live Showcaller Console | WebCountDownTimer',
+    title: 'Stage Timer & Showcaller Confidence Monitor',
     description:
-      'Synchronize a backstage operator console with a fullscreen speaker confidence monitor. Features green/amber/red alerts, live flash cues, and overtime.',
+      'Sync a backstage operator console with a fullscreen stage confidence monitor. Flash silent cues, adjust live minutes, and track speaker overtime.',
   },
   '/stage-timer/viewer': {
     path: '/stage-timer/viewer',
-    title: 'Stage Confidence Monitor – Live Display | WebCountDownTimer',
+    title: 'Stage Confidence Monitor – Live Talent Display',
     description:
-      'Dedicated blackout downstage confidence monitor for keynote speakers and talent with zero-latency BroadcastChannel sync and live operator flash prompts.',
+      'Dedicated blackout downstage confidence monitor for keynote speakers with zero-latency BroadcastChannel sync and live operator flash prompts.',
+    noIndex: true,
   },
   '/speaker-timer': {
     path: '/speaker-timer',
-    title: 'Speaker Timer – Podium Keynote Clock | WebCountDownTimer',
+    title: 'Speaker Timer – Podium & Keynote Countdown',
     description:
-      'High-contrast podium countdown timer for keynote presenters and moderators with green, amber, and red wrap-up phases plus automatic red overtime.',
+      'High-contrast lectern timer for keynote speakers and moderators with green, amber, and red wrap-up warnings plus automatic red overtime count-up.',
   },
   '/presentation-timer': {
     path: '/presentation-timer',
-    title: 'Presentation Timer – Slide Deck Pacer | WebCountDownTimer',
+    title: 'Presentation Timer – Slide Section Pacer',
     description:
-      'Divide pitch decks, lectures, and thesis defenses into timed Intro, Demo, and Q&A segments with section transition chimes and overall pacing bars.',
+      'Budget pitch decks and thesis defenses across timed Intro, Demo, and Q&A slide sections with transition cues and cumulative pacing bars.',
   },
   '/toastmasters-timer': {
     path: '/toastmasters-timer',
-    title: 'Toastmasters Timer – Speech Rule Cards | WebCountDownTimer',
+    title: 'Toastmasters Timer – Green, Amber & Red Cards',
     description:
-      'Official Toastmasters International speech timer for Table Topics, Evaluations, and 5–7 minute speeches with Green, Amber, Red cards and 30s grace.',
+      'Official Toastmasters speech timer for Table Topics, Evaluations, and 5–7m Pathways speeches with Green, Amber, Red cards and 30s grace tracking.',
   },
   '/debate-timer': {
     path: '/debate-timer',
-    title: 'Debate Timer – Parliamentary POI Bells | WebCountDownTimer',
+    title: 'Debate Timer – Protected Time & POI Bells',
     description:
-      'Time British Parliamentary, World Schools, Oxford, and Lincoln-Douglas debates with protected-time indicators and automatic 1-minute and 6-minute bells.',
+      'Adjudicate British Parliamentary, World Schools, and Lincoln-Douglas debates with 1m/6m POI gavel bells, protected time, and 15s grace tracking.',
   },
   '/sermon-timer': {
     path: '/sermon-timer',
-    title: 'Sermon Timer – Sanctuary Pulpit Clock | WebCountDownTimer',
+    title: 'Sermon Timer – Silent Sanctuary Pulpit Clock',
     description:
-      'Discreet blackout pulpit countdown timer for pastors and worship production teams featuring gentle amber wrap-up warnings and silent overtime count-up.',
+      'Low-glare blackout pulpit timer for pastors and church media booths featuring silent 5-minute amber wrap-up cues and red overtime count-up.',
   },
   '/classroom-timer': {
     path: '/classroom-timer',
-    title: 'Classroom Timer – Smartboard Clock | WebCountDownTimer',
+    title: 'Classroom Timer – Smartboard Visual Ring',
     description:
-      'Projector-ready classroom countdown timer for K-12 teachers with quiz, reading, and station rotation presets, shrinking visual ring, and silent mode.',
+      'Projector-ready classroom countdown for K–12 teachers with a shrinking visual ring, +1 min live extension, station chimes, and silent exam mode.',
   },
   '/webinar-timer': {
     path: '/webinar-timer',
-    title: 'Webinar Timer – Virtual Agenda Clock | WebCountDownTimer',
+    title: 'Webinar Timer – Live Broadcast Agenda Clock',
     description:
-      'Keep Zoom, Teams, and livestream webinars on schedule with multi-segment agenda tracking across Welcome, Keynote, Panel, and Live Audience Q&A.',
+      'Pace Zoom webinars and OBS livestreams across Welcome, Demo, Panel, and Q&A segments with private host headset chimes and total run-time tracking.',
   },
   '/event-countdown-timer': {
     path: '/event-countdown-timer',

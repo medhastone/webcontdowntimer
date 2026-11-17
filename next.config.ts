@@ -43,6 +43,7 @@ const githubPagesBasePath = isGithubPages
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  trailingSlash: false,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -60,7 +61,14 @@ const nextConfig: NextConfig = {
         async redirects() {
           const explicitMinuteRedirects = REDIRECTED_MINUTES.map((m) => ({
             source: `/${m}-minute-timer`,
-            destination: `/countdown-timer?m=${m}`,
+            destination:
+              m === 25
+                ? '/pomodoro-timer'
+                : m === 50
+                  ? '/study-timer'
+                  : m === 20
+                    ? '/eye-break-timer'
+                    : '/countdown-timer',
             statusCode: 301 as const,
           }));
 
@@ -71,10 +79,30 @@ const nextConfig: NextConfig = {
           }));
 
           return [
-            // Duplicate tool & category URL canonicalization (301)
+            // Near-duplicate tool & category URL consolidation (single-hop 301)
             {
               source: '/international-meeting-planner',
               destination: '/meeting-planner',
+              statusCode: 301,
+            },
+            {
+              source: '/alarm-clock',
+              destination: '/online-alarm-clock',
+              statusCode: 301,
+            },
+            {
+              source: '/event-countdown',
+              destination: '/event-countdown-timer',
+              statusCode: 301,
+            },
+            {
+              source: '/pomodoro',
+              destination: '/pomodoro-timer',
+              statusCode: 301,
+            },
+            {
+              source: '/timer',
+              destination: '/countdown-timer',
               statusCode: 301,
             },
             {
@@ -107,7 +135,13 @@ const nextConfig: NextConfig = {
             // Catch any other /N-minute-timer route except the 6 kept pages (1, 5, 10, 15, 30, 60)
             {
               source: '/:n((?!1$|5$|10$|15$|30$|60$)\\d+)-minute-timer',
-              destination: '/countdown-timer?m=:n',
+              destination: '/countdown-timer',
+              statusCode: 301,
+            },
+            // Catch any /N-second-timer route except the 3 kept pages (30, 45, 90)
+            {
+              source: '/:n((?!30$|45$|90$)\\d+)-second-timer',
+              destination: '/countdown-timer',
               statusCode: 301,
             },
           ];
