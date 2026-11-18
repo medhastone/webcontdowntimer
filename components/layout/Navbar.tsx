@@ -44,7 +44,7 @@ import {
   DEFAULT_CUSTOM_TIMERS,
   PRE_SAVED_IDS,
 } from '@/lib/custom-timers-store';
-import { CustomTimerIcon } from '@/components/tools/VisualTimerCustomStudio';
+import { CustomTimerIcon } from '@/components/ui/CustomTimerIcon';
 
 const themeListeners = new Set<() => void>();
 

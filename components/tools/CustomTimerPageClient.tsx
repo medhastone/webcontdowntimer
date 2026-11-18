@@ -14,7 +14,7 @@ import {
   restoreDefaultSavedTimers,
   DEFAULT_CUSTOM_TIMERS,
 } from '@/lib/custom-timers-store';
-import { CustomTimerIcon } from '@/components/tools/VisualTimerCustomStudio';
+import { CustomTimerIcon } from '@/components/ui/CustomTimerIcon';
 
 function CustomTimerDynamicBanner() {
   const searchParams = useSearchParams();

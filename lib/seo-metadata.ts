@@ -909,7 +909,7 @@ export function buildPageMetadata(
       type: 'website',
       images: [
         {
-          url: '/logo.svg',
+          url: '/icon-512.png',
           width: 512,
           height: 512,
           alt: title,
@@ -920,7 +920,7 @@ export function buildPageMetadata(
       card: 'summary_large_image',
       title,
       description,
-      images: ['/logo.svg'],
+      images: ['/icon-512.png'],
     },
   };
 }

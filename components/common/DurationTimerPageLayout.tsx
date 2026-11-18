@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import type { DurationPageData } from '@/lib/duration-timers-data';
@@ -24,9 +22,9 @@ export default function DurationTimerPageLayout({ data }: DurationTimerPageLayou
   const faqsForSchema = specificContent ? specificContent.faqs : data.faqs;
 
   const breadcrumbs = [
-    { name: 'Home', item: 'https://WebCountDownTimer.com/' },
-    { name: 'Tools', item: 'https://WebCountDownTimer.com/tools' },
-    { name: data.unitLabel + ' Timer', item: `https://WebCountDownTimer.com/${data.slug}` },
+    { name: 'Home', item: 'https://webcountdowntimer.com/' },
+    { name: 'Tools', item: 'https://webcountdowntimer.com/tools' },
+    { name: data.unitLabel + ' Timer', item: `https://webcountdowntimer.com/${data.slug}` },
   ];
 
   return (
@@ -34,7 +32,7 @@ export default function DurationTimerPageLayout({ data }: DurationTimerPageLayou
       <SEOStructuredData
         toolName={`${data.unitLabel} Timer`}
         description={data.metaDescription}
-        url={`https://WebCountDownTimer.com/${data.slug}`}
+        url={`https://webcountdowntimer.com/${data.slug}`}
         faqs={faqsForSchema}
         breadcrumbs={breadcrumbs}
         steps={data.howToUseSteps}

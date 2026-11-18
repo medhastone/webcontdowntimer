@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound, permanentRedirect } from 'next/navigation';
 import CategoryLandingPageComponent from '@/components/category/CategoryLandingPageComponent';
 import { CATEGORIES_DATA } from '@/lib/category-data';
+import { mergeCategoryToolsForPage } from '@/lib/category-merge';
 import { buildPageMetadata } from '@/lib/seo-metadata';
 
 interface PageProps {
@@ -33,6 +34,6 @@ export default async function DynamicCategoryPage({ params }: PageProps) {
   if (!data) {
     notFound();
   }
-  return <CategoryLandingPageComponent data={data} />;
+  return <CategoryLandingPageComponent data={mergeCategoryToolsForPage(data)} />;
 }
 

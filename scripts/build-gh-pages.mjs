@@ -43,7 +43,7 @@ const VISUAL_TIMER_SUBPATH_SLUGS = [
 
 function buildRedirectHtml(destinationPath) {
   const fullDest = `${basePath}${destinationPath}`;
-  const canonicalUrl = `https://WebCountDownTimer.com${destinationPath}`;
+  const canonicalUrl = `https://webcountdowntimer.com${destinationPath}`;
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -69,14 +69,10 @@ function writeStaticRedirect(sourcePath, destinationPath) {
 
   const html = buildRedirectHtml(destinationPath);
 
-  // Support both /slug and /slug/ on GitHub Pages static hosting
+  // Emit a single clean .html file matching trailingSlash: false in next.config.ts
   const htmlFile = path.join(outDir, `${cleanSource}.html`);
   fs.mkdirSync(path.dirname(htmlFile), { recursive: true });
   fs.writeFileSync(htmlFile, html, 'utf8');
-
-  const dirIndex = path.join(outDir, cleanSource, 'index.html');
-  fs.mkdirSync(path.dirname(dirIndex), { recursive: true });
-  fs.writeFileSync(dirIndex, html, 'utf8');
 }
 
 let movedApi = false;
@@ -115,6 +111,11 @@ try {
     // Generate static HTML redirect pages for canonicalized/removed URLs
     const staticRedirects = [
       ['/international-meeting-planner', '/meeting-planner'],
+      ['/alarm-clock', '/online-alarm-clock'],
+      ['/event-countdown', '/event-countdown-timer'],
+      ['/pomodoro', '/pomodoro-timer'],
+      ['/timer', '/countdown-timer'],
+      ['/countdown', '/countdown-timer'],
       ['/education', '/category/education'],
       ['/category/everyday', '/category/timers'],
       ['/category/stage', '/category/events'],
@@ -123,9 +124,18 @@ try {
       ...VISUAL_TIMER_SUBPATH_SLUGS.map((slug) => [`/${slug}`, `/timers/${slug}`]),
     ];
 
-    for (let m = 2; m <= 90; m++) {
+    const redirectedMinutes = [2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 18, 20, 25, 35, 40, 45, 50, 55, 90];
+    for (const m of redirectedMinutes) {
       if (!KEPT_MINUTES.has(m)) {
-        staticRedirects.push([`/${m}-minute-timer`, `/countdown-timer?m=${m}`]);
+        const dest =
+          m === 25
+            ? '/pomodoro-timer'
+            : m === 50
+              ? '/study-timer'
+              : m === 20
+                ? '/eye-break-timer'
+                : '/countdown-timer';
+        staticRedirects.push([`/${m}-minute-timer`, dest]);
       }
     }
 

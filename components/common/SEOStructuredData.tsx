@@ -24,8 +24,8 @@ export default function SEOStructuredData({
     breadcrumbs.length > 0
       ? breadcrumbs
       : [
-          { name: 'Home', item: 'https://WebCountDownTimer.com/' },
-          { name: 'Tools', item: 'https://WebCountDownTimer.com/tools' },
+          { name: 'Home', item: 'https://webcountdowntimer.com/' },
+          { name: 'Tools', item: 'https://webcountdowntimer.com/tools' },
           { name: toolName, item: url },
         ];
 

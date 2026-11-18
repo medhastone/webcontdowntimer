@@ -17,6 +17,16 @@ Disallow: /embed-widget
 Disallow: /stage/
 Disallow: /stage-timer/viewer
 
+User-agent: Googlebot-Image
+Allow: /
+Allow: /favicon.ico
+Allow: /favicon-48x48.png
+Allow: /favicon-96x96.png
+Allow: /icon-192.png
+Allow: /icon-512.png
+Allow: /apple-touch-icon.png
+Disallow: /api/
+
 User-agent: Bingbot
 Allow: /
 Allow: /_next/static/
