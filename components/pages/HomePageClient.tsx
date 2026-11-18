@@ -513,7 +513,7 @@ export default function HomePage() {
                     <div className="divide-y divide-[#E4E1D9]/60 dark:divide-[#262D28]">
                       {heroSearchMatches.map((tool) => {
                         return (
-                          <Link
+                          <Link prefetch={false}
                             key={tool.id}
                             href={tool.href}
                             onClick={() => setSearchFocused(false)}
@@ -594,7 +594,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex flex-wrap items-center gap-1.5">
                     {group.items.map((item) => (
-                      <Link
+                      <Link prefetch={false}
                         key={item.href}
                         href={item.href}
                         className="group inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/95 dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F] hover:border-[#365C4B] dark:hover:border-[#5E917A] text-[#252B27] dark:text-slate-200 font-semibold transition-all shadow-2xs"
@@ -773,7 +773,7 @@ export default function HomePage() {
               })}
             </div>
 
-            <Link
+            <Link prefetch={false}
               href="/tools"
               className="text-sm font-semibold text-[#365C4B] dark:text-[#5E917A] hover:underline flex items-center gap-1 px-2 py-1.5"
             >
@@ -826,7 +826,7 @@ export default function HomePage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {toolsInSection.map((tool) => (
-                      <Link
+                      <Link prefetch={false}
                         key={tool.href}
                         href={tool.href}
                         className="group p-5 rounded-2xl bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F] hover:border-[#365C4B] dark:hover:border-[#5E917A] hover:shadow-md transition-all flex flex-col justify-between"
@@ -1056,7 +1056,7 @@ export default function HomePage() {
               Made for the Way You Work
             </h2>
           </div>
-          <Link
+          <Link prefetch={false}
             href="/tools"
             className="text-sm font-semibold text-[#365C4B] dark:text-[#5E917A] hover:underline flex items-center gap-1 self-start sm:self-end"
           >
@@ -1117,7 +1117,7 @@ export default function HomePage() {
               tier: 'new' as ToolTier,
             },
           ].map((item) => (
-            <Link
+            <Link prefetch={false}
               key={item.title}
               href={item.href}
               className="group p-5 rounded-2xl bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F] hover:border-[#365C4B] hover:shadow-xs transition-all flex flex-col justify-between"
@@ -1249,7 +1249,7 @@ export default function HomePage() {
                   <ul className="text-xs space-y-2 text-[#252B27]/80 dark:text-slate-300">
                     {cat.tools.map((t) => (
                       <li key={t.label}>
-                        <Link
+                        <Link prefetch={false}
                           href={t.href}
                           className="group flex items-center justify-between gap-2 hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors"
                         >
@@ -1263,7 +1263,7 @@ export default function HomePage() {
                     ))}
                   </ul>
                 </div>
-                <Link
+                <Link prefetch={false}
                   href={cat.href}
                   className="mt-4 pt-3 border-t border-[#F0EDE6] dark:border-[#252D28] text-xs font-semibold text-[#365C4B] dark:text-[#5E917A] hover:underline flex items-center justify-between"
                 >
@@ -1479,7 +1479,7 @@ export default function HomePage() {
                 Platform Architecture &amp; Usage Questions
               </h2>
             </div>
-            <Link
+            <Link prefetch={false}
               href="/guides"
               className="text-sm font-semibold text-[#365C4B] dark:text-[#5E917A] hover:underline flex items-center gap-1 self-start sm:self-end"
             >

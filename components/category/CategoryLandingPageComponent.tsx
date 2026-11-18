@@ -414,13 +414,13 @@ export default function CategoryLandingPageComponent({ data }: Props) {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-3">
           <ol className="flex items-center flex-wrap gap-2 text-xs text-[#252B27]/70 dark:text-slate-400">
             <li>
-              <Link href="/" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
+              <Link prefetch={false} href="/" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
                 Home
               </Link>
             </li>
             <li className="text-[#252B27]/30 dark:text-slate-600">›</li>
             <li>
-              <Link href="/tools" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
+              <Link prefetch={false} href="/tools" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
                 All Tools
               </Link>
             </li>
@@ -448,7 +448,7 @@ export default function CategoryLandingPageComponent({ data }: Props) {
                 {data.description}
               </p>
               <div className="flex flex-wrap items-center gap-4">
-                <Link
+                <Link prefetch={false}
                   href={data.heroCtaHref}
                   className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-[#365C4B] hover:bg-[#2b4a3c] dark:bg-[#365C4B] dark:hover:bg-[#436e5a] text-white font-medium text-sm sm:text-base shadow-sm transition-all"
                 >
@@ -517,7 +517,7 @@ export default function CategoryLandingPageComponent({ data }: Props) {
               </div>
 
               <div className="pt-2">
-                <Link
+                <Link prefetch={false}
                   href={data.featuredTool.href}
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#365C4B] dark:text-[#5E917A] hover:underline"
                 >
@@ -557,7 +557,7 @@ export default function CategoryLandingPageComponent({ data }: Props) {
                   >
                     {soundEnabled ? <Volume2 className="w-4 h-4 text-[#365C4B]" /> : <VolumeX className="w-4 h-4 text-red-500" />}
                   </button>
-                  <Link
+                  <Link prefetch={false}
                     href={data.featuredTool.href}
                     className="p-1.5 rounded-lg text-[#252B27]/60 dark:text-slate-400 hover:bg-[#F7F6F2] dark:hover:bg-[#252D28] transition-colors"
                     title="Fullscreen"
@@ -742,7 +742,7 @@ export default function CategoryLandingPageComponent({ data }: Props) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
                     {group.tools.map((tool) => (
-                      <Link
+                      <Link prefetch={false}
                         key={tool.name}
                         href={tool.href}
                         className="bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F] rounded-2xl p-5 sm:p-6 hover:border-[#365C4B] dark:hover:border-[#5E917A] hover:shadow-md transition-all flex flex-col justify-between group"
@@ -800,7 +800,7 @@ export default function CategoryLandingPageComponent({ data }: Props) {
             <div className="flex flex-wrap items-center gap-2 text-xs text-[#252B27]/75 dark:text-slate-300">
               <span className="font-bold text-[#365C4B] dark:text-[#5E917A]">Top Picks:</span>
               {data.tools.slice(0, 5).map((t) => (
-                <Link
+                <Link prefetch={false}
                   key={t.name}
                   href={t.href}
                   className="px-3 py-1 rounded-full bg-[#F7F6F2] dark:bg-[#252D28] border border-[#E4E1D9] dark:border-[#2D352F] hover:border-[#365C4B] transition-colors font-medium"
@@ -1071,7 +1071,7 @@ export default function CategoryLandingPageComponent({ data }: Props) {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {data.relatedCategories.map((cat) => (
-              <Link
+              <Link prefetch={false}
                 key={cat.title}
                 href={cat.href}
                 className="bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F] rounded-2xl p-6 hover:border-[#365C4B] dark:hover:border-[#5E917A] hover:shadow-md transition-all flex items-start gap-4 group"

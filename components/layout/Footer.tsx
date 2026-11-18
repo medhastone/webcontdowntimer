@@ -113,7 +113,7 @@ export default function Footer() {
           {/* Column 1: Brand Identity, Trust Badges & Socials (4 cols) */}
           <div className="lg:col-span-4 flex flex-col justify-between space-y-6 pr-0 lg:pr-6">
             <div className="space-y-4">
-              <Link href="/" className="inline-flex items-center" aria-label="WebCountDownTimer Home">
+              <Link prefetch={false} href="/" className="inline-flex items-center" aria-label="WebCountDownTimer Home">
                 <BrandLogo size="md" />
               </Link>
 
@@ -181,7 +181,7 @@ export default function Footer() {
                 </div>
               )}
 
-              <Link
+              <Link prefetch={false}
                 href="/tools"
                 className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#365C4B] hover:bg-[#2B4A3C] text-white text-xs font-semibold transition-colors shadow-2xs"
               >
@@ -200,7 +200,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs sm:text-[13px] text-[#252B27]/75 dark:text-slate-400">
               {ESSENTIAL_TIMERS.map((item) => (
                 <li key={item.href}>
-                  <Link
+                  <Link prefetch={false}
                     href={item.href}
                     className="inline-flex items-center gap-2 hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors"
                   >
@@ -229,7 +229,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs sm:text-[13px] text-[#252B27]/75 dark:text-slate-400">
               {VISUAL_AND_SENSORY.map((item) => (
                 <li key={item.href}>
-                  <Link
+                  <Link prefetch={false}
                     href={item.href}
                     className="inline-flex items-center gap-2 hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors"
                   >
@@ -253,7 +253,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs sm:text-[13px] text-[#252B27]/75 dark:text-slate-400">
               {STAGE_CLASS_WORLD.map((item) => (
                 <li key={item.href}>
-                  <Link
+                  <Link prefetch={false}
                     href={item.href}
                     className="inline-flex items-center gap-2 hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors"
                   >
@@ -277,7 +277,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs sm:text-[13px] text-[#252B27]/75 dark:text-slate-400">
               {BROWSE_CATEGORIES.map((item) => (
                 <li key={item.href}>
-                  <Link
+                  <Link prefetch={false}
                     href={item.href}
                     className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors"
                   >
@@ -296,25 +296,25 @@ export default function Footer() {
               © {new Date().getFullYear()} <strong className="font-semibold text-[#252B27] dark:text-slate-200">WebCountDownTimer.com</strong>. All rights reserved.
             </span>
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[#252B27]/70 dark:text-slate-400">
-              <Link href="/about" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
+              <Link prefetch={false} href="/about" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
                 About &amp; Methodology
               </Link>
-              <Link href="/guides" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
+              <Link prefetch={false} href="/guides" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
                 Guides
               </Link>
-              <Link href="/accessibility" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
+              <Link prefetch={false} href="/accessibility" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
                 Accessibility
               </Link>
-              <Link href="/privacy" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
+              <Link prefetch={false} href="/privacy" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
+              <Link prefetch={false} href="/terms" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
                 Terms of Use
               </Link>
-              <Link href="/contact" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
+              <Link prefetch={false} href="/contact" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
                 Contact
               </Link>
-              <Link href="/sitemap" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
+              <Link prefetch={false} href="/sitemap" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
                 Sitemap
               </Link>
             </div>

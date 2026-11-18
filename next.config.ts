@@ -158,12 +158,28 @@ const nextConfig: NextConfig = {
   },
   output: isGithubPages ? 'export' : process.env.VERCEL ? undefined : 'standalone',
   transpilePackages: ['motion'],
-  webpack: (config, {dev}) => {
+  experimental: {
+    cssChunking: false,
+    optimizePackageImports: ['lucide-react', 'motion'],
+  },
+  webpack: (config, { dev, isServer }) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.
     // Do not modify—file watching is disabled to prevent flickering during agent edits.
     if (dev && process.env.DISABLE_HMR === 'true') {
       config.watchOptions = {
         ignored: /.*/,
+      };
+    }
+    if (
+      !dev &&
+      !isServer &&
+      config.optimization?.splitChunks &&
+      typeof config.optimization.splitChunks === 'object'
+    ) {
+      config.optimization.splitChunks = {
+        ...config.optimization.splitChunks,
+        maxInitialRequests: 2,
+        minSize: 200000,
       };
     }
     return config;

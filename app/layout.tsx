@@ -10,17 +10,19 @@ import { REAL_SAME_AS_URLS } from '@/lib/site-config';
 const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  style: ['normal'],
   variable: '--font-dm-sans',
   display: 'swap',
+  preload: true,
 });
 
 const sourceSerif4 = Source_Serif_4({
   subsets: ['latin'],
   weight: ['400', '600', '700'],
-  style: ['normal', 'italic'],
+  style: ['normal'],
   variable: '--font-source-serif',
   display: 'swap',
+  preload: false,
 });
 
 export const metadata: Metadata = {

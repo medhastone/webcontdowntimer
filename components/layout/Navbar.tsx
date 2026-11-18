@@ -372,7 +372,7 @@ export default function Navbar() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex items-center justify-between h-16 gap-4" ref={navRef}>
           {/* Left: Brand Logo */}
-          <Link
+          <Link prefetch={false}
             href="/"
             onClick={() => setActiveDropdown(null)}
             className="inline-flex items-center shrink-0 py-1"
@@ -421,7 +421,7 @@ export default function Navbar() {
                         </div>
                         <div className="space-y-1">
                           {group.items.map((item) => (
-                            <Link
+                            <Link prefetch={false}
                               key={item.href}
                               href={item.href}
                               onClick={() => setActiveDropdown(null)}
@@ -444,7 +444,7 @@ export default function Navbar() {
                   </div>
 
                   <div className="mt-4 pt-3.5 border-t border-[#E4E1D9] dark:border-[#262D28] flex items-center justify-between">
-                    <Link
+                    <Link prefetch={false}
                       href="/timers/sensory-timers"
                       onClick={() => setActiveDropdown(null)}
                       className="inline-flex items-center gap-2 text-xs font-bold text-[#1A5D34] dark:text-emerald-300 hover:underline"
@@ -454,7 +454,7 @@ export default function Navbar() {
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
 
-                    <Link
+                    <Link prefetch={false}
                       href="/category/timers"
                       onClick={() => setActiveDropdown(null)}
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-[#365C4B] dark:text-[#5E917A] hover:underline"
@@ -468,7 +468,7 @@ export default function Navbar() {
             </div>
 
             {/* 2. Custom Timer (New Dedicated Builder Page) */}
-            <Link
+            <Link prefetch={false}
               href="/custom-timer"
               onClick={() => setActiveDropdown(null)}
               className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl transition-colors whitespace-nowrap ${
@@ -525,7 +525,7 @@ export default function Navbar() {
                           <span>Restore Pre-Saved</span>
                         </button>
                       )}
-                      <Link
+                      <Link prefetch={false}
                         href="/custom-timer"
                         onClick={() => setActiveDropdown(null)}
                         className="text-[11px] font-bold text-[#365C4B] dark:text-[#70B393] hover:underline inline-flex items-center gap-1"
@@ -562,7 +562,7 @@ export default function Navbar() {
                             key={item.id}
                             className="group flex items-center justify-between gap-2 p-2 rounded-xl hover:bg-[#F7F6F2] dark:hover:bg-[#232B26] transition-colors"
                           >
-                            <Link
+                            <Link prefetch={false}
                               href={buildCustomTimerHref(item)}
                               onClick={() => setActiveDropdown(null)}
                               className="flex items-center gap-2.5 min-w-0 flex-1"
@@ -621,7 +621,7 @@ export default function Navbar() {
                   </div>
 
                   <div className="pt-2.5 border-t border-[#E4E1D9] dark:border-[#262D28]">
-                    <Link
+                    <Link prefetch={false}
                       href="/custom-timer"
                       onClick={() => setActiveDropdown(null)}
                       className="w-full py-2 px-3 rounded-xl bg-[#365C4B] text-white text-xs font-semibold flex items-center justify-center gap-1.5 hover:opacity-95 transition-opacity"
@@ -635,7 +635,7 @@ export default function Navbar() {
             </div>
 
             {/* 4. World Clock */}
-            <Link
+            <Link prefetch={false}
               href="/world-clock"
               onClick={() => setActiveDropdown(null)}
               className={`px-3 py-2 rounded-xl transition-colors whitespace-nowrap ${
@@ -678,7 +678,7 @@ export default function Navbar() {
                   </div>
                   <div className="grid grid-cols-2 gap-2 pt-2.5">
                     {CATEGORIES_MENU_ITEMS.map((cat) => (
-                      <Link
+                      <Link prefetch={false}
                         key={cat.href}
                         href={cat.href}
                         onClick={() => setActiveDropdown(null)}
@@ -703,7 +703,7 @@ export default function Navbar() {
             </div>
 
             {/* 6. All Tools */}
-            <Link
+            <Link prefetch={false}
               href="/tools"
               onClick={() => setActiveDropdown(null)}
               className={`px-3 py-2 rounded-xl transition-colors whitespace-nowrap ${
@@ -775,7 +775,7 @@ export default function Navbar() {
                   {navSearchMatches.length > 0 ? (
                     <div className="max-h-80 overflow-y-auto divide-y divide-[#E4E1D9]/50 dark:divide-[#262D28]">
                       {navSearchMatches.map((tool) => (
-                        <Link
+                        <Link prefetch={false}
                           key={tool.id}
                           href={tool.href}
                           onClick={() => {
@@ -811,7 +811,7 @@ export default function Navbar() {
                   )}
 
                   <div className="border-t border-[#E4E1D9] dark:border-[#262D28] bg-[#F7F6F2]/60 dark:bg-[#141816]/60 px-3.5 py-2">
-                    <Link
+                    <Link prefetch={false}
                       href={
                         navSearchQuery.trim()
                           ? `/tools?q=${encodeURIComponent(navSearchQuery.trim())}`
@@ -921,7 +921,7 @@ export default function Navbar() {
             {navSearchQuery.trim() && (
               <div className="space-y-1">
                 {navSearchMatches.slice(0, 5).map((tool) => (
-                  <Link
+                  <Link prefetch={false}
                     key={tool.id}
                     href={tool.href}
                     onClick={() => {
@@ -950,7 +950,7 @@ export default function Navbar() {
                 { label: 'Calculators', href: '/category/calculators', iconKey: 'time-duration-calculator' },
                 { label: 'All Tools', href: '/tools', iconKey: 'sensory-timers' },
               ].map((navItem) => (
-                <Link
+                <Link prefetch={false}
                   key={navItem.href}
                   href={navItem.href}
                   onClick={() => setMobileMenuOpen(false)}
@@ -980,7 +980,7 @@ export default function Navbar() {
                       <span>Restore</span>
                     </button>
                   )}
-                  <Link
+                  <Link prefetch={false}
                     href="/custom-timer"
                     onClick={() => setMobileMenuOpen(false)}
                     className="text-[11px] font-bold text-[#365C4B] dark:text-[#70B393]"
@@ -1010,7 +1010,7 @@ export default function Navbar() {
                       key={item.id}
                       className="flex items-center justify-between gap-1.5 p-2 rounded-xl bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F]"
                     >
-                      <Link
+                      <Link prefetch={false}
                         href={buildCustomTimerHref(item)}
                         onClick={() => setMobileMenuOpen(false)}
                         className="flex items-center gap-2 min-w-0 flex-1 text-xs font-semibold text-[#252B27] dark:text-white"
@@ -1080,7 +1080,7 @@ export default function Navbar() {
 
               <div className="grid grid-cols-2 gap-1.5">
                 {TIMERS_MENU_GROUPS.find((g) => g.tier === mobileTierTab)?.items.map((item) => (
-                  <Link
+                  <Link prefetch={false}
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
