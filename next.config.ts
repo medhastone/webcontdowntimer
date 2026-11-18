@@ -106,6 +106,11 @@ const nextConfig: NextConfig = {
               statusCode: 301,
             },
             {
+              source: '/countdown',
+              destination: '/countdown-timer',
+              statusCode: 301,
+            },
+            {
               source: '/education',
               destination: '/category/education',
               statusCode: 301,
