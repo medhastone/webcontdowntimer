@@ -143,11 +143,11 @@ export default function TrainTimerPage() {
             aria-label="Breadcrumb"
             className="flex items-center gap-1.5 text-xs text-[#4A554E] dark:text-slate-400 mb-3"
           >
-            <Link href="/" className="hover:text-[#124E35] transition-colors">
+            <Link prefetch={false} href="/" className="hover:text-[#124E35] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 opacity-60" />
-            <Link href="/tools" className="hover:text-[#124E35] transition-colors">
+            <Link prefetch={false} href="/tools" className="hover:text-[#124E35] transition-colors">
               Timers
             </Link>
             <ChevronRight className="w-3.5 h-3.5 opacity-60" />
@@ -218,7 +218,7 @@ export default function TrainTimerPage() {
                 Related Tools
               </h3>
               <div className="space-y-2.5">
-                <Link
+                <Link prefetch={false}
                   href="/timers/flip-clock"
                   className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#F2F6F3] dark:hover:bg-[#1E2621] transition-colors group"
                 >
@@ -235,7 +235,7 @@ export default function TrainTimerPage() {
                   </div>
                 </Link>
 
-                <Link
+                <Link prefetch={false}
                   href="/timers/flip-timer"
                   className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#F2F6F3] dark:hover:bg-[#1E2621] transition-colors group"
                 >
@@ -252,7 +252,7 @@ export default function TrainTimerPage() {
                   </div>
                 </Link>
 
-                <Link
+                <Link prefetch={false}
                   href="/visual-timer"
                   className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#F2F6F3] dark:hover:bg-[#1E2621] transition-colors group"
                 >
@@ -269,7 +269,7 @@ export default function TrainTimerPage() {
                   </div>
                 </Link>
 
-                <Link
+                <Link prefetch={false}
                   href="/countdown-timer"
                   className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#F2F6F3] dark:hover:bg-[#1E2621] transition-colors group"
                 >

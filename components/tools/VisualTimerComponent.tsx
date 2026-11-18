@@ -1218,7 +1218,7 @@ export default function VisualTimerComponent() {
                     </div>
                   )}
                   {!isFullscreen && (
-                    <Link
+                    <Link prefetch={false}
                       href="/timers/sand-timer"
                       className="text-xs font-semibold text-[#365C4B] dark:text-[#5E917A] hover:underline inline-flex items-center gap-1 mt-3"
                     >

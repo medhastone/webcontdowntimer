@@ -298,7 +298,7 @@ export default function TimeUnitConverterComponent({
           { href: '/hours-to-minutes', title: 'Hours to Minutes', sub: 'Multiply hours × 60 into minutes' },
           { href: '/time-duration-calculator', title: 'Time Duration Calculator', sub: 'Hours between two clock times' },
         ].map((item) => (
-          <Link
+          <Link prefetch={false}
             key={item.href}
             href={item.href}
             className="bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F] hover:border-[#365C4B] rounded-xl p-4 flex items-center justify-between transition-all group shadow-2xs"

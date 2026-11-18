@@ -20,7 +20,7 @@ export default function GuidesPage() {
       {/* Header */}
       <div className="space-y-4 border-b border-neutral-200 dark:border-neutral-800 pb-8">
         <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-neutral-500">
-          <Link href="/" className="hover:text-neutral-900 dark:hover:text-white">
+          <Link prefetch={false} href="/" className="hover:text-neutral-900 dark:hover:text-white">
             Home
           </Link>
           <span>/</span>
@@ -71,7 +71,7 @@ export default function GuidesPage() {
           >
             6. Payroll & Decimal Hours Math
           </a>
-          <Link
+          <Link prefetch={false}
             href="/guides/how-accurate-online-timers-work"
             className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/70 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
           >
@@ -112,11 +112,11 @@ export default function GuidesPage() {
             </li>
             <li>
               <strong>Launch the Stage Timer Display:</strong> Open the{' '}
-              <Link href="/stage-timer" className="text-blue-600 dark:text-blue-400 underline font-medium">
+              <Link prefetch={false} href="/stage-timer" className="text-blue-600 dark:text-blue-400 underline font-medium">
                 Stage Timer
               </Link>{' '}
               or{' '}
-              <Link href="/speaker-timer" className="text-blue-600 dark:text-blue-400 underline font-medium">
+              <Link prefetch={false} href="/speaker-timer" className="text-blue-600 dark:text-blue-400 underline font-medium">
                 Speaker Timer
               </Link>{' '}
               and drag the browser window onto the extended downstage monitor.
@@ -164,15 +164,15 @@ export default function GuidesPage() {
         </div>
 
         <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
-          <Link href="/stage-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/stage-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open Stage Timer</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
-          <Link href="/presentation-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/presentation-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open Presentation Timer</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
-          <Link href="/speech-time-calculator" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/speech-time-calculator" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Calculate Speech Word Count</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -249,7 +249,7 @@ export default function GuidesPage() {
         </p>
 
         <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
-          <Link href="/toastmasters-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/toastmasters-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open Toastmasters Timer</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -312,7 +312,7 @@ export default function GuidesPage() {
         </div>
 
         <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
-          <Link href="/debate-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/debate-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open Debate Timer</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -374,15 +374,15 @@ export default function GuidesPage() {
         </div>
 
         <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
-          <Link href="/pomodoro-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/pomodoro-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open Pomodoro Timer</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
-          <Link href="/study-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/study-timer" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open Study Timer</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
-          <Link href="/countdown-timer?m=25" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/countdown-timer?m=25" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open 25-Minute Timer</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -462,15 +462,15 @@ export default function GuidesPage() {
         </div>
 
         <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
-          <Link href="/world-clock" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/world-clock" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open World Clock</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
-          <Link href="/time-zone-converter" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/time-zone-converter" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open Time Zone Converter</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
-          <Link href="/meeting-planner" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/meeting-planner" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open Meeting Planner</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -549,15 +549,15 @@ export default function GuidesPage() {
         </div>
 
         <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
-          <Link href="/time-card-calculator" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/time-card-calculator" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open Time Card Calculator</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
-          <Link href="/overtime-calculator" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/overtime-calculator" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open Overtime Calculator</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
-          <Link href="/minutes-to-hours" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          <Link prefetch={false} href="/minutes-to-hours" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
             <span>Open Minutes to Hours Converter</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>

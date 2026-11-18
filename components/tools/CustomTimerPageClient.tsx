@@ -63,7 +63,7 @@ function CustomTimerDynamicBanner() {
               )}
             </div>
           </div>
-          <Link
+          <Link prefetch={false}
             href="/custom-timer"
             className="text-xs font-semibold text-[#365C4B] dark:text-[#70B393] hover:underline whitespace-nowrap shrink-0"
           >
@@ -89,7 +89,7 @@ function CustomTimerDynamicBanner() {
                   : 'border-[#E4E1D9] dark:border-[#2A342D] bg-white dark:bg-[#1A201C] text-[#252B27] dark:text-slate-200 hover:border-[#365C4B]'
               }`}
             >
-              <Link
+              <Link prefetch={false}
                 href={buildCustomTimerHref(item)}
                 className="inline-flex items-center gap-1.5 pl-3 pr-1.5 py-1.5"
               >

@@ -47,13 +47,13 @@ export default function DurationTimerPageLayout({ data }: DurationTimerPageLayou
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-3">
           <ol className="flex items-center flex-wrap gap-2 text-xs text-[#252B27]/70 dark:text-slate-400">
             <li>
-              <Link href="/" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
+              <Link prefetch={false} href="/" className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors">
                 Home
               </Link>
             </li>
             <li className="text-[#252B27]/30 dark:text-slate-600">›</li>
             <li>
-              <Link
+              <Link prefetch={false}
                 href="/category/timers"
                 className="hover:text-[#365C4B] dark:hover:text-[#5E917A] transition-colors"
               >
@@ -113,7 +113,7 @@ export default function DurationTimerPageLayout({ data }: DurationTimerPageLayou
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
               {data.relatedDurations.map((rel) => (
-                <Link
+                <Link prefetch={false}
                   key={rel.slug}
                   href={`/${rel.slug}`}
                   className="bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F] hover:border-[#365C4B] rounded-xl p-4 transition-all group flex items-center justify-between"
@@ -146,7 +146,7 @@ export default function DurationTimerPageLayout({ data }: DurationTimerPageLayou
                 Switch to a visual disappearing disk, multi-round HIIT programmer, or split-lap chronograph.
               </p>
             </div>
-            <Link
+            <Link prefetch={false}
               href="/tools"
               className="text-xs sm:text-sm font-semibold text-[#365C4B] dark:text-[#5E917A] hover:underline flex items-center gap-1"
             >
@@ -197,7 +197,7 @@ export default function DurationTimerPageLayout({ data }: DurationTimerPageLayou
                     {tool.desc}
                   </p>
                 </div>
-                <Link
+                <Link prefetch={false}
                   href={`/${tool.slug}`}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#365C4B] dark:text-[#5E917A] group-hover:translate-x-1 transition-transform"
                 >

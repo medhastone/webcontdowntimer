@@ -1358,7 +1358,7 @@ export default function AllToolsPage() {
                     {liveSearchMatches.map((tool) => {
                       const tier = resolveDirectoryToolTier(tool.id, tool.isPopular);
                       return (
-                        <Link
+                        <Link prefetch={false}
                           key={tool.id}
                           href={tool.href}
                           onClick={() => setIsSearchFocused(false)}
@@ -1526,7 +1526,7 @@ export default function AllToolsPage() {
           {filteredTools.map((tool) => {
             const tier = resolveDirectoryToolTier(tool.id, tool.isPopular);
             return (
-              <Link
+              <Link prefetch={false}
                 key={tool.id}
                 href={tool.href}
                 className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-xs hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all group flex flex-col justify-between gap-4"

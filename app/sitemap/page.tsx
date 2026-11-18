@@ -204,7 +204,7 @@ export default function HtmlSitemapPage() {
             { href: '/contact', label: 'Contact & Support' },
           ].map((item) => (
             <li key={item.href}>
-              <Link
+              <Link prefetch={false}
                 href={item.href}
                 className="block p-3.5 rounded-xl bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] hover:border-[#365C4B] dark:hover:border-[#5E917A] text-sm font-medium text-[#252B27] dark:text-slate-200 transition-colors"
               >
@@ -222,7 +222,7 @@ export default function HtmlSitemapPage() {
             <h2 className="font-serif text-2xl font-bold text-[#252B27] dark:text-white">
               {group.title} ({group.tools.length})
             </h2>
-            <Link
+            <Link prefetch={false}
               href={group.hubHref}
               className="text-xs font-bold uppercase tracking-wider text-[#365C4B] dark:text-[#5E917A] hover:underline"
             >
@@ -232,7 +232,7 @@ export default function HtmlSitemapPage() {
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 list-none p-0 m-0">
             {group.tools.map((tool) => (
               <li key={tool.slug}>
-                <Link
+                <Link prefetch={false}
                   href={getToolCanonicalPath(tool.slug)}
                   className="block p-3.5 rounded-xl bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] hover:border-[#365C4B] dark:hover:border-[#5E917A] transition-colors"
                 >
@@ -255,7 +255,7 @@ export default function HtmlSitemapPage() {
           <h2 className="font-serif text-2xl font-bold text-[#252B27] dark:text-white">
             9. Preset Duration Countdown Timers ({durationItems.length})
           </h2>
-          <Link
+          <Link prefetch={false}
             href="/category/timers"
             className="text-xs font-bold uppercase tracking-wider text-[#365C4B] dark:text-[#5E917A] hover:underline"
           >
@@ -265,7 +265,7 @@ export default function HtmlSitemapPage() {
         <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 list-none p-0 m-0">
           {durationItems.map((item) => (
             <li key={item.slug}>
-              <Link
+              <Link prefetch={false}
                 href={`/${item.slug}`}
                 className="block p-3 rounded-xl bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] hover:border-[#365C4B] dark:hover:border-[#5E917A] text-sm font-medium text-[#252B27] dark:text-slate-200 transition-colors"
               >

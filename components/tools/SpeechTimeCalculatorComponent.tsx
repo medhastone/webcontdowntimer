@@ -106,7 +106,7 @@ export default function SpeechTimeCalculatorComponent() {
             Note: Duration is an estimate based on word count and selected speaking speed. Actual live delivery varies with audience applause, slide transitions, and improvisation.
           </p>
 
-          <Link
+          <Link prefetch={false}
             href={`/presentation-timer`}
             className="w-full h-11 rounded-xl bg-[#2563EB] hover:bg-blue-600 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm transition-colors"
           >

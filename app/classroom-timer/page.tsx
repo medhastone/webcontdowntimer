@@ -42,7 +42,7 @@ export default function ClassroomTimerPage() {
               aria-label="Breadcrumb"
               className="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400"
             >
-              <Link
+              <Link prefetch={false}
                 href="/"
                 className="hover:text-slate-900 dark:hover:text-white flex items-center gap-1 transition-colors"
               >
@@ -50,7 +50,7 @@ export default function ClassroomTimerPage() {
                 <span className="sr-only">Home</span>
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-              <Link
+              <Link prefetch={false}
                 href="/tools"
                 className="hover:text-slate-900 dark:hover:text-white transition-colors"
               >

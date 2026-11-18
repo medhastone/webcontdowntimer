@@ -623,7 +623,7 @@ export default function WorldClockDashboardComponent() {
           </div>
         </div>
 
-        <Link
+        <Link prefetch={false}
           href="/meeting-planner"
           className="self-start sm:self-auto px-5 py-2.5 rounded-xl bg-[#365C4B] hover:bg-[#2C4B3D] text-white font-medium text-xs sm:text-sm flex items-center gap-2 shadow-xs transition-transform active:scale-95 cursor-pointer shrink-0"
         >

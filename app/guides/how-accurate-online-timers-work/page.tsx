@@ -55,11 +55,11 @@ export default function HowAccurateOnlineTimersWorkPage() {
       <main className="flex-1 py-10 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
-            <Link href="/" className="hover:text-slate-900 dark:hover:text-white">
+            <Link prefetch={false} href="/" className="hover:text-slate-900 dark:hover:text-white">
               Home
             </Link>
             <span>/</span>
-            <Link href="/guides" className="hover:text-slate-900 dark:hover:text-white">
+            <Link prefetch={false} href="/guides" className="hover:text-slate-900 dark:hover:text-white">
               Guides
             </Link>
             <span>/</span>
@@ -349,7 +349,7 @@ function updateTimer() {
                   { label: 'World Clock', href: '/world-clock' },
                   { label: 'All Guides', href: '/guides' },
                 ].map((item) => (
-                  <Link
+                  <Link prefetch={false}
                     key={item.href}
                     href={item.href}
                     className="flex items-center justify-between px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-950/40 border border-slate-200 dark:border-slate-700/70 text-sm font-semibold text-slate-800 dark:text-slate-200 transition-colors"

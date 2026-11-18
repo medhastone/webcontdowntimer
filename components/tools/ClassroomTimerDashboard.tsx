@@ -780,7 +780,7 @@ export default function ClassroomTimerDashboard() {
 
               <div className="space-y-2.5">
                 {/* Related Tool 1: Pomodoro Timer */}
-                <Link
+                <Link prefetch={false}
                   href="/pomodoro-timer"
                   className="p-3 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F8FAFC] dark:bg-slate-800/40 hover:border-blue-300 dark:hover:border-blue-800 transition-all flex items-center justify-between gap-3 group"
                 >
@@ -801,7 +801,7 @@ export default function ClassroomTimerDashboard() {
                 </Link>
 
                 {/* Related Tool 2: Countdown Timer */}
-                <Link
+                <Link prefetch={false}
                   href="/countdown-timer"
                   className="p-3 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F8FAFC] dark:bg-slate-800/40 hover:border-blue-300 dark:hover:border-blue-800 transition-all flex items-center justify-between gap-3 group"
                 >
@@ -841,7 +841,7 @@ export default function ClassroomTimerDashboard() {
             </div>
 
             <div className="mt-4 pt-2 flex items-end justify-between relative z-10">
-              <Link
+              <Link prefetch={false}
                 href="/tools"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#2563EB] hover:bg-blue-700 text-white font-semibold text-xs transition-all shadow-xs active:scale-98"
               >

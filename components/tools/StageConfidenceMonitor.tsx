@@ -212,7 +212,7 @@ export default function StageConfidenceMonitor({ roomId }: StageConfidenceMonito
       {!isFullscreen && (
         <div className="flex items-center justify-between gap-4 z-10 border-b border-slate-800/80 pb-4">
           <div className="flex items-center gap-3">
-            <Link
+            <Link prefetch={false}
               href={`/stage-timer?room=${encodeURIComponent(roomId)}`}
               className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
               title="Return to Stage Controller"

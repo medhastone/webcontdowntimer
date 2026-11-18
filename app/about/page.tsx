@@ -58,7 +58,7 @@ export default function AboutPage() {
           </h2>
           <p>
             Every timer and calculator on WebCountDownTimer is tested against four concrete engineering benchmarks before publication and after code updates. For full architectural details, see our technical reference:{' '}
-            <Link
+            <Link prefetch={false}
               href="/guides/how-accurate-online-timers-work"
               className="text-[#365C4B] dark:text-[#5E917A] underline font-semibold"
             >
@@ -137,19 +137,19 @@ export default function AboutPage() {
 
       <div className="pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-3">
-          <Link
+          <Link prefetch={false}
             href="/tools"
             className="px-6 py-3 text-xs font-bold text-white bg-[#365C4B] hover:bg-[#2B4A3C] rounded-xl transition-colors"
           >
             Explore All Tools
           </Link>
-          <Link
+          <Link prefetch={false}
             href="/guides/how-accurate-online-timers-work"
             className="px-5 py-3 text-xs font-semibold text-neutral-700 dark:text-neutral-200 bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] rounded-xl hover:border-[#365C4B] transition-colors"
           >
             Read Accuracy Engineering Guide
           </Link>
-          <Link
+          <Link prefetch={false}
             href="/contact"
             className="px-5 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
           >

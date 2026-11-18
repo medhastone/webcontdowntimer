@@ -176,11 +176,11 @@ export default function SensoryTimersCollectionPage() {
             aria-label="Breadcrumb"
             className="flex items-center gap-1.5 text-xs text-gray-600 dark:text-slate-400 mb-3"
           >
-            <Link href="/" className="hover:text-[#1A5D34] dark:hover:text-[#6CC49B] transition-colors">
+            <Link prefetch={false} href="/" className="hover:text-[#1A5D34] dark:hover:text-[#6CC49B] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-gray-400 dark:text-slate-500" />
-            <Link
+            <Link prefetch={false}
               href="/tools"
               className="hover:text-[#1A5D34] dark:hover:text-[#6CC49B] transition-colors"
             >
@@ -264,7 +264,7 @@ export default function SensoryTimersCollectionPage() {
                 Prefer a simpler view? Use the numeric-only timer for a clear,
                 high-contrast countdown.
               </p>
-              <Link
+              <Link prefetch={false}
                 href="/countdown-timer"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1A5D34] dark:text-[#6CC49B] hover:underline"
               >

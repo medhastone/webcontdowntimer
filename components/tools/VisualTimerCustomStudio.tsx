@@ -1249,7 +1249,7 @@ export default function VisualTimerCustomStudio({
                     )}
                   </div>
 
-                  <Link
+                  <Link prefetch={false}
                     href={buildCustomTimerHref(item)}
                     onClick={(e) => e.stopPropagation()}
                     className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#365C4B] dark:text-[#70B393] hover:underline shrink-0"
@@ -1279,7 +1279,7 @@ export default function VisualTimerCustomStudio({
               Launch full standalone pages tailored to each animated visual preset.
             </p>
           </div>
-          <Link
+          <Link prefetch={false}
             href="/timers/sensory-timers"
             className="text-xs font-semibold text-[#365C4B] dark:text-[#70B393] inline-flex items-center gap-1 hover:underline"
           >
@@ -1301,7 +1301,7 @@ export default function VisualTimerCustomStudio({
             { label: 'Energy Cells', href: '/custom-timer?id=hiit-energy-battery', desc: 'High-contrast power bars' },
             { label: 'Snowfall Page', href: '/timers/snow-timer', desc: 'Gentle winter snowfall' },
           ].map((presetPage) => (
-            <Link
+            <Link prefetch={false}
               key={presetPage.href}
               href={presetPage.href}
               className={`p-3 rounded-xl border transition-all hover:border-[#365C4B] flex flex-col justify-between gap-1 ${cardSurface}`}

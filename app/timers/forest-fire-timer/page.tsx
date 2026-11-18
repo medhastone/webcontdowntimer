@@ -232,11 +232,11 @@ export default function ForestFireTimerPage() {
             aria-label="Breadcrumb"
             className="flex items-center gap-1.5 text-xs text-gray-600 dark:text-slate-400 mb-3"
           >
-            <Link href="/" className="hover:text-[#C84B0E] dark:hover:text-[#FB923C] transition-colors">
+            <Link prefetch={false} href="/" className="hover:text-[#C84B0E] dark:hover:text-[#FB923C] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-gray-400 dark:text-slate-500" />
-            <Link
+            <Link prefetch={false}
               href="/tools"
               className="hover:text-[#C84B0E] dark:hover:text-[#FB923C] transition-colors"
             >
@@ -312,7 +312,7 @@ export default function ForestFireTimerPage() {
               </h3>
               <div className="space-y-2">
                 {RELATED_TOOLS.map((tool) => (
-                  <Link
+                  <Link prefetch={false}
                     key={tool.title}
                     href={tool.href}
                     className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#FAF8F4] dark:hover:bg-[#1F2723] transition-colors group"

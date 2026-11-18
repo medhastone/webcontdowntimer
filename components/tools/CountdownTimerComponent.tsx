@@ -516,7 +516,7 @@ export default function CountdownTimerComponent({
             </span>
             <div className="flex flex-wrap gap-1.5">
               {durationLinks.map((d) => (
-                <Link
+                <Link prefetch={false}
                   key={d.slug}
                   href={`/${d.slug}`}
                   className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${

@@ -160,7 +160,7 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
             }`}
           >
             <li>
-              <Link
+              <Link prefetch={false}
                 href="/"
                 className={
                   tool.slug === 'moon-timer'
@@ -173,7 +173,7 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
             </li>
             <li className={tool.slug === 'moon-timer' ? 'text-slate-500' : 'text-[#252B27]/30 dark:text-slate-600'}>›</li>
             <li>
-              <Link
+              <Link prefetch={false}
                 href={`/category/${editorial.categorySlug}`}
                 className={
                   tool.slug === 'moon-timer'
@@ -723,7 +723,7 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
                 Explore related timing, world clock, and calculation tools.
               </p>
             </div>
-            <Link
+            <Link prefetch={false}
               href="/tools"
               className="text-xs sm:text-sm font-semibold text-[#365C4B] dark:text-[#5E917A] hover:underline flex items-center gap-1 self-start sm:self-end"
             >
@@ -750,7 +750,7 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
                   </p>
                 </div>
 
-                <Link
+                <Link prefetch={false}
                   href={getToolCanonicalPath(rel.slug)}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#365C4B] dark:text-[#5E917A] group-hover:translate-x-1 transition-transform"
                 >
@@ -794,16 +794,16 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
                   <strong>Accuracy Disclaimer:</strong> Timing precision depends on your device&apos;s operating system clock and browser audio settings. Not intended for medical, life-safety, or certified industrial control use.
                 </p>
                 <div className="flex flex-wrap items-center gap-4 shrink-0 font-semibold text-[#365C4B] dark:text-[#5E917A]">
-                  <Link href="/about" className="hover:underline">
+                  <Link prefetch={false} href="/about" className="hover:underline">
                     About &amp; Methodology
                   </Link>
-                  <Link href="/guides/how-accurate-online-timers-work" className="hover:underline">
+                  <Link prefetch={false} href="/guides/how-accurate-online-timers-work" className="hover:underline">
                     How We Test Accuracy
                   </Link>
-                  <Link href="/accessibility" className="hover:underline">
+                  <Link prefetch={false} href="/accessibility" className="hover:underline">
                     WCAG 2.2 AA
                   </Link>
-                  <Link href="/contact" className="hover:underline">
+                  <Link prefetch={false} href="/contact" className="hover:underline">
                     Report a Timing Issue
                   </Link>
                 </div>

@@ -883,7 +883,7 @@ export default function SensoryTimersCollectionClient() {
               </div>
 
               {/* Open Timer CTA Button */}
-              <Link
+              <Link prefetch={false}
                 href={timer.href}
                 className="w-full py-2.5 px-4 rounded-xl bg-[#1A5D34] hover:bg-[#144928] text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-colors"
               >

@@ -202,11 +202,11 @@ export default function FlipTimerPage() {
             aria-label="Breadcrumb"
             className="flex items-center gap-1.5 text-xs text-[#5A4E4A] dark:text-slate-400 mb-3"
           >
-            <Link href="/" className="hover:text-[#A91D22] transition-colors">
+            <Link prefetch={false} href="/" className="hover:text-[#A91D22] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 opacity-60" />
-            <Link href="/tools" className="hover:text-[#A91D22] transition-colors">
+            <Link prefetch={false} href="/tools" className="hover:text-[#A91D22] transition-colors">
               Timers
             </Link>
             <ChevronRight className="w-3.5 h-3.5 opacity-60" />
@@ -265,7 +265,7 @@ export default function FlipTimerPage() {
             </h2>
             <div className="space-y-2.5">
               {RELATED_TOOLS.map((tool) => (
-                <Link
+                <Link prefetch={false}
                   key={tool.name}
                   href={tool.href}
                   className="flex items-center gap-3 p-2.5 rounded-2xl border border-[#F0EAE1] dark:border-[#2C2422] hover:border-[#A91D22] dark:hover:border-rose-500/60 bg-[#FCFBF9] dark:bg-[#211B19] transition-all group"
