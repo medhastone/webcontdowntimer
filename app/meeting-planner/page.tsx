@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import EventSchedulePlannerDashboard from '@/components/tools/EventSchedulePlannerDashboard';
 import ToolSpecificContentSection from '@/components/common/ToolSpecificContentSection';
 import SEOStructuredData from '@/components/common/SEOStructuredData';
+import SharePageButton from '@/components/common/SharePageButton';
 import { getToolSpecificContent } from '@/lib/tool-specific-content';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -28,6 +29,9 @@ export default function MeetingPlannerPage() {
         steps={specificContent ? specificContent.howToUse : []}
         applicationCategory="UtilityApplication"
       />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 flex items-center justify-end">
+        <SharePageButton variant="toolbar" />
+      </div>
       <EventSchedulePlannerDashboard />
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <ToolSpecificContentSection slug="meeting-planner" toolName="Meeting Planner" />

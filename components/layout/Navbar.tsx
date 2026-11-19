@@ -21,6 +21,7 @@ import {
   Plus,
   Wand2,
   RotateCcw,
+  Calendar,
 } from 'lucide-react';
 import { ALL_HOME_TOOLS } from '@/lib/home-data';
 import { ToolIconBadge, ToolTierTag, type ToolTier } from '@/components/ui/ToolIcon';
@@ -117,6 +118,12 @@ const TIMERS_MENU_GROUPS: Array<{
         label: 'Spinner Timer',
         href: '/timers/spinner-timer',
         desc: 'Rotating wheel visual countdown',
+        tier: 'new',
+      },
+      {
+        label: 'Holiday Countdowns',
+        href: '/days-until',
+        desc: 'Live days until major holidays',
         tier: 'new',
       },
     ],
@@ -255,6 +262,13 @@ const CATEGORIES_MENU_ITEMS: Array<{
     href: '/category/world',
     iconKey: 'world-clock',
     tier: 'trending',
+  },
+  {
+    title: 'Holiday Countdowns',
+    desc: 'Live days, weeks & business days until every holiday',
+    href: '/days-until',
+    iconKey: 'holiday-countdowns',
+    tier: 'new',
   },
 ];
 
@@ -471,7 +485,7 @@ export default function Navbar() {
             <Link prefetch={false}
               href="/custom-timer"
               onClick={() => setActiveDropdown(null)}
-              className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl transition-colors whitespace-nowrap ${
+              className={`inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-xl transition-colors whitespace-nowrap ${
                 pathname.startsWith('/custom-timer')
                   ? 'bg-[#E7EDE7]/80 dark:bg-[#222B25] text-[#365C4B] dark:text-[#5E917A]'
                   : 'text-[#252B27]/80 dark:text-slate-300 hover:text-[#365C4B] dark:hover:text-[#5E917A] hover:bg-[#E7EDE7]/40 dark:hover:bg-[#1E2521]'
@@ -479,6 +493,20 @@ export default function Navbar() {
             >
               <Wand2 className="w-3.5 h-3.5 text-[#365C4B] dark:text-[#70B393]" />
               <span>Custom Timer</span>
+            </Link>
+
+            {/* Holiday Countdowns Hub */}
+            <Link prefetch={false}
+              href="/days-until"
+              onClick={() => setActiveDropdown(null)}
+              className={`inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-xl transition-colors whitespace-nowrap ${
+                pathname.startsWith('/days-until')
+                  ? 'bg-[#E7EDE7]/80 dark:bg-[#222B25] text-[#365C4B] dark:text-[#5E917A]'
+                  : 'text-[#252B27]/80 dark:text-slate-300 hover:text-[#365C4B] dark:hover:text-[#5E917A] hover:bg-[#E7EDE7]/40 dark:hover:bg-[#1E2521]'
+              }`}
+            >
+              <Calendar className="w-3.5 h-3.5 text-[#365C4B] dark:text-[#70B393]" />
+              <span>Holidays</span>
             </Link>
 
             {/* 3. Saved List Dropdown in Header for Easy Navigation */}
@@ -944,10 +972,10 @@ export default function Navbar() {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-bold">
               {[
                 { label: 'Custom Timer', href: '/custom-timer', iconKey: 'custom-timer' },
+                { label: 'Holiday Countdowns', href: '/days-until', iconKey: 'holiday-countdowns' },
                 { label: 'Timers', href: '/category/timers', iconKey: 'countdown-timer' },
                 { label: 'World Clock', href: '/world-clock', iconKey: 'world-clock' },
                 { label: 'Education', href: '/category/education', iconKey: 'classroom-timer' },
-                { label: 'Calculators', href: '/category/calculators', iconKey: 'time-duration-calculator' },
                 { label: 'All Tools', href: '/tools', iconKey: 'sensory-timers' },
               ].map((navItem) => (
                 <Link prefetch={false}

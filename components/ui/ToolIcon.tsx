@@ -420,6 +420,24 @@ const TOOL_ICON_MAP: Record<string, ToolIconMeta> = {
     ringClass: 'border-rose-200 dark:border-rose-500/45',
     dotColor: '#BE123C',
   },
+  'holiday-countdowns': {
+    icon: Calendar,
+    accentIcon: Sparkles,
+    bgClass:
+      'bg-gradient-to-br from-emerald-50 via-amber-50 to-teal-100 dark:from-emerald-950 dark:via-teal-950 dark:to-amber-900/80',
+    iconClass: 'text-[#365C4B] dark:text-emerald-300',
+    ringClass: 'border-emerald-200 dark:border-emerald-500/45',
+    dotColor: '#365C4B',
+  },
+  'days-until': {
+    icon: Calendar,
+    accentIcon: Sparkles,
+    bgClass:
+      'bg-gradient-to-br from-emerald-50 via-amber-50 to-teal-100 dark:from-emerald-950 dark:via-teal-950 dark:to-amber-900/80',
+    iconClass: 'text-[#365C4B] dark:text-emerald-300',
+    ringClass: 'border-emerald-200 dark:border-emerald-500/45',
+    dotColor: '#365C4B',
+  },
   'webinar-timer': {
     icon: Video,
     bgClass:
@@ -619,6 +637,7 @@ export function normalizeToolKey(hrefOrName: string): string {
   if (lower.includes('alarm')) return 'online-alarm-clock';
   if (lower.includes('embed') || lower.includes('widget')) return 'embed-widget';
   if (lower.includes('remote')) return 'remote-teams';
+  if (lower.includes('holiday') || lower.includes('days-until') || lower.includes('days until')) return 'holiday-countdowns';
   if (lower.includes('countdown')) return 'countdown-timer';
 
   return 'countdown-timer';

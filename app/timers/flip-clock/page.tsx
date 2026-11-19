@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import FlipClockComponent from '@/components/tools/FlipClockComponent';
 import ToolSpecificContentSection from '@/components/common/ToolSpecificContentSection';
+import SharePageButton from '@/components/common/SharePageButton';
 import { getToolSpecificContent } from '@/lib/tool-specific-content';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -251,7 +252,12 @@ export default function FlipClockPage() {
       {/* MAIN CONTAINER */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 space-y-10">
         {/* Interactive Flip Clock Tool + Mode Overview + Quick Timer Presets */}
-        <FlipClockComponent />
+        <div>
+          <div className="mb-3 flex items-center justify-end">
+            <SharePageButton variant="toolbar" />
+          </div>
+          <FlipClockComponent />
+        </div>
 
         {/* TOOL-SPECIFIC CONTENT (150-250 WORDS: USE CASES, HOW TO USE & 3 UNIQUE FAQS) + RELATED TOOLS */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start pt-2">

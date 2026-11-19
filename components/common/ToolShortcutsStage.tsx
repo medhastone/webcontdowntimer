@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Keyboard, X } from 'lucide-react';
+import SharePageButton from '@/components/common/SharePageButton';
 
 interface ToolShortcutsStageProps {
   isCalculatorOrClock: boolean;
@@ -416,7 +417,14 @@ export default function ToolShortcutsStage({
                   </kbd>
                 </button>
               )}
+              <SharePageButton variant="toolbar" />
             </div>
+          </div>
+        )}
+
+        {isCalculatorOrClock && (
+          <div className="mb-3 flex items-center justify-end">
+            <SharePageButton variant="toolbar" />
           </div>
         )}
 

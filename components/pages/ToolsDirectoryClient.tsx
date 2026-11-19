@@ -46,6 +46,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { ToolIconBadge, ToolTierTag, type ToolTier } from '@/components/ui/ToolIcon';
+import SharePageButton from '@/components/common/SharePageButton';
 
 const NEW_TOOL_IDS = new Set([
   'sensory-timers',
@@ -62,6 +63,7 @@ const NEW_TOOL_IDS = new Set([
   'sun-timer',
   'moon-timer',
   'heart-timer',
+  'holiday-countdowns',
 ]);
 
 const TRENDING_TOOL_IDS = new Set([
@@ -1066,6 +1068,19 @@ const TOOLS_DIRECTORY: ToolItem[] = [
     priority: 44,
   },
   {
+    id: 'holiday-countdowns',
+    name: 'Holiday & Event Countdowns',
+    description: 'Live days, hours, minutes and seconds countdowns for every major holiday.',
+    href: '/days-until',
+    icon: Calendar,
+    iconBgClass:
+      'bg-emerald-50 dark:bg-emerald-950/40 text-[#365C4B] dark:text-emerald-300 border border-emerald-100 dark:border-emerald-900/60',
+    categories: ['Timers & Stopwatches', 'Cooking & Everyday'],
+    keywords: ['how many days until', 'holiday countdown', 'christmas eve', 'valentines day', 'thanksgiving'],
+    isPopular: true,
+    priority: 1,
+  },
+  {
     id: 'sermon-timer',
     name: 'Sermon & Service Timer',
     description: 'Discreet visual agenda timer for religious speakers and services.',
@@ -1448,6 +1463,8 @@ export default function AllToolsPage() {
                 );
               })}
             </div>
+
+            <SharePageButton variant="toolbar" />
 
             <div className="flex items-center gap-2 relative" ref={sortRef}>
               <span className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">

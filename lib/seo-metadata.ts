@@ -58,6 +58,13 @@ export const ROUTE_SEO_REGISTRY: Record<string, RouteSeoEntry> = {
       'Read practical handbooks on stage confidence monitors, official Toastmasters speech rules, debate bells, Pomodoro focus cycles, and IANA time zones.',
     keywords: ['event timing guides', 'toastmasters rules', 'debate timer rules', 'iana time zones'],
   },
+  '/days-until': {
+    path: '/days-until',
+    title: 'Holiday & Event Countdowns – Days Until | WebCountDownTimer',
+    description:
+      'Track live days, hours, minutes, and seconds until major holidays, seasonal dates, and upcoming years in your local timezone with verified date rules.',
+    keywords: ['holiday countdowns', 'days until holiday', 'how many days until', 'holiday calendar'],
+  },
   '/education': {
     path: '/education',
     title: 'Classroom Timers & Teacher Tools | WebCountDownTimer',

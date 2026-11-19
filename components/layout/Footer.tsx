@@ -50,10 +50,10 @@ const VISUAL_AND_SENSORY: FooterLinkItem[] = [
 const STAGE_CLASS_WORLD: FooterLinkItem[] = [
   { label: 'Stage Timer', href: '/stage-timer', badge: 'Hot' },
   { label: 'Classroom Timer', href: '/classroom-timer' },
+  { label: 'Holiday Countdowns', href: '/days-until', badge: 'New' },
   { label: 'World Clock', href: '/world-clock' },
   { label: 'Time-Zone Converter', href: '/time-zone-converter' },
   { label: 'Meeting Planner', href: '/meeting-planner' },
-  { label: 'Duration Calculator', href: '/time-duration-calculator' },
 ];
 
 const BROWSE_CATEGORIES: FooterLinkItem[] = [
@@ -62,7 +62,7 @@ const BROWSE_CATEGORIES: FooterLinkItem[] = [
   { label: 'Education & Classroom', href: '/category/education' },
   { label: 'Fitness & Wellness', href: '/category/fitness' },
   { label: 'World Time & Tools', href: '/category/world' },
-  { label: 'Random Name Picker', href: '/random-name-picker' },
+  { label: 'All Holidays & Events', href: '/days-until' },
 ];
 
 const LANGUAGES = SUPPORTED_LANGUAGES;

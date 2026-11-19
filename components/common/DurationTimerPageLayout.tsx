@@ -4,6 +4,7 @@ import type { DurationPageData } from '@/lib/duration-timers-data';
 import CountdownTimerComponent from '@/components/tools/CountdownTimerComponent';
 import SEOStructuredData from '@/components/common/SEOStructuredData';
 import ToolSpecificContentSection from '@/components/common/ToolSpecificContentSection';
+import SharePageButton from '@/components/common/SharePageButton';
 import { getToolSpecificContent } from '@/lib/tool-specific-content';
 import {
   ArrowRight,
@@ -86,6 +87,9 @@ export default function DurationTimerPageLayout({ data }: DurationTimerPageLayou
       {/* 3. FUNCTIONAL TIMER AREA NEAR TOP */}
       <section className="py-10 sm:py-12 border-b border-[#E4E1D9] dark:border-[#262D28]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="mb-3 flex items-center justify-end">
+            <SharePageButton variant="toolbar" />
+          </div>
           <CountdownTimerComponent
             key={data.slug}
             initialSeconds={data.totalSeconds}

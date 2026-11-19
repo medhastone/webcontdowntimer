@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import confetti from 'canvas-confetti';
 import { playTimerSound } from '@/lib/sound';
 import { POPULAR_CITIES } from '@/lib/time-zones';
-import { Calendar, Clock, Share2, Maximize, Minimize, Check } from 'lucide-react';
+import { Calendar, Clock, Share2, Maximize, Minimize, Check, ArrowRight } from 'lucide-react';
 
 export default function EventCountdownComponent() {
   // Default to a future event (e.g. 7 days from now at 12:00 PM)
@@ -29,6 +30,29 @@ export default function EventCountdownComponent() {
   });
 
   const celebrationTriggeredRef = useRef(false);
+
+  // Hydrate initial values when linked from /days-until/[slug] ("Use this countdown as a timer")
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const rafId = window.requestAnimationFrame(() => {
+      const params = new URLSearchParams(window.location.search);
+      const paramTitle = params.get('title');
+      const paramDate = params.get('date');
+      const paramTz = params.get('tz');
+
+      if (paramTitle && paramTitle.trim().length > 0) {
+        setEventTitle(paramTitle.trim());
+      }
+      if (paramDate && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(paramDate)) {
+        celebrationTriggeredRef.current = false;
+        setTargetDateStr(paramDate.slice(0, 16));
+      }
+      if (paramTz && POPULAR_CITIES.some((c) => c.iana === paramTz)) {
+        setSelectedTz(paramTz);
+      }
+    });
+    return () => window.cancelAnimationFrame(rafId);
+  }, []);
 
   useEffect(() => {
     const updateCountdown = () => {
@@ -231,6 +255,41 @@ export default function EventCountdownComponent() {
               ))}
             </select>
           </div>
+        </div>
+      )}
+
+      {!isFullscreen && (
+        <div className="mt-5 pt-4 border-t border-neutral-100 dark:border-neutral-800 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 font-semibold text-neutral-600 dark:text-neutral-300">
+              <Calendar className="w-3.5 h-3.5 text-[#365C4B] dark:text-[#70B393]" />
+              <span>Quick Holiday Countdowns:</span>
+            </span>
+            {[
+              { label: 'Christmas Eve', href: '/days-until/christmas-eve' },
+              { label: 'New Year 2027', href: '/days-until/2027' },
+              { label: "Valentine's Day", href: '/days-until/valentines-day' },
+              { label: 'Thanksgiving', href: '/days-until/thanksgiving' },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                prefetch={false}
+                href={item.href}
+                className="px-2.5 py-1 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-[#E7EDE7] dark:hover:bg-[#223029] text-neutral-700 dark:text-neutral-200 font-medium transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          <Link
+            prefetch={false}
+            href="/days-until"
+            className="inline-flex items-center gap-1 font-semibold text-[#365C4B] dark:text-[#70B393] hover:underline"
+          >
+            <span>All 28 Holiday Countdowns</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       )}
     </div>

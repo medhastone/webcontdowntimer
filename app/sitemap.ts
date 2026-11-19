@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { TOOLS_REGISTRY, getToolCanonicalPath } from '@/lib/tools-registry';
 import { CATEGORIES_DATA } from '@/lib/category-data';
 import { APPROVED_DURATION_SLUGS } from '@/lib/duration-timers-data';
+import { HOLIDAY_DEFINITIONS } from '@/lib/holidays-data';
 import { SITE_BASE_URL, ROUTE_SEO_REGISTRY } from '@/lib/seo-metadata';
 
 export const dynamic = 'force-static';
@@ -9,6 +10,7 @@ export const dynamic = 'force-static';
 const RECENTLY_UPDATED_PATHS = new Set<string>([
   '',
   '/tools',
+  '/days-until',
   '/sitemap',
   '/category/timers',
   '/category/events',
@@ -45,8 +47,8 @@ const STATIC_LEGAL_PATHS = new Set<string>([
 ]);
 
 function getRouteLastModified(urlPath: string): string {
-  if (RECENTLY_UPDATED_PATHS.has(urlPath)) {
-    return '2026-11-17T00:00:00.000Z';
+  if (RECENTLY_UPDATED_PATHS.has(urlPath) || urlPath.startsWith('/days-until/')) {
+    return '2026-11-19T00:00:00.000Z';
   }
   if (STATIC_LEGAL_PATHS.has(urlPath)) {
     return '2026-09-01T00:00:00.000Z';
@@ -61,6 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const coreStaticPages = [
     '',
     '/tools',
+    '/days-until',
     '/guides',
     '/guides/how-accurate-online-timers-work',
     '/about',
@@ -87,9 +90,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 4. Approved preset duration timer pages (1, 5, 10, 15, 30, 60 min + 30, 45, 90 sec)
   const durationPages = APPROVED_DURATION_SLUGS.map((slug) => `/${slug}`);
 
+  // 5. Programmatic Holiday Countdown utility pages (/days-until/<slug>)
+  const holidayPages = HOLIDAY_DEFINITIONS.map((h) => `/days-until/${h.slug}`);
+
   const categorySet = new Set(categoryHubPages);
   const toolSet = new Set(toolPages);
   const durationSet = new Set(durationPages);
+  const holidaySet = new Set(holidayPages);
 
   const allPaths = Array.from(
     new Set([
@@ -97,6 +104,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...categoryHubPages,
       ...toolPages,
       ...durationPages,
+      ...holidayPages,
     ])
   );
 
@@ -107,12 +115,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     if (urlPath === '') {
       priority = 1.0;
       changeFrequency = 'daily';
-    } else if (urlPath === '/tools' || categorySet.has(urlPath)) {
+    } else if (urlPath === '/tools' || urlPath === '/days-until' || categorySet.has(urlPath)) {
       priority = 0.9;
       changeFrequency = 'weekly';
     } else if (toolSet.has(urlPath)) {
       priority = 0.85;
       changeFrequency = 'weekly';
+    } else if (holidaySet.has(urlPath)) {
+      priority = 0.8;
+      changeFrequency = 'daily';
     } else if (durationSet.has(urlPath) || urlPath.startsWith('/guides')) {
       priority = 0.8;
       changeFrequency = 'monthly';

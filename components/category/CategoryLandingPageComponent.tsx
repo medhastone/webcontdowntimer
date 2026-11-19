@@ -38,6 +38,7 @@ import {
 } from 'lucide-react';
 import type { CategoryData, CategoryToolItem } from '@/lib/category-data';
 import { ToolIconBadge, ToolTierTag, type ToolTier } from '@/components/ui/ToolIcon';
+import SharePageButton from '@/components/common/SharePageButton';
 
 interface Props {
   data: CategoryData;
@@ -557,6 +558,7 @@ export default function CategoryLandingPageComponent({ data }: Props) {
                   >
                     {soundEnabled ? <Volume2 className="w-4 h-4 text-[#365C4B]" /> : <VolumeX className="w-4 h-4 text-red-500" />}
                   </button>
+                  <SharePageButton variant="icon" />
                   <Link prefetch={false}
                     href={data.featuredTool.href}
                     className="p-1.5 rounded-lg text-[#252B27]/60 dark:text-slate-400 hover:bg-[#F7F6F2] dark:hover:bg-[#252D28] transition-colors"

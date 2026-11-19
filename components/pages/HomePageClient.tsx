@@ -32,10 +32,29 @@ import {
   Leaf,
   Sparkles,
   TrendingUp,
+  Calendar,
 } from 'lucide-react';
 import { playTimerSound } from '@/lib/sound';
 import { ALL_HOME_TOOLS } from '@/lib/home-data';
 import { ToolIconBadge, ToolTierTag, type ToolTier } from '@/components/ui/ToolIcon';
+import SharePageButton from '@/components/common/SharePageButton';
+import { HolidayIconGlyph } from '@/components/holidays/HolidayVisualIcon';
+import { getHolidayVisualTheme } from '@/lib/holiday-visuals';
+
+export interface HomeUpcomingHolidayItem {
+  slug: string;
+  baseSlug?: string;
+  holidayName: string;
+  year: number;
+  nextDate: string;
+  dayOfWeek: string;
+  daysRemaining: number;
+  isToday: boolean;
+}
+
+interface HomePageProps {
+  upcomingHolidays?: HomeUpcomingHolidayItem[];
+}
 
 interface HomeToolCardItem {
   name: string;
@@ -178,6 +197,13 @@ const HOME_ORGANIZED_TOOLS: HomeToolCardItem[] = [
 
   // NEW
   {
+    name: 'Holiday & Event Countdowns',
+    ctaName: 'Holiday Countdowns',
+    href: '/days-until',
+    description: 'Live days, hours, minutes & seconds countdowns in your local timezone for Christmas Eve, Thanksgiving, Valentine’s Day, Mother’s Day & more.',
+    tier: 'new',
+  },
+  {
     name: 'Sensory Visual Timers',
     ctaName: 'Sensory Timers',
     href: '/timers/sensory-timers',
@@ -277,7 +303,7 @@ const HOME_ORGANIZED_TOOLS: HomeToolCardItem[] = [
   },
 ];
 
-export default function HomePage() {
+export default function HomePage({ upcomingHolidays = [] }: HomePageProps) {
   const router = useRouter();
 
   // Search state & Tool Tier Filter state
@@ -579,6 +605,7 @@ export default function HomePage() {
                 {
                   tier: 'new' as ToolTier,
                   items: [
+                    { label: 'Holiday Countdowns', href: '/days-until' },
                     { label: 'Sensory Timers', href: '/timers/sensory-timers' },
                     { label: 'Flip Clock', href: '/timers/flip-clock' },
                     { label: 'Forest Fire Timer', href: '/timers/forest-fire-timer' },
@@ -710,6 +737,81 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================================= */}
+      {/* SECTION 2B — UPCOMING HOLIDAY COUNTDOWNS                                  */}
+      {/* ========================================================================= */}
+      {upcomingHolidays.length > 0 && (
+        <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-10 border-t border-[#E4E1D9] dark:border-[#262D28]">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-[#B7804C] dark:text-[#cda06f] uppercase">
+                <Calendar className="w-3.5 h-3.5" />
+                <span>Live Date Trackers · Local Timezone</span>
+              </div>
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#252B27] dark:text-white mt-1">
+                Upcoming Holiday Countdowns
+              </h2>
+            </div>
+
+            <Link
+              prefetch={false}
+              href="/days-until"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#365C4B] dark:text-[#5E917A] hover:underline self-start sm:self-end"
+            >
+              <span>View All Holiday Countdowns</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            {upcomingHolidays.map((holiday) => {
+              const itemTheme = getHolidayVisualTheme(holiday.slug, holiday.baseSlug);
+              const isSoon = holiday.daysRemaining > 0 && holiday.daysRemaining <= 14;
+              return (
+                <Link
+                  key={holiday.slug}
+                  prefetch={false}
+                  href={`/days-until/${holiday.slug}`}
+                  className="group p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#1A201C] border border-[#E4E1D9] dark:border-[#2D352F] hover:border-[#365C4B] dark:hover:border-[#5E917A] hover:shadow-sm transition-all flex flex-col justify-between gap-3"
+                >
+                  <div>
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <span
+                          className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 ${itemTheme.badgeBgClass} ${itemTheme.badgeTextClass}`}
+                        >
+                          <HolidayIconGlyph name={itemTheme.primaryIcon} className="w-4 h-4" />
+                        </span>
+                        <h3 className="text-sm font-bold text-[#252B27] dark:text-white group-hover:text-[#365C4B] dark:group-hover:text-[#70B393] transition-colors">
+                          {holiday.holidayName} {holiday.year}
+                        </h3>
+                      </div>
+                      <span className="font-mono text-xs font-bold tabular-nums px-2 py-0.5 rounded-md bg-[#E7EDE7] dark:bg-[#223029] text-[#365C4B] dark:text-[#7EC4A0] shrink-0">
+                        {holiday.isToday ? 'Today!' : `${holiday.daysRemaining}d`}
+                      </span>
+                    </div>
+                    <p className="text-xs text-[#252B27]/65 dark:text-slate-400 mt-2">
+                      {holiday.dayOfWeek}, {holiday.nextDate}
+                    </p>
+                    {(holiday.isToday || isSoon) && (
+                      <div className="mt-1.5 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#B7804C] dark:text-[#F3C969]">
+                        <Sparkles className="w-3 h-3" />
+                        <span>{holiday.isToday ? 'Celebration Today!' : 'Celebration Soon'}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="pt-2.5 border-t border-[#F0EDE6] dark:border-[#252D28] flex items-center justify-between text-xs font-semibold text-[#365C4B] dark:text-[#5E917A]">
+                    <span>Open flip countdown</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform shrink-0" />
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================================= */}
       {/* SECTION 3 — POPULAR TOOLS ORGANIZED BY TRENDING, HOT & NEW                */}
       {/* ========================================================================= */}
       <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-12 border-t border-[#E4E1D9] dark:border-[#262D28]">
@@ -772,6 +874,8 @@ export default function HomePage() {
                 );
               })}
             </div>
+
+            <SharePageButton variant="toolbar" />
 
             <Link prefetch={false}
               href="/tools"
@@ -934,6 +1038,8 @@ export default function HomePage() {
                     Interval
                   </button>
                 </div>
+
+                <SharePageButton variant="icon" />
               </div>
 
               {/* Dial + Quick Presets row */}
@@ -1179,8 +1285,8 @@ export default function HomePage() {
               img: '/images/cat-events.webp',
               alt: 'Stage microphone in auditorium',
               tools: [
+                { label: 'Holiday Countdowns', href: '/days-until', tier: 'new' as ToolTier },
                 { label: 'Stage Timer', href: '/stage-timer', tier: 'hot' as ToolTier },
-                { label: 'Train Timer', href: '/timers/train-timer', tier: 'new' as ToolTier },
                 { label: 'Presentation Timer', href: '/presentation-timer', tier: 'trending' as ToolTier },
                 { label: 'Event Countdown', href: '/event-countdown-timer', tier: 'trending' as ToolTier },
               ],

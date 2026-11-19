@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import SensoryTimersCollectionClient from '@/components/tools/SensoryTimersCollectionClient';
 import ToolSpecificContentSection from '@/components/common/ToolSpecificContentSection';
+import SharePageButton from '@/components/common/SharePageButton';
 import { getToolSpecificContent } from '@/lib/tool-specific-content';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -227,7 +228,12 @@ export default function SensoryTimersCollectionPage() {
 
       {/* MAIN CONTAINER */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 space-y-10">
-        <SensoryTimersCollectionClient />
+        <div>
+          <div className="mb-3 flex items-center justify-end">
+            <SharePageButton variant="toolbar" />
+          </div>
+          <SensoryTimersCollectionClient />
+        </div>
 
         {/* TOOL-SPECIFIC CONTENT (150-250 WORDS: USE CASES, HOW TO USE & 3 UNIQUE FAQS) + SIDEBAR */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start pt-2">

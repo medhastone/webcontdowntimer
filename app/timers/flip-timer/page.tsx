@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import FlipTimerComponent from '@/components/tools/FlipTimerComponent';
 import ToolSpecificContentSection from '@/components/common/ToolSpecificContentSection';
+import SharePageButton from '@/components/common/SharePageButton';
 import { getToolSpecificContent } from '@/lib/tool-specific-content';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -251,7 +252,12 @@ export default function FlipTimerPage() {
 
       {/* MAIN CONTENT CONTAINER */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 space-y-10">
-        <FlipTimerComponent />
+        <div>
+          <div className="mb-3 flex items-center justify-end">
+            <SharePageButton variant="toolbar" />
+          </div>
+          <FlipTimerComponent />
+        </div>
 
         {/* TOOL-SPECIFIC CONTENT (150-250 WORDS: USE CASES, HOW TO USE & 3 UNIQUE FAQS) + RELATED TOOLS */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start pt-2">

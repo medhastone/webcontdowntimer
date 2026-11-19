@@ -5,6 +5,7 @@ import { Home, ChevronRight, GraduationCap } from 'lucide-react';
 import ClassroomTimerDashboard from '@/components/tools/ClassroomTimerDashboard';
 import ToolSpecificContentSection from '@/components/common/ToolSpecificContentSection';
 import SEOStructuredData from '@/components/common/SEOStructuredData';
+import SharePageButton from '@/components/common/SharePageButton';
 import { getToolSpecificContent } from '@/lib/tool-specific-content';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -122,7 +123,12 @@ export default function ClassroomTimerPage() {
       {/* MAIN INTERACTIVE DASHBOARD CONTAINER                              */}
       {/* ================================================================= */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 space-y-12">
-        <ClassroomTimerDashboard />
+        <div>
+          <div className="mb-3 flex items-center justify-end">
+            <SharePageButton variant="toolbar" />
+          </div>
+          <ClassroomTimerDashboard />
+        </div>
         <div className="max-w-4xl mx-auto">
           <ToolSpecificContentSection slug="classroom-timer" toolName="Classroom Timer" />
         </div>

@@ -7,6 +7,7 @@ import {
   getToolCanonicalPath,
 } from '@/lib/tools-registry';
 import { getDurationPageData, APPROVED_DURATION_SLUGS } from '@/lib/duration-timers-data';
+import { getAllHolidayOccurrences } from '@/lib/holidays-data';
 import BreadcrumbJsonLd from '@/components/common/BreadcrumbJsonLd';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -93,6 +94,7 @@ export default function HtmlSitemapPage() {
     slug,
     label: getDurationPageData(slug)?.h1 || slug,
   }));
+  const holidayItems = getAllHolidayOccurrences();
 
   const toolGroups = [
     {
@@ -185,6 +187,7 @@ export default function HtmlSitemapPage() {
           {[
             { href: '/', label: 'Homepage — WebCountDownTimer' },
             { href: '/tools', label: 'All Time Tools Directory (/tools)' },
+            { href: '/days-until', label: 'Holiday & Event Countdowns Hub (/days-until)' },
             { href: '/category/events', label: 'Public Speaking, Stage & Event Timers Hub' },
             { href: '/category/education', label: 'Education & Classroom Timers Hub' },
             { href: '/category/productivity', label: 'Business, Focus & Study Timers Hub' },
@@ -270,6 +273,33 @@ export default function HtmlSitemapPage() {
                 className="block p-3 rounded-xl bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] hover:border-[#365C4B] dark:hover:border-[#5E917A] text-sm font-medium text-[#252B27] dark:text-slate-200 transition-colors"
               >
                 {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Holiday Countdowns Utility Pages */}
+      <section className="space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+          <h2 className="font-serif text-2xl font-bold text-[#252B27] dark:text-white">
+            10. Holiday &amp; Event Countdowns ({holidayItems.length})
+          </h2>
+          <Link prefetch={false}
+            href="/days-until"
+            className="text-xs font-bold uppercase tracking-wider text-[#365C4B] dark:text-[#5E917A] hover:underline"
+          >
+            Open Holiday Countdowns Hub →
+          </Link>
+        </div>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 list-none p-0 m-0">
+          {holidayItems.map((item) => (
+            <li key={item.slug}>
+              <Link prefetch={false}
+                href={`/days-until/${item.slug}`}
+                className="block p-3 rounded-xl bg-white dark:bg-[#19201C] border border-[#E4E1D9] dark:border-[#2A342E] hover:border-[#365C4B] dark:hover:border-[#5E917A] text-sm font-medium text-[#252B27] dark:text-slate-200 transition-colors"
+              >
+                {item.h1}
               </Link>
             </li>
           ))}

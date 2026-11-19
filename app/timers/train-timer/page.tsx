@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import TrainTimerComponent from '@/components/tools/TrainTimerComponent';
 import ToolSpecificContentSection from '@/components/common/ToolSpecificContentSection';
+import SharePageButton from '@/components/common/SharePageButton';
 import { getToolSpecificContent } from '@/lib/tool-specific-content';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -193,7 +194,12 @@ export default function TrainTimerPage() {
       {/* MAIN CONTAINER */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 space-y-12">
         {/* INTERACTIVE TRAIN TIMER + ROUTE + QUICK PRESETS */}
-        <TrainTimerComponent initialMinutes={25} />
+        <div>
+          <div className="mb-3 flex items-center justify-end">
+            <SharePageButton variant="toolbar" />
+          </div>
+          <TrainTimerComponent initialMinutes={25} />
+        </div>
 
         {/* TOOL-SPECIFIC CONTENT (150-250 WORDS: USE CASES, HOW TO USE & 3 UNIQUE FAQS) + SIDEBAR */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-2">
