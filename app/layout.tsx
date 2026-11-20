@@ -80,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': 'https://webcountdowntimer.com/#website',
     name: 'WebCountDownTimer',
     url: 'https://webcountdowntimer.com',
     potentialAction: {

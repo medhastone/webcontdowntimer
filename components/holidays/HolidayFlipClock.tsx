@@ -106,13 +106,17 @@ function HolidaySplitFlapDigit({
   }, [flipState.seq]);
 
   const cardSizeClass = isFullscreen
-    ? 'w-[clamp(44px,9vw,108px)] h-[clamp(66px,14vmin,160px)] rounded-xl sm:rounded-2xl'
+    ? compact
+      ? 'w-[clamp(44px,12.5vw,64px)] h-[clamp(62px,12.5dvh,96px)] sm:w-[clamp(48px,6.8vw,96px)] sm:h-[clamp(74px,13vmin,148px)] rounded-xl sm:rounded-2xl'
+      : 'w-[clamp(54px,15.5vw,78px)] h-[clamp(68px,13.5dvh,106px)] sm:w-[clamp(58px,8.5vw,116px)] sm:h-[clamp(88px,15vmin,172px)] rounded-xl sm:rounded-2xl'
     : compact
     ? 'w-[34px] h-[52px] sm:w-[44px] sm:h-[68px] rounded-lg sm:rounded-xl'
     : 'w-[42px] h-[64px] sm:w-[56px] sm:h-[86px] md:w-[64px] md:h-[98px] rounded-lg sm:rounded-xl';
 
   const digitTextClass = isFullscreen
-    ? 'text-[clamp(36px,7.5vw,92px)]'
+    ? compact
+      ? 'text-[clamp(30px,6.2dvh,52px)] sm:text-[clamp(36px,5.6vw,78px)]'
+      : 'text-[clamp(38px,7.4dvh,64px)] sm:text-[clamp(44px,7vw,96px)]'
     : compact
     ? 'text-[28px] sm:text-[38px]'
     : 'text-[36px] sm:text-[48px] md:text-[56px]';
@@ -261,14 +265,22 @@ export default function HolidayFlipClock({
 
   return (
     <div
-      className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-5 py-2"
+      className={
+        isFullscreen
+          ? 'flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 md:gap-6 py-2 w-full'
+          : 'flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-5 py-2'
+      }
       role="timer"
       aria-live="off"
     >
       {units.map((unit, idx) => (
         <React.Fragment key={unit.key}>
-          <div className="flex flex-col items-center gap-2.5">
-            <div className="flex items-center gap-1 sm:gap-1.5">
+          <div
+            className={`flex flex-col items-center ${
+              isFullscreen ? 'gap-1.5 sm:gap-2.5' : 'gap-2.5'
+            }`}
+          >
+            <div className="flex items-center gap-1.5 sm:gap-1.5">
               {unit.chars.map((ch, charIdx) => (
                 <HolidaySplitFlapDigit
                   key={`${unit.key}-${charIdx}-${unit.chars.length}`}

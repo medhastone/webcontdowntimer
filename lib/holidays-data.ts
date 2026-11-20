@@ -64,8 +64,17 @@ export interface HolidayFaqItem {
   answer: string;
 }
 
+export interface UpcomingHolidayYearRow {
+  year: number;
+  isoDate: string;
+  formattedDate: string;
+  dayOfWeek: string;
+  isSelected: boolean;
+}
+
 export interface HolidayPageBundle {
   resolved: ResolvedHolidayOccurrence;
+  upcomingSchedule: UpcomingHolidayYearRow[];
   relatedCountdowns: ResolvedHolidayOccurrence[];
   faqs: HolidayFaqItem[];
 }
@@ -711,6 +720,8 @@ export const HOLIDAY_DEFINITIONS: HolidayDefinition[] = [
         2028: '2028-12-12',
         2029: '2029-12-01',
         2030: '2030-12-20',
+        2031: '2031-12-09',
+        2032: '2032-11-27',
       },
     },
     ruleTypeLabel: 'Variable Date',
@@ -741,6 +752,8 @@ export const HOLIDAY_DEFINITIONS: HolidayDefinition[] = [
         2028: '2028-01-26',
         2029: '2029-02-13',
         2030: '2030-02-03',
+        2031: '2031-01-23',
+        2032: '2032-02-11',
       },
     },
     ruleTypeLabel: 'Variable Date',
@@ -934,6 +947,24 @@ export function getHolidayPageBundle(
     ? resolved.holidayName
     : `${resolved.holidayName} ${resolved.year}`;
 
+  const scheduleStartYear = def.pinnedYear !== undefined ? def.pinnedYear : resolved.targetYear;
+  const upcomingSchedule: UpcomingHolidayYearRow[] = Array.from({ length: 5 }, (_, idx) => {
+    const yr = scheduleStartYear + idx;
+    const occ = getDateForDefinitionInYear(def, yr);
+    const utc = Date.UTC(occ.year, occ.month - 1, occ.day);
+    const mm = String(occ.month).padStart(2, '0');
+    const dd = String(occ.day).padStart(2, '0');
+    return {
+      year: occ.year,
+      isoDate: `${occ.year}-${mm}-${dd}`,
+      formattedDate: `${MONTH_NAMES[occ.month - 1]} ${occ.day}, ${occ.year}`,
+      dayOfWeek: WEEKDAY_NAMES[new Date(utc).getUTCDay()],
+      isSelected: occ.year === resolved.targetYear,
+    };
+  });
+
+  const bizDayWord = resolved.businessDaysRemaining === 1 ? 'business day' : 'business days';
+
   const faqs: HolidayFaqItem[] = [
     {
       question: `How many days until ${titleSubject}?`,
@@ -941,20 +972,33 @@ export function getHolidayPageBundle(
         ? `${titleSubject} occurred on ${resolved.dayOfWeek}, ${resolved.nextDate}. Use the evergreen ${resolved.holidayName} countdown page to track the upcoming annual occurrence.`
         : resolved.isToday
           ? `${titleSubject} is today (${resolved.dayOfWeek}, ${resolved.nextDate}), so there are 0 days remaining.`
-          : `There are ${resolved.daysRemaining} ${resolved.daysRemaining === 1 ? 'day' : 'days'} until ${resolved.holidayName} on ${resolved.dayOfWeek}, ${resolved.nextDate} (${resolved.weeksRemainingLabel}, or ${resolved.businessDaysRemaining} business days).`,
+          : `There are ${resolved.daysRemaining} ${resolved.daysRemaining === 1 ? 'day' : 'days'} until ${resolved.holidayName} on ${resolved.dayOfWeek}, ${resolved.nextDate}.`,
     },
     {
       question: `What day of the week is ${titleSubject}?`,
       answer: `${titleSubject} falls on ${resolved.dayOfWeek}, ${resolved.nextDate}.`,
     },
     {
+      question: `How many weeks and business days until ${titleSubject}?`,
+      answer: resolved.isPastPinned
+        ? `${titleSubject} has already passed, so there are 0 weeks and 0 business days remaining.`
+        : resolved.isToday
+          ? `Because ${titleSubject} is today, there are 0 weeks and 0 business days remaining.`
+          : `There are ${resolved.weeksRemainingLabel} and ${resolved.businessDaysRemaining} ${bizDayWord} (Monday through Friday) remaining until ${titleSubject}.`,
+    },
+    {
       question: `Is ${resolved.holidayName} a fixed or variable date?`,
       answer: `${resolved.holidayName} follows a ${resolved.ruleTypeLabel.toLowerCase()} rule. ${resolved.ruleSummary}`,
+    },
+    {
+      question: `Does this live ${resolved.holidayName} flip countdown use my local time zone?`,
+      answer: `Yes. The live days, hours, minutes, and seconds flip timer automatically syncs to your device's local time zone so it hits zero right at midnight on ${resolved.nextDate} where you live.`,
     },
   ];
 
   return {
     resolved,
+    upcomingSchedule,
     relatedCountdowns,
     faqs,
   };

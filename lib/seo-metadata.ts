@@ -60,10 +60,16 @@ export const ROUTE_SEO_REGISTRY: Record<string, RouteSeoEntry> = {
   },
   '/days-until': {
     path: '/days-until',
-    title: 'Holiday & Event Countdowns – Days Until | WebCountDownTimer',
+    title: 'Holiday Countdowns – Days Until Holidays | WebCountDownTimer',
     description:
-      'Track live days, hours, minutes, and seconds until major holidays, seasonal dates, and upcoming years in your local timezone with verified date rules.',
-    keywords: ['holiday countdowns', 'days until holiday', 'how many days until', 'holiday calendar'],
+      'Track live 3D flip countdowns in days, hours, minutes, and seconds for major holidays and upcoming years in your local time zone with verified date rules.',
+    keywords: [
+      'holiday countdowns',
+      'days until holiday',
+      'how many days until',
+      'holiday flip countdown timer',
+      'holiday calendar dates',
+    ],
   },
   '/education': {
     path: '/education',

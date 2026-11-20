@@ -48,7 +48,7 @@ const STATIC_LEGAL_PATHS = new Set<string>([
 
 function getRouteLastModified(urlPath: string): string {
   if (RECENTLY_UPDATED_PATHS.has(urlPath) || urlPath.startsWith('/days-until/')) {
-    return '2026-11-19T00:00:00.000Z';
+    return '2026-11-20T00:00:00.000Z';
   }
   if (STATIC_LEGAL_PATHS.has(urlPath)) {
     return '2026-09-01T00:00:00.000Z';
